@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
             CertificateSeeder::class,
             CourseSeeder::class,
             LessonSeeder::class,
-            UserCourseSeeder::class
+            UserCourseSeeder::class,
+            VoucherSeeder::class
         ]);
 
 

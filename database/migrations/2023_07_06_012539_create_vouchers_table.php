@@ -13,17 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 100);
-            $table->foreignId('author_id');
-            $table->foreignId('category_id');
-            $table->text('description');
-            $table->text('photo');
-            $table->text('price');
-            $table->integer('voucher_id');
+            $table->string('token', 10);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('vouchers');
     }
 };
