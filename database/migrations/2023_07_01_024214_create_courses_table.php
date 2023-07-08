@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('photo');
             $table->text('price');
             $table->integer('voucher_id');
-            $table->enum('status', ['berjalan', 'perbaikan', 'selesai'])->default('sedang berjalan');
+            $table->enum('status', ['berjalan', 'perbaikan', 'selesai'])->default('berjalan');
             $table->boolean('is_public')->default(true);
             $table->timestamps();
             $table->softDeletes();
