@@ -16,7 +16,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(10)->create();
+        User::factory()->count(9)->create();
+
+        User::create([
+            'username' => 'ryo.kf',
+            'email' => 'ryokhrisnaf@gmail.com',
+            'password' => Hash::make('rahasia'),
+            'occupation' => 'mahasiswa',
+            'office' => 'univeristas dian nuswantoro',
+            'photo' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100
+        ]);
 
         User::create([
             'id' => 99,
@@ -24,7 +33,6 @@ class UserSeeder extends Seeder
             'email' => 'admin@admin.admin',
             'password' => Hash::make('rahasiaAdmin'),
             'photo' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100
-
         ]);
     }
 }
