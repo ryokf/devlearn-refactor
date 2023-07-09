@@ -7,5 +7,11 @@ use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    //
+    function index() {
+        return request()->pathInfo;
+    }
+
+    function show() {
+        return request()->pathInfo;
+    }
 }

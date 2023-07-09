@@ -23,10 +23,10 @@ Route::get('/', function () {
 
 Route::prefix('author')->group(function () {
     Route::controller(AuthorController::class)->group(function () {
-        Route::get('', 'index');
+        Route::get('', 'dashboard');
         Route::get('profile', 'showProfile');
         Route::get('profile/edit', 'editProfile');
-        Route::put('profile/edit', 'editProfile');
+        Route::put('profile/edit', 'updateProfile');
     });
 
     Route::controller(CourseController::class)->group(function () {
@@ -37,7 +37,7 @@ Route::prefix('author')->group(function () {
         Route::get('/course/edit',  'edit');
         Route::put('/course/edit',  'update');
         Route::delete('/course/delete/{id}',  'delete');
-        Route::get('/course/{id}/problem',  'solveConfirm');
+        Route::get('/course/{id}/problem',  'solveProblemConfirm');
         Route::get('/course/{id}/member',  'member');
     });
 
@@ -52,6 +52,6 @@ Route::prefix('author')->group(function () {
 
     Route::controller(LessonController::class)->group(function () {
         Route::get('/member',  'index');
-        Route::get('/member/{id}',  'index');
+        Route::get('/member/{id}',  'show');
     });
 });
