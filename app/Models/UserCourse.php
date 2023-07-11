@@ -15,9 +15,9 @@ class UserCourse extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function user(): HasMany
+    public function user()
     {
-        return $this->hasMany(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     /**
@@ -25,8 +25,8 @@ class UserCourse extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function course(): HasMany
+    public function course()
     {
-        return $this->hasMany(Course::class, 'course_id', 'id');
+        return $this->belongsTo(Course::class, 'course_id', 'id');
     }
 }

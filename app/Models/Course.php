@@ -61,4 +61,14 @@ class Course extends Model
     {
         return $this->hasMany(Certificate::class, 'course_id', 'id');
     }
+
+    /**
+     * Get the voucher that owns the Course
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function voucher(): BelongsTo
+    {
+        return $this->belongsTo(Voucher::class, 'voucher_id', 'id');
+    }
 }

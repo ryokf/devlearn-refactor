@@ -3,13 +3,25 @@
 namespace App\Http\Controllers\Author;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DashboardResource;
+use App\Models\Course;
+use App\Models\Lesson;
+use App\Models\UserCourse;
+use App\Services\Author\AuthorService;
 use Illuminate\Http\Request;
 
 
 class AuthorController extends Controller
 {
+    private $authorService;
+
+    function __construct(AuthorService $authorService)
+    {
+        $this->authorService = $authorService;
+    }
+
     function dashboard() {
-        return request()->pathinfo;
+       return $this->authorService->dashboard();
     }
 
     function showProfile() {
@@ -23,6 +35,7 @@ class AuthorController extends Controller
     function updateProfile() {
         return request()->pathinfo;
     }
+
 
 
 }
