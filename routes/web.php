@@ -30,7 +30,7 @@ Route::prefix('author')->group(function () {
     });
 
     Route::controller(CourseController::class)->group(function () {
-        Route::get('/course/{id}',  'index');
+        Route::get('/course',  'index');
         Route::get('/course/serach',  'search');
         Route::get('/course-create',  'create');
         Route::post('/course/create',  'store');

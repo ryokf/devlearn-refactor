@@ -13,8 +13,8 @@
                 </div>
                 <div class="relative w-auto pl-4 flex-initial">
                     <div
-                        class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500">
-                        <i class="far fa-chart-bar"></i>
+                        class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full {{ $iconBgColor }}">
+                        <i class="{{ $icon }}"></i>
                     </div>
                 </div>
             </div>

@@ -8,16 +8,24 @@ class author_stastitic_card extends Component
 {
     public $title;
     public $value;
+    public $icon;
+    public $iconBgColor;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($title, $value)
-    {
+    public function __construct(
+        $title,
+        $value,
+        $icon,
+        $iconBgColor
+    ) {
         $this->title = $title;
-        $this->title = $value;
+        $this->value = $value;
+        $this->icon = $icon;
+        $this->iconBgColor = $iconBgColor;
     }
 
     /**

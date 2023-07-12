@@ -14,7 +14,7 @@ class AuthorService
     function dashboard()
     {
         // course
-        $course = Course::where('author_id', 10)->get();
+        $course = Course::where('author_id', auth()->user()->id)->get();
 
         // jumlah lesson
         $lesson = [];
@@ -67,7 +67,7 @@ class AuthorService
 
         $courseIds = $topBought->pluck('course_id');
 
-        $topBought = Course::whereIn('id', $courseIds)->where('author_id', 10)->get();
+        $topBought = Course::whereIn('id', $courseIds)->where('author_id', auth()->user()->id)->get();
 
         $topPass = Certificate::select('course_id', DB::raw('COUNT(*) as total'))
             ->groupBy('course_id')
@@ -77,7 +77,32 @@ class AuthorService
 
         $courseIds = $topPass->pluck('course_id');
 
-        $topPass = Course::whereIn('id', $courseIds)->where('author_id', 10)->get();
+        $topPass = Course::whereIn('id', $courseIds)->where('author_id', auth()->user()->id)->get();
+
+        // jumlah pembeli perbulan
+        $buyerThisMonth = [];
+        for ($i = 1; $i <= 12; $i++) {
+            foreach ($course as $findId) {
+                 $count = count(UserCourse::whereMonth('created_at', $i)
+                ->whereYear('created_at', date('Y'))
+                ->where('course_id', $findId->id)
+                ->get());
+            }
+            array_push($buyerThisMonth, $count);
+        }
+
+        // jumlah lulusan perbulan
+        $graduateThisMonth = [];
+        for ($i = 1; $i <= 12; $i++) {
+            foreach ($course as $findId) {
+                 $count = count(Certificate::whereMonth('created_at', $i)
+                ->whereYear('created_at', date('Y'))
+                ->where('course_id', $findId->id)
+                ->get());
+            }
+            array_push($graduateThisMonth, $count);
+        }
+
 
         $data = [
             "course" => $course,
@@ -85,7 +110,9 @@ class AuthorService
             "topPass" => $topPass,
             "lesson_count" => $lesson_count,
             "member_count" => $member_count,
-            "income" => $income
+            "income" => $income,
+            "buyer_count" => $buyerThisMonth,
+            "graduate_count" => $graduateThisMonth
         ];
 
         return $data;

@@ -31,7 +31,6 @@ class author_sidebar extends Component
     public function render()
     {
         $menu = $this->menu;
-        // $name = $this->name;
         return view('components.author_sidebar', compact('menu'));
     }
 }

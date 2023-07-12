@@ -21,6 +21,8 @@ class DashboardResource extends JsonResource
             "income" => $this->resource['income'],
             "course_top_bought" => topCourseResource::collection($this->resource['topBought']),
             "course_top_pass" => topCourseResource::collection($this->resource['topPass']),
+            "buyer_count" => $this->resource['buyer_count'],
+            "graduate_count" => $this->resource['graduate_count'],
         ];
     }
 }

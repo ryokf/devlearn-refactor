@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(9)->create();
+        User::factory()->count(99)->create();
 
         User::create([
             'username' => 'ryo.kf',
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'id' => 99,
+            'id' => 999,
             'username' => 'devlearn admin',
             'email' => 'admin@admin.admin',
             'password' => Hash::make('rahasiaAdmin'),

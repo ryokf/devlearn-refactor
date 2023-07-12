@@ -29,11 +29,9 @@ class AuthorController extends Controller
 
     function dashboard()
     {
-        $data = json_encode(new DashboardResource($this->authorService->dashboard()));
-
         return view('author.dashboard', [
             'menu' => parent::$menuSidebar,
-            'data' => json_decode($data),
+            'data' => json_decode(json_encode(new DashboardResource($this->authorService->dashboard()))),
         ]);
     }
 

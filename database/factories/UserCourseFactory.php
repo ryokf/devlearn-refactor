@@ -17,8 +17,9 @@ class UserCourseFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => mt_rand(1,7),
-            'course_id' => mt_rand(1,8)
+            'user_id' => mt_rand(1,100),
+            'course_id' => mt_rand(1,50),
+            'created_at' => fake()->dateTimeThisYear
         ];
     }
 }

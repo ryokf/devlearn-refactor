@@ -18,7 +18,7 @@ class AssignmentFactory extends Factory
     public function definition()
     {
         return [
-            'lesson_id' => mt_rand(1,40),
+            'lesson_id' => mt_rand(1,400),
             'task' => fake()->paragraph(5),
             'deadline' => fake()->dateTime()
         ];

@@ -1,14 +1,13 @@
 @extends('author.layout')
 
 @section('body')
-    <x-author_sidebar :menu=$menu />
     <div class="relative md:ml-72 bg-blueGray-50">
-
+        <x-author_header></x-author_header>
         <!-- Header -->
         <div class="relative bg-teal-600 md:pt-32 pb-32">
 
         </div>
-        <div class="px-4 md:px-10 mx-auto w-full md:-my-48 -m-20">
+        <div class="px-4 md:px-10 mx-auto w-full md:-my-36 -m-20">
 
             <div class="w-full px-4 ">
                 <div

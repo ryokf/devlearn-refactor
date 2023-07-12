@@ -15,6 +15,6 @@ class AssignmentScoreSeeder extends Seeder
      */
     public function run()
     {
-        AssignmentScore::factory()->count(34)->create();
+        AssignmentScore::factory()->count(200)->create();
     }
 }
