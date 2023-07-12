@@ -17,25 +17,38 @@ class AuthorController extends Controller
 
     function __construct(AuthorService $authorService)
     {
+        parent::__construct();
+
         $this->authorService = $authorService;
     }
 
-    function dashboard() {
-       return $this->authorService->dashboard();
+    function __destruct()
+    {
+        parent::__destruct();
     }
 
-    function showProfile() {
+    function dashboard()
+    {
+        $data = json_encode(new DashboardResource($this->authorService->dashboard()));
+
+        return view('author.dashboard', [
+            'menu' => parent::$menuSidebar,
+            'data' => json_decode($data),
+        ]);
+    }
+
+    function showProfile()
+    {
         return request()->pathinfo;
     }
 
-    function editProfile() {
+    function editProfile()
+    {
         return request()->pathinfo;
     }
 
-    function updateProfile() {
+    function updateProfile()
+    {
         return request()->pathinfo;
     }
-
-
-
 }

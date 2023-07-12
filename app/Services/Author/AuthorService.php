@@ -88,8 +88,6 @@ class AuthorService
             "income" => $income
         ];
 
-        $result = new DashboardResource($data);
-
-        return  $result;
+        return $data;
     }
 }

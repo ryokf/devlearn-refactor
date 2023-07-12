@@ -1,0 +1,338 @@
+@extends('author.layout')
+
+@section('body')
+    {{-- @dd($data) --}}
+
+    <x-author_sidebar :menu=$menu />
+
+    <div class="relative md:ml-72 bg-blueGray-50">
+        <x-author_header />
+        <div class="relative bg-teal-600 md:pt-32 pb-32 pt-12">
+            <div class="px-4 md:px-10 mx-auto w-full">
+                <div>
+                    <!-- Card stats -->
+                    <div class="flex flex-wrap">
+                        <x-author_stastitic_card title="jumlah kursus" value="{{ $data->course_count }}" />
+                        <x-author_stastitic_card title="jumlah materi" value="{{ $data->lesson_count }}" />
+                        <x-author_stastitic_card title="jumlah anggota" value="{{ $data->member_count }}" />
+                        <x-author_stastitic_card title="pemasukan bulan ini" value="Rp{{ $data->income }}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="px-4 md:px-10 mx-auto w-full -m-24">
+            <div class="flex flex-wrap mt-4">
+                <div class="w-full mb-12">
+                    <div class="flex flex-wrap mt-4">
+                        <div class="w-full xl:w-7/12 mb-12 xl:mb-0 px-4">
+                            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+                                <div class="rounded-t mb-0 px-4 py-3 border-0">
+                                    <div class="flex flex-wrap items-center">
+                                        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                                            <h3 class="font-semibold text-base text-blueGray-700">
+                                                Kursus dengan pembeli terbanyak bulan ini
+                                            </h3>
+                                        </div>
+                                        <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                                            <button
+                                                class="bg-teal-500 text-white active:bg-teal-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                type="button">
+                                                lihat semua
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block w-full overflow-x-auto">
+                                    <!-- Projects table -->
+                                    <table class="items-center w-full bg-transparent border-collapse">
+                                        <thead>
+                                            <tr>
+                                                <th
+                                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                    Kursus
+                                                </th>
+                                                <th
+                                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                    kategori
+                                                </th>
+                                                <th
+                                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                    status
+                                                </th>
+                                                <th
+                                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                    jumlah anggota
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($data->course_top_bought as $top)
+                                                <tr>
+                                                    <th
+                                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                                        {{ $top->title }}
+                                                    </th>
+                                                    <td
+                                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                        {{ $top->category }}
+                                                    </td>
+                                                    <td
+                                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                        {{ $top->status }}
+                                                    </td>
+                                                    <td
+                                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                        {{ $top->member }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full xl:w-5/12 px-4">
+                            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+                                <div class="rounded-t mb-0 px-4 py-3 border-0">
+                                    <div class="flex flex-wrap items-center">
+                                        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                                            <h3 class="font-semibold text-base text-blueGray-700">
+                                                kursus dengan lulusan terbanyak
+                                            </h3>
+                                        </div>
+                                        <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                                            <button
+                                                class="bg-teal-500 text-white active:bg-teal-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                type="button">
+                                                lihat semua
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block w-full overflow-x-auto">
+                                    <!-- Projects table -->
+                                    <table class="items-center w-full bg-transparent border-collapse">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th
+                                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                    kursus
+                                                </th>
+                                                <th
+                                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                    kategori
+                                                </th>
+                                                <th
+                                                    class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">
+                                                    jumlah anggota
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($data->course_top_pass as $top)
+                                            <tr>
+                                                <th
+                                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                                    {{ $top->title }}
+                                                </th>
+                                                <td
+                                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                    {{ $top->category }}
+                                                </td>
+                                                <td class="text-center">
+                                                {{ $top->member_pass }}
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <x-author_footer />
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <script type="text/javascript">
+        /* Make dynamic date appear */
+        (function() {
+            if (document.getElementById("get-current-year")) {
+                document.getElementById("get-current-year").innerHTML =
+                    new Date().getFullYear();
+            }
+        })();
+        /* Sidebar - Side navigation menu on mobile/responsive mode */
+        function toggleNavbar(collapseID) {
+            document.getElementById(collapseID).classList.toggle("hidden");
+            document.getElementById(collapseID).classList.toggle("bg-white");
+            document.getElementById(collapseID).classList.toggle("m-2");
+            document.getElementById(collapseID).classList.toggle("py-3");
+            document.getElementById(collapseID).classList.toggle("px-6");
+        }
+        /* Function for dropdowns */
+        function openDropdown(event, dropdownID) {
+            let element = event.target;
+            while (element.nodeName !== "A") {
+                element = element.parentNode;
+            }
+            Popper.createPopper(element, document.getElementById(dropdownID), {
+                placement: "bottom-start",
+            });
+            document.getElementById(dropdownID).classList.toggle("hidden");
+            document.getElementById(dropdownID).classList.toggle("block");
+        }
+
+        (function() {
+            /* Chart initialisations */
+            /* Line Chart */
+            var config = {
+                type: "line",
+                data: {
+                    labels: [
+                        "January",
+                        "February",
+                        "March",
+                        "April",
+                        "May",
+                        "June",
+                        "July",
+                        "september",
+                    ],
+                    datasets: [{
+                            label: new Date().getFullYear(),
+                            backgroundColor: "#4c51bf",
+                            borderColor: "#4c51bf",
+                            data: [7, 8, 6, 4, 6, 7, 7, 8, 9],
+                            fill: false,
+                        },
+                        {
+                            label: new Date().getFullYear() - 1,
+                            fill: false,
+                            backgroundColor: "#fff",
+                            borderColor: "#fff",
+                            data: [1, 8, 6, 7, 5, 6, 8],
+                        },
+                    ],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    title: {
+                        display: false,
+                        text: "Sales Charts",
+                        fontColor: "white",
+                    },
+                    legend: {
+                        labels: {
+                            fontColor: "white",
+                        },
+                        align: "end",
+                        position: "bottom",
+                    },
+                    tooltips: {
+                        mode: "index",
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: "nearest",
+                        intersect: true,
+                    },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontColor: "rgba(255,255,255,.7)",
+                            },
+                            display: true,
+                            scaleLabel: {
+                                display: false,
+                                labelString: "Month",
+                                fontColor: "white",
+                            },
+                            gridLines: {
+                                display: false,
+                                borderDash: [2],
+                                borderDashOffset: [2],
+                                color: "rgba(33, 37, 41, 0.3)",
+                                zeroLineColor: "rgba(0, 0, 0, 0)",
+                                zeroLineBorderDash: [2],
+                                zeroLineBorderDashOffset: [2],
+                            },
+                        }, ],
+                        yAxes: [{
+                            ticks: {
+                                fontColor: "rgba(255,255,255,.7)",
+                            },
+                            display: true,
+                            scaleLabel: {
+                                display: false,
+                                labelString: "Value",
+                                fontColor: "white",
+                            },
+                            gridLines: {
+                                borderDash: [3],
+                                borderDashOffset: [3],
+                                drawBorder: false,
+                                color: "rgba(255, 255, 255, 0.15)",
+                                zeroLineColor: "rgba(33, 37, 41, 0)",
+                                zeroLineBorderDash: [2],
+                                zeroLineBorderDashOffset: [2],
+                            },
+                        }, ],
+                    },
+                },
+            };
+            var ctx = document.getElementById("line-chart").getContext("2d");
+            window.myLine = new Chart(ctx, config);
+
+            /* Bar Chart */
+            config = {
+                type: "doughnut",
+                data: {
+                    labels: ["Red", "Blue", "Yellow"],
+                    datasets: [{
+                        label: "My First Dataset",
+                        data: [100, 50, 100],
+                        backgroundColor: [
+                            "rgb(255, 99, 132)",
+                            "rgb(54, 162, 235)",
+                            "rgb(255, 205, 86)",
+                        ],
+                        hoverOffset: 4,
+                    }, ],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    title: {
+                        display: false,
+                        text: "Orders Chart",
+                    },
+                    tooltips: {
+                        mode: "index",
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: "nearest",
+                        intersect: true,
+                    },
+                    legend: {
+                        labels: {
+                            fontColor: "rgba(0,0,0,.4)",
+                        },
+                        align: "end",
+                        position: "bottom",
+                    },
+                },
+            };
+            ctx = document.getElementById("bar-chart").getContext("2d");
+            window.myBar = new Chart(ctx, config);
+        })();
+    </script>
+@endsection
