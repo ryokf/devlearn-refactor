@@ -14,7 +14,7 @@
                             iconBgColor="bg-red-500" />
                         <x-author_stastitic_card title="jumlah materi" value="{{ $data->lesson_count }}" icon='fa-solid fa-scroll'
                             iconBgColor="bg-orange-500" />
-                        <x-author_stastitic_card title="jumlah anggota" value="{{ $data->member_count }}" icon='fa-solid fa-users-rectangle'
+                        <x-author_stastitic_card title="jumlah transaksi" value="{{ $data->member_count }}" icon='fa-solid fa-users-rectangle'
                             iconBgColor="bg-blue-500" />
                         <x-author_stastitic_card title="pemasukan bulan ini" value="Rp{{ $data->income }}" icon='fa-solid fa-rupiah-sign'
                             iconBgColor="bg-purple-500" />

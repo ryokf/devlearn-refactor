@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Course extends Model
 {
     use HasFactory, SoftDeletes;
-
+    protected $guarded =['id'];
     /**
      * Get the category that owns the Course
      *

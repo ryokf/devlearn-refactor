@@ -82,8 +82,9 @@ class AuthorService
         // jumlah pembeli perbulan
         $buyerThisMonth = [];
         for ($i = 1; $i <= 12; $i++) {
+            $count = 0;
             foreach ($course as $findId) {
-                 $count = count(UserCourse::whereMonth('created_at', $i)
+                 $count += count(UserCourse::whereMonth('created_at', $i)
                 ->whereYear('created_at', date('Y'))
                 ->where('course_id', $findId->id)
                 ->get());
@@ -94,8 +95,9 @@ class AuthorService
         // jumlah lulusan perbulan
         $graduateThisMonth = [];
         for ($i = 1; $i <= 12; $i++) {
+            $count = 0;
             foreach ($course as $findId) {
-                 $count = count(Certificate::whereMonth('created_at', $i)
+                 $count += count(Certificate::whereMonth('created_at', $i)
                 ->whereYear('created_at', date('Y'))
                 ->where('course_id', $findId->id)
                 ->get());

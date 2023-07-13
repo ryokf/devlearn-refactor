@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class UserCourse extends Model
 {
     use HasFactory;
-
+    protected $guarded =['id'];
     /**
      * Get all of the user for the UserCourse
      *
