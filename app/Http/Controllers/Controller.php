@@ -23,14 +23,14 @@ class Controller extends BaseController
 
     function __construct()
     {
-        $user = User::where('email', 'ryokhrisnaf@gmail.com')->first();
+        // $user = User::where('email', 'ryokhrisnaf@gmail.com')->first();
 
-        Auth::login($user);
+        // Auth::login($user);
 
     }
 
     function __destruct()
     {
-        Auth::logout();
+        // Auth::logout();
     }
 }

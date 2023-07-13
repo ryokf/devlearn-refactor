@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::prefix('author')->group(function () {
     Route::controller(AuthorController::class)->group(function () {
-        Route::get('', 'dashboard');
+        Route::get('', 'dashboard')->name('author_dashboard');
         Route::get('profile', 'showProfile');
         Route::get('profile/edit', 'editProfile');
         Route::put('profile/edit', 'updateProfile');
