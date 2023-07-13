@@ -17,7 +17,7 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-            'author_id' => mt_rand(8,10),
+            'author_id' => mt_rand(91,100),
             'title' => fake()->sentence(mt_rand(3,5)),
             'category_id' => mt_rand(1,3),
             'photo' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100,

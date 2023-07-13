@@ -11,6 +11,8 @@ class Assignment extends Model
 {
     use HasFactory;
 
+    protected $guarded =['id'];
+
     /**
      * Get the lesson that owns the Assignment
      *

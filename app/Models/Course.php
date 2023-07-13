@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Course extends Model
 {
     use HasFactory, SoftDeletes;
-
+    protected $guarded =['id'];
     /**
      * Get the category that owns the Course
      *
@@ -60,5 +60,15 @@ class Course extends Model
     public function certificates(): HasMany
     {
         return $this->hasMany(Certificate::class, 'course_id', 'id');
+    }
+
+    /**
+     * Get the voucher that owns the Course
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function voucher(): BelongsTo
+    {
+        return $this->belongsTo(Voucher::class, 'voucher_id', 'id');
     }
 }

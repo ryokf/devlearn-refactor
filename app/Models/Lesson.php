@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Lesson extends Model
 {
     use HasFactory;
-
+    protected $guarded =['id'];
     /**
      * Get the course that owns the Lesson
      *

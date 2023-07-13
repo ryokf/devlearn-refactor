@@ -16,13 +16,14 @@ class CertificateFactory extends Factory
      */
     public function definition()
     {
-        $user_id = mt_rand(1,7);
-        $course_id = mt_rand(1,8);
+        $user_id = mt_rand(1,100);
+        $course_id = mt_rand(1,50);
 
         return [
             'user_id' => $user_id,
             'course_id' => $course_id,
-            'photo' => "certificate_user_" . $user_id . "_course_" . $course_id
+            'photo' => "certificate_user_" . $user_id . "_course_" . $course_id,
+            'created_at' => fake()->dateTimeThisYear
         ];
     }
 }

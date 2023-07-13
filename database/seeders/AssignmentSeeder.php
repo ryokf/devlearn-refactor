@@ -15,6 +15,6 @@ class AssignmentSeeder extends Seeder
      */
     public function run()
     {
-        Assignment::factory()->count(17)->create();
+        Assignment::factory()->count(100)->create();
     }
 }

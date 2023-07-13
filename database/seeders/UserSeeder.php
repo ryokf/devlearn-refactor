@@ -16,10 +16,19 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(10)->create();
+        User::factory()->count(99)->create();
 
         User::create([
-            'id' => 99,
+            'username' => 'ryo.kf',
+            'email' => 'ryokhrisnaf@gmail.com',
+            'password' => Hash::make('rahasia'),
+            'occupation' => 'mahasiswa',
+            'office' => 'univeristas dian nuswantoro',
+            'photo' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100
+        ]);
+
+        User::create([
+            'id' => 999,
             'username' => 'devlearn admin',
             'email' => 'admin@admin.admin',
             'password' => Hash::make('rahasiaAdmin'),

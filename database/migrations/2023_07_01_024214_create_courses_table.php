@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('photo');
             $table->text('price');
-            $table->integer('voucher_id');
+            $table->integer('voucher_id')->nullable();
             $table->enum('status', ['berjalan', 'perbaikan', 'selesai'])->default('berjalan');
             $table->boolean('is_public')->default(true);
             $table->timestamps();
