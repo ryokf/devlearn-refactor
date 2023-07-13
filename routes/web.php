@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('author')->group(function () {
+Route::middleware(['role:author'])->prefix('author')->group(function () {
     Route::controller(AuthorController::class)->group(function () {
         Route::get('', 'dashboard');
         Route::get('profile', 'showProfile');

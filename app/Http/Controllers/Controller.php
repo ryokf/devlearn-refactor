@@ -23,9 +23,8 @@ class Controller extends BaseController
 
     function __construct()
     {
-        $user = User::where('email', 'ryokhrisnaf@gmail.com')->first();
-
-        Auth::login($user);
+        // $user = User::where('email', 'ryokhrisnaf@gmail.com')->first();
+        // Auth::login($user);
 
     }
 
