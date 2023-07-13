@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\belongsTo;
 
 class UserCourse extends Model
 {
@@ -13,9 +13,10 @@ class UserCourse extends Model
     /**
      * Get all of the user for the UserCourse
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function user()
+
+    public function users(): belongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
@@ -23,9 +24,10 @@ class UserCourse extends Model
     /**
      * Get all of the course for the UserCourse
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function course()
+
+    public function courses(): belongsTo
     {
         return $this->belongsTo(Course::class, 'course_id', 'id');
     }
