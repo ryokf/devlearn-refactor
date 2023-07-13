@@ -22,6 +22,8 @@ class UserFactory extends Factory
             'username' => fake()->userName(),
             'email' => fake()->email(),
             'password' => Hash::make('rahasia'),
+            'occupation' => fake()->sentence(mt_rand(1,2)),
+            'office' => fake()->sentence(mt_rand(2,3)),
             'photo' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100
         ];
     }

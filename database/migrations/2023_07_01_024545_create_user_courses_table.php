@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('course_id');
+            $table->boolean('payment_status')->default(false);
+            $table->string('payment_receipt')->nullable()->default(null);
             $table->timestamps();
         });
     }

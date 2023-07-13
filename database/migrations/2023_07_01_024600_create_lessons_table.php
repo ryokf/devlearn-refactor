@@ -22,6 +22,8 @@ return new class extends Migration
             $table->text('text_content');
             $table->text('media_content');
             $table->text('thumbnail');
+            $table->boolean('is_public')->default(true);
+            $table->boolean('is_problem')->default(false);
             $table->timestamps();
         });
     }

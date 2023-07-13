@@ -24,7 +24,6 @@ class UserSeeder extends Seeder
             'email' => 'admin@admin.admin',
             'password' => Hash::make('rahasiaAdmin'),
             'photo' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100
-
         ]);
     }
 }
