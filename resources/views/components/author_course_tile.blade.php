@@ -17,10 +17,10 @@
         {{ $status }}
     </td>
     <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-       {{ $price }}
+        {{ $price }}
     </td>
     <td class="text-center border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-       {{ $member }}
+        {{ $member }}
     </td>
     <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
         <a href="#pablo" class="text-blueGray-500 block py-1 px-3"

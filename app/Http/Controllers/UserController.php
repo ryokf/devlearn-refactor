@@ -56,4 +56,10 @@ class UserController extends Controller
         }
         return Redirect::back()->with('message', 'Permission not exist');
     }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return Redirect::back()->with('message', 'User Deleted Succesfully');
+    }
 }

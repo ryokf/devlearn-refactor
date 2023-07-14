@@ -36,8 +36,8 @@
                                     <a class="bg-blue-500 p-2 rounded-md hover:bg-blue-600"
                                         href="{{ route('admin.users.show', $user->id) }}">Roles</a>
 
-                                    <form class=" inline" action="" {{-- {{ route('admin.users.destroy', $user->id) }} --}} method="POST"
-                                        onsubmit="return confirm('Are you sure??')">
+                                    <form class=" inline" action="{{ route('admin.users.destroy', $user->id) }}"
+                                        method="POST" onsubmit="return confirm('Are you sure??')">
                                         @csrf
                                         @method('DELETE')
                                         <button class="bg-red-500 p-2 rounded-md hover:bg-red-700"

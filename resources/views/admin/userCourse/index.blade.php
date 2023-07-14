@@ -29,42 +29,57 @@
                             <th scope="col" class="px-6 py-3">
                                 Payment Receipt
                             </th>
+                            <th scope="col" class="px-6 py-3">
+                                Update Payment Status
+                            </th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($UserCourses as $user_course)
+                        @foreach ($UserCourses as $userCourse)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row"x
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $user_course->user_id }}
+                                    {{ $userCourse->user_id }}
                                 </th>
                                 <td scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $user_course->users->username }}
+                                    {{ $userCourse->users->username }}
                                 </td>
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $user_course->course_id }}
+                                    {{ $userCourse->course_id }}
                                 </th>
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $user_course->courses->title }}
+                                    {{ $userCourse->courses->title }}
                                 </th>
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    @if ($user_course->payment_receipt == null)
+                                    @if ($userCourse->payment_receipt == null)
                                         Belum Ada Pembayaran
                                     @else
-                                        {{ $user_course->payment_receipt }}
+                                        {{ $userCourse->payment_receipt }}
                                     @endif
                                 </th>
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    @if ($user_course->payment_status == false)
+                                    @if ($userCourse->payment_status == false)
                                         Belum Lunas
                                     @else
                                         Lunas
                                     @endif
+                                </th>
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <form action="{{ route('admin.userCourse.update', $userCourse) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('put')
+                                        <button type="submit"
+                                            class="bg-black p-2 text-white rounded-md hover:bg-gray-800">Update
+                                            pembayaran</button>
+                                    </form>
                                 </th>
                         @endforeach
                         </tr>
