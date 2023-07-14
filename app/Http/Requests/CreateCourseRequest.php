@@ -13,7 +13,7 @@ class CreateCourseRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,12 +25,10 @@ class CreateCourseRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:100',
-            'category_id' => 'required|exists:categories,id',
-            'description' => 'required|string',
+            'category_id' => 'required',
+            'price' => 'required|numeric',
             'photo' => 'required|image',
-            'price' => 'required|string',
-            'status' => 'in:berjalan,perbaikan,selesai',
-            'is_public' => 'boolean',
+            'description' => 'required|string',
         ];
     }
 }

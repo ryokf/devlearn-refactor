@@ -20,17 +20,4 @@ class Controller extends BaseController
         '/author/search' => ['pencarian', 'fa-solid fa-magnifying-glass'],
         '/author/participant' => ['peserta', 'fa-solid fa-people-line']
     ];
-
-    function __construct()
-    {
-        // $user = User::where('email', 'ryokhrisnaf@gmail.com')->first();
-
-        // Auth::login($user);
-
-    }
-
-    function __destruct()
-    {
-        // Auth::logout();
-    }
 }

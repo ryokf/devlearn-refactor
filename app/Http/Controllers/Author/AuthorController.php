@@ -17,14 +17,7 @@ class AuthorController extends Controller
 
     function __construct(AuthorService $authorService)
     {
-        parent::__construct();
-
         $this->authorService = $authorService;
-    }
-
-    function __destruct()
-    {
-        parent::__destruct();
     }
 
     function dashboard()

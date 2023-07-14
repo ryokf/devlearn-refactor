@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Author;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateCourseRequest;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\CoursesResource;
 use App\Models\Course;
@@ -15,23 +16,19 @@ class CourseController extends Controller
 
     function __construct(CourseService $courseService)
     {
-        parent::__construct();
-
         $this->courseService = $courseService;
     }
 
-    function __destruct()
+    function index(Request $request)
     {
-        parent::__destruct();
-    }
-
-    function index()
-    {
-        $courses = json_encode(CoursesResource::collection($this->courseService->getCourse(auth()->user()->id)));
+        $courses = json_encode(CoursesResource::collection($this->courseService->getCourse($request, auth()->user()->id)));
         $draft_courses = json_encode(CoursesResource::collection($this->courseService->getDraftCourse(auth()->user()->id)));
+
+        $sortOption = $this->courseService->sortOption();
 
         return view('author.course.index', [
             'menu' => parent::$menuSidebar,
+            'sorts' => $sortOption,
             'courses' => json_decode($courses),
             'draft_courses' => json_decode($draft_courses),
         ]);
@@ -47,7 +44,7 @@ class CourseController extends Controller
         ]);
     }
 
-    function store(Request $request)
+    function store(CreateCourseRequest $request)
     {
         if ($this->courseService->createCourse($request)) {
             $message = 'Kursus berhasil ditambahkan';

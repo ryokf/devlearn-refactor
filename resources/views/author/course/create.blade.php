@@ -4,7 +4,7 @@
     <div class="relative md:ml-72 bg-blueGray-50">
         <x-author_header></x-author_header>
         <!-- Header -->
-        <div class="relative bg-teal-600 md:pt-32 pb-32">
+        <div class="relative bg-neutral-700 md:pt-32 pb-32">
 
         </div>
         <div class="px-4 md:px-10 mx-auto w-full md:-my-36 -m-20">
@@ -51,7 +51,7 @@
                                     Judul Kursus
                                 </label>
                                 <input type="text" id="floating_outlined" name="title"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500"
                                     placeholder="contoh : tutorial javascript untuk pemula" />
                             </div>
 
@@ -60,10 +60,11 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih
                                     Kategori</label>
                                 <select id="countries" name="category_id"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500">
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500">
                                     <option disabled selected>Pilih kategori</option>
                                     @foreach ($data as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option class="focus:bg-neutral-700" value="{{ $category->id }}">
+                                            {{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -74,7 +75,7 @@
                                     Masukkan Harga
                                 </label>
                                 <input type="number" id="floating_outlined" name="price"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500"
                                     placeholder="contoh : 180000" />
                             </div>
 
@@ -88,20 +89,26 @@
                                     PNG, or JPG (MAX 2MB).</p>
                             </div>
 
-                            <div class="relative mt-6">
+                            {{-- <div class="relative mt-6">
                                 <label for="message"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi
-                                    kursus</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi
+                                kursus</label>
                                 <textarea id="message" rows="4" name="description"
-                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-teal-500 focus:border-teal-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
-                                    placeholder="contoh : tutorial yang cocok bagi kalian yang belum pernah menggunakan javascript dan ingin mempelajarinya"></textarea>
+                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-slate-500 focus:border-slate-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500"
+                                placeholder="contoh : tutorial yang cocok bagi kalian yang belum pernah menggunakan javascript dan ingin mempelajarinya"></textarea>
+                            </div> --}}
+                            <div class="relative mt-6">
+                                <label for="desc-trix"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi
+                                kursus</label>
+                                <input id="desc-trix" type="hidden" name="description">
+                                <trix-editor class="bg-gray-50" input="desc-trix"></trix-editor>
                             </div>
-
                             <div class="w-full flex justify-end">
                                 <button type="submit" name="with_draft" value="0"
-                                    class="self-end w-32 mt-10 focus:outline-none text-teal-700 hover:text-white border border-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-teal-500 dark:text-teal-500 dark:hover:text-white dark:hover:bg-teal-600 dark:focus:ring-teal-800">simpan</button>
+                                    class="self-end w-32 mt-10 focus:outline-none text-neutral-700 hover:text-white border border-neutral-700 hover:bg-neutral-700 focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-slate-500 dark:text-slate-500 dark:hover:text-white dark:hover:bg-neutral-700 dark:focus:ring-slate-800">simpan</button>
                                 <button type="submit"
-                                    class="self-end w-32 mt-10 focus:outline-none text-white border border-teal-700 bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">kirim</button>
+                                    class="self-end w-32 mt-10 focus:outline-none text-white border border-neutral-700 bg-neutral-700 hover:bg-neutral-800 focus:ring-4 focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-neutral-700 dark:hover:bg-slate-700 dark:focus:ring-slate-800">kirim</button>
                             </div>
                         </form>
                     </div>

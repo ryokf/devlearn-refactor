@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('photo');
             $table->string('occupation', 50)->default('-');
             $table->string('office', 50)->default('-');
-            $table->text('bio')->default('-');
+            $table->text('bio')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

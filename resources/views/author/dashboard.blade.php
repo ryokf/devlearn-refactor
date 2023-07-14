@@ -5,19 +5,19 @@
     {{-- @dd($data->buyer_count) --}}
     <div class="relative md:ml-72 bg-blueGray-50">
         <x-author_header />
-        <div class="relative bg-teal-600 md:pt-32 pb-32 pt-12">
+        <div class="relative bg-neutral-700 md:pt-32 pb-32 pt-12">
             <div class="px-4 md:px-10 mx-auto w-full">
                 <div>
                     <!-- Card stats -->
                     <div class="flex flex-wrap">
                         <x-author_stastitic_card title="jumlah kursus" value="{{ $data->course_count }}" icon='fa-solid fa-book'
-                            iconBgColor="bg-red-500" />
+                            iconBgColor="bg-amber-900" />
                         <x-author_stastitic_card title="jumlah materi" value="{{ $data->lesson_count }}" icon='fa-solid fa-scroll'
-                            iconBgColor="bg-orange-500" />
+                            iconBgColor="bg-amber-900" />
                         <x-author_stastitic_card title="jumlah transaksi" value="{{ $data->member_count }}" icon='fa-solid fa-users-rectangle'
-                            iconBgColor="bg-blue-500" />
+                            iconBgColor="bg-amber-900" />
                         <x-author_stastitic_card title="pemasukan bulan ini" value="Rp{{ $data->income }}" icon='fa-solid fa-rupiah-sign'
-                            iconBgColor="bg-purple-500" />
+                            iconBgColor="bg-amber-900" />
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                                         </div>
                                         <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
                                             <button
-                                                class="bg-teal-500 text-white active:bg-teal-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                class="bg-neutral-700 text-white active:bg-neutral-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                                 type="button">
                                                 lihat semua
                                             </button>
@@ -139,7 +139,7 @@
                                         </div>
                                         <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
                                             <button
-                                                class="bg-teal-500 text-white active:bg-teal-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                class="bg-neutral-700 text-white active:bg-neutral-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                                 type="button">
                                                 lihat semua
                                             </button>
@@ -252,8 +252,8 @@
                     datasets: [{
                             label: "pembeli",
                             fill: false,
-                            backgroundColor: "rgb(54, 162, 235)",
-                            borderColor: "rgb(54, 162, 235)",
+                            backgroundColor: "#C38154",
+                            borderColor: "#C38154",
                             data: [
                                 @foreach ($data->buyer_count as $count)
                                     {{ $count . ',' }}
@@ -263,8 +263,8 @@
                         {
                             label: "lulusan",
                             fill: false,
-                            backgroundColor: "rgb(255, 205, 86)",
-                            borderColor: "rgb(255, 205, 86)",
+                            backgroundColor: "#FFC26F",
+                            borderColor: "#FFC26F",
                             data: [
                                 @foreach ($data->graduate_count as $count)
                                     {{ $count . ',' }}
