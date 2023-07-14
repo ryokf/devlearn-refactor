@@ -4,7 +4,7 @@
     <div class="relative md:ml-72 bg-blueGray-50">
         <!-- Header -->
         <x-author_header></x-author_header>
-        <div class="relative bg-neutral-700 md:pt-32 pb-32 pt-12">
+        <div class="relative bg-primary md:pt-32 pb-32 pt-12">
         </div>
         <div class="px-4 md:px-10 mx-auto w-full -m-36">
             <div class="flex flex-wrap mt-4">
@@ -14,7 +14,8 @@
                             <div class="flex flex-wrap items-center">
                                 <div class="relative w-full px-4 max-w-full flex-grow flex-1 flex flex-wrap justify-between">
                                     <div class="font-semibold text-lg text-blueGray-700">
-                                        <form class="flex items-center" action="{{ route('author_course_index') }}" method="get">
+                                        <form class="flex items-center" action="{{ route('author_course_index') }}"
+                                            method="get">
                                             <label for="simple-search" class="sr-only">Search</label>
                                             <div class="relative w-full">
 
@@ -23,7 +24,7 @@
                                                     placeholder="cari nama kursus..." required>
                                             </div>
                                             <button type="submit"
-                                                class="p-2.5 ml-2 text-sm font-medium text-white bg-neutral-700 rounded-lg border border-neutral-700 hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                class="p-2.5 ml-2 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                 <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                                     fill="none" viewBox="0 0 20 20">
                                                     <path stroke="currentColor" stroke-linecap="round"
@@ -78,8 +79,10 @@
                                 <tbody>
                                     @foreach ($courses as $number => $course)
                                         @if ($course->is_public)
-                                            <x-author_course_tile :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course->title" :category="$course->category"
-                                                :photo="$course->photo" :price="$course->price" :status="$course->status" :member="$course->member" />
+                                            <x-author_course_tile :id="$course->id" :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course->title"
+                                                :category="$course->category" :photo="$course->photo" :price="$course->price" :status="$course->status"
+                                                :member="$course->member" />
+                                            <x-test>{{ $course->id }}</x-test>
                                         @endif
                                     @endforeach
                                 </tbody>
@@ -97,7 +100,6 @@
                                     <div class="font-semibold text-lg text-blueGray-700">
                                         <h3>Daftar Kursus yang disimpan</h3>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -139,8 +141,8 @@
                                 <tbody>
                                     @foreach ($draft_courses as $number => $course)
                                         @if (!$course->is_public)
-                                            <x-author_course_tile :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course->title" :category="$course->category"
-                                                :photo="$course->photo" :price="$course->price" :status="$course->status"
+                                            <x-author_course_tile :id="$course->id" :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course->title"
+                                                :category="$course->category" :photo="$course->photo" :price="$course->price" :status="$course->status"
                                                 :member="$course->member" />
                                         @endif
                                     @endforeach

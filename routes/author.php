@@ -22,7 +22,7 @@ Route::prefix('author')->group(function () {
         Route::post('/course-create',  'store');
         Route::get('/course/edit',  'edit');
         Route::put('/course/edit',  'update');
-        Route::delete('/course/delete/{id}',  'delete');
+        Route::delete('/course/delete',  'delete')->name('author_course_delete');
         Route::get('/course/{id}/problem',  'solveProblemConfirm');
         Route::get('/course/{id}/member',  'member');
     });

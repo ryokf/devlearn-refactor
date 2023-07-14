@@ -4,7 +4,7 @@
     <div class="relative md:ml-72 bg-blueGray-50">
         <x-author_header></x-author_header>
         <!-- Header -->
-        <div class="relative bg-neutral-700 md:pt-32 pb-32">
+        <div class="relative bg-primary md:pt-32 pb-32">
 
         </div>
         <div class="px-4 md:px-10 mx-auto w-full md:-my-36 -m-20">
@@ -106,9 +106,9 @@
                             </div>
                             <div class="w-full flex justify-end">
                                 <button type="submit" name="with_draft" value="0"
-                                    class="self-end w-32 mt-10 focus:outline-none text-neutral-700 hover:text-white border border-neutral-700 hover:bg-neutral-700 focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-slate-500 dark:text-slate-500 dark:hover:text-white dark:hover:bg-neutral-700 dark:focus:ring-slate-800">simpan</button>
+                                    class="self-end w-32 mt-10 focus:outline-none text-primary hover:text-white border border-primary hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-slate-500 dark:text-slate-500 dark:hover:text-white dark:hover:bg-neutral-700 dark:focus:ring-slate-800">simpan</button>
                                 <button type="submit"
-                                    class="self-end w-32 mt-10 focus:outline-none text-white border border-neutral-700 bg-neutral-700 hover:bg-neutral-800 focus:ring-4 focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-neutral-700 dark:hover:bg-slate-700 dark:focus:ring-slate-800">kirim</button>
+                                    class="self-end w-32 mt-10 focus:outline-none text-white border border-primary bg-primary hover:bg-neutral-800 focus:ring-4 focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-neutral-700 dark:hover:bg-slate-700 dark:focus:ring-slate-800">kirim</button>
                             </div>
                         </form>
                     </div>

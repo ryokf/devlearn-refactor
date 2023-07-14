@@ -66,9 +66,9 @@ class CourseController extends Controller
         return request()->pathInfo;
     }
 
-    function delete()
+    function delete(Request $request)
     {
-        return request()->pathInfo;
+        return $request->id;
     }
 
     function solveProblemConfirm()
