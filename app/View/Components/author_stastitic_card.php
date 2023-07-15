@@ -10,6 +10,8 @@ class author_stastitic_card extends Component
     public $value;
     public $icon;
     public $iconBgColor;
+    public $percentage;
+    public $arrow;
 
     /**
      * Create a new component instance.
@@ -20,12 +22,16 @@ class author_stastitic_card extends Component
         $title,
         $value,
         $icon,
-        $iconBgColor
+        $iconBgColor,
+        $percentage,
+        $arrow
     ) {
         $this->title = $title;
         $this->value = $value;
         $this->icon = $icon;
         $this->iconBgColor = $iconBgColor;
+        $this->percentage = $percentage;
+        $this->arrow = $arrow;
     }
 
     /**

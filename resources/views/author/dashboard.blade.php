@@ -10,14 +10,15 @@
                 <div>
                     <!-- Card stats -->
                     <div class="flex flex-wrap">
+                        {{-- @dd($data->coursePercentage) --}}
                         <x-author_stastitic_card title="jumlah kursus" value="{{ $data->course_count }}" icon='fa-solid fa-book'
-                            iconBgColor="bg-primary" />
+                            iconBgColor="bg-primary" percentage="{{ $data->coursePercentage[0] }}" arrow="{{ $data->coursePercentage[1] }}" />
                         <x-author_stastitic_card title="jumlah materi" value="{{ $data->lesson_count }}" icon='fa-solid fa-scroll'
-                            iconBgColor="bg-primary" />
+                            iconBgColor="bg-primary" percentage="{{ $data->lessonPercentage[0] }}" arrow="{{ $data->lessonPercentage[1] }}" />
                         <x-author_stastitic_card title="jumlah transaksi" value="{{ $data->member_count }}" icon='fa-solid fa-users-rectangle'
-                            iconBgColor="bg-primary" />
+                            iconBgColor="bg-primary" percentage="{{ $data->transactionPercentage[0] }}" arrow="{{ $data->transactionPercentage[1] }}" />
                         <x-author_stastitic_card title="pemasukan bulan ini" value="Rp{{ $data->income }}" icon='fa-solid fa-rupiah-sign'
-                            iconBgColor="bg-primary" />
+                            iconBgColor="bg-primary" percentage="{{ $data->incomePercentage[0] }}" arrow="{{ $data->incomePercentage[1] }}" />
                     </div>
                 </div>
             </div>

@@ -1,6 +1,5 @@
 <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-    <div
-        class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+    <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
         <div class="flex-auto p-4">
             <div class="flex flex-wrap">
                 <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
@@ -19,11 +18,17 @@
                 </div>
             </div>
             <p class="text-sm text-blueGray-400 mt-4">
-                <span class="text-emerald-500 mr-2">
-                    <i class="fas fa-arrow-up"></i> 3.48%
-                </span>
+                @if ($arrow)
+                    <span class="text-emerald-500 mr-1">
+                        <i class="fas fa-arrow-up"></i> {{ number_format($percentage, 1) }}%
+                    </span>
+                @else
+                    <span class="text-red-500 mr-1">
+                        <i class="fas fa-arrow-down"></i> {{ number_format($percentage, 1) }}%
+                    </span>
+                @endif
                 <span class="whitespace-nowrap">
-                    Since last month
+                    sejak bulan lalu
                 </span>
             </p>
         </div>
