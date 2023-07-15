@@ -83,12 +83,8 @@
                                 <tbody>
                                     @foreach ($courses as $number => $course)
                                         @if ($course->is_public)
-                                            <x-author_course_tile
-                                            :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10"
-                                            :title="$course->title" :category="$course->category"
-                                            :photo="$course->photo" :price="$course->price"
-                                            :status="$course->status" :member="$course->member"
-                                            />
+                                            <x-author_course_tile :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course->title" :category="$course->category"
+                                                :photo="$course->photo" :price="$course->price" :status="$course->status" :member="$course->member" />
                                         @endif
                                     @endforeach
                                 </tbody>
@@ -148,12 +144,9 @@
                                 <tbody>
                                     @foreach ($draft_courses as $number => $course)
                                         @if (!$course->is_public)
-                                            <x-author_course_tile
-                                                :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10"
-                                                :title="$course->title" :category="$course->category"
+                                            <x-author_course_tile :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course->title" :category="$course->category"
                                                 :photo="$course->photo" :price="$course->price" :status="$course->status"
-                                                :member="$course->member"
-                                            />
+                                                :member="$course->member" />
                                         @endif
                                     @endforeach
                                 </tbody>

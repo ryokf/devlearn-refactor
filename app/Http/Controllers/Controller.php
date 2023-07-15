@@ -21,6 +21,8 @@ class Controller extends BaseController
         '/author/participant' => ['peserta', 'fa-solid fa-people-line']
     ];
 
+    static public $menuSidebarAdmin = [];
+
     function __construct()
     {
         // $user = User::where('email', 'ryokhrisnaf@gmail.com')->first();
