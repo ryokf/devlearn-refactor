@@ -10,12 +10,12 @@ use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
-    public function index()
-    {
+    // public function index()
+    // {
 
-        $permissions = Permission::all();
-        return view('admin.permissions.index', compact('permissions'));
-    }
+    //     $permissions = Permission::all();
+    //     return view('admin.permissions.index', compact('permissions'));
+    // }
     public function create()
     {
         return view('admin.permissions.create');
@@ -25,7 +25,7 @@ class PermissionController extends Controller
     {
         $validated = $request->validate(['name' => ['required', 'min:3',]]);
         Permission::create($validated);
-        return to_route('admin.permissions.index')->with('message', 'Permission created successful');
+        return to_route('admin.roles.index')->with('message', 'Permission created successful');
     }
 
     public function edit(Permission $permission)
@@ -38,7 +38,7 @@ class PermissionController extends Controller
     {
         $validated = $request->validate(['name' => 'required']);
         $permission->update($validated);
-        return to_route('admin.permissions.index')->with('message', 'Permission updated successful');
+        return to_route('admin.roles.index')->with('message', 'Permission updated successful');
     }
 
     public function destroy(Permission $permission)

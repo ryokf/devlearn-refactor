@@ -11,7 +11,7 @@ class UserCourseController extends Controller
 {
     public function index()
     {
-        $UserCourses = UserCourse::all();
+        $UserCourses = UserCourse::paginate(7);
         return view('admin.userCourse.index', compact('UserCourses'));
     }
 

@@ -1,57 +1,87 @@
 <x-admin-layout>
-    <article class="p-4">
-        <div class="py-2 w-full">
-            <div class="flex justify-between p-2">
-                <div>
-                    <h1 class="text-2xl">Dashboard users</h1>
+
+    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+        <div class="rounded-t mb-0 px-4 py-3 border-0">
+            <div class="flex flex-wrap items-center">
+                <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                    <h3 class="font-semibold text-lg text-blueGray-700">
+                        Users Table
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="block w-full overflow-x-auto">
+            <table class="items-center w-full bg-transparent border-collapse">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th scope="col"
+                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            Name
+                        </th>
+                        <th scope="col"
+                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            Email
+                        </th>
+                        <th scope="col"
+                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            Action
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td scope="row"
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                {{ $user->username }}
+                            </td>
+                            <td scope="row"
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                {{ $user->email }}
+                            </td>
+                            <td scope="row"
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                <a class="bg-blue-500 text-white active:bg-blue-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                    href="{{ route('admin.users.show', $user->id) }}">Roles</a>
+
+                                <form class=" inline" action="{{ route('admin.users.destroy', $user->id) }}"
+                                    method="POST" onsubmit="return confirm('Are you sure??')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button
+                                        class="bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="submit">Delete</button>
+                                </form>
+
+                            </td>
+                    @endforeach
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <div class="flex justify-between items-center py-3 px-6">
+                <div class="text-sm text-gray-700">
+                    Showing {{ $users->firstItem() }} to {{ $users->lastItem() }} of {{ $users->total() }}
+                    results
+                </div>
+                <div class="flex items-center gap-5">
+                    <a href="  {{ $users->url(1) }}"><i class="fas fa-angle-double-left"></i>
+                    </a>
+                    <a href="  {{ $users->previousPageUrl() }}"><i class="fas fa-angle-left"></i>
+                    </a>
+
+
+                    <a href=" {{ $users->nextPageUrl() }}"> <i class="fas fa-angle-right"></i> </a>
+                    <a href="  {{ $users->url($users->lastPage()) }}"><i class="fas fa-angle-double-right"></i>
+                    </a>
+
                 </div>
             </div>
 
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                Name
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Email
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($users as $user)
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <td scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $user->username }}
-                                </td>
-                                <td scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $user->email }}
-                                </td>
-                                <td scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <a class="bg-blue-500 p-2 rounded-md hover:bg-blue-600"
-                                        href="{{ route('admin.users.show', $user->id) }}">Roles</a>
-
-                                    <form class=" inline" action="{{ route('admin.users.destroy', $user->id) }}"
-                                        method="POST" onsubmit="return confirm('Are you sure??')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="bg-red-500 p-2 rounded-md hover:bg-red-700"
-                                            type="submit">Delete</button>
-                                    </form>
-
-                                </td>
-                        @endforeach
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
         </div>
-    </article>
+
+    </div>
+
 
 </x-admin-layout>

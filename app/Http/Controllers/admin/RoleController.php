@@ -18,7 +18,8 @@ class RoleController extends Controller
         // $menu = parent::$menuSidebar;
         // if (Auth::user()->hasDirectPermission('admin territory')) {
         $roles = Role::all();
-        return view('admin.roles.index', compact('roles'));
+        $permissions = Permission::all();
+        return view('admin.roles.index', compact('roles', 'permissions'));
 
 
         // }

@@ -11,7 +11,7 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::paginate(6);
         return view('admin.courses.index', compact('courses'));
     }
     public function deleteCourse(Course $course)
