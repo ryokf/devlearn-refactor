@@ -3,13 +3,8 @@
     <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
         <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold" href="./index.html">Dashboard</a>
         <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
-            <div class="relative flex w-full flex-wrap items-stretch">
-                <span
-                    class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"><i
-                        class="fas fa-search"></i></span>
-                <input type="text" placeholder="Search here..."
-                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10">
-            </div>
+            <div class="relative flex w-full flex-wrap items-stretch text-white font-bold">
+                selamat datang, {{ auth()->user()->username }}</div>
         </form>
         <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
             <a class="text-blueGray-500 block" href="#pablo" onclick="openDropdown(event,'user-dropdown')">
@@ -24,16 +19,22 @@
             <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
                 id="user-dropdown">
                 <a href="#pablo"
-                    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Action</a><a
-                    href="#pablo"
-                    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Another
-                    action</a><a href="#pablo"
-                    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Something
-                    else here</a>
+                    class="font-bold text-sm py-2 px-4 block w-full whitespace-nowrap bg-transparent text-blueGray-700">{{ auth()->user()->username }}
+                </a>
+                <a href="#pablo"
+                    class="text-sm pb-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-400">{{ auth()->user()->email }}
+                </a>
                 <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
                 <a href="#pablo"
-                    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Seprated
-                    link</a>
+                    class="text-sm text-center pb-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent ">profile
+                </a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    {{-- @method('delete') --}}
+                    <button type="submit"
+                        class="text-red-500 text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">logout
+                    </button>
+                </form>
             </div>
         </ul>
     </div>
