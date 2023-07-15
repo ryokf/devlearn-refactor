@@ -3,9 +3,9 @@
         {{ $number }}
     </th>
     <th
-        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+        class="max-w-sm border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs p-4 text-left flex items-center">
         <img src="{{ $photo }}" class="h-12 w-12 bg-white rounded border" alt="..." />
-        <span class="ml-3 font-bold text-blueGray-600">
+        <span class="ml-3 font-bold text-blueGray-600 whitespace-normal">
             {{ $title }}
         </span>
     </th>

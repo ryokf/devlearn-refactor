@@ -68,7 +68,8 @@ class CourseController extends Controller
 
     function delete(Request $request)
     {
-        return $request->id;
+        Course::where('id', $request->id)->delete();
+        return back();
     }
 
     function solveProblemConfirm()
