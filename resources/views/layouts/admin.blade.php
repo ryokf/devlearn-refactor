@@ -17,7 +17,9 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
         <x-navigation_admin />
+        <x-admin-message />
         <div class="relative md:ml-64 bg-blueGray-50">
+
             <x-author_header />
             <!-- Header -->
             <div class=" relative bg-teal-600 md:pt-32 pb-32 pt-12">

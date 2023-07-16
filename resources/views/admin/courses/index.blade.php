@@ -62,9 +62,14 @@
                                 </a>
                                 <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
                                     id="table-light-1-dropdown">
-                                    <a href="#pablo"
-                                        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Detail
-                                        Course</a>
+                                    <form action="{{ route('admin.course.detail', $course) }}">
+                                        @csrf
+                                        <button
+                                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                                            type="submit">Detail
+                                            Course</button>
+                                    </form>
+
                                     <form class="" action="{{ route('admin.course.delete', $course->id) }}"
                                         method="POST" onsubmit="return confirm('Are you sure??')">
                                         @csrf

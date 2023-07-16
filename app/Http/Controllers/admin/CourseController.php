@@ -19,4 +19,9 @@ class CourseController extends Controller
         $course->delete();
         return Redirect::back()->with('message', 'Course Deleted');
     }
+
+    public function detailCourse(Course $course)
+    {
+        return view('admin.courses.detail', compact('course'));
+    }
 }
