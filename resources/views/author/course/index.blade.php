@@ -36,12 +36,15 @@
                                         </form>
                                     </div>
                                     <div class="flex">
-                                        <x-author_dropdown :sorts="$sorts" />
+                                        <x-author_dropdown :sorts="$sorts"> urutkan </x-author_dropdown>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="block w-full overflow-x-auto">
+                            @if (session('success'))
+                                <x-author_alert bgColor="bg-green-500"> {{ session('success') }}</x-author_alert>
+                            @endif
                             <!-- Projects table -->
                             <table class="items-center w-full bg-transparent border-collapse">
                                 <thead>

@@ -4,7 +4,7 @@
     </th>
     <th
         class="max-w-sm border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs p-4 text-left flex items-center">
-        <img src="{{ $photo }}" class="h-12 w-12 bg-white rounded border" alt="..." />
+        <img src="{{ asset('storage/' . $photo) }}" class="h-12 w-12 bg-white rounded border object-cover" alt="..." />
         <span class="ml-3 font-bold text-blueGray-600 whitespace-normal">
             {{ $title }}
         </span>
@@ -13,7 +13,16 @@
         {{ $category }}
     </td>
     <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-        <i class="fas fa-circle text-orange-500 mr-2"></i>
+        <i class="fas fa-circle
+        @if ($status == 'berjalan')
+        {{ 'text-amber-400' }}
+        @elseif ($status == 'selesai')
+        {{ 'text-emerald-500' }}
+        @else
+    {{ 'text-red-600' }}
+        @endif
+
+        mr-2"></i>
         {{ $status }}
     </td>
     <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">

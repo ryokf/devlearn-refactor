@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Author;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\CoursesResource;
+use App\Http\Resources\DetailCourseResource;
 use App\Models\Course;
 use App\Services\Author\CourseService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class CourseController extends Controller
 {
@@ -21,7 +25,7 @@ class CourseController extends Controller
 
     function index(Request $request)
     {
-        $courses = json_encode(CoursesResource::collection($this->courseService->getCourse($request, auth()->user()->id)));
+        $courses = json_encode(CoursesResource::collection($this->courseService->getCourses($request, auth()->user()->id)));
         $draft_courses = json_encode(CoursesResource::collection($this->courseService->getDraftCourse(auth()->user()->id)));
 
         $sortOption = $this->courseService->sortOption();
@@ -48,24 +52,33 @@ class CourseController extends Controller
     {
         if ($this->courseService->createCourse($request)) {
             $message = 'Kursus berhasil ditambahkan';
-            return back()->with('success', $message);
+            return redirect(route('author_course_index'))->with('success', $message);
         } else {
             $message = 'Kursus gagal ditambahkan';
-            return back()->with('erorr', $message);
+            return redirect(route('author_course_index'))->with('erorr', $message);
         }
 
     }
 
-    function edit()
+    function edit($id)
     {
+        $categories = json_encode(new CategoryResource($this->courseService->getCategory()));
+        $course = json_encode(new DetailCourseResource($this->courseService->getCourse($id)));
+
         return view('author.course.edit', [
-            'menu' => parent::$menuSidebar
+            'menu' => parent::$menuSidebar,
+            'course' => json_decode($course),
+            'categories' => json_decode($categories)
         ]);
     }
 
-    function update()
+    function update(UpdateCourseRequest $request)
     {
-        return request()->pathInfo;
+        if( $this->courseService->update($request)){
+            return redirect(route('author_course_index'))->with('success', 'kursus berhasil diedit');
+        }
+
+        return redirect(route('author_course_index'))->with('error', 'kursus gagal diedit');
     }
 
     function delete(Request $request)

@@ -5,6 +5,7 @@ namespace App\Services\Author;
 use App\Http\Requests\CreateCourseRequest;
 use App\Models\Category;
 use App\Models\Course;
+use Illuminate\Support\Facades\Storage;
 
 class CourseService
 {
@@ -27,7 +28,7 @@ class CourseService
         ];
     }
 
-    function getCourse($request, $author_id)
+    function getCourses($request, $author_id)
     {
         $courses = Course::where('author_id', $author_id)->where('is_public', 1);
 
@@ -63,6 +64,10 @@ class CourseService
         return $courses;
     }
 
+    function getCourse($id){
+        return Course::where('id', $id)->first();
+    }
+
     public function createCourse(CreateCourseRequest $request)
     {
         // $data = $request->validate([
@@ -91,5 +96,31 @@ class CourseService
         ]);
 
         return $course;
+    }
+
+    function update($request){
+        $course = Course::findOrFail($request->id);
+
+        $course->fill($request->only([
+            'title',
+            'author_id',
+            'category_id',
+            'description',
+            'price',
+            'status',
+            'is_public',
+        ]));
+
+        if ($request->hasFile('photo')) {
+            // Menghapus foto lama jika ada
+            if ($course->photo) {
+                Storage::delete($course->photo);
+            }
+
+            $photoPath = $request->file('photo')->store('photos', 'public');
+            $course->photo = $photoPath;
+        }
+
+        return $course->save();
     }
 }

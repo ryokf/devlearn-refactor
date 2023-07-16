@@ -21,9 +21,6 @@
                     <div class="flex-auto px-4 lg:px-10 py-10 pt-0 bg-gray-100">
 
                         <form action="/author/course-create" method="POST" enctype="multipart/form-data">
-                            @if (session('success'))
-                                <x-author_alert> {{ session('success') }}</x-author_alert>
-                            @endif
                             @if ($errors->any())
                                 <div class="flex p-4 my-4 text-sm text-red-50 rounded-lg bg-red-600 dark:bg-gray-800 dark:text-red-400"
                                     role="alert">

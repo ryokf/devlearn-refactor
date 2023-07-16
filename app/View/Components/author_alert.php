@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class author_alert extends Component
 {
+    public $bgColor;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($bgColor)
     {
-        //
+        $this->bgColor = $bgColor;
     }
 
     /**
