@@ -30,10 +30,6 @@ Route::middleware(['auth', 'verified', 'role:admin'])->name('admin.')->prefix('a
         Route::delete('/roles/{permission}/roles/{role}', 'revokeRole')->name('permissions.roles.revoke');
     });
 
-    // Route::post('/roles/{role}/permissions', [RoleController::class, 'givePermission'])->name('roles.permissions');
-    // Route::delete('/roles/{role}/permissions/{permission}', [RoleController::class, 'revokePermission'])->name('roles.permissions.revoke');
-    // Route::post('/roles/{permission}/roles', [PermissionController::class, 'giveRole'])->name('permissions.roles');
-    // Route::delete('/roles/{permission}/roles/{role}', [PermissionController::class, 'revokeRole'])->name('permissions.roles.revoke');
     Route::controller(UserController::class)->group(function () {
         Route::get('/users', 'index')->name('users.index');
         Route::get('/users/{user}', 'show')->name('users.show');
@@ -48,20 +44,12 @@ Route::middleware(['auth', 'verified', 'role:admin'])->name('admin.')->prefix('a
         Route::get('/course', 'index')->name('course.index');
         Route::delete('/course/{course}',  'deleteCourse')->name('course.delete');
         Route::get('/course/detail/{course}', 'detailCourse')->name('course.detail');
+        Route::get('/course/lesson/{id}', 'lessonCourse')->name('course.lesson');
+        Route::get('/course/lesson/{id}/{chapter}', 'lessonCourseDetail')->name('course.lesson.detail');
     });
 
     Route::controller(UserCourseController::class)->group(function () {
         Route::get('userCourse', 'index')->name('userCourse.index');
         Route::put('userCourse/{userCourse}', 'updateStatus')->name('userCourse.update');
     });
-    // Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    // Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    // Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-    // Route::post('/users{user}/roles', [UserController::class, 'giveRole'])->name('users.roles');
-    // Route::delete('/users{user}/roles/{role}', [UserController::class, 'revokeRole'])->name('users.roles.revoke');
-    // Route::post('/users{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
-    // Route::delete('/users{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
-    // Route::get('/course', [CourseController::class, 'index'])->name('course.index');
-    // Route::delete('/course/{course}', [CourseController::class, 'deleteCourse'])->name('course.delete');
-    // Route::get('userCourse', [UserCourseController::class, 'index'])->name('userCourse.index');
 });

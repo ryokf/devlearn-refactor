@@ -16,74 +16,60 @@
                 <thead class="bg-gray-100">
                     <tr>
                         <th scope="col"
-                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                             ID Course
                         </th>
                         <th scope="col"
-                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                             Course Title
                         </th>
                         <th scope="col"
-                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100 ">
+                            class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100 ">
                             Description
                         </th>
                         <th scope="col"
-                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                             Photo
                         </th>
-                        <th></th>
+                        <th scope="col"
+                            class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            Action
+                        </th>
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($courses as $course)
                         <tr class="">
                             <td scope="row"
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 {{ $course->id }}
                             </td>
                             <td scope="row"
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 {{ $course->title }}
                             </td>
                             <td scope="row"
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 w-500">
-                                {{ Str::limit($course->description, 100) }}
+                                class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 w-500">
+                                {{ Str::limit($course->description, 50) }}
                                 <span class="text-gray-600">...</span>
                             </td>
                             <td scope="row"
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 <img src="{{ $course->photo }}" width="50px" height="50px">
                             </td>
-                            <td
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                                <a href="#pablo" class="text-blueGray-500 block py-1 px-3"
-                                    onclick="openDropdown(event,'table-light-1-dropdown')">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a>
-                                <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-                                    id="table-light-1-dropdown">
-                                    <form action="{{ route('admin.course.detail', $course) }}">
-                                        @csrf
-                                        <button
-                                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-                                            type="submit">Detail
-                                            Course</button>
-                                    </form>
-
-                                    <form class="" action="{{ route('admin.course.delete', $course->id) }}"
-                                        method="POST" onsubmit="return confirm('Are you sure??')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Delete
-                                            Course</button>
-                                    </form>
-
-
-                                </div>
+                            <td scope="row"
+                                class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                <a href="{{ route('admin.course.detail', $course) }}" class="">Detail
+                                    Course</a>
+                                <form class="inline-block" action="{{ route('admin.course.delete', $course->id) }}"
+                                    method="POST" onsubmit="return confirm('Are you sure??')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="">Delete
+                                        Course</button>
+                                </form>
                             </td>
-
-
                         </tr>
                     @endforeach
                 </tbody>
@@ -99,7 +85,6 @@
                     </a>
                     <a href="  {{ $courses->previousPageUrl() }}"><i class="fas fa-angle-left"></i>
                     </a>
-
 
                     <a href=" {{ $courses->nextPageUrl() }}"> <i class="fas fa-angle-right"></i> </a>
                     <a href="  {{ $courses->url($courses->lastPage()) }}"><i class="fas fa-angle-double-right"></i>

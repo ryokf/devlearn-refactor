@@ -35,9 +35,10 @@
             <div class="flex-none align-items-center w-64 ">
                 <div class="p-7">
                     <div class=" bg-white flex flex-col p-5 border border-solid border-black rounded-md justify-center">
-                        <button
-                            class="border border-solid border-black text-white bg-teal-500 p-2 rounded-md hover:bg-teal-700 m-2">Belajar
-                            Sekarang</button>
+                        <a href="{{ route('admin.course.lesson', ['id' => $course->id]) }}"><button
+                                class="border border-solid border-black text-white bg-teal-500 p-2 rounded-md hover:bg-teal-700 m-2">Belajar
+                                Sekarang</button></a>
+
                         <button
                             class="border-solid border border-black text-black-500 bg-gray-100 p-2 rounded-md hover:bg-gray-300 m-1">Lihat
                             Silabus</button>
