@@ -37,7 +37,7 @@ Route::prefix('author')->group(function () {
     });
 
     Route::controller(MemberController::class)->group(function () {
-        Route::get('/member',  'index');
+        Route::get('/member',  'index')->name('author_member');
         Route::get('/member/{id}',  'show');
     });
 });

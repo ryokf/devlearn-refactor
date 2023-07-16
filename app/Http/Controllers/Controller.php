@@ -17,7 +17,8 @@ class Controller extends BaseController
         '/author' => ['dashboard', 'fa-solid fa-chart-line'],
         '/author/course' => ['kursus anda', 'fa-solid fa-chalkboard'],
         '/author/course-create' => ['tambah kursus', 'fa-solid fa-person-chalkboard'],
-        '/author/search' => ['pencarian', 'fa-solid fa-magnifying-glass'],
-        '/author/participant' => ['peserta', 'fa-solid fa-people-line']
+        // '/author/search' => ['pencarian', 'fa-solid fa-magnifying-glass'],
+        // '/author/participant' => ['peserta', 'fa-solid fa-people-line']
+        '/author/member' => ['daftar transaksi', 'fa-solid fa-arrow-right-arrow-left']
     ];
 }
