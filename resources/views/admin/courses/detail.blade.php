@@ -18,15 +18,15 @@
     <div class="w-full h-24 bg-red-400">
 
     </div>
-    <div class="p-8 bg-teal-100">
+    <div class="md:p-16  bg-teal-100">
         <div class="flex lg:flex-row flex-col align-items-center p-5 justify-center ">
             <div class="p-7 hidden lg:block">
-                <img src="{{ $course->photo }}" alt="" width="200" height="200">
+                <img src="{{ $course->photo }}" alt="" class="w-[300px] h-[300px]">
             </div>
             <div class="p-7 ">
                 <div class="flex-row justify-content-center align-items-center">
-                    <p class="text-xl">{{ $course->category->name }}</p>
-                    <p class="text-2xl">{{ $course->title }}</p>
+                    <p class="text-xl ">{{ $course->category->name }}</p>
+                    <p class="text-2xl uppercase">{{ $course->title }}</p>
                     <hr>
                     <p class="text-sm">{{ $course->description }}</p>
                 </div>
@@ -50,13 +50,13 @@
 
         </div>
     </div>
-    <div class="px-24 my-16">
+    <div class="md:px-24 px-8 my-16">
         <div class="mb-5">
             <strong>Apa yang anda dapatkan dari course ini?</strong>
         </div>
-        <div class="flex lg:flex-row flex-col gap-10 justify-center ">
+        <div class="flex lg:flex-row flex-col gap-8 justify-center ">
             <div class="border border-solid border-black rounded-md">
-                <div class="flex flex-row w-full align-items-center justify-content-center sm:p-3 xl:p-10 lg:p-5 gap-3">
+                <div class="flex flex-row w-full align-items-center justify-content-center sm:p-2 xl:p-8 lg:p-4 gap-3">
                     <div class="p-3 text-2xl">
                         <i class="fas fa-certificate"></i>
                     </div>
