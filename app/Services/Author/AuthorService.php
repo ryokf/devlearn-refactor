@@ -11,12 +11,8 @@ use Illuminate\Support\Facades\DB;
 
 class AuthorService
 {
-    function dashboard()
+    function lessonCount($course)
     {
-        // course
-        $course = Course::where('author_id', auth()->user()->id)->get();
-
-        // jumlah lesson
         $lesson = [];
         $lesson_count = 0;
         foreach ($course as $findId) {
@@ -26,7 +22,11 @@ class AuthorService
             $lesson_count += count($count);
         }
 
-        // member
+        return $lesson_count;
+    }
+
+    function memberCount($course)
+    {
         $member = [];
         $member_count = 0;
         foreach ($course as $findId) {
@@ -36,7 +36,11 @@ class AuthorService
             $member_count += count($count);
         }
 
-        //penghasilan bulan ini
+        return $member_count;
+    }
+
+    function incomeThisMonth($course)
+    {
         $buyerThisMonth = [];
         $courseBought = [];
         $income = 0;
@@ -54,33 +58,16 @@ class AuthorService
             array_push($courseBought, Course::where('id', $id)
                 ->get());
         }
-
         foreach ($courseBought as $findPrice) {
             $income += $findPrice[0]['price'];
         }
 
-        $topBought = UserCourse::select('course_id', DB::raw('COUNT(*) as total'))
-            ->groupBy('course_id')
-            ->orderByDesc('total')
-            ->limit(5)
-            ->get();
+        return $income;
+    }
 
-        $courseIds = $topBought->pluck('course_id');
-
-        $topBought = Course::whereIn('id', $courseIds)->where('author_id', auth()->user()->id)->get();
-
-        $topPass = Certificate::select('course_id', DB::raw('COUNT(*) as total'))
-            ->groupBy('course_id')
-            ->orderByDesc('total')
-            ->limit(5)
-            ->get();
-
-        $courseIds = $topPass->pluck('course_id');
-
-        $topPass = Course::whereIn('id', $courseIds)->where('author_id', auth()->user()->id)->get();
-
-        // jumlah pembeli perbulan
-        $buyerThisMonth = [];
+    function buyerPerMonth($course)
+    {
+        $buyerPerMonth = [];
         for ($i = 1; $i <= 12; $i++) {
             $count = 0;
             foreach ($course as $findId) {
@@ -89,11 +76,14 @@ class AuthorService
                     ->where('course_id', $findId->id)
                     ->get());
             }
-            array_push($buyerThisMonth, $count);
+            array_push($buyerPerMonth, $count);
         }
+        return $buyerPerMonth;
+    }
 
-        // jumlah lulusan perbulan
-        $graduateThisMonth = [];
+    function graduatePerMonth($course)
+    {
+        $graduatePerMonth = [];
         for ($i = 1; $i <= 12; $i++) {
             $count = 0;
             foreach ($course as $findId) {
@@ -102,14 +92,18 @@ class AuthorService
                     ->where('course_id', $findId->id)
                     ->get());
             }
-            array_push($graduateThisMonth, $count);
+            array_push($graduatePerMonth, $count);
         }
+        return $graduatePerMonth;
+    }
 
-        //persentase perbandingan dengan bulan lalu
-        $thisMonth = Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n'))->count() == 0 ? 1 : Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n'))->count();
-        $lastMonth = Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n') - 1)->count() == 0 ? 1 : Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n') - 1)->count();
-        $coursePercentage = (($thisMonth - $lastMonth) / $lastMonth) * 100;
+    function percentCount($lastMonthValue, $thisMonthValue)
+    {
+        return (($thisMonthValue - $lastMonthValue) / $lastMonthValue) * 100;
+    }
 
+    function lessonPercentage($course)
+    {
         $LessonThisMonth = [];
         $LessonLastMonth = [];
         $thisMonth = 0;
@@ -124,8 +118,12 @@ class AuthorService
         foreach ($LessonLastMonth as $count) {
             $lastMonth += $count;
         }
-        $lessonPercentage = (($thisMonth - $lastMonth) / $lastMonth) * 100;
 
+        return $this->percentCount($lastMonth, $thisMonth);
+    }
+
+    function transactionPercentage($course)
+    {
         $transactionThisMonth = [];
         $transactionLastMonth = [];
         $thisMonth = 0;
@@ -140,67 +138,136 @@ class AuthorService
         foreach ($transactionLastMonth as $count) {
             $lastMonth += $count;
         }
-        $transactionPercentage = (($thisMonth - $lastMonth) / $lastMonth) * 100;
 
-         //persentase penghasilan perbulan
-         $thisMonth = 0;
-         $lastMonth = 0;
-         $incomeThisMonth = [];
-         $incomeLastMonth = [];
-         $courseBoughtThisMonth = [];
-         $courseBoughtLastMonth = [];
-         foreach ($course as $findId) {
-             array_push(
-                 $incomeThisMonth,
-                 UserCourse::whereMonth('created_at', date('n'))
-                     ->where('course_id', $findId->id)
-                     ->get()
-             );
-             array_push(
-                 $incomeLastMonth,
-                 UserCourse::whereMonth('created_at', date('n') - 1)
-                     ->where('course_id', $findId->id)
-                     ->get()
-             );
-         }
-         $incomeThisMonth = collect($incomeThisMonth)->flatten()->toArray();
-         $incomeLastMonth = collect($incomeLastMonth)->flatten()->toArray();
-         foreach ($incomeThisMonth as $findCourseId) {
-             $id = $findCourseId['course_id'];
-             array_push($courseBoughtThisMonth, Course::where('id', $id)
-                 ->get());
-         }
-         foreach ($incomeLastMonth as $findCourseId) {
-             $id = $findCourseId['course_id'];
-             array_push($courseBoughtLastMonth, Course::where('id', $id)
-                 ->get());
-         }
+        return $this->percentCount($lastMonth, $thisMonth);
+    }
 
-         $incomeThisMonth = 0;
-         $incomeLastMonth = 0;
-         foreach ($courseBoughtThisMonth as $findPrice) {
-             $incomeThisMonth += $findPrice[0]['price'];
-         }
-         foreach ($courseBoughtLastMonth as $findPrice) {
-             $incomeLastMonth += $findPrice[0]['price'];
-         }
-         $incomePercentage = (($incomeThisMonth -$incomeLastMonth) / $incomeLastMonth) * 100;
+    function incomePercentage($course)
+    {
+        $thisMonth = 0;
+        $lastMonth = 0;
+        $incomeThisMonth = [];
+        $incomeLastMonth = [];
+        $courseBoughtThisMonth = [];
+        $courseBoughtLastMonth = [];
+        foreach ($course as $findId) {
+            array_push(
+                $incomeThisMonth,
+                UserCourse::whereMonth('created_at', date('n'))
+                    ->where('course_id', $findId->id)
+                    ->get()
+            );
+            array_push(
+                $incomeLastMonth,
+                UserCourse::whereMonth('created_at', date('n') - 1)
+                    ->where('course_id', $findId->id)
+                    ->get()
+            );
+        }
+        $incomeThisMonth = collect($incomeThisMonth)->flatten()->toArray();
+        $incomeLastMonth = collect($incomeLastMonth)->flatten()->toArray();
+        foreach ($incomeThisMonth as $findCourseId) {
+            $id = $findCourseId['course_id'];
+            array_push($courseBoughtThisMonth, Course::where('id', $id)
+                ->get());
+        }
+        foreach ($incomeLastMonth as $findCourseId) {
+            $id = $findCourseId['course_id'];
+            array_push($courseBoughtLastMonth, Course::where('id', $id)
+                ->get());
+        }
 
-        $data = [
-            "coursePercentage" => [$coursePercentage, $coursePercentage > 0 ? true :false],
-            "lessonPercentage" => [$lessonPercentage, $lessonPercentage > 0 ? true :false],
-            "transactionPercentage" => [$transactionPercentage, $transactionPercentage > 0 ? true :false],
-            "incomePercentage" => [$incomePercentage, $incomePercentage > 0 ? true :false],
+        $incomeThisMonth = 0;
+        $incomeLastMonth = 0;
+        foreach ($courseBoughtThisMonth as $findPrice) {
+            $incomeThisMonth += $findPrice[0]['price'];
+        }
+        foreach ($courseBoughtLastMonth as $findPrice) {
+            $incomeLastMonth += $findPrice[0]['price'];
+        }
+
+        return $this->percentCount($incomeLastMonth, $incomeThisMonth);
+    }
+
+    function topBought()
+    {
+        $topBought = UserCourse::select('course_id', DB::raw('COUNT(*) as total'))
+            ->groupBy('course_id')
+            ->orderByDesc('total')
+            ->limit(5)
+            ->get();
+
+        $courseIds = $topBought->pluck('course_id');
+
+        return Course::whereIn('id', $courseIds)->where('author_id', auth()->user()->id)->get();
+    }
+
+    function topPass()
+    {
+        $topPass = Certificate::select('course_id', DB::raw('COUNT(*) as total'))
+            ->groupBy('course_id')
+            ->orderByDesc('total')
+            ->limit(5)
+            ->get();
+
+        $courseIds = $topPass->pluck('course_id');
+
+        return Course::whereIn('id', $courseIds)->where('author_id', auth()->user()->id)->get();
+    }
+
+    function dashboard()
+    {
+        // course
+        $course = Course::where('author_id', auth()->user()->id)->get();
+
+        // jumlah lesson
+        $lesson_count = $this->lessonCount($course);
+
+        // member
+        $member_count = $this->memberCount($course);
+
+        //penghasilan bulan ini
+        $income = $this->incomeThisMonth($course);
+
+        // 5 kursus dengan pembeli terbanyak
+        $topBought = $this->topBought();
+
+        // 5 kursus dengan lulusan terbanyak
+        $topPass = $this->topPass();
+
+        // jumlah pembeli perbulan
+        $buyerPerMonth = $this->buyerPerMonth($course);
+
+        // jumlah lulusan perbulan
+        $graduatePerMonth = $this->graduatePerMonth($course);
+
+        //persentase perbandingan jumlah kursus dengan bulan lalu
+        $thisMonth = Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n'))->count() == 0? 1: Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n'))->count();
+        $lastMonth = Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n') - 1)->count() == 0 ? 1 : Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n') - 1)->count();
+        $coursePercentage = $this->percentCount($lastMonth, $thisMonth);
+
+        //persentase perbandingan jumlah lesson dengan bulan lalu
+        $lessonPercentage = $this->lessonPercentage($course);
+
+        //persentase perbandingan jumlah transaksi dengan bulan lalu
+        $transactionPercentage = $this->transactionPercentage($course);
+
+        //persentase penghasilan perbulan
+        $incomePercentage = $this->incomePercentage($course);
+
+       return [
+            "coursePercentage" => [$coursePercentage, $coursePercentage > 0 ? true : false],
+            "lessonPercentage" => [$lessonPercentage, $lessonPercentage > 0 ? true : false],
+            "transactionPercentage" => [$transactionPercentage, $transactionPercentage > 0 ? true : false],
+            "incomePercentage" => [$incomePercentage, $incomePercentage > 0 ? true : false],
             "course" => $course,
             "topBought" => collect($topBought),
             "topPass" => $topPass,
             "lesson_count" => $lesson_count,
             "member_count" => $member_count,
             "income" => $income,
-            "buyer_count" => $buyerThisMonth,
-            "graduate_count" => $graduateThisMonth
+            "buyer_count" => $buyerPerMonth,
+            "graduate_count" => $graduatePerMonth
         ];
-
-        return $data;
     }
 }
