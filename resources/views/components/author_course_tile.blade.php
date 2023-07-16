@@ -31,10 +31,10 @@
                 </button>
             </div>
             <div class="bg-amber-500" title="edit kursus">
-                <button type="button"
+                <a href="{{ route('author_course_edit', ['id' => $id]) }}"
                     class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border-t border-b border-amber-500  focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                     <i class="fa-solid fa-pen-to-square" style="color: #fafaf9;"></i>
-                </button>
+                </a>
             </div>
             <div class="bg-red-600 rounded-r-md" title="hapus kursus">
                 <button type="button" type="button" data-modal-target="popup-modal-delete-{{ $id }}"

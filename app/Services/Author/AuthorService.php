@@ -11,6 +11,62 @@ use Illuminate\Support\Facades\DB;
 
 class AuthorService
 {
+    function dashboard()
+    {
+        // course
+        $course = Course::where('author_id', auth()->user()->id)->get();
+
+        // jumlah lesson
+        $lesson_count = $this->lessonCount($course);
+
+        // member
+        $member_count = $this->memberCount($course);
+
+        //penghasilan bulan ini
+        $income = $this->incomeThisMonth($course);
+
+        // 5 kursus dengan pembeli terbanyak
+        $topBought = $this->topBought();
+
+        // 5 kursus dengan lulusan terbanyak
+        $topPass = $this->topPass();
+
+        // jumlah pembeli perbulan
+        $buyerPerMonth = $this->buyerPerMonth($course);
+
+        // jumlah lulusan perbulan
+        $graduatePerMonth = $this->graduatePerMonth($course);
+
+        //persentase perbandingan jumlah kursus dengan bulan lalu
+        $thisMonth = Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n'))->count() == 0? 1: Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n'))->count();
+        $lastMonth = Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n') - 1)->count() == 0 ? 1 : Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n') - 1)->count();
+        $coursePercentage = $this->percentCount($lastMonth, $thisMonth);
+
+        //persentase perbandingan jumlah lesson dengan bulan lalu
+        $lessonPercentage = $this->lessonPercentage($course);
+
+        //persentase perbandingan jumlah transaksi dengan bulan lalu
+        $transactionPercentage = $this->transactionPercentage($course);
+
+        //persentase penghasilan perbulan
+        $incomePercentage = $this->incomePercentage($course);
+
+       return [
+            "coursePercentage" => [$coursePercentage, $coursePercentage > 0 ? true : false],
+            "lessonPercentage" => [$lessonPercentage, $lessonPercentage > 0 ? true : false],
+            "transactionPercentage" => [$transactionPercentage, $transactionPercentage > 0 ? true : false],
+            "incomePercentage" => [$incomePercentage, $incomePercentage > 0 ? true : false],
+            "course" => $course,
+            "topBought" => collect($topBought),
+            "topPass" => $topPass,
+            "lesson_count" => $lesson_count,
+            "member_count" => $member_count,
+            "income" => $income,
+            "buyer_count" => $buyerPerMonth,
+            "graduate_count" => $graduatePerMonth
+        ];
+    }
+
     function lessonCount($course)
     {
         $lesson = [];
@@ -213,61 +269,5 @@ class AuthorService
         $courseIds = $topPass->pluck('course_id');
 
         return Course::whereIn('id', $courseIds)->where('author_id', auth()->user()->id)->get();
-    }
-
-    function dashboard()
-    {
-        // course
-        $course = Course::where('author_id', auth()->user()->id)->get();
-
-        // jumlah lesson
-        $lesson_count = $this->lessonCount($course);
-
-        // member
-        $member_count = $this->memberCount($course);
-
-        //penghasilan bulan ini
-        $income = $this->incomeThisMonth($course);
-
-        // 5 kursus dengan pembeli terbanyak
-        $topBought = $this->topBought();
-
-        // 5 kursus dengan lulusan terbanyak
-        $topPass = $this->topPass();
-
-        // jumlah pembeli perbulan
-        $buyerPerMonth = $this->buyerPerMonth($course);
-
-        // jumlah lulusan perbulan
-        $graduatePerMonth = $this->graduatePerMonth($course);
-
-        //persentase perbandingan jumlah kursus dengan bulan lalu
-        $thisMonth = Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n'))->count() == 0? 1: Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n'))->count();
-        $lastMonth = Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n') - 1)->count() == 0 ? 1 : Course::where('author_id', auth()->user()->id)->whereMonth('created_at', date('n') - 1)->count();
-        $coursePercentage = $this->percentCount($lastMonth, $thisMonth);
-
-        //persentase perbandingan jumlah lesson dengan bulan lalu
-        $lessonPercentage = $this->lessonPercentage($course);
-
-        //persentase perbandingan jumlah transaksi dengan bulan lalu
-        $transactionPercentage = $this->transactionPercentage($course);
-
-        //persentase penghasilan perbulan
-        $incomePercentage = $this->incomePercentage($course);
-
-       return [
-            "coursePercentage" => [$coursePercentage, $coursePercentage > 0 ? true : false],
-            "lessonPercentage" => [$lessonPercentage, $lessonPercentage > 0 ? true : false],
-            "transactionPercentage" => [$transactionPercentage, $transactionPercentage > 0 ? true : false],
-            "incomePercentage" => [$incomePercentage, $incomePercentage > 0 ? true : false],
-            "course" => $course,
-            "topBought" => collect($topBought),
-            "topPass" => $topPass,
-            "lesson_count" => $lesson_count,
-            "member_count" => $member_count,
-            "income" => $income,
-            "buyer_count" => $buyerPerMonth,
-            "graduate_count" => $graduatePerMonth
-        ];
     }
 }

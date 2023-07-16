@@ -58,7 +58,9 @@ class CourseController extends Controller
 
     function edit()
     {
-        return request()->pathInfo;
+        return view('author.course.edit', [
+            'menu' => parent::$menuSidebar
+        ]);
     }
 
     function update()

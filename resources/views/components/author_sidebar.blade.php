@@ -45,7 +45,13 @@
                 @foreach ($menu as $route => $content)
                     <li class="items-center">
                         <a href="{{ $route }}"
-                            class="w-11/12 text-xs uppercase py-3 font-bold block  duration-100 {{ request()->getPathInfo() == $route ? 'bg-primary text-white px-2 rounded-xl ml-1' : 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }} ">
+                            class="w-11/12 text-xs uppercase py-3 font-bold block  duration-100
+                            @if (request()->getPathInfo() == $route )
+                            {{  'bg-primary text-white px-2 rounded-xl ml-1' }}
+                            @else
+                            {{ 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }}
+                            @endif
+                        ">
                             <i class="{{ $content[1] }} mr-2 text-sm opacity-75"></i>
                             {{ $content[0] }}
                         </a>
