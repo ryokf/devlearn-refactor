@@ -199,8 +199,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
     <script type="text/javascript">
-        console.log({{ $data->buyer_count[0] }});
-        // console.log("halo");
         /* Make dynamic date appear */
         (function() {
             if (document.getElementById("get-current-year")) {
