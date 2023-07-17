@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(7);
         return view('admin.users.index', compact('users'));
     }
     public function show(User $user)
@@ -55,5 +55,11 @@ class UserController extends Controller
             return Redirect::back()->with('message', 'Permission Revoke');
         }
         return Redirect::back()->with('message', 'Permission not exist');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return Redirect::back()->with('message', 'User Deleted Succesfully');
     }
 }

@@ -44,6 +44,7 @@
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 @foreach ($menu as $route => $content)
                     <li class="items-center">
+
                         <a href="{{ $route }}"
                             class="w-11/12 text-xs uppercase py-3 font-bold block  duration-100
                             @if (request()->getPathInfo() == $route )

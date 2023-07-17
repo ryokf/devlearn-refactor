@@ -1,57 +1,137 @@
 <x-admin-layout>
-    <article class="p-4">
-        <div class="py-2 w-full">
-            <div class="flex justify-between p-2">
-                <div>
-                    <h1 class="text-2xl">Dashboard Roles</h1>
+    <div class="flex lg:justify-between sm:flex-col lg:flex-row">
+        <div class="lg:w-1/2 mb-12 px-4">
+            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+                <div class="flex flex-wrap items-center py-3">
+                    <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                        <h3 class="font-semibold text-base text-blueGray-700">
+                            Roles Tables
+                        </h3>
+                    </div>
+                    <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                        <a href="{{ route('admin.roles.create') }}"
+                            class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Create
+                            Roles</a>
+                    </div>
                 </div>
-                <div>
-                    <a href="{{ route('admin.roles.create') }}"
-                        class="bg-blue-500 font-medium text-white hover:bg-blue-700 rounded-md p-2">Create Roles</a>
-                </div>
-            </div>
-
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                Name
-                            </th>
-                            <th></th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($roles as $role)
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $role->name }}
+                <div class="block w-full overflow-x-auto">
+                    <table class="items-center w-full bg-transparent border-collapse">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th scope="col"
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Name
                                 </th>
-                                <td scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <a class="bg-green-500 p-2 rounded-md hover:bg-green-700"
-                                        href="{{ route('admin.roles.edit', $role->id) }}">Edit</a>
-                                    {{-- <a class="bg-red-500 p-2 rounded-md hover:bg-red-700"
-                                        href="{{ route('admin.roles.destroy', $role->id) }}">Delete</a> --}}
-                                    <form class=" inline" action="{{ route('admin.roles.destroy', $role->id) }}"
-                                        method="POST" onsubmit="return confirm('Are you sure??')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="bg-red-500 p-2 rounded-md hover:bg-red-700"
-                                            type="submit">Delete</button>
-                                    </form>
 
-                                </td>
-                        @endforeach
-                        </tr>
-                    </tbody>
-                </table>
+                                <th scope="col"
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Actions
+                                </th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($roles as $role)
+                                <tr class="">
+
+                                    <th scope=""
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        {{ $role->name }}
+                                    </th>
+                                    <td scope="row"
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        <a class="bg-green-500 text-white active:bg-green-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                            href="{{ route('admin.roles.edit', $role->id) }}">Edit</a>
+
+                                        <form class=" inline" action="{{ route('admin.roles.destroy', $role->id) }}"
+                                            method="POST" onsubmit="return confirm('Are you sure??')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button
+                                                class="bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                type="submit">Delete</button>
+                                        </form>
+
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
 
         </div>
-    </article>
+        <div class="lg:w-1/2 mb-12 px-4">
+            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+                <div class="flex flex-wrap items-center py-3">
+                    <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                        <h3 class="font-semibold text-base text-blueGray-700">
+                            Permissions Tables
+                        </h3>
+                    </div>
+                    <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                        <a href="{{ route('admin.permissions.create') }}"
+                            class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Create
+                            Permission</a>
+                    </div>
+                </div>
+                <div class="block w-full overflow-x-auto">
+                    <table class="items-center w-full bg-transparent border-collapse">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th scope="col"
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Name
+                                </th>
+
+                                <th scope="col"
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Actions
+                                </th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($permissions as $permission)
+                                <tr class="">
+
+                                    <th scope=""
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        {{ $permission->name }}
+                                    </th>
+                                    <td scope="row"
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        <a class="bg-green-500 text-white active:bg-green-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                            href="{{ route('admin.permissions.edit', $permission->id) }}">Edit</a>
+
+                                        <form class=" inline"
+                                            action="{{ route('admin.permissions.destroy', $permission->id) }}"
+                                            method="POST" onsubmit="return confirm('Are you sure??')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button
+                                                class="bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                type="submit">Delete</button>
+                                        </form>
+
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
 
 
 </x-admin-layout>
