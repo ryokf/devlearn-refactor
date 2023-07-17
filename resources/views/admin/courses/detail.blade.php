@@ -28,7 +28,7 @@
                     <p class="text-xl ">{{ $course->category->name }}</p>
                     <p class="text-2xl uppercase">{{ $course->title }}</p>
                     <hr>
-                    <p class="text-sm">{{ $course->description }}</p>
+                    <p class="text-sm">{!! $course->description !!}</p>
                 </div>
 
             </div>

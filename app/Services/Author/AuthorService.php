@@ -155,6 +155,9 @@ class AuthorService
 
     function percentCount($lastMonthValue, $thisMonthValue)
     {
+        if ($lastMonthValue == 0) {
+            return 1;
+        }
         return (($thisMonthValue - $lastMonthValue) / $lastMonthValue) * 100;
     }
 
@@ -174,7 +177,6 @@ class AuthorService
         foreach ($LessonLastMonth as $count) {
             $lastMonth += $count;
         }
-
         return $this->percentCount($lastMonth, $thisMonth);
     }
 
@@ -247,45 +249,47 @@ class AuthorService
 
     function topBought()
     {
-        $courseIds = Course::where('author_id', auth()->user()->id)
-            ->pluck('id');
+        // $courseIds = Course::where('author_id', auth()->user()->id)
+        //     ->pluck('id');
 
-        $topBought = UserCourse::whereIn('course_id', $courseIds)
-            ->select('course_id', DB::raw('COUNT(*) as total'))
-            ->groupBy('course_id')
-            ->whereMonth('created_at', date('n'))
-            ->orderByDesc('total')
-            ->orderBy('course_id')
-            ->limit(5)
-            ->get();
+        // $topBought = UserCourse::whereIn('course_id', $courseIds)
+        //     ->select('course_id', DB::raw('COUNT(*) as total'))
+        //     ->groupBy('course_id')
+        //     ->whereMonth('created_at', date('n'))
+        //     ->orderByDesc('total')
+        //     ->orderBy('course_id')
+        //     ->limit(5)
+        //     ->get();
 
-        $courseIdsTopBought = $topBought->pluck('course_id');
+        // $courseIdsTopBought = $topBought->pluck('course_id');
 
-        return Course::whereIn('id', $courseIdsTopBought)
-            ->whereIn('id', $courseIds)
-            ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopBought->implode(',') . ')'))
-            ->get();
+        // return Course::whereIn('id', $courseIdsTopBought)
+        //     ->whereIn('id', $courseIds)
+        //     ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopBought->implode(',') . ')'))
+        //     ->get();
+        return 0;
     }
 
     function topPass()
     {
-        $courseIds = Course::where('author_id', auth()->user()->id)
-        ->pluck('id');
+        //     $courseIds = Course::where('author_id', auth()->user()->id)
+        //     ->pluck('id');
 
-    $topPass = Certificate::whereIn('course_id', $courseIds)
-        ->select('course_id', DB::raw('COUNT(*) as total'))
-        ->groupBy('course_id')
-        ->whereMonth('created_at', date('n'))
-        ->orderByDesc('total')
-        ->orderBy('course_id')
-        ->limit(5)
-        ->get();
+        // $topPass = Certificate::whereIn('course_id', $courseIds)
+        //     ->select('course_id', DB::raw('COUNT(*) as total'))
+        //     ->groupBy('course_id')
+        //     ->whereMonth('created_at', date('n'))
+        //     ->orderByDesc('total')
+        //     ->orderBy('course_id')
+        //     ->limit(5)
+        //     ->get();
 
-    $courseIdsTopPass = $topPass->pluck('course_id');
+        // $courseIdsTopPass = $topPass->pluck('course_id');
 
-    return Course::whereIn('id', $courseIdsTopPass)
-        ->whereIn('id', $courseIds)
-        ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopPass->implode(',') . ')'))
-        ->get();
+        // return Course::whereIn('id', $courseIdsTopPass)
+        //     ->whereIn('id', $courseIds)
+        //     ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopPass->implode(',') . ')'))
+        //     ->get();
+        return 0;
     }
 }
