@@ -19,9 +19,9 @@
 
     </div>
     <div class="md:p-16  bg-teal-100">
-        <div class="flex lg:flex-row flex-col align-items-center p-5 justify-center ">
+        <div class="flex lg:flex-row flex-col align-items-center p-5 justify-center w-3/4 mx-auto ">
             <div class="p-7 hidden lg:block">
-                <img src="{{ $course->photo }}" alt="" class="w-[300px] h-[300px]">
+                <img src="{{ $course->photo }}" alt="" class=" object-cover">
             </div>
             <div class="p-7 ">
                 <div class="flex-row justify-content-center align-items-center">

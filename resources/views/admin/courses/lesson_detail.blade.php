@@ -115,6 +115,7 @@
                                        {{ request()->routeIs('admin.course.lesson.detail') && request('id') == $course->id && request('chapter') == $data->chapter ? 'bg-slate-800 text-slate-100 px-2 rounded-xl ml-1' : 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }}">
                                     {{ $data->chapter }}.{{ $data->title }}
                                 </a>
+                                <hr class="mb-1">
                             </li>
                         @endforeach
 

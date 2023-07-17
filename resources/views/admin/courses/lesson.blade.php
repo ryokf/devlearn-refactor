@@ -116,6 +116,7 @@
                                     {{ $data->chapter }}.{{ $data->title }}
                                 </a>
                             </li>
+                            <hr class="mb-1">
                         @endforeach
 
                     </ul>
@@ -133,7 +134,7 @@
 
             </div>
             <div class="px-4 md:px-10 mx-auto w-full -m-36">
-                <div class="fle flex-wrap"></div>
+                <div class="flex flex-wrap"></div>
 
                 <x-author_footer />
             </div>
