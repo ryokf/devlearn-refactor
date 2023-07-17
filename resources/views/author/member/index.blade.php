@@ -40,12 +40,16 @@
                                         </th>
                                         <th
                                             class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            Harga kursus
+                                        </th>
+                                        <th
+                                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                             Tanggal pembelian
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($members as $number => $member)
+                                    @foreach (json_decode($members) as $number => $member)
                                     <tr>
                                         <th class="text-center w-8">
                                             {{ $number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10 }}
@@ -58,12 +62,16 @@
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             {{ $member->course_title }}
                                         </td>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                            Rp{{ $member->course_price }}
+                                        </td>
                                         <td class=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             {{ $member->date }}
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
+                                {{-- {{ json_decode($members)->links() }} --}}
                             </table>
                             <div class="">
                                 {{-- {{ $draft_courses->links() }} --}}

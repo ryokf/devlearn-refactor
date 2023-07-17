@@ -20,7 +20,7 @@ class MemberController extends Controller
 
     function index() {
 
-        $member = json_decode(json_encode(TransactionResource::collection( $this->memberService->getTransaction())));
+        $member = json_encode(TransactionResource::collection( $this->memberService->getTransaction()));
 
         return view('author.member.index', [
             'members' => $member,

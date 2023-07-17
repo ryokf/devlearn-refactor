@@ -17,6 +17,7 @@ class TransactionResource extends JsonResource
         return [
             'course_id' => $this->courses->id,
             'course_title' => $this->courses->title,
+            'course_price' => $this->courses->price,
             'user_id' => $this->users->id,
             'user_username' => $this->users->username,
             'date' => date_format($this->created_at, 'D, j M Y, G:i')
