@@ -23,7 +23,8 @@ class LessonFactory extends Factory
             'description' => fake()->paragraph(2),
             'text_content' => "<p>" . fake()->text() . "</p>" . "<p>" . fake()->text() . "</p>" . "<p>" . fake()->text() . "</p>",
             'media_content' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100,
-            'thumbnail' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100
+            'thumbnail' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100,
+            'created_at' => fake()->dateTimeThisYear
         ];
     }
 }

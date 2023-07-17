@@ -15,6 +15,10 @@ class DashboardResource extends JsonResource
     public function toArray($request)
     {
         return [
+            "coursePercentage" => [$this->resource['coursePercentage'][0], $this->resource['coursePercentage'][1]],
+            "lessonPercentage" => [$this->resource['lessonPercentage'][0], $this->resource['lessonPercentage'][1]],
+            "transactionPercentage" => [$this->resource['transactionPercentage'][0],$this->resource['transactionPercentage'][1] ],
+            "incomePercentage" => [$this->resource['incomePercentage'][0],$this->resource['incomePercentage'][1] ],
             "course_count" => count($this->resource['course']),
             "lesson_count" => $this->resource['lesson_count'],
             "member_count" => $this->resource['member_count'],

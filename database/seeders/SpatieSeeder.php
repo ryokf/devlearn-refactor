@@ -45,7 +45,7 @@ class SpatieSeeder extends Seeder
             'guard_name' => 'web'
         ]);
 
-        for($i = 1; $i <= 90; $i++){
+        for($i = 1; $i <= 100; $i++){
             $user = User::find($i);
             if($i < 91){
                 $user->assignRole('member');

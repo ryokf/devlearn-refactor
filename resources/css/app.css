@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.bg-primary{
+    @apply bg-slate-800
+}
+
+.text-primary{
+    @apply text-gray-800
+}
+
+.border-primary{
+    @apply border-gray-800
+}
+

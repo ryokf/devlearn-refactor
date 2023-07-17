@@ -4,18 +4,16 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class author_alert extends Component
+class author_multilevel_dropdown extends Component
 {
-    public $bgColor;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($bgColor)
+    public function __construct()
     {
-        $this->bgColor = $bgColor;
+        //
     }
 
     /**
@@ -25,6 +23,6 @@ class author_alert extends Component
      */
     public function render()
     {
-        return view('components.author_alert');
+        return view('components.author_multilevel_dropdown');
     }
 }

@@ -4,7 +4,7 @@
     <div class="relative md:ml-72 bg-blueGray-50">
         <!-- Header -->
         <x-author_header></x-author_header>
-        <div class="relative bg-teal-600 md:pt-32 pb-32 pt-12">
+        <div class="relative bg-primary md:pt-32 pb-32 pt-12">
         </div>
         <div class="px-4 md:px-10 mx-auto w-full -m-36">
             <div class="flex flex-wrap mt-4">
@@ -14,38 +14,37 @@
                             <div class="flex flex-wrap items-center">
                                 <div class="relative w-full px-4 max-w-full flex-grow flex-1 flex flex-wrap justify-between">
                                     <div class="font-semibold text-lg text-blueGray-700">
-                                        <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
-                                            <div class="relative flex w-full flex-wrap items-stretch">
-                                                <span
-                                                    class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"><i
-                                                        class="fas fa-search"></i></span>
-                                                <input type="text" placeholder="Search here..."
-                                                    class="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm outline-none focus:outline-none ring-gray-400 w-full pl-10">
+                                        <form class="flex items-center" action="{{ route('author_course_index') }}"
+                                            method="get">
+                                            <label for="simple-search" class="sr-only">Search</label>
+                                            <div class="relative w-full">
+
+                                                <input type="text" id="simple-search" name="search"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="cari nama kursus..." required>
                                             </div>
+                                            <button type="submit"
+                                                class="p-2.5 ml-2 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-neutral-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 20 20">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2"
+                                                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                                </svg>
+                                                <span class="sr-only">Search</span>
+                                            </button>
                                         </form>
                                     </div>
                                     <div class="flex">
-                                        <select id="countries"
-                                            class="text-gray-700 mr-4 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-gray-400 focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500">
-                                            <option selected>filter</option>
-                                            <option value="US">United States</option>
-                                            <option value="CA">Canada</option>
-                                            <option value="FR">France</option>
-                                            <option value="DE">Germany</option>
-                                        </select>
-                                        <select id="countries"
-                                            class="text-gray-700 mr-4 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500">
-                                            <option selected>filter</option>
-                                            <option value="US">United States</option>
-                                            <option value="CA">Canada</option>
-                                            <option value="FR">France</option>
-                                            <option value="DE">Germany</option>
-                                        </select>
+                                        <x-author_dropdown :sorts="$sorts"> urutkan </x-author_dropdown>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="block w-full overflow-x-auto">
+                            @if (session('success'))
+                                <x-author_alert bgColor="bg-green-500"> {{ session('success') }}</x-author_alert>
+                            @endif
                             <!-- Projects table -->
                             <table class="items-center w-full bg-transparent border-collapse">
                                 <thead>
@@ -83,8 +82,10 @@
                                 <tbody>
                                     @foreach ($courses as $number => $course)
                                         @if ($course->is_public)
-                                            <x-author_course_tile :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course->title" :category="$course->category"
-                                                :photo="$course->photo" :price="$course->price" :status="$course->status" :member="$course->member" />
+                                            <x-author_course_tile :id="$course->id" :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course->title"
+                                                :category="$course->category" :photo="$course->photo" :price="$course->price" :status="$course->status"
+                                                :member="$course->member" />
+                                            <x-test>{{ $course->id }}</x-test>
                                         @endif
                                     @endforeach
                                 </tbody>
@@ -102,7 +103,6 @@
                                     <div class="font-semibold text-lg text-blueGray-700">
                                         <h3>Daftar Kursus yang disimpan</h3>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -144,8 +144,8 @@
                                 <tbody>
                                     @foreach ($draft_courses as $number => $course)
                                         @if (!$course->is_public)
-                                            <x-author_course_tile :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course->title" :category="$course->category"
-                                                :photo="$course->photo" :price="$course->price" :status="$course->status"
+                                            <x-author_course_tile :id="$course->id" :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course->title"
+                                                :category="$course->category" :photo="$course->photo" :price="$course->price" :status="$course->status"
                                                 :member="$course->member" />
                                         @endif
                                     @endforeach
