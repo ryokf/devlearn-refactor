@@ -16,7 +16,10 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        // $request->user()->name = $request->user()->username;
+
         return view('profile.edit', [
+            'menu' => parent::$menuSidebar,
             'user' => $request->user(),
         ]);
     }
@@ -26,13 +29,26 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $data = $request->validated();
+
+        // Proses file gambar yang diunggah
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('public/images/profiles');
+            $data['photo'] = 'storage/' . str_replace('public/', '', $photoPath);
+            // dd($data['photo']);
         }
 
-        $request->user()->save();
+        // Perbarui data pengguna
+        $user->fill($data);
+
+        // Reset email_verified_at jika email berubah
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

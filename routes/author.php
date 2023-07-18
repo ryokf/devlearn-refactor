@@ -11,8 +11,8 @@ Route::prefix('author')->group(function () {
     Route::controller(AuthorController::class)->group(function () {
         Route::get('', 'dashboard')->name('author_dashboard');
         Route::get('profile', 'showProfile')->name('author_profile');
-        Route::get('profile/edit', 'editProfile')->name('author_edit_profile');
-        Route::put('profile/edit', 'updateProfile')->name('author_update_profile');
+        Route::get('profile-edit', 'editProfile')->name('author_edit_profile');
+        Route::put('profile-edit', 'updateProfile')->name('author_update_profile');
     });
 
     Route::controller(CourseController::class)->group(function () {

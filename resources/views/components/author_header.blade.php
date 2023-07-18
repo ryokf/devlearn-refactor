@@ -1,7 +1,7 @@
 <nav
     class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
     <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
-        <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold" href="./index.html">Dashboard</a>
+        <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold" href="">Dashboard</a>
         <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
             <div class="relative flex w-full flex-wrap items-stretch text-white font-bold">
                 selamat datang, {{ auth()->user()->username }}</div>
@@ -12,7 +12,7 @@
                     <span
                         class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img
                             alt="..." class="w-12 h-12 rounded-full align-middle shadow-lg border border-white"
-                            src="{{ auth()->user()->photo }}"></span>
+                            src="  {{ asset(auth()->user()->photo) }}"></span>
                 </div>
             </a>
             <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
@@ -24,7 +24,7 @@
                     class="text-sm pb-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-400">{{ auth()->user()->email }}
                 </span>
                 <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
-                <a href=""
+                <a href="/profile"
                     class="text-sm text-center px-4 py-2 font-normal block w-full whitespace-nowrap bg-transparent hover:bg-gray-100">profile
                 </a>
                 <span data-modal-target="popup-modal-logout" data-modal-toggle="popup-modal-logout"
