@@ -36,24 +36,4 @@ class CourseController extends Controller
         $course->delete();
         return Redirect::back()->with('message', 'Course Deleted');
     }
-
-    public function detailCourse(Course $course)
-    {
-        return view('admin.courses.detail', compact('course'));
-    }
-
-    public function lessonCourseDetail($id, $chapter)
-    {
-        $courseData = $this->coursesService->getLesson($id, $chapter);
-
-        // Membuat resource dari data yang diambil
-        $courseResource = new CourseResource($courseData);
-
-        // Mengirim data ke tampilan
-        return view('admin.courses.lesson_detail', [
-            'lesson' => $courseResource['lesson'],
-            'lesson_detail' => $courseResource['lesson_detail'],
-            'course' => $courseResource['course'],
-        ]);
-    }
 }
