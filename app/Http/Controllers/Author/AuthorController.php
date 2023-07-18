@@ -30,12 +30,17 @@ class AuthorController extends Controller
 
     function showProfile()
     {
-        return view('author.profile');
+        return view('author.profile.profile',  [
+            'menu' => parent::$menuSidebar,
+
+        ]);
     }
 
     function editProfile()
     {
-        return request()->pathinfo;
+        return view('author.profile.edit',  [
+            'menu' => parent::$menuSidebar,
+        ]);
     }
 
     function updateProfile()

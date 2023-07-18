@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('username', 25);
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->text('photo');
             $table->string('occupation', 50)->default('-');
             $table->string('office', 50)->default('-');

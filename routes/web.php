@@ -25,7 +25,7 @@ require __DIR__ . '/admin/admin.php';
 require __DIR__ . '/author.php';
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/dashboard', function () {
