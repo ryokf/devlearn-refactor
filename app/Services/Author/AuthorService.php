@@ -254,38 +254,58 @@ class AuthorService
             ->select('course_id', DB::raw('COUNT(*) as total'))
             ->groupBy('course_id')
             ->whereMonth('created_at', date('n'))
-            ->orderByDesc('total')
+            ->orderBy('total')
             ->orderBy('course_id')
             ->limit(5)
             ->get();
 
         $courseIdsTopBought = $topBought->pluck('course_id');
 
-        return Course::whereIn('id', $courseIdsTopBought)
-            ->whereIn('id', $courseIds)
-            ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopBought->implode(',') . ')'))
-            ->get();
+        // Cek apakah ada data course yang termasuk dalam topBought.
+        if ($courseIdsTopBought->isEmpty()) {
+            // Tidak ada data yang ditemukan, lakukan penanganan khusus di sini,
+            // misalnya mengembalikan pesan error atau mengambil course lain sebagai alternatif.
+            // Contoh: return Course::whereIn('id', $courseIds)->get();
+            // Atau:
+            return [];
+        } else {
+            // Ada data yang ditemukan, ambil course yang sesuai.
+            return Course::whereIn('id', $courseIdsTopBought)
+                ->whereIn('id', $courseIds)
+                ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopBought->implode(',') . ')'))
+                ->get();
+        }
     }
 
     function topPass()
     {
         $courseIds = Course::where('author_id', auth()->user()->id)
-        ->pluck('id');
+            ->pluck('id');
 
-    $topPass = Certificate::whereIn('course_id', $courseIds)
-        ->select('course_id', DB::raw('COUNT(*) as total'))
-        ->groupBy('course_id')
-        ->whereMonth('created_at', date('n'))
-        ->orderByDesc('total')
-        ->orderBy('course_id')
-        ->limit(5)
-        ->get();
+        $topPass = Certificate::whereIn('course_id', $courseIds)
+            ->select('course_id', DB::raw('COUNT(*) as total'))
+            ->groupBy('course_id')
+            ->whereMonth('created_at', date('n'))
+            ->orderBy('total')
+            ->orderBy('course_id')
+            ->limit(5)
+            ->get();
 
-    $courseIdsTopPass = $topPass->pluck('course_id');
+        $courseIdsTopPass = $topPass->pluck('course_id');
 
-    return Course::whereIn('id', $courseIdsTopPass)
-        ->whereIn('id', $courseIds)
-        ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopPass->implode(',') . ')'))
-        ->get();
+        // Cek apakah ada data course yang termasuk dalam topPass.
+        if ($courseIdsTopPass->isEmpty()) {
+            // Tidak ada data yang ditemukan, lakukan penanganan khusus di sini,
+            // misalnya mengembalikan pesan error atau mengambil course lain sebagai alternatif.
+            // Contoh: return Course::whereIn('id', $courseIds)->get();
+            // Atau:
+            return [];
+        } else {
+            // Ada data yang ditemukan, ambil course yang sesuai.
+            return Course::whereIn('id', $courseIdsTopPass)
+                ->whereIn('id', $courseIds)
+                ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopPass->implode(',') . ')'))
+                ->get();
+        }
     }
 }
