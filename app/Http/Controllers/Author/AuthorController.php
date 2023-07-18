@@ -30,7 +30,7 @@ class AuthorController extends Controller
 
     function showProfile()
     {
-        return request()->pathinfo;
+        return view('author.profile');
     }
 
     function editProfile()

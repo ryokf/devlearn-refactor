@@ -1,6 +1,8 @@
 @extends('author.layout')
 
 @section('body')
+    {{-- @dd($data->income_per_month) --}}
+
     {{-- {{ var_dump($data->buyer_count) }} --}}
     {{-- @dd($data->buyer_count) --}}
     <div class="relative md:ml-72 bg-blueGray-50">
@@ -11,14 +13,19 @@
                     <!-- Card stats -->
                     <div class="flex flex-wrap">
                         {{-- @dd($data->coursePercentage) --}}
-                        <x-author_stastitic_card title="jumlah kursus" value="{{ $data->course_count }}" icon='fa-solid fa-book'
-                            iconBgColor="bg-primary" percentage="{{ $data->coursePercentage[0] }}" arrow="{{ $data->coursePercentage[1] }}" />
-                        <x-author_stastitic_card title="jumlah materi" value="{{ $data->lesson_count }}" icon='fa-solid fa-scroll'
-                            iconBgColor="bg-primary" percentage="{{ $data->lessonPercentage[0] }}" arrow="{{ $data->lessonPercentage[1] }}" />
-                        <x-author_stastitic_card title="jumlah transaksi" value="{{ $data->member_count }}" icon='fa-solid fa-users-rectangle'
-                            iconBgColor="bg-primary" percentage="{{ $data->transactionPercentage[0] }}" arrow="{{ $data->transactionPercentage[1] }}" />
-                        <x-author_stastitic_card title="pemasukan bulan ini" value="Rp{{ $data->income }}" icon='fa-solid fa-rupiah-sign'
-                            iconBgColor="bg-primary" percentage="{{ $data->incomePercentage[0] }}" arrow="{{ $data->incomePercentage[1] }}" />
+                        <x-author_stastitic_card title="jumlah kursus" value="{{ $data->course_count }}"
+                            icon='fa-solid fa-book' iconBgColor="bg-primary" percentage="{{ $data->coursePercentage[0] }}"
+                            arrow="{{ $data->coursePercentage[1] }}" />
+                        <x-author_stastitic_card title="jumlah materi" value="{{ $data->lesson_count }}"
+                            icon='fa-solid fa-scroll' iconBgColor="bg-primary" percentage="{{ $data->lessonPercentage[0] }}"
+                            arrow="{{ $data->lessonPercentage[1] }}" />
+                        <x-author_stastitic_card title="jumlah transaksi" value="{{ $data->member_count }}"
+                            icon='fa-solid fa-users-rectangle' iconBgColor="bg-primary"
+                            percentage="{{ $data->transactionPercentage[0] }}"
+                            arrow="{{ $data->transactionPercentage[1] }}" />
+                        <x-author_stastitic_card title="pemasukan bulan ini" value="Rp{{ $data->income }}"
+                            icon='fa-solid fa-rupiah-sign' iconBgColor="bg-primary"
+                            percentage="{{ $data->incomePercentage[0] }}" arrow="{{ $data->incomePercentage[1] }}" />
                     </div>
                 </div>
             </div>
@@ -35,7 +42,7 @@
                                         Ringkasan
                                     </h6>
                                     <h2 class="text-xl font-bold ">
-                                        Stastitik pembelian kursus
+                                        Stastitik pemasukan tahun {{ date('Y') }}
                                     </h2>
                                 </div>
                             </div>
@@ -51,13 +58,12 @@
                                         <div class=""></div>
                                     </div>
                                 </div>
-                                <canvas id="line-chart" style="display: block; width: 599px; height: 350px;" width="599"
-                                    height="350" class="chartjs-render-monitor"></canvas>
+                                <canvas id="income-chart" style="display: block; width: 599px; height: 350px;"
+                                    width="599" height="350" class="chartjs-render-monitor"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="flex flex-wrap mt-4">
                 <div class="w-full mb-12">
@@ -187,6 +193,39 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="w-full mb-12 xl:mb-0 px-4">
+                            <div
+                                class="bg-white relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
+                                <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
+                                    <div class=" flex flex-wrap items-center">
+                                        <div class="relative w-full max-w-full flex-grow flex-1">
+                                            <h6
+                                                class="text-gray-600 uppercase text-blueGray-100 mb-1 text-xs font-semibold">
+                                                Ringkasan
+                                            </h6>
+                                            <h2 class="text-xl font-bold ">
+                                                Stastitik pembelian kursus
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-4 flex-auto">
+                                    <!-- Chart -->
+                                    <div class="relative h-350-px ">
+                                        <div class="chartjs-size-monitor">
+                                            <div class="chartjs-size-monitor-expand">
+                                                <div class=""></div>
+                                            </div>
+                                            <div class="chartjs-size-monitor-shrink">
+                                                <div class=""></div>
+                                            </div>
+                                        </div>
+                                        <canvas id="line-chart" style="display: block; width: 599px; height: 350px;"
+                                            width="599" height="350" class="chartjs-render-monitor"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -232,21 +271,21 @@
             /* Chart initialisations */
             /* Line Chart */
             var config = {
-                type: "line",
+                type: "bar",
                 data: {
                     labels: [
-                        "Januari",
-                        "Februari",
-                        "Maret",
-                        "April",
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
                         "Mei",
-                        "Juni",
-                        "Juli",
-                        "Agustus",
-                        "September",
-                        "Oktober",
-                        "November",
-                        "Desember"
+                        "Jun",
+                        "Jul",
+                        "Agu",
+                        "Sep",
+                        "Okt",
+                        "Nov",
+                        "Des"
                     ],
                     datasets: [{
                             label: "pembeli",
@@ -342,20 +381,37 @@
             var ctx = document.getElementById("line-chart").getContext("2d");
             window.myLine = new Chart(ctx, config);
 
-            /* Bar Chart */
-            config = {
-                type: "doughnut",
+            var config = {
+                type: "line",
                 data: {
-                    labels: ["Red", "Blue", "Yellow"],
+                    labels: [
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
+                        "Mei",
+                        "Jun",
+                        "Jul",
+                        "Agu",
+                        "Sep",
+                        "Okt",
+                        "Nov",
+                        "Des"
+                    ],
                     datasets: [{
-                        label: "My First Dataset",
-                        data: [100, 50, 100],
-                        backgroundColor: [
-                            "rgb(255, 99, 132)",
-                            "rgb(54, 162, 235)",
-                            "rgb(255, 205, 86)",
+                        label: "pemasukan",
+                        fill: false,
+                        backgroundColor: "#10b981",
+                        borderColor: "#10b981",
+                        borderWidth: 5,
+                        data: [
+
+                            @foreach ($data->income_per_month as $count)
+                                {{ $count . ',' }}
+                            @endforeach
                         ],
-                        hoverOffset: 4,
+                        tension: 0.2,
+                        // stepped: 'middle'
                     }, ],
                 },
                 options: {
@@ -363,7 +419,15 @@
                     responsive: true,
                     title: {
                         display: false,
-                        text: "Orders Chart",
+                        text: "Sales Charts",
+                        fontColor: "black",
+                    },
+                    legend: {
+                        labels: {
+                            fontColor: "black",
+                        },
+                        align: "end",
+                        position: "bottom",
                     },
                     tooltips: {
                         mode: "index",
@@ -373,17 +437,58 @@
                         mode: "nearest",
                         intersect: true,
                     },
-                    legend: {
-                        labels: {
-                            fontColor: "rgba(0,0,0,.4)",
-                        },
-                        align: "end",
-                        position: "bottom",
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontColor: "black",
+                            },
+                            display: true,
+                            scaleLabel: {
+                                display: false,
+                                labelString: "Month",
+                                fontColor: "black",
+                            },
+                            gridLines: {
+                                display: false,
+                                borderDash: [2],
+                                borderDashOffset: [2],
+                                color: "black",
+                                zeroLineColor: "rgba(0, 0, 0, 0)",
+                                zeroLineBorderDash: [2],
+                                zeroLineBorderDashOffset: [2],
+                            },
+                        }, ],
+                        yAxes: [{
+                            ticks: {
+                                fontColor: "black",
+                                callback: function(value, index, values) {
+                                    return 'Rp' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                                        ".");
+                                }
+                            },
+                            display: true,
+                            scaleLabel: {
+                                display: false,
+                                labelString: "Value",
+                                fontColor: "black",
+                            },
+                            gridLines: {
+                                borderDash: [3],
+                                borderDashOffset: [2],
+                                drawBorder: false,
+                                color: "black",
+                                zeroLineColor: "black",
+                                zeroLineBorderDash: [2],
+                                zeroLineBorderDashOffset: [2],
+                            },
+                        }, ],
                     },
                 },
             };
-            ctx = document.getElementById("bar-chart").getContext("2d");
-            window.myBar = new Chart(ctx, config);
+            var ctx = document.getElementById("income-chart").getContext("2d");
+            window.myLine = new Chart(ctx, config);
+
+
         })();
     </script>
 @endsection
