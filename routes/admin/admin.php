@@ -43,9 +43,6 @@ Route::middleware(['auth', 'verified', 'role:admin'])->name('admin.')->prefix('a
     Route::controller(CourseController::class)->group(function () {
         Route::get('/course', 'index')->name('course.index');
         Route::delete('/course/{course}',  'deleteCourse')->name('course.delete');
-        Route::get('/course/detail/{course}', 'detailCourse')->name('course.detail');
-        Route::get('/course/lesson/{id}', 'lessonCourse')->name('course.lesson');
-        Route::get('/course/lesson/{id}/{chapter}', 'lessonCourseDetail')->name('course.lesson.detail');
     });
 
     Route::controller(UserCourseController::class)->group(function () {

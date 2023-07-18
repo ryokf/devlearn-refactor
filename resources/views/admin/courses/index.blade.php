@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($courses as $course)
+                    @foreach ($courses->items() as $course)
                         <tr class="">
                             <td scope="row"
                                 class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
@@ -60,7 +60,7 @@
                             </td>
                             <td scope="row"
                                 class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                <a href="{{ route('admin.course.detail', $course) }}"
+                                <a href="{{ route('course.detail', $course) }}"
                                     class="bg-teal-500 text-white active:bg-teal-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Detail
                                     Course</a>
                                 <form class="inline-block" action="{{ route('admin.course.delete', $course->id) }}"
