@@ -1,6 +1,5 @@
 <x-admin-layout>
-
-    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white mx-auto">
         <div class="rounded-t mb-0 px-4 py-3 border-0">
             <div class="flex flex-wrap items-center">
                 <div class="relative w-full px-4 max-w-full flex-grow flex-1">
@@ -10,37 +9,37 @@
                 </div>
             </div>
         </div>
-        <div class="block w-full overflow-x-auto">
-            <table class="">
+        <div class=" w-full overflow-x-auto flex flex-wrap">
+            <table class="mx-auto">
                 <thead class="bg-gray-100">
                     <tr>
                         <th scope="col"
-                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            class="px-9 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                             User ID
                         </th>
                         <th scope="col"
-                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            class="px-9 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                             User Name
                         </th>
 
                         <th scope="col"
-                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            class="px-9 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                             Course ID
                         </th>
                         <th scope="col"
-                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            class="px-9 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                             Course Name
                         </th>
                         <th scope="col"
-                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            class="px-9 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                             Payment Status
                         </th>
                         <th scope="col"
-                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            class="px-9 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                             Payment Receipt
                         </th>
                         <th scope="col"
-                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            class="px-9 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                             Update Payment Status
                         </th>
 
@@ -49,24 +48,24 @@
                 <tbody>
                     @foreach ($UserCourses as $userCourse)
                         <tr class="">
-                            <th scope="row"x
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                            <th scope="row"
+                                class="border-t-0 px-9 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 {{ $userCourse->user_id }}
                             </th>
                             <td scope="row"
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                class="border-t-0 px-9 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 {{ $userCourse->users->username }}
                             </td>
                             <th scope="row"
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                class="border-t-0 px-9 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 {{ $userCourse->course_id }}
                             </th>
                             <th scope="row"
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                class="border-t-0 px-9 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 {{ $userCourse->courses->title }}
                             </th>
                             <th scope="row"
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                class="border-t-0 px-9 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 @if ($userCourse->payment_receipt == null)
                                     Belum Ada Pembayaran
                                 @else
@@ -74,7 +73,7 @@
                                 @endif
                             </th>
                             <th scope="row"
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                class="border-t-0 px-9 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 @if ($userCourse->payment_status == false)
                                     Belum Lunas
                                 @else
@@ -82,7 +81,7 @@
                                 @endif
                             </th>
                             <th scope="row"
-                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                class="border-t-0 px-9 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 <form action="{{ route('admin.userCourse.update', $userCourse) }}" method="POST">
                                     @csrf
                                     @method('put')
@@ -97,7 +96,7 @@
             </table>
         </div>
         <hr>
-        <div class="flex justify-between items-center py-3 px-6">
+        <div class="flex justify-between items-center py-3 px-6 ">
             <div class="text-sm text-gray-700">
                 Showing {{ $UserCourses->firstItem() }} to {{ $UserCourses->lastItem() }} of {{ $UserCourses->total() }}
                 results

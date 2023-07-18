@@ -85,7 +85,7 @@
             <hr class="my-4 md:min-w-full" />
             <!-- Heading -->
             <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-                Admin Layout Pages
+                Admin Pages
             </h6>
             <!-- Navigation -->
 
@@ -113,6 +113,18 @@
                         Roles & Permission
                     </a>
                 </li>
+            </ul>
+
+
+            <!-- Divider -->
+            <hr class="my-4 md:min-w-full" />
+            <!-- Heading -->
+            <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+                Course Page
+            </h6>
+            <!-- Navigation -->
+
+            <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
                 <li class="items-center">
                     <a href="{{ route('admin.course.index') }}"
                         class="w-11/12 text-xs uppercase py-3 font-bold block  duration-100 {{ request()->routeIs('admin.course.index') ? 'bg-slate-800 text-slate-100 px-2 rounded-xl ml-1' : 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }} ">
@@ -126,59 +138,6 @@
                         class="w-11/12 text-xs uppercase py-3 font-bold block  duration-100 {{ request()->routeIs('admin.userCourse.index') ? 'bg-slate-800 text-slate-100 px-2 rounded-xl ml-1' : 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }} ">
                         <i class="fas fa-chalkboard-teacher mr-2 text-sm opacity-75"></i>
                         User Course
-                    </a>
-                </li>
-
-            </ul>
-
-            <!-- Divider -->
-            <hr class="my-4 md:min-w-full" />
-            <!-- Heading -->
-            <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-                Auth Layout Pages
-            </h6>
-            <!-- Navigation -->
-
-            <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-                <li class="items-center">
-                    <a href="../auth/login.html"
-                        class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-                        <i class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>
-                        Login
-                    </a>
-                </li>
-
-                <li class="items-center">
-                    <a href="../auth/register.html"
-                        class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-                        <i class="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>
-                        Register
-                    </a>
-                </li>
-            </ul>
-
-            <!-- Divider -->
-            <hr class="my-4 md:min-w-full" />
-            <!-- Heading -->
-            <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-                No Layout Pages
-            </h6>
-            <!-- Navigation -->
-
-            <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-                <li class="items-center">
-                    <a href="../landing.html"
-                        class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-                        <i class="fas fa-newspaper text-blueGray-300 mr-2 text-sm"></i>
-                        Landing Page
-                    </a>
-                </li>
-
-                <li class="items-center">
-                    <a href="../profile.html"
-                        class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-                        <i class="fas fa-user-circle text-blueGray-300 mr-2 text-sm"></i>
-                        Profile Page
                     </a>
                 </li>
             </ul>
