@@ -51,6 +51,21 @@ class AuthorService
         //persentase penghasilan perbulan
         $incomePercentage = $this->incomePercentage($course);
 
+        $year = date('Y');
+        $incomePerMonth = [];
+
+        for ($month = 1; $month <= 12; $month++) {
+            $totalIncome = DB::table('user_courses')
+                ->join('courses', 'user_courses.course_id', '=', 'courses.id')
+                ->where('courses.author_id', auth()->user()->id)
+                ->whereMonth('user_courses.created_at', $month)
+                ->whereYear('user_courses.created_at', $year)
+                // ->where('user_courses.payment_status', true)
+                ->sum('courses.price');
+
+            array_push($incomePerMonth, $totalIncome);
+        }
+
         return [
             "coursePercentage" => [$coursePercentage, $coursePercentage > 0 ? true : false],
             "lessonPercentage" => [$lessonPercentage, $lessonPercentage > 0 ? true : false],
@@ -63,7 +78,8 @@ class AuthorService
             "member_count" => $member_count,
             "income" => $income,
             "buyer_count" => $buyerPerMonth,
-            "graduate_count" => $graduatePerMonth
+            "graduate_count" => $graduatePerMonth,
+            "income_per_month" => $incomePerMonth
         ];
     }
 
@@ -155,10 +171,16 @@ class AuthorService
 
     function percentCount($lastMonthValue, $thisMonthValue)
     {
-        if ($lastMonthValue == 0) {
-            return 1;
+         // Cek apakah lastMonthValue adalah 0 atau tidak
+    if ($lastMonthValue == 0) {
+        if ($thisMonthValue == 0) {
+            return 0; // Jika thisMonthValue juga 0, maka persentase 0
+        } else {
+            return 100; // Jika thisMonthValue bukan 0, maka persentase infinity (tidak terhingga)
         }
-        return (($thisMonthValue - $lastMonthValue) / $lastMonthValue) * 100;
+    }
+
+    return (($thisMonthValue - $lastMonthValue) / $lastMonthValue) * 100;
     }
 
     function lessonPercentage($course)
@@ -249,47 +271,65 @@ class AuthorService
 
     function topBought()
     {
-        // $courseIds = Course::where('author_id', auth()->user()->id)
-        //     ->pluck('id');
+        $courseIds = Course::where('author_id', auth()->user()->id)
+            ->pluck('id');
 
-        // $topBought = UserCourse::whereIn('course_id', $courseIds)
-        //     ->select('course_id', DB::raw('COUNT(*) as total'))
-        //     ->groupBy('course_id')
-        //     ->whereMonth('created_at', date('n'))
-        //     ->orderByDesc('total')
-        //     ->orderBy('course_id')
-        //     ->limit(5)
-        //     ->get();
+        $topBought = UserCourse::whereIn('course_id', $courseIds)
+            ->select('course_id', DB::raw('COUNT(*) as total'))
+            ->groupBy('course_id')
+            ->whereMonth('created_at', date('n'))
+            ->orderBy('total')
+            ->orderBy('course_id')
+            ->limit(5)
+            ->get();
 
-        // $courseIdsTopBought = $topBought->pluck('course_id');
+        $courseIdsTopBought = $topBought->pluck('course_id');
 
-        // return Course::whereIn('id', $courseIdsTopBought)
-        //     ->whereIn('id', $courseIds)
-        //     ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopBought->implode(',') . ')'))
-        //     ->get();
-        return 0;
+        // Cek apakah ada data course yang termasuk dalam topBought.
+        if ($courseIdsTopBought->isEmpty()) {
+            // Tidak ada data yang ditemukan, lakukan penanganan khusus di sini,
+            // misalnya mengembalikan pesan error atau mengambil course lain sebagai alternatif.
+            // Contoh: return Course::whereIn('id', $courseIds)->get();
+            // Atau:
+            return [];
+        } else {
+            // Ada data yang ditemukan, ambil course yang sesuai.
+            return Course::whereIn('id', $courseIdsTopBought)
+                ->whereIn('id', $courseIds)
+                ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopBought->implode(',') . ')'))
+                ->get();
+        }
     }
 
     function topPass()
     {
-        //     $courseIds = Course::where('author_id', auth()->user()->id)
-        //     ->pluck('id');
+        $courseIds = Course::where('author_id', auth()->user()->id)
+            ->pluck('id');
 
-        // $topPass = Certificate::whereIn('course_id', $courseIds)
-        //     ->select('course_id', DB::raw('COUNT(*) as total'))
-        //     ->groupBy('course_id')
-        //     ->whereMonth('created_at', date('n'))
-        //     ->orderByDesc('total')
-        //     ->orderBy('course_id')
-        //     ->limit(5)
-        //     ->get();
+        $topPass = Certificate::whereIn('course_id', $courseIds)
+            ->select('course_id', DB::raw('COUNT(*) as total'))
+            ->groupBy('course_id')
+            ->whereMonth('created_at', date('n'))
+            ->orderBy('total')
+            ->orderBy('course_id')
+            ->limit(5)
+            ->get();
 
-        // $courseIdsTopPass = $topPass->pluck('course_id');
+        $courseIdsTopPass = $topPass->pluck('course_id');
 
-        // return Course::whereIn('id', $courseIdsTopPass)
-        //     ->whereIn('id', $courseIds)
-        //     ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopPass->implode(',') . ')'))
-        //     ->get();
-        return 0;
+        // Cek apakah ada data course yang termasuk dalam topPass.
+        if ($courseIdsTopPass->isEmpty()) {
+            // Tidak ada data yang ditemukan, lakukan penanganan khusus di sini,
+            // misalnya mengembalikan pesan error atau mengambil course lain sebagai alternatif.
+            // Contoh: return Course::whereIn('id', $courseIds)->get();
+            // Atau:
+            return [];
+        } else {
+            // Ada data yang ditemukan, ambil course yang sesuai.
+            return Course::whereIn('id', $courseIdsTopPass)
+                ->whereIn('id', $courseIds)
+                ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopPass->implode(',') . ')'))
+                ->get();
+        }
     }
 }

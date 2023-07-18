@@ -7,7 +7,7 @@
                 selamat datang, {{ auth()->user()->username }}</div>
         </form>
         <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
-            <a class="text-blueGray-500 block" href="#pablo" onclick="openDropdown(event,'user-dropdown')">
+            <a class="cursor-pointer text-blueGray-500 block" onclick="openDropdown(event,'user-dropdown')">
                 <div class="items-center flex">
                     <span
                         class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img
