@@ -28,14 +28,14 @@
                     <p class="text-xl ">{{ $course->category->name }}</p>
                     <p class="text-2xl uppercase">{{ $course->title }}</p>
                     <hr>
-                    <p class="text-sm">{{ $course->description }}</p>
+                    <p class="text-sm">{!! $course->description !!}</p>
                 </div>
 
             </div>
             <div class="flex-none align-items-center w-64 ">
                 <div class="p-7">
                     <div class=" bg-white flex flex-col p-5 border border-solid border-black rounded-md justify-center">
-                        <a href="{{ route('admin.course.lesson', ['id' => $course->id]) }}"><button
+                        <a href="{{ route('course.lesson.detail', ['id' => $course->id, 'chapter' => 1]) }}"><button
                                 class="border border-solid border-black text-white bg-teal-500 p-2 rounded-md hover:bg-teal-700 m-2">Belajar
                                 Sekarang</button></a>
 

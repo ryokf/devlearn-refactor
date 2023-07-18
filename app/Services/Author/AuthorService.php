@@ -199,7 +199,6 @@ class AuthorService
         foreach ($LessonLastMonth as $count) {
             $lastMonth += $count;
         }
-
         return $this->percentCount($lastMonth, $thisMonth);
     }
 

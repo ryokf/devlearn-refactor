@@ -27,7 +27,7 @@
                 </button>
                 <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     href="../../index.html">
-                    {{ $course->title }}
+                    Notus Tailwind JS
                 </a>
                 <ul class="md:hidden items-center flex flex-wrap list-none">
                     <li class="inline-block relative">
@@ -110,19 +110,21 @@
                     <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                         @foreach ($lesson as $data)
                             <li class="items-center">
-                                <a href="{{ route('admin.course.lesson.detail', ['id' => $course->id, 'chapter' => $data->chapter]) }}"
+                                <a href="{{ route('course.lesson.detail', ['id' => $course->id, 'chapter' => $data->chapter]) }}"
                                     class="w-11/12 text-xs uppercase py-3 font-bold block duration-100
-                                   {{ request()->routeIs('admin.course.lesson.detail') && request('id') == $course->id && request('chapter') == $data->chapter ? 'bg-slate-800 text-slate-100 px-2 rounded-xl ml-1' : 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }}">
+                                       {{ request()->routeIs('course.lesson.detail') && request('id') == $course->id && request('chapter') == $data->chapter ? 'bg-slate-800 text-slate-100 px-2 rounded-xl ml-1' : 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }}">
                                     {{ $data->chapter }}.{{ $data->title }}
                                 </a>
+                                <hr class="mb-1">
                             </li>
-                            <hr class="mb-1">
                         @endforeach
+
 
                     </ul>
                 </div>
             </div>
         </nav>
+
 
 
 
@@ -134,12 +136,23 @@
 
             </div>
             <div class="px-4 md:px-10 mx-auto w-full -m-36">
-                <div class="flex flex-wrap"></div>
+                <div class="fle flex-wrap"></div>
+                <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+                    <div class="p-8">
+                        @foreach ($lesson_detail as $item)
+                            <img src="{{ $item->media_content }}" alt="">
+                            <p> Judul : {{ $item->title }}</p>
+                            <p>Deskripsi : {{ $item->description }} </p>
+                            <p>Isi Teks : {!! $item->text_content !!} </p>
+                        @endforeach
+                    </div>
 
-                <x-author_footer />
+                </div>
+
+                <x-author_footer class="" />
             </div>
         </div>
-    </div>
+
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>

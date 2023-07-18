@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PermissionRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Spatie\Permission\Models\Permission;
@@ -10,21 +11,14 @@ use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
-    // public function index()
-    // {
-
-    //     $permissions = Permission::all();
-    //     return view('admin.permissions.index', compact('permissions'));
-    // }
     public function create()
     {
         return view('admin.permissions.create');
     }
 
-    public function store(Request $request)
+    public function store(PermissionRequest $request)
     {
-        $validated = $request->validate(['name' => ['required', 'min:3',]]);
-        Permission::create($validated);
+        Permission::create($request->all());
         return to_route('admin.roles.index')->with('message', 'Permission created successful');
     }
 
@@ -34,10 +28,9 @@ class PermissionController extends Controller
         return view('admin.permissions.edit', compact('permission', 'roles'));
     }
 
-    public function update(Request $request, Permission $permission)
+    public function update(PermissionRequest $request, Permission $permission)
     {
-        $validated = $request->validate(['name' => 'required']);
-        $permission->update($validated);
+        $permission->update($request->all());
         return to_route('admin.roles.index')->with('message', 'Permission updated successful');
     }
 
