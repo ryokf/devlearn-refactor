@@ -22,4 +22,13 @@ class Controller extends BaseController
         '/profile' => ['profile', 'fa-solid fa-user-pen'],
     ];
 
+    static public $memberMenuSidebar = [
+        '/member' => ['dashboard', 'fa-solid fa-chart-line'],
+        '/member/course' => ['kursus anda', 'fa-solid fa-chalkboard'],
+        '/member/member' => ['daftar transaksi', 'fa-solid fa-arrow-right-arrow-left'],
+        '/profile' => ['profile', 'fa-solid fa-user-pen'],
+    ];
+
+
+
 }

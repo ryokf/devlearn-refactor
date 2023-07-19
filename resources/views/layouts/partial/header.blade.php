@@ -88,7 +88,7 @@
                 <li class="flex items-center">
                     @auth
                         <a href=@role('member')
-                        {{ 'member' }}
+                        {{ route('member_dashboard') }}
                     @endrole
                             @role('author')
                         {{ route('author_dashboard') }}

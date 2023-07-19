@@ -48,7 +48,7 @@ class SpatieSeeder extends Seeder
         for($i = 1; $i <= 100; $i++){
             $user = User::find($i);
             if($i < 91){
-                $user->assignRole('member');
+                $user->assignRole('author');
             } else {
                 $user->assignRole('member');
             }
