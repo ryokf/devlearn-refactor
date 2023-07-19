@@ -43,7 +43,6 @@
                                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                         <a class="bg-green-500 text-white active:bg-green-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                             href="{{ route('admin.roles.edit', $role->id) }}">Edit</a>
-
                                         <form class=" inline" action="{{ route('admin.roles.destroy', $role->id) }}"
                                             method="POST" onsubmit="return confirm('Are you sure??')">
                                             @csrf
@@ -61,7 +60,7 @@
                     </table>
                 </div>
             </div>
-
+            <x-delete-validation text="role" url="{{ url('admin/course/category') }}" />
 
         </div>
         <div class="lg:w-1/2 mb-12 px-4">

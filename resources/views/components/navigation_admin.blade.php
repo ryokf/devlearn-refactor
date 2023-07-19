@@ -7,54 +7,16 @@
             type="button" onclick="toggleNavbar('example-collapse-sidebar')">
             <i class="fas fa-bars"></i>
         </button>
-        <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+        <a class="hidden md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             href="../../index.html">
-            DevLearn
+            DevLearn | Admin
         </a>
         <ul class="md:hidden items-center flex flex-wrap list-none">
-            <li class="inline-block relative">
-                <a class="text-blueGray-500 block py-1 px-3" href="#pablo"
-                    onclick="openDropdown(event,'notification-dropdown')"><i class="fas fa-bell"></i></a>
-                <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-                    id="notification-dropdown">
-                    <a href="#pablo"
-                        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Action</a><a
-                        href="#pablo"
-                        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Another
-                        action</a><a href="#pablo"
-                        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Something
-                        else here</a>
-                    <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
-                    <a href="#pablo"
-                        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Seprated
-                        link</a>
-                </div>
-            </li>
-            <li class="inline-block relative">
-                <a class="text-blueGray-500 block" href="#pablo"
-                    onclick="openDropdown(event,'user-responsive-dropdown')">
-                    <div class="items-center flex">
-                        <span
-                            class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img
-                                alt="..." class="w-full rounded-full align-middle border-none shadow-lg"
-                                src="../../assets/img/team-1-800x800.jpg" /></span>
-                    </div>
-                </a>
-                <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-                    id="user-responsive-dropdown">
-                    <a href="#pablo"
-                        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Action</a><a
-                        href="#pablo"
-                        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Another
-                        action</a><a href="#pablo"
-                        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Something
-                        else here</a>
-                    <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
-                    <a href="#pablo"
-                        class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Seprated
-                        link</a>
-                </div>
-            </li>
+            <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+                href="../../index.html">
+                DevLearn | Admin
+            </a>
+
         </ul>
         <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded hidden"
             id="example-collapse-sidebar">
@@ -135,7 +97,15 @@
                         User Course
                     </a>
                 </li>
+                <li class="items-center">
+                    <a href="{{ route('admin.course.category') }}"
+                        class="w-11/12 text-xs uppercase py-3 font-bold block  duration-100 {{ request()->routeIs('admin.course.category') ? 'bg-slate-800 text-slate-100 px-2 rounded-xl ml-1' : 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }} ">
+                        <i class="fas fa-tags mr-2 text-sm opacity-75"></i>
+                        Course Category
+                    </a>
+                </li>
             </ul>
+            {{-- course.category --}}
         </div>
     </div>
 </nav>
