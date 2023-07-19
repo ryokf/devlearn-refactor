@@ -1,5 +1,5 @@
 <nav
-    class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+    class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-72 z-10 py-4 px-6">
     <div
         class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
         <button
@@ -9,7 +9,7 @@
         </button>
         <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             href="../../index.html">
-            Notus Tailwind JS
+            DevLearn
         </a>
         <ul class="md:hidden items-center flex flex-wrap list-none">
             <li class="inline-block relative">
@@ -63,7 +63,7 @@
                     <div class="w-6/12">
                         <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                             href="../../index.html">
-                            Notus Tailwind JS
+                            DevLearn
                         </a>
                     </div>
                     <div class="w-6/12 flex justify-end">
@@ -75,12 +75,7 @@
                     </div>
                 </div>
             </div>
-            <form class="mt-6 mb-4 md:hidden">
-                <div class="mb-3 pt-0">
-                    <input type="text" placeholder="Search"
-                        class="border-0 px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal" />
-                </div>
-            </form>
+
             <!-- Divider -->
             <hr class="my-4 md:min-w-full" />
             <!-- Heading -->
@@ -91,8 +86,8 @@
 
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 <li class="items-center">
-                    <a href="{{ route('admin.users.index') }}"
-                        class="w-11/12 text-xs uppercase py-3 font-bold block  duration-100 {{ request()->routeIs('admin.users.index') ? 'bg-slate-800 text-slate-100 px-2 rounded-xl ml-1' : 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }} ">
+                    <a href="{{ route('admin.index') }}"
+                        class="w-11/12 text-xs uppercase py-3 font-bold block  duration-100 {{ request()->routeIs('admin.index') ? 'bg-slate-800 text-slate-100 px-2 rounded-xl ml-1' : 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }} ">
                         <i class="fas fa-chart-line mr-2 text-sm opacity-75"></i>
                         Dashboard</a>
                     </a>

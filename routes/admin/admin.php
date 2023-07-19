@@ -43,6 +43,8 @@ Route::middleware(['auth', 'verified', 'role:admin'])->name('admin.')->prefix('a
     Route::controller(CourseController::class)->group(function () {
         Route::get('/course', 'index')->name('course.index');
         Route::delete('/course/{course}',  'deleteCourse')->name('course.delete');
+        Route::put('/course/{id}', 'editVoucher')->name('course.voucher.edit');
+        Route::post('/course/voucher', 'addVoucher')->name('course.voucher.add');
     });
 
     Route::controller(UserCourseController::class)->group(function () {

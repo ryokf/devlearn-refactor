@@ -25,7 +25,6 @@ class CourseControllerUser extends Controller
 
         // Membuat resource dari data yang diambil
         $courseResource = new CourseResource($courseData);
-
         // Mengirim data ke tampilan
         return view('member.courses.lesson', [
             'lesson' => $courseResource['lesson'],
