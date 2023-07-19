@@ -34,10 +34,10 @@
     <td class="px-6 align-left  text-xs whitespace-nowrap p-4">
         <div class="inline-flex rounded-md" role="group">
             <div class="bg-emerald-500 rounded-l-lg" title="lihat detail kursus">
-                <button
+                <a href="{{ route('author_course_show', ['id' => $id]) }}"
                     class="flex inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-emerald-500 rounded-l-lg focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                     <i class="fa-solid fa-scroll" style="color: #fafaf9;"></i>
-                </button>
+                </a>
             </div>
             <div class="bg-amber-500" title="edit kursus">
                 <a href="{{ route('author_course_edit', ['id' => $id]) }}"

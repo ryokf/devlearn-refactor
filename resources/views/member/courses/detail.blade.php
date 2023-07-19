@@ -35,9 +35,18 @@
             <div class="flex-none align-items-center w-64 ">
                 <div class="p-7">
                     <div class=" bg-white flex flex-col p-5 border border-solid border-black rounded-md justify-center">
-                        <a href="{{ route('course.lesson.detail', ['id' => $course->id, 'chapter' => 1]) }}"><button
-                                class="border border-solid border-black text-white bg-teal-500 p-2 rounded-md hover:bg-teal-700 m-2">Belajar
-                                Sekarang</button></a>
+
+                        @role('member')
+                            <a href="{{ route('course.lesson.detail', ['id' => $course->id, 'chapter' => 1]) }}"><button
+                                    class="border border-solid border-black text-white bg-teal-500 p-2 rounded-md hover:bg-teal-700 m-2">Belajar
+                                    Sekarang</button></a>
+                        @endrole
+
+                        @role('author')
+                            <a href="{{ route('author_lesson_create', ['course_id' => $course->id]) }}"><button
+                                    class="border border-solid border-black text-white bg-teal-500 p-2 rounded-md hover:bg-teal-700 m-2">tambah
+                                    materi</button></a>
+                        @endrole
 
                         <button
                             class="border-solid border border-black text-black-500 bg-gray-100 p-2 rounded-md hover:bg-gray-300 m-1">Lihat
@@ -95,6 +104,30 @@
         </div>
     </div>
 
+
+    @foreach ($lessons as $lesson)
+        <div
+            class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <a href="#">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology
+                    acquisitions 2021</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
+                acquisitions of 2021 so far, in reverse chronological order.</p>
+            <a href="{{ route('course.lesson.detail', ['id' => $lesson->id, 'chapter' => $lesson->chapter]) }}"
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                detail
+            </a>
+            <a href="route"
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                edit
+            </a>
+            <a href="#"
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                hapus
+            </a>
+        </div>
+    @endforeach
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>

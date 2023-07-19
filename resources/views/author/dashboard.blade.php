@@ -110,7 +110,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- @foreach ($data->course_top_bought as $top)
+                                            @foreach ($data->course_top_bought as $top)
                                                 <tr>
                                                     <th
                                                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
@@ -129,7 +129,7 @@
                                                         {{ $top->member }}
                                                     </td>
                                                 </tr>
-                                            @endforeach --}}
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -173,7 +173,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- @foreach ($data->course_top_pass as $top)
+                                            @foreach ($data->course_top_pass as $top)
                                                 <tr>
                                                     <th
                                                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
@@ -187,7 +187,7 @@
                                                         {{ $top->member_pass }}
                                                     </td>
                                                 </tr>
-                                            @endforeach --}}
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

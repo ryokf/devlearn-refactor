@@ -18,17 +18,25 @@ class MemberController extends Controller
         $this->memberService = $memberService;
     }
 
-    function index() {
+    function index(Request $request)
+    {
 
-        $member = json_encode(TransactionResource::collection( $this->memberService->getTransaction()));
+        $course = Course::where('author_id', auth()->user()->id)->paginate(10);
+
+        $memberIds = $course->pluck('id');
+        $members = UserCourse::whereIn('course_id', $memberIds)->paginate(10);
+
+        $member = TransactionResource::collection($this->memberService->getTransaction($request));
 
         return view('author.member.index', [
             'members' => $member,
+            'member_link' => $members,
             'menu' => parent::$menuSidebar
         ]);
     }
 
-    function show() {
+    function show()
+    {
         return request()->pathInfo;
     }
 }

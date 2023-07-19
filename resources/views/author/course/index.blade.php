@@ -80,18 +80,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($courses as $number => $course)
+                                    @foreach ($courses->items() as $number => $course)
                                         @if ($course->is_public)
                                             <x-author_course_tile :id="$course->id" :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course->title"
-                                                :category="$course->category" :photo="$course->photo" :price="$course->price" :status="$course->status"
-                                                :member="$course->member" />
+                                                :category="$course->category->name" :photo="$course->photo" :price="$course->price" :status="$course->status"
+                                                :member="count($course->userCourse)" />
                                             <x-test>{{ $course->id }}</x-test>
                                         @endif
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="">
-                                {{-- {{ $courses->links() }} --}}
+                            <div class="flex justify-center py-6">
+
+                                {{ $courses->onEachSide(1)->links() }}
                             </div>
                         </div>
                     </div>
@@ -151,7 +152,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="">
+                            <div class="flex justify-center">
                                 {{-- {{ $draft_courses->links() }} --}}
                             </div>
                         </div>

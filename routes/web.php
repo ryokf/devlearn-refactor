@@ -39,6 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/course/detail/{course}', [CourseControllerUser::class, 'detailCourse'])->name('course.detail');
 });
 
-Route::middleware('role:member')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/course/lesson/{id}/{chapter}',  [CourseControllerUser::class, 'lessonCourseDetail'])->name('course.lesson.detail');
 });

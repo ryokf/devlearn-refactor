@@ -9,6 +9,7 @@ use App\Http\Resources\CategoryResource;
 use App\Http\Resources\CoursesResource;
 use App\Http\Resources\DetailCourseResource;
 use App\Models\Course;
+use App\Models\Lesson;
 use App\Services\Author\CourseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -25,7 +26,7 @@ class CourseController extends Controller
 
     function index(Request $request)
     {
-        $courses = json_encode(CoursesResource::collection($this->courseService->getCourses($request, auth()->user()->id)));
+        $courses = CoursesResource::collection($this->courseService->getCourses($request, auth()->user()->id));
         $draft_courses = json_encode(CoursesResource::collection($this->courseService->getDraftCourse(auth()->user()->id)));
 
         $sortOption = $this->courseService->sortOption();
@@ -33,9 +34,16 @@ class CourseController extends Controller
         return view('author.course.index', [
             'menu' => parent::$menuSidebar,
             'sorts' => $sortOption,
-            'courses' => json_decode($courses),
+            'courses' => $courses,
             'draft_courses' => json_decode($draft_courses),
         ]);
+    }
+
+    function show(Request $request){
+        $course = Course::where('id', $request->id)->first();
+        $lessons = Lesson::where('course_id', $request->id)->get();
+
+        return view('member.courses.detail', compact('course', 'lessons'));
     }
 
     function create()

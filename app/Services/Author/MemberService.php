@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 
 class MemberService
 {
-    function getTransaction()
+    function getTransaction($request)
     {
         $course = Course::where('author_id', auth()->user()->id)->get();
 
@@ -20,30 +20,6 @@ class MemberService
 
         $member = collect($member)->flatten()->all();
 
-        $member = new Collection($member);
-        $perPage = 100;
-        $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        // $offset = ($currentPage - 1) * $perPage;
-
-        // $member = array_slice($member, $offset, $perPage);
-
-
-        // $total = count($member);
-
-        $currentPageItems = $member->slice(($currentPage - 1) * $perPage, $perPage)->all();
-
-        $members = new LengthAwarePaginator(
-            $currentPageItems,
-            count($member),
-            $perPage,
-            $currentPage,
-            ['path' => LengthAwarePaginator::resolveCurrentPath()]
-        );
-
-        // $paginatedData = $member->paginate($perPage, ['*'], 'page', $currentPage);
-
-        //
-
-        return $members;
+        return collect($member)->forPage($request->get('page'), 10);
     }
 }

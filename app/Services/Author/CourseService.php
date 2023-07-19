@@ -53,6 +53,7 @@ class CourseService
         })
         ->orderBy('created_at', 'desc');
 
+        // dd($courses->paginate(10));
 
         return  $courses->paginate(10);
     }

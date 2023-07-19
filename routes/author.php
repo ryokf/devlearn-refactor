@@ -17,6 +17,7 @@ Route::prefix('author')->group(function () {
 
     Route::controller(CourseController::class)->group(function () {
         Route::get('/course',  'index')->name('author_course_index');
+        Route::get('/course/{id}',  'show')->name('author_course_show');
         Route::get('/course/serach',  'search')->name('author_course_search');
         Route::get('/course-create',  'create')->name('author_course_create');
         Route::post('/course-create',  'store')->name('author_course_store');
@@ -28,12 +29,12 @@ Route::prefix('author')->group(function () {
     });
 
     Route::controller(LessonController::class)->group(function () {
-        Route::get('/lesson/{id}', 'index');
-        Route::get('/lesson/create', 'create');
-        Route::post('/lesson/create', 'store');
-        Route::get('/lesson/edit', 'edit');
-        Route::put('/lesson/edit', 'update');
-        Route::delete('/lesson/delete/{id}', 'delete');
+        Route::get('/lesson/{course_id}/{id}', 'index')->name('author_lesson_index');
+        Route::get('/lesson-create', 'create')->name('author_lesson_create');
+        Route::post('/lesson-create', 'store')->name('author_lesson_store');
+        Route::get('/lesson-edit/{course_id}', 'edit')->name('author_lesson_edit');
+        Route::put('/lesson-edit/{course_id}', 'update')->name('author_lesson_update');
+        Route::delete('/lesson-delete/{id}', 'delete')->name('author_lesson_delete');
     });
 
     Route::controller(MemberController::class)->group(function () {

@@ -49,30 +49,48 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (json_decode($members) as $number => $member)
+                                    @foreach ($members as $number => $member)
                                     <tr>
                                         <th class="text-center w-8">
                                             {{ $number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10 }}
                                         </th>
 
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            {{ $member->user_username }}
+                                            {{ $member->users->username }}
                                         </td>
 
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            {{ $member->course_title }}
+                                            {{ $member->courses->title }}
                                         </td>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            Rp{{ $member->course_price }}
+                                            Rp{{ $member->courses->price }}
                                         </td>
                                         <td class=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            {{ $member->date }}
+                                            {{ date_format($member->created_at, 'D, j M Y, G:i') }}
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
-                                {{-- {{ json_decode($members)->links() }} --}}
                             </table>
+                            {{-- {{ $member_link->links() }} --}}
+{{--
+                            <div class="text-sm text-gray-700">
+                                Showing {{ $members->firstItem() }} to {{ $members->lastItem() }} of
+                                {{ $members->total() }}
+                                results
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <a href="  {{ $members->url(1) }}"><i class="fas fa-angle-double-left"></i>
+                                </a>
+                                <a href="  {{ $members->previousPageUrl() }}"><i class="fas fa-angle-left"></i>
+                                </a>
+
+                                <a href=" {{ $members->nextPageUrl() }}"> <i class="fas fa-angle-right"></i> </a>
+                                <a href="  {{ $members->url($members->lastPage()) }}"><i class="fas fa-angle-double-right"></i>
+                                </a>
+
+                            </div> --}}
+
                             <div class="">
                                 {{-- {{ $draft_courses->links() }} --}}
                             </div>

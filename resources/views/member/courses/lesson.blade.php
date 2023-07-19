@@ -139,6 +139,7 @@
                 <div class="fle flex-wrap"></div>
                 <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
                     <div class="p-8">
+                        <a href="">edit</a>
                         @foreach ($lesson_detail as $item)
                             <img src="{{ $item->media_content }}" alt="">
                             <p> Judul : {{ $item->title }}</p>

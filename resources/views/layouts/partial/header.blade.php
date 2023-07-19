@@ -86,22 +86,27 @@
                             class="lg:hidden inline-block ml-2">Star</span></a>
                 </li>
                 <li class="flex items-center">
-                    <a href=
-                        @auth
-                            @role('member')
-                             {{ 'member' }}
-                            @endrole
+                    @auth
+                        <a href=@role('member')
+                        {{ 'member' }}
+                    @endrole
                             @role('author')
-                             {{ route('author_dashboard') }}
-                            @endrole
+                        {{ route('author_dashboard') }}
+                    @endrole
                             @role('admin')
-                             {{ 'admin' }}
-                            @endrole
-                        @endauth
-                        {{ route('login') }}
-                        class="get-started text-white font-bold px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 bg-teal-500 active:bg-teal-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150">
-                        Login
-                    </a>
+                        {{ 'admin' }}
+                    @endrole
+                            class="get-started text-white font-bold px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 bg-primary uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Dashboard {{ request()->user()->roles[0]['name'] }}
+                        </a>
+                    @endauth
+                    @guest
+
+                        <a href={{ route('login') }}
+                            class="get-started text-white font-bold px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 bg-primary uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Login
+                        </a>
+                    @endguest
                 </li>
             </ul>
         </div>
