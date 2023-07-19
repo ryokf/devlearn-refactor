@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Admin;
+namespace App\Http\Resources\Member;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,7 +15,9 @@ class CourseResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "courses" => $this->resource['courses'],
+            "lesson" => $this->resource['lesson'],
+            "lesson_detail" => $this->resource['courses'],
+            "course" => $this->resource['course'],
         ];
     }
 }
