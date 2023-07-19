@@ -12,7 +12,7 @@
                     <span
                         class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img
                             alt="..." class="w-12 h-12 rounded-full align-middle shadow-lg border border-white"
-                            src="  {{ asset(auth()->user()->photo) }}"></span>
+                            src="{{ asset(auth()->user()->photo) }}"></span>
                 </div>
             </a>
             <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"

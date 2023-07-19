@@ -41,9 +41,13 @@ class CourseController extends Controller
 
     function show(Request $request){
         $course = Course::where('id', $request->id)->first();
-        $lessons = Lesson::where('course_id', $request->id)->get();
+        $lessons = Lesson::where('course_id', $request->id)->orderBy('chapter')->get();
 
-        return view('member.courses.detail', compact('course', 'lessons'));
+        return view('author.course.detail', [
+            'menu' => parent::$menuSidebar,
+            'course' => $course,
+            'lessons' => $lessons
+        ]);
     }
 
     function create()

@@ -50,7 +50,7 @@ class SpatieSeeder extends Seeder
             if($i < 91){
                 $user->assignRole('member');
             } else {
-                $user->assignRole('author');
+                $user->assignRole('member');
             }
         }
 

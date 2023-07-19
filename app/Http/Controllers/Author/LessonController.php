@@ -9,10 +9,16 @@ use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
-    function index()
-    {
-        return request()->pathInfo();
-    }
+    // function index(Request $request)
+    // {
+    //     $lesson = Lesson::where('id', $request->id)->first();
+
+
+    //     return view('author.lesson.index', [
+    //         'menu' => parent::$menuSidebar,
+    //         'lesson' => $lesson,
+    //     ]);
+    // }
 
     function create(Request $request)
     {
@@ -59,13 +65,49 @@ class LessonController extends Controller
             ->with('success', 'Lesson created successfully!');
     }
 
-    function update()
-    {
-        return request()->pathInfo();
+    function edit(Request $request){
+        $lesson = Lesson::where('id', $request->id)->first();
+
+        return view('author.lesson.edit', [
+            'menu' => parent::$menuSidebar,
+            'lesson' => $lesson
+        ]);
     }
 
-    function delete()
+    function update(Request $request)
     {
-        return request()->pathInfo();
+        // dd($request);
+
+        $lesson = Lesson::findOrFail($request->id);
+
+        $request->validate([
+            'course_id' => 'required|exists:courses,id',
+            'chapter' => 'required|integer',
+            'title' => 'required|string|max:100',
+            'description' => 'required|string',
+            'text_content' => 'required|string',
+            'is_public' => 'boolean',
+            'is_problem' => 'boolean',
+        ]);
+
+        $lesson->course_id = $request->input('course_id');
+        $lesson->chapter = $request->input('chapter');
+        $lesson->title = $request->input('title');
+        $lesson->description = $request->input('description');
+        $lesson->text_content = $request->input('text_content');
+        $lesson->is_public = $request->input('is_public', true);
+        $lesson->is_problem = $request->input('is_problem', false);
+
+        $lesson->save();
+
+        // Optionally, you can redirect to a success page or show a success message.
+        return redirect()->route('author_course_show', ['id' => $lesson->course_id])
+            ->with('success', 'Lesson updated successfully!');
+    }
+
+    function delete(Request $request)
+    {
+        Lesson::where('id', $request->id)->delete();
+        return back()->with('success', 'bab berhasil dihapus');
     }
 }
