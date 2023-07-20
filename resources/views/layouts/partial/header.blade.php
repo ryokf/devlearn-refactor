@@ -1,5 +1,5 @@
 <nav
-    class="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
+    class="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-16 py-3 navbar-expand-lg bg-white shadow">
     <div class="container px-4 mx-auto flex items-center justify-between">
         <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <a class="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
@@ -13,10 +13,7 @@
             id="example-collapse-navbar">
             <ul class="flex flex-col lg:flex-row list-none lg:ml-auto items-center">
                 <li class="inline-block relative">
-                    <a class="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                        href="#pablo" onclick="openDropdown(event,'demo-pages-dropdown')">
-                        Demo Pages
-                    </a>
+
                     <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48 navbar-popper"
                         id="demo-pages-dropdown">
                         <span
@@ -66,24 +63,6 @@
                             Profile
                         </a>
                     </div>
-                </li>
-                <li class="flex items-center">
-                    <a class="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdemos.creative-tim.com%2Fnotus-js%2F"
-                        target="_blank"><i class="text-blueGray-400 fab fa-facebook text-lg leading-lg"></i><span
-                            class="lg:hidden inline-block ml-2">Share</span></a>
-                </li>
-                <li class="flex items-center">
-                    <a class="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                        href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fdemos.creative-tim.com%2Fnotus-js%2F&text=Start%20your%20development%20with%20a%20Free%20Tailwind%20CSS%20and%20JavaScript%20UI%20Kit%20and%20Admin.%20Let%20Notus%20JS%20amaze%20you%20with%20its%20cool%20features%20and%20build%20tools%20and%20get%20your%20project%20to%20a%20whole%20new%20level."
-                        target="_blank"><i class="text-blueGray-400 fab fa-twitter text-lg leading-lg"></i><span
-                            class="lg:hidden inline-block ml-2">Tweet</span></a>
-                </li>
-                <li class="flex items-center">
-                    <a class="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                        href="https://github.com/creativetimofficial/notus-js?ref=njs-index" target="_blank"><i
-                            class="text-blueGray-400 fab fa-github text-lg leading-lg"></i><span
-                            class="lg:hidden inline-block ml-2">Star</span></a>
                 </li>
                 <li class="flex items-center">
                     @auth

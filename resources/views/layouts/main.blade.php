@@ -8,7 +8,7 @@
     <title>Index | Notus Tailwind JS by Creative Tim</title>
 </head>
 
-<body class="text-blueGray-700 antialiased">
+<body class="text-blueGray-700 antialiased ">
     @include('layouts.partial.header')
     @yield('content')
     @include('layouts.partial.footer')

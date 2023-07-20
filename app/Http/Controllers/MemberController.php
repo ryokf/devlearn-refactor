@@ -16,7 +16,6 @@ class MemberController extends Controller
 
     public function coursePass(){
         $coursePass = Certificate::where('user_id', auth()->user()->id)->get();
-
         return $coursePass;
     }
 

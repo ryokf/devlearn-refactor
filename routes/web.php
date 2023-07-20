@@ -4,6 +4,7 @@
 use App\Http\Controllers\Author\AuthorController;
 use App\Http\Controllers\Author\CourseController;
 use App\Http\Controllers\Author\LessonController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CourseControllerUser;
@@ -61,10 +62,10 @@ require __DIR__ . '/auth.php';
 require __DIR__ . '/admin/admin.php';
 require __DIR__ . '/author.php';
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [CategoryController::class, 'index']);
 
+
+Route::get('category/{id}', [CategoryController::class, 'getCourseCategory'])->name('get.course.category');
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
@@ -81,5 +82,3 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/course/lesson/{id}/{chapter}',  [CourseControllerUser::class, 'lessonCourseDetail'])->name('course.lesson.detail');
 });
-
-
