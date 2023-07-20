@@ -1,14 +1,20 @@
 <x-admin-layout>
-    <article class="p-4">
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">
-                        {{ __("You're logged in!") }}
-                    </div>
-                </div>
+    <div class="">
+        <div>
+            <!-- Card stats -->
+            <div class="flex flex-wrap">
+                {{-- @dd($data->coursePercentage) --}}
+                <x-author_stastitic_card title="jumlah kursus" value="2" icon='fa-solid fa-book'
+                    iconBgColor="bg-primary" percentage="2" arrow="2" />
+                <x-author_stastitic_card title="jumlah member" value="2" icon='fa-solid fa-book'
+                    iconBgColor="bg-primary" percentage="2" arrow="2" />
+                <x-author_stastitic_card title="jumlah transaksi" value="2" icon='fa-solid fa-book'
+                    iconBgColor="bg-primary" percentage="2" arrow="2" />
+                <x-author_stastitic_card title="jumlah pendapatan" value="2" icon='fa-solid fa-book'
+                    iconBgColor="bg-primary" percentage="2" arrow="2" />
             </div>
         </div>
-    </article>
 
+
+    </div>
 </x-admin-layout>
