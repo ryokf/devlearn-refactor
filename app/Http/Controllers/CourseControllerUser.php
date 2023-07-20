@@ -36,7 +36,7 @@ class CourseControllerUser extends Controller
         $user = User::findOrFail($id_user);
         //jika member tapi belum punya course maka :
         if ($user->hasRole('member') && (!$userCourse || $userCourse->payment_status == 0)) {
-            return redirect()->back();
+            return redirect()->back()->with('status', 'unpaid');;
         }
         //jika punya permission untuk lihat atau punya course dan sudah bayar
         if ($user->hasPermissionTo('view lesson') || ($userCourse && $userCourse->payment_status == 1)) {

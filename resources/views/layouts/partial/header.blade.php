@@ -73,7 +73,7 @@
                         {{ route('author_dashboard') }}
                     @endrole
                             @role('admin')
-                        {{ 'admin' }}
+                        {{ route('admin.index') }}
                     @endrole
                             class="get-started text-white font-bold px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 bg-primary uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150">
                             Dashboard {{ request()->user()->roles[0]['name'] }}

@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CourseControllerUser;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,8 +64,6 @@ require __DIR__ . '/admin/admin.php';
 require __DIR__ . '/author.php';
 
 Route::get('/', [CategoryController::class, 'index']);
-
-
 Route::get('category/{id}', [CategoryController::class, 'getCourseCategory'])->name('get.course.category');
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -79,6 +78,8 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'role:member')->group(function () {
     Route::get('/course/lesson/{id}/{chapter}',  [CourseControllerUser::class, 'lessonCourseDetail'])->name('course.lesson.detail');
+
+    Route::post('/course/detail/payment/{id}', [TransactionController::class, 'voucherPayment'])->name('payment.voucher');
 });
