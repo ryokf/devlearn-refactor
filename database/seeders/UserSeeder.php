@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(99)->create();
+        User::factory()->count(9)->create();
 
         User::create([
             'username' => 'ryo.kf',

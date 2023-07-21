@@ -17,7 +17,7 @@ class LessonFactory extends Factory
     public function definition()
     {
         return [
-            'course_id' => mt_rand(1, 50),
+            'course_id' => mt_rand(1, 15),
             'chapter' => mt_rand(1, 10),
             'title' => fake()->sentence(),
             'description' => fake()->paragraph(2),

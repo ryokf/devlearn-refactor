@@ -406,9 +406,9 @@
                         borderWidth: 5,
                         data: [
 
-                            @foreach ($data->income_per_month as $count)
-                                {{ $count . ',' }}
-                            @endforeach
+                            // @foreach ($data->income_per_month as $count)
+                            //     {{ $count . ',' }}
+                            // @endforeach
                         ],
                         tension: 0.2,
                         // stepped: 'middle'
