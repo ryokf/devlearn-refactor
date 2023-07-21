@@ -155,10 +155,11 @@
                     <span class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">Video
                         Materi</span>
                 </li>
-            </ul>
-            <button type="button"
-                class="my-5 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Choose
-                plan</button>
+            </ul> <a href="{{ route('summaryPayment', ['id' => $course->id, 'user_id' => Auth::id()]) }}">
+                <button type="button"
+                    class="my-5 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">
+                    Bayar
+                    Sekarang</button></a>
             <div id="accordion-collapse" data-accordion="collapse">
                 <h2 id="accordion-collapse-heading-1">
                     <button type="button"

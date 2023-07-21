@@ -17,11 +17,11 @@ class UserCourseController extends Controller
 
     public function updateStatus(UserCourse $userCourse)
     {
-        if ($userCourse->payment_status == true) {
+        if ($userCourse->payment_status == "sukses") {
             return Redirect::back()->with('message', 'Payment Already Updated');
         }
         $userCourse->update([
-            'payment_status' => true
+            'payment_status' => "sukses"
         ]);
 
         return Redirect::back()->with('message', 'Payment Status Updated');

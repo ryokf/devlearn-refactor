@@ -23,8 +23,8 @@ class TransactionController extends Controller
                 UserCourse::create([
                     'user_id' => $user_id,
                     'course_id' => $id,
-                    'payment_status' => 1,
-                    'payemnt_receipt' => 'Lunas (Voucher Code)'
+                    'payment_status' => "sukses",
+                    'payment_receipt' => 'Lunas (Voucher Code)'
                 ]);
                 return Redirect::back()->with('message', 'COURSE SUKSES DITAMBAH');
             } else {
@@ -34,4 +34,12 @@ class TransactionController extends Controller
             return Redirect::back()->with('message', 'bukan member');
         }
     }
+    public function summaryPayment($id, $user_id)
+    {
+        $user = User::findOrFail($user_id);
+        $course = Course::findOrFail($id);
+        return view('member.transaction.payment', compact('course'));
+    }
+
+    // public function paymentReceipt(){}
 }

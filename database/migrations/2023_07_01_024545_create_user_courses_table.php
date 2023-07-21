@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('course_id');
-            $table->boolean('payment_status')->default(false);
+            $table->enum('payment_status', ['pending', 'gagal', 'sukses'])->default('pending');
             $table->string('payment_receipt')->nullable()->default(null);
             $table->timestamps();
         });

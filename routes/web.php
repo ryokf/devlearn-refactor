@@ -63,7 +63,7 @@ require __DIR__ . '/auth.php';
 require __DIR__ . '/admin/admin.php';
 require __DIR__ . '/author.php';
 
-Route::get('/', [CategoryController::class, 'index']);
+Route::get('/', [CategoryController::class, 'index'])->name('index.display');
 Route::get('category/{id}', [CategoryController::class, 'getCourseCategory'])->name('get.course.category');
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -81,5 +81,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth', 'role:member')->group(function () {
     Route::get('/course/lesson/{id}/{chapter}',  [CourseControllerUser::class, 'lessonCourseDetail'])->name('course.lesson.detail');
 
-    Route::post('/course/detail/payment/{id}', [TransactionController::class, 'voucherPayment'])->name('payment.voucher');
+    Route::controller(TransactionController::class)->group(function () {
+        Route::post('/course/detail/payment/{id}', 'voucherPayment')->name('payment.voucher');
+
+        Route::get('course/payment/{id}/{user_id}', 'summaryPayment')->name('summaryPayment');
+    });
 });

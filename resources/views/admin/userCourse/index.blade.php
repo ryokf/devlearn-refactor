@@ -73,7 +73,7 @@
                             </th>
                             <th scope="row"
                                 class="border-t-0 px-9 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                @if ($userCourse->payment_status == false)
+                                @if (!$userCourse->payment_status == 'sukses')
                                     Belum Lunas
                                 @else
                                     Lunas

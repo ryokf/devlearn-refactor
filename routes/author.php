@@ -7,7 +7,7 @@ use App\Http\Controllers\Author\LessonController;
 use App\Http\Controllers\Author\MemberController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('author')->group(function () {
+Route::middleware(['role:author'])->prefix('author')->group(function () {
     Route::controller(AuthorController::class)->group(function () {
         Route::get('', 'dashboard')->name('author_dashboard');
         Route::get('profile', 'showProfile')->name('author_profile');
@@ -41,4 +41,4 @@ Route::prefix('author')->group(function () {
         Route::get('/member',  'index')->name('author_member');
         Route::get('/member/{id}',  'show');
     });
-})->middleware(['auth', 'verified', 'role:admin']);
+});
