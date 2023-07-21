@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\Admin\CourseResource;
+use App\Http\Resources\Member\CourseResource;
 use App\Models\Course;
-use App\Services\Admin\CourseService;
+use App\Services\Member\CourseService;
 use Illuminate\Http\Request;
 
 class CourseControllerUser extends Controller
@@ -25,7 +25,6 @@ class CourseControllerUser extends Controller
 
         // Membuat resource dari data yang diambil
         $courseResource = new CourseResource($courseData);
-
         // Mengirim data ke tampilan
         return view('member.courses.lesson', [
             'lesson' => $courseResource['lesson'],
