@@ -16,11 +16,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(9)->create();
+        // User::factory()->count(9)->create();
 
         User::create([
-            'username' => 'ryo.kf',
-            'email' => 'ryokhrisnaf@gmail.com',
+            'username' => 'dev_author',
+            'email' => 'author@gmail.com',
             'password' => Hash::make('rahasia'),
             'occupation' => 'mahasiswa',
             'office' => 'univeristas dian nuswantoro',
@@ -28,7 +28,15 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'id' => 999,
+            'username' => 'dev_member',
+            'email' => 'member@gmail.com',
+            'password' => Hash::make('rahasia'),
+            'occupation' => 'mahasiswa',
+            'office' => 'univeristas dian nuswantoro',
+            'photo' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100
+        ]);
+
+        User::create([
             'username' => 'devlearn admin',
             'email' => 'admin@admin.admin',
             'password' => Hash::make('rahasiaAdmin'),

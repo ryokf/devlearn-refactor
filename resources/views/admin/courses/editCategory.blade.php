@@ -25,7 +25,9 @@
                         style="max-width: 200px;">
                     <br>
                 @endif
-                <button type="submit">Update Category</button>
+                <button class="bg-primary text-white rounded-md p-2 uppercase text-sm font-semibold"
+                    type="submit">Update
+                    Category</button>
             </form>
         </div>
 

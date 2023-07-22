@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    <div class="md:p-16  bg-teal-100">
+    <div class="md:p-16  bg-primary text-white">
         <div class="flex lg:flex-row flex-col align-items-center p-5 justify-center w-3/4 mx-auto ">
             <div class="p-7 hidden lg:block">
                 <img src="{{ $course->photo }}" alt="" class=" object-cover">
@@ -16,22 +16,22 @@
             </div>
             <div class="flex-none align-items-center w-64 ">
                 <div class="p-7">
-                    <div class=" bg-white flex flex-col p-5 border border-solid border-black rounded-md justify-center">
+                    <div class=" bg-white flex flex-col p-5  rounded-md justify-center">
 
 
                         <a href="{{ route('course.lesson.detail', ['id' => $course->id, 'chapter' => 1]) }}"><button
-                                class="border border-solid border-black text-white bg-teal-500 p-2 rounded-md hover:bg-teal-700 m-2">Belajar
+                                class=" text-white bg-primary p-2 rounded-md hover:bg-teal-700 m-2">Belajar
                                 Sekarang</button></a>
 
 
                         @role('author')
                             <a href="{{ route('author_lesson_create', ['course_id' => $course->id]) }}"><button
-                                    class="border border-solid border-black text-white bg-teal-500 p-2 rounded-md hover:bg-teal-700 m-2">tambah
+                                    class=" text-white bg-primary p-2 rounded-md hover:bg-teal-700 m-2">tambah
                                     materi</button></a>
                         @endrole
 
                         <button
-                            class="border-solid border border-black text-black-500 bg-gray-100 p-2 rounded-md hover:bg-gray-300 m-1">Lihat
+                            class="text-black-500 bg-slate-600 bg-gray-100 p-2 rounded-md hover:bg-gray-300 m-1">Lihat
                             Silabus</button>
 
                     </div>

@@ -68,15 +68,19 @@
                                 @if ($userCourse->payment_receipt == null)
                                     Belum Ada Pembayaran
                                 @else
-                                    {{ $userCourse->payment_receipt }}
+                                    <a class="bg-gray-500 text-white active:bg-gray-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        href="{{ url('storage/' . $userCourse->payment_receipt) }}">Cek
+                                        Pembayaran</a>
                                 @endif
                             </th>
                             <th scope="row"
                                 class="border-t-0 px-9 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                @if (!$userCourse->payment_status == 'sukses')
+                                @if ($userCourse->payment_status == 'pending')
                                     Belum Lunas
-                                @else
+                                @elseif ($userCourse->payment_status == 'sukses')
                                     Lunas
+                                @else
+                                    Gagal
                                 @endif
                             </th>
                             <th scope="row"

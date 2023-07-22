@@ -44,7 +44,7 @@ class MemberController extends Controller
     }
 
     public function courses(){
-        $courses = UserCourse::where('user_id', auth()->user()->id)->get();
+        $courses = UserCourse::where('user_id', auth()->user()->id)->where('payment_status', 'sukses')->get();
 
         return view('member.courses.index', [
             'menu' => parent::$memberMenuSidebar,

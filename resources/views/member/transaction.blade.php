@@ -43,6 +43,10 @@
                                             class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                             Tanggal pembelian
                                         </th>
+                                        <th
+                                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            status
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,6 +63,9 @@
                                         </td>
                                         <td class=" border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             {{ date_format($member->created_at, 'D, j M Y, G:i') }}
+                                        </td>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                           {{ $member->payment_status }}
                                         </td>
                                     </tr>
                                     @endforeach

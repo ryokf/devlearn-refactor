@@ -45,16 +45,17 @@ class SpatieSeeder extends Seeder
             'guard_name' => 'web'
         ]);
 
-        for($i = 1; $i <= 10; $i++){
+
+        for ($i = 1; $i <= 2; $i++) {
             $user = User::find($i);
-            if($i < 4){
+            if ($i < 2) {
                 $user->assignRole('author');
             } else {
                 $user->assignRole('member');
             }
         }
 
-        for($i = 1; $i <=3; $i++){
+        for ($i = 1; $i <= 3; $i++) {
             $role = Role::findById($i);
             $permission = Permission::findById($i);
             $role->givePermissionTo($permission);

@@ -11,7 +11,7 @@ class MemberService
 {
     public function courseBought()
     {
-        $courseBought = UserCourse::where('user_id', auth()->user()->id)->get();
+        $courseBought = UserCourse::where('user_id', auth()->user()->id)->where('payment_status', 'sukses')->get();
 
         return $courseBought;
     }

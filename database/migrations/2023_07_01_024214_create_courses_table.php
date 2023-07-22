@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('author_id');
             $table->foreignId('category_id');
             $table->text('description');
-            $table->text('photo');
+            $table->string('photo')->default('photos/image-course.jpg');
             $table->text('price');
             $table->integer('voucher_id')->nullable();
             $table->enum('status', ['berjalan', 'perbaikan', 'selesai'])->default('berjalan');

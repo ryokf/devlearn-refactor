@@ -8,8 +8,8 @@
             <i class="fas fa-bars"></i>
         </button>
         <a class="md:hidden md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0 pt-6 md:pt-12"
-            href="/auhtor">
-            DevLearn | Author
+            href="/">
+            DevLearn | {{ auth()->user()->roles[0]['name'] }}
         </a>
         <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded hidden"
             id="example-collapse-sidebar">
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <a class="hidden md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                href="../../index.html">
+                href="/">
                 Devlearn
             </a>
             <!-- Divider -->

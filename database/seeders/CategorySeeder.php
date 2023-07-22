@@ -17,17 +17,17 @@ class CategorySeeder extends Seeder
     {
         Category::create([
             'name' => 'backend programming',
-            'photo' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100
+            'photo' => "https://source.unsplash.com/random/400×200/?programming"
         ]);
 
         Category::create([
             'name' => 'frontend programming',
-            'photo' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100
+            'photo' => "https://source.unsplash.com/random/400×200/?html"
         ]);
 
         Category::create([
             'name' => 'design',
-            'photo' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100
+            'photo' => "https://source.unsplash.com/random/400×200/?design"
         ]);
     }
 }

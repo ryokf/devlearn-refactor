@@ -31,16 +31,18 @@ class LessonController extends Controller
     {
         $request->validate([
             'course_id' => 'required|exists:courses,id',
-            'chapter' => ['required', 'integer', new UniqueChapterPerCourse($request->input('course_id'))],
+            // 'chapter' => ['required', 'integer', new UniqueChapterPerCourse($request->input('course_id'))],
             'title' => 'required|string|max:100',
             'description' => 'required|string',
             'text_content' => 'required|string',
-            'media_content' => 'required|image',
+            'media_content' => 'required',
             // 'thumbnail' => 'string',
             'is_public' => 'boolean',
             'is_problem' => 'boolean',
         ]);
 
+        $chapter = Lesson::where('course_id', $request->course_id)->orderByDesc('chapter')->first()->chapter ?? 0;
+        $chapter++;
         if ($request->hasFile('media_content')) {
             $file = $request->file('media_content');
             $filename = time() . '_' . $file->getClientOriginalName();
@@ -49,7 +51,7 @@ class LessonController extends Controller
 
         $lesson = new Lesson();
         $lesson->course_id = $request->input('course_id');
-        $lesson->chapter = $request->input('chapter');
+        $lesson->chapter = $chapter;
         $lesson->title = $request->input('title');
         $lesson->description = $request->input('description');
         $lesson->text_content = $request->input('text_content');

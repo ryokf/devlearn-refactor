@@ -1,9 +1,13 @@
 <x-admin-layout>
-    <article class="p-4">
-        <div class="py-2 w-full">
+    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white mx-auto">
+        <div class="p-5">
             <div class="mt-6 p-2">
-                <div>User Name : {{ $user->username }}</div>
-                <div>User Email : {{ $user->email }}</div>
+                <div>
+                    <p>Username : {{ $user->username }}</p>
+                </div>
+                <div>
+                    <p>Email : {{ $user->email }}</p>
+                </div>
             </div>
             <div class="mt-6 p-2">
                 {{-- ! Ini Roles user nya! --}}
@@ -98,6 +102,6 @@
 
         </div>
 
-    </article>
+    </div>
 
 </x-admin-layout>

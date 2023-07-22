@@ -19,7 +19,7 @@ class ProfileController extends Controller
         // $request->user()->name = $request->user()->username;
 
         return view('profile.edit', [
-            'menu' => parent::$menuSidebar,
+            'menu' => auth()->user()->roles[0]['name'] == "author" ? parent::$menuSidebar : parent::$memberMenuSidebar,
             'user' => $request->user(),
         ]);
     }

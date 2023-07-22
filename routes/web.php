@@ -5,11 +5,13 @@ use App\Http\Controllers\Author\AuthorController;
 use App\Http\Controllers\Author\CourseController;
 use App\Http\Controllers\Author\LessonController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CourseControllerUser;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('member')->group(function () {
+Route::prefix('member')->middleware(['auth', 'verified', 'role:member'])->group(function () {
     Route::controller(MemberController::class)->group(function () {
         Route::get('', 'dashboard')->name('member_dashboard');
         Route::get('/transaction', 'transaction')->name('member_transaction');
@@ -30,7 +32,11 @@ Route::prefix('member')->group(function () {
         Route::get('/course/{id}',  'show')->name('member_course_show');
         Route::get('/course/search',  'search')->name('member_course_search');
     });
-})->middleware(['auth', 'verified', 'role:member']);
+    Route::controller(CertificateController::class)->group(function () {
+        Route::get('/certificate/{course_id}/{user_id}', 'index')->name('certificates');
+        Route::post('/certificate/{course_id}/{user_id}', 'downloadCertificate')->name('downloadCertificate');
+    });
+});
 
 
 require __DIR__ . '/auth.php';
@@ -50,12 +56,27 @@ Route::middleware('auth')->group(function () {
     Route::get('/course/detail/{course}', [CourseControllerUser::class, 'detailCourse'])->name('course.detail');
 });
 
-Route::middleware('auth', 'role:member')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/course/lesson/{id}/{chapter}',  [CourseControllerUser::class, 'lessonCourseDetail'])->name('course.lesson.detail');
 
     Route::controller(TransactionController::class)->group(function () {
         Route::post('/course/detail/payment/{id}', 'voucherPayment')->name('payment.voucher');
 
         Route::get('course/payment/{id}/{user_id}', 'summaryPayment')->name('summaryPayment');
+        Route::post('course/payment/sendReceipt', 'payment')->name('payment');
     });
 });
+
+
+//PDF
+
+// Route::get('/generate-pdf/certificate', function () {
+//     // Konten HTML yang akan dikonversi menjadi PDF
+//     $html = '<html><body><h1>Hello, this is PDF content!</h1></body></html>';
+
+//     // Buat file PDF dari konten HTML
+//     $pdf = PDF::loadHTML($html);
+
+//     // Simpan atau unduh file PDF
+//     return $pdf->download('example.pdf');
+// });

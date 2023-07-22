@@ -11,6 +11,7 @@
 <body class="text-blueGray-700 antialiased ">
     @include('layouts.partial.header')
     @yield('content')
+    {{-- @include('about') --}}
     @include('layouts.partial.footer')
 </body>
 @include('layouts.partial.script')

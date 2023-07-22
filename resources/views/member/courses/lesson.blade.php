@@ -17,7 +17,7 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
         <nav
-            class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+            class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-80 z-10 py-4 px-6">
             <div
                 class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
                 <button
@@ -25,64 +25,16 @@
                     type="button" onclick="toggleNavbar('example-collapse-sidebar')">
                     <i class="fas fa-bars"></i>
                 </button>
-                <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                    href="../../index.html">
-                    Notus Tailwind JS
-                </a>
+                <p class="font-semibold uppercase">{{ $course->title }}</p>
+                <hr class="mt-5">
                 <ul class="md:hidden items-center flex flex-wrap list-none">
-                    <li class="inline-block relative">
-                        <a class="text-blueGray-500 block py-1 px-3" href="#pablo"
-                            onclick="openDropdown(event,'notification-dropdown')"><i class="fas fa-bell"></i></a>
-                        <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-                            id="notification-dropdown">
-                            <a href="#pablo"
-                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Action</a><a
-                                href="#pablo"
-                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Another
-                                action</a><a href="#pablo"
-                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Something
-                                else here</a>
-                            <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
-                            <a href="#pablo"
-                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Seprated
-                                link</a>
-                        </div>
-                    </li>
-                    <li class="inline-block relative">
-                        <a class="text-blueGray-500 block" href="#pablo"
-                            onclick="openDropdown(event,'user-responsive-dropdown')">
-                            <div class="items-center flex">
-                                <span
-                                    class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img
-                                        alt="..." class="w-full rounded-full align-middle border-none shadow-lg"
-                                        src="../../assets/img/team-1-800x800.jpg" /></span>
-                            </div>
-                        </a>
-                        <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-                            id="user-responsive-dropdown">
-                            <a href="#pablo"
-                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Action</a><a
-                                href="#pablo"
-                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Another
-                                action</a><a href="#pablo"
-                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Something
-                                else here</a>
-                            <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
-                            <a href="#pablo"
-                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Seprated
-                                link</a>
-                        </div>
-                    </li>
                 </ul>
                 <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded hidden"
                     id="example-collapse-sidebar">
                     <div class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
                         <div class="flex flex-wrap">
                             <div class="w-6/12">
-                                <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                                    href="../../index.html">
-                                    Notus Tailwind JS
-                                </a>
+                                <p class="font-semibold uppercase">{{ $course->title }}</p>
                             </div>
                             <div class="w-6/12 flex justify-end">
                                 <button type="button"
@@ -93,18 +45,9 @@
                             </div>
                         </div>
                     </div>
-                    <form class="mt-6 mb-4 md:hidden">
-                        <div class="mb-3 pt-0">
-                            <input type="text" placeholder="Search"
-                                class="border-0 px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal" />
-                        </div>
-                    </form>
-                    <!-- Divider -->
-                    <hr class="my-4 md:min-w-full" />
                     <!-- Heading -->
                     <h6
                         class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-
                     </h6>
                     <!-- Navigation -->
                     <ul class="md:flex-col md:min-w-full flex flex-col list-none">
@@ -118,44 +61,50 @@
                                 <hr class="mb-1">
                             </li>
                         @endforeach
-
-
                     </ul>
                 </div>
             </div>
         </nav>
-
-
-
-
-        <div class="relative md:ml-64 bg-blueGray-50">
-
-            <x-author_header />
-            <!-- Header -->
-            <div class=" relative bg-teal-600 md:pt-32 pb-32 pt-12">
-
-            </div>
-            <div class="px-4 md:px-10 mx-auto w-full -m-36">
-                <div class="fle flex-wrap"></div>
-                <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
-                    <div class="p-8">
-                        @role('author')
-                            <a href="">edit</a>
-                        @endrole
-
-                        @foreach ($lesson_detail as $item)
-                            <img src="{{ $item->media_content }}" alt="">
-                            <p> Judul : {{ $item->title }}</p>
-                            <p>Deskripsi : {{ $item->description }} </p>
-                            <p>Isi Teks : {!! $item->text_content !!} </p>
-                        @endforeach
+        <div class="relative md:ml-80 md:px-12">
+            @foreach ($lesson_detail as $item)
+                <div class="px-4 md:px-10 mx-auto w-full  mb-8">
+                    <p class="text-xl font-semibold bg-white p-4">{{ $item->chapter }} . {{ $item->title }}</p>
+                    <div class="p-8 flex flex-col md:flex-row md:space-x-8 justify-center items-center">
+                        {{-- <img src="{{ $item->media_content }}" alt="{{ $item->title }}"
+                            class="w-32 h-32 md:w-80 md:h-64 object-cover rounded-lg shadow-md"> --}}
+                            <video controls>
+                                <source src="{{ asset('/storage/media_content/' . $item->media_content) }}" type="video/webm" />
+                                Browsermu tidak mendukung tag ini, upgrade donk!
+                              </video>
                     </div>
 
+                    <div class="p-8">
+                        <div class="mt-2 leading-relaxed">{!! $item->text_content !!}</div>
+                    </div>
                 </div>
+            @endforeach
+            <!-- Next button -->
+            <div class="px-4 md:px-10 mx-auto w-full mb-8 flex justify-end">
 
-                <x-author_footer class="" />
+                @if ($nextChapter)
+                    <a href="{{ route('course.lesson.detail', ['id' => $course->id, 'chapter' => $nextChapter]) }}"
+                        class="bg-primary hover:bg-blue-900 text-white font-bold py-2 px-10 rounded">
+                        Next Chapter
+                    </a>
+                @endif
+
+                @if ($lastChapter)
+                    <a href="{{ route('certificates', ['user_id' => Auth::id(), 'course_id' => $course->id]) }}"
+                        class="bg-primary hover:bg-blue-900 text-white font-bold py-2 px-10 rounded">
+                        Selesai
+                    </a>
+                @endif
             </div>
+
+            <x-author_footer class="" />
         </div>
+
+
 
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
