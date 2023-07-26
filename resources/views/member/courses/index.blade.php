@@ -21,9 +21,10 @@
                                     {{ Str::limit($course->courses->title, 30, '...') }}</h5>
                             </a>
                             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                {{ Str::limit($course->courses->description, 100, '...') }}</p>
+                                {!! Str::limit($course->courses->description, 50, '...') !!}
+                            </p>
                             <a href="{{ route('course.lesson.detail', ['id' => $course->courses->id, 'chapter' => 1]) }}"
-                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-slate-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                class="inline-flex items-center mt-5 px-3 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-slate-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 Mulai belajar
                                 <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 14 10">
@@ -37,7 +38,7 @@
 
 
             </div>
-            <x-author_footer />
+            {{-- <x-author_footer /> --}}
         </div>
     </div>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>

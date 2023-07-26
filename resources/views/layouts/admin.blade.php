@@ -13,7 +13,7 @@
     </title>
 </head>
 
-<body class="text-blueGray-700 antialiased">
+<body class="text-blueGray-700 antialiased ">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
         <x-navigation_admin />
@@ -24,10 +24,10 @@
             <div class="relative bg-primary md:pt-32 pb-32 pt-12">
 
             </div>
-            <div class="px-4 md:px-10 mx-auto w-full -m-36">
+            <div class="px-4 md:px-10 mx-auto w-full -m-36 min-h-screen">
                 <div class="flex flex-wrap"></div>
                 {{ $slot }}
-                <x-author_footer class="" />
+                {{-- <x-author_footer class="" /> --}}
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="flex lg:justify-between sm:flex-col lg:flex-row">
+    <div class="flex lg:justify-between sm:flex-col lg:flex-row min-h-screen">
         <div class="lg:w-1/2 mb-12 px-4">
             <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
                 <div class="flex flex-wrap items-center py-3">

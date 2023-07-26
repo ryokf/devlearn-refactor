@@ -10,7 +10,7 @@ class CourseService
 {
     public function course()
     {
-        $courses = Course::paginate(6);
+        $courses = Course::with('auhtor')->paginate(6);
         $vouchers = Voucher::all();
         return [
             'courses' => $courses,

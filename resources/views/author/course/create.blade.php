@@ -111,7 +111,7 @@
                     </div>
                 </div>
             </div>
-            <x-author_footer />
+            {{-- <x-author_footer /> --}}
         </div>
     </div>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>

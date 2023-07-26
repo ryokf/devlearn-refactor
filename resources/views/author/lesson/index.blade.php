@@ -148,7 +148,7 @@
 
                 </div>
 
-                <x-author_footer class="" />
+                {{-- <x-author_footer class="" /> --}}
             </div>
         </div>
 

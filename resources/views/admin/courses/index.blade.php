@@ -110,6 +110,10 @@
                         </th>
                         <th scope="col"
                             class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                            Creator
+                        </th>
+                        <th scope="col"
+                            class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                             Course Title
                         </th>
                         <th scope="col"
@@ -136,48 +140,41 @@
                             </td>
                             <td scope="row"
                                 class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                {{ $course->auhtor->username }}
+                            </td>
+                            <td scope="row"
+                                class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 {{ $course->title }}
                             </td>
                             <td scope="row"
                                 class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 w-500">
-                                {{ Str::limit($course->description, 50) }}
+                                {!! Str::limit($course->description, 50) !!}
                                 <span class="text-gray-600">...</span>
                             </td>
                             <td scope="row"
                                 class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                <img src="{{ $course->photo }}" width="50px" height="50px">
+                                <img src="{{ asset('storage/'.$course->photo) }}" width="50px" height="50px">
                             </td>
                             <td scope="row"
                                 class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                 <a href="{{ route('course.detail', $course) }}"
                                     class="bg-teal-500 text-white active:bg-teal-600 hover:bg-teal-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                    onmouseover="this.children[0].style.display='none'; this.children[1].style.display='inline-block';"
-                                    onmouseout="this.children[0].style.display='inline-block'; this.children[1].style.display='none';">
-                                    <i class="fas fa-info-circle"></i>
-                                    <span style="display: none;">
-                                        <span>Detail Course</span>
-                                    </span></a>
+                                    >
+                                    <i class="fas fa-info-circle"></i></a>
                                 <form class="inline-block" action="{{ route('admin.course.delete', $course->id) }}"
                                     method="POST" onsubmit="return confirm('Are you sure??')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
                                         class="bg-red-500 text-white active:bg-red-600 hover:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                        onmouseover="this.children[0].style.display='none'; this.children[1].style.display='inline-block';"
-                                        onmouseout="this.children[0].style.display='inline-block'; this.children[1].style.display='none';">
+                                       >
                                         <i class="fas fa-trash-alt"></i>
-                                        <span style="display: none;">
-                                            <span>Delete Course</span>
-                                        </span></button>
+                                    </button>
                                 </form>
                                 <a type="button" href="{{ route('admin.course.voucher.edit', $course->id) }}"
                                     class="bg-green-500 text-white active:bg-green-600 hover:bg-green-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                    onmouseover="this.children[0].style.display='none'; this.children[1].style.display='inline-block';"
-                                    onmouseout="this.children[0].style.display='inline-block'; this.children[1].style.display='none';">
+                                   >
                                     <i class="fas fa-edit"></i>
-                                    <span style="display: none;">
-                                        <span>Voucher Code</span>
-                                    </span>
                                 </a>
                             </td>
                         </tr>

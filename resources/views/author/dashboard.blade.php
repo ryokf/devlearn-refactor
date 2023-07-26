@@ -230,7 +230,7 @@
                 </div>
             </div>
 
-            <x-author_footer />
+            {{-- <x-author_footer /> --}}
 
         </div>
     </div>

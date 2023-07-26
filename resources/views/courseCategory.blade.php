@@ -5,7 +5,7 @@
             <p class="text-lg font-semibold text-blue-500 mb-1">#EasyLearnWithUs</p>
             @foreach ($courses as $course)
                 <p class="text-2xl mb-2 ">Kelas {{ $course->category->name }} </p>
-                <p class="text-base">Belajar mendeasin website menjadi lebih baik dan estetik</p>
+                <p class="text-base">Jika kamu tidak tahan terhadap penatnya belajar, maka kamu akan menanggung pedihnya kebodohan (Imam Syafi'i)</p>
                 @php
                     break;
                 @endphp
@@ -18,7 +18,7 @@
                     <div
                         class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <a href="#">
-                            <img class="rounded-t-lg flex-wrap w-full h-36" src="{{ asset('storage/' . $course->photo) }}"
+                            <img class="rounded-t-lg flex-wrap w-full h-56" src="{{ asset('storage/' . $course->photo) }}"
                                 alt="" />
                         </a>
                         <div class="p-5">
@@ -27,8 +27,8 @@
                                     {{ $course->title }}</h5>
                             </a>
                             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                {{ Str::limit($course->description, 100) }}</p>
-                            <div class="flex justify-between ">
+                                {!! Str::limit($course->description, 100) !!}</p>
+                            <div class="flex justify-between mt-5">
                                 <a href="{{ route('course.detail', $course) }}"
                                     class="inline-flex items-center px-2 py-1 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Detail Course
@@ -108,7 +108,7 @@
                         <div
                             class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <a href="{{ route('course.detail', $course) }}">
-                                <img class="rounded-t-lg flex-wrap w-full h-36"
+                                <img class="rounded-t-lg flex-wrap w-full h-56"
                                     src="{{ asset('storage/' . $course->photo) }}" alt="" />
 
                                 <div class="p-5">
@@ -116,8 +116,8 @@
                                         {{ $course->title }}</h5>
                             </a>
                             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                {{ Str::limit($course->description, 100) }}</p>
-                            <div class="flex justify-between ">
+                                {!! Str::limit($course->description, 100) !!}</p>
+                            <div class="flex justify-between mt-5">
                                 <a href="{{ route('course.detail', $course) }}"
                                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Detail Course
