@@ -82,6 +82,10 @@ Route::controller(LessonController::class)->group(function(){
 Route::controller(UserCourseController::class)->group(function(){
     Route::get('/transaction', 'index')->name('transaction');
 
+    Route::middleware('role:member')->group(function(){
+        Route::post('/transaction/buy', 'buy')->name('transaction.buy');
+    });
+
     Route::middleware('role:admin')->group(function(){
         Route::put('/transaction/set-status', 'set_status')->name('transaction.set_status');
     });
