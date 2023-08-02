@@ -16,17 +16,32 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::create([
-            'name' => 'backend programming',
+            'name' => 'web programming',
             'photo' => "https://source.unsplash.com/random/400×200/?programming"
         ]);
 
         Category::create([
-            'name' => 'frontend programming',
+            'name' => 'mobile programming',
             'photo' => "https://source.unsplash.com/random/400×200/?html"
         ]);
 
         Category::create([
-            'name' => 'design',
+            'name' => 'game programming',
+            'photo' => "https://source.unsplash.com/random/400×200/?html"
+        ]);
+
+        Category::create([
+            'name' => 'data analysis',
+            'photo' => "https://source.unsplash.com/random/400×200/?design"
+        ]);
+
+        Category::create([
+            'name' => 'IoT',
+            'photo' => "https://source.unsplash.com/random/400×200/?design"
+        ]);
+
+        Category::create([
+            'name' => 'Design',
             'photo' => "https://source.unsplash.com/random/400×200/?design"
         ]);
     }
