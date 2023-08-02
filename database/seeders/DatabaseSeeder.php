@@ -23,15 +23,15 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             SpatieSeeder::class,
-            // AssignmentScoreSeeder::class,
-            // AssignmentSeeder::class,
-            // CategorySeeder::class,
-            // CertificateSeeder::class,
-            // CourseSeeder::class,
-            // LessonSeeder::class,
-            // UserCourseSeeder::class,
+            AssignmentScoreSeeder::class,
+            AssignmentSeeder::class,
+            CategorySeeder::class,
+            CertificateSeeder::class,
+            CourseSeeder::class,
+            LessonSeeder::class,
+            UserCourseSeeder::class,
             // UserLessonSeeder::class,
-            // VoucherSeeder::class
+            VoucherSeeder::class
         ]);
     }
 }
