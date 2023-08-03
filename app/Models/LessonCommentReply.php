@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class UserLesson extends Model
+class LessonCommentReply extends Model
 {
     use HasFactory;
 
@@ -28,8 +28,8 @@ class UserLesson extends Model
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
 
-    public function lessons(): belongsTo
+    public function lessonComment(): belongsTo
     {
-        return $this->belongsTo(Lesson::class, 'lesson_id', 'id');
+        return $this->belongsTo(LessonComment::class, 'lesson_comment_id', 'id');
     }
 }

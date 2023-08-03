@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_lessons', function (Blueprint $table) {
+        Schema::create('lesson_comment_replies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('lesson_id')->constrained('lessons')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->boolean('status')->default(false);
+            $table->foreignId('lesson_comment_id')->constrained('lesson_comments')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->text('reply');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_lessons');
+        Schema::dropIfExists('lesson_comment_replies');
     }
 };
