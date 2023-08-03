@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,8 +12,18 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    public function dashboard(){
-        return view('dashboard');
+    public function dashboard()
+    {
+        $id = Auth::id();
+        $user = User::findOrFail($id);
+
+        if ($user->hasRole('admin')) {
+            return 'ini admin';
+        } elseif ($user->hasRole('mentor')) {
+            return 'ini mentor';
+        } else {
+            return 'ini member';
+        }
     }
 
     /**
