@@ -110,8 +110,6 @@ Route::controller(ProfileController::class)->middleware('auth')->group(function(
     Route::delete('/profile','destroy')->name('profile.destroy');
 });
 
-
-
 Route::resource('/roles', RoleController::class);
 Route::resource('/permissions', PermissionController::class);
 
