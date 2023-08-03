@@ -14,6 +14,11 @@ class CategoryController extends Controller
         return $category->orderBy('name')->get();
     }
 
+    public function indexAdmin(Category $category)
+    {
+        return $category->orderBy('name')->get();
+    }
+
     public function show(Course $course, $id)
     {
         return $course->where('category_id', $id)->get();

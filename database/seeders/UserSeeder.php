@@ -18,9 +18,9 @@ class UserSeeder extends Seeder
         // User::factory()->count(9)->create();
 
         User::create([
-            'name' => 'dev_author',
-            'email' => 'author@gmail.com',
-            'password' => Hash::make('rahasia'),
+            'name' => 'dev_mentor',
+            'email' => 'mentor@gmail.com',
+            'password' => Hash::make('rahasia123'),
             'occupation' => 'mahasiswa',
             'office' => 'univeristas dian nuswantoro',
             'photo' => 'https://source.unsplash.com/random/'.mt_rand(3, 8) * 100 .'x'.mt_rand(3, 8) * 100,
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'dev_member',
             'email' => 'member@gmail.com',
-            'password' => Hash::make('rahasia'),
+            'password' => Hash::make('rahasia123'),
             'occupation' => 'mahasiswa',
             'office' => 'univeristas dian nuswantoro',
             'photo' => 'https://source.unsplash.com/random/'.mt_rand(3, 8) * 100 .'x'.mt_rand(3, 8) * 100,

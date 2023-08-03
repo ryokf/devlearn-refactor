@@ -39,7 +39,7 @@ Route::controller(CategoryController::class)->group(function () {
     Route::get('/category-course/{id}', 'show')->name('category.show');
 
     Route::middleware('role:admin')->group(function () {
-        Route::get('/category-create', 'create')->name('category.create');
+        Route::get('/category-admin', 'indexAdmin')->name('category.index.admin');
         Route::post('/category', 'store')->name('category.store');
         Route::get('/category-edit', 'edit')->name('category.edit');
         Route::put('/category/{id}', 'update')->name('category.create');
@@ -48,32 +48,33 @@ Route::controller(CategoryController::class)->group(function () {
 
 });
 
-Route::controller(CertificateController::class)->middleware('auth')->group(function () {
+Route::controller(CertificateController::class)->middleware('auth|role:member')->group(function () {
     Route::get('/certificate', 'index')->name('certificate.index');
     Route::get('/certificate', 'download')->name('certificate.download');
 });
 
 Route::controller(CourseController::class)->group(function () {
-    Route::get('/course', 'index')->name('course.index');
+    Route::get('/course-all', 'all')->name('course.index.all');
     Route::get('/course', 'show')->name('course.show');
 
+    Route::get('/course', 'index')->middleware('auth')->name('course.index');
+
     Route::middleware('role:mentor')->group(function () {
-        Route::get('/course', 'create')->name('course.create');
+        Route::get('/course-create', 'create')->name('course.create');
         Route::post('/course', 'store')->name('course.store');
-        Route::get('/course', 'edit')->name('course.edit');
+        Route::get('/course-edit', 'edit')->name('course.edit');
         Route::put('/course', 'update')->name('course.create');
         Route::delete('/course', 'delete')->name('course.delete');
     });
 });
 
 Route::controller(LessonController::class)->group(function () {
-    Route::get('/lesson', 'index')->name('lesson.index');
-    Route::get('/lesson', 'show')->name('lesson.show');
+    Route::get('/lesson', 'show')->middleware('auth')->name('lesson.show');
 
     Route::middleware('role:mentor')->group(function () {
-        Route::get('/lesson', 'create')->name('lesson.create');
+        Route::get('/lesson-create', 'create')->name('lesson.create');
         Route::post('/lesson', 'store')->name('lesson.store');
-        Route::get('/lesson', 'edit')->name('lesson.edit');
+        Route::get('/lesson-edit', 'edit')->name('lesson.edit');
         Route::put('/lesson', 'update')->name('lesson.create');
         Route::delete('/lesson', 'delete')->name('lesson.delete');
     });
@@ -91,7 +92,7 @@ Route::controller(UserCourseController::class)->group(function () {
     // });
 });
 
-Route::middleware('role:admin')->controller(VoucherController::class)->group(function () {
+Route::controller(VoucherController::class)->middleware('role:admin')->group(function () {
     Route::get('/voucher', 'index')->name('voucher.index');
     Route::post('/voucher', 'store')->name('voucher.store');
     Route::get('/voucher-edit', 'edit')->name('voucher.edit');
