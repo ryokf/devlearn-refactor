@@ -30,4 +30,11 @@ class Lesson extends Model
     {
         return $this->hasMany(Assignment::class, 'lessons_id', 'id');
     }
+
+    public function lessonComments(): HasMany
+    {
+        return $this->hasMany(LessonComment::class, 'lesson_id', 'id');
+    }
+
+
 }
