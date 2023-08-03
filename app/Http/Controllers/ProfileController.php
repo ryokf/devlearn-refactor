@@ -11,7 +11,9 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    public function dashboard(){
+    public function dashboard()
+    {
+        $user = Auth::user();
         return view('dashboard');
     }
 
