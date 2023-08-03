@@ -17,7 +17,7 @@ class VoucherFactory extends Factory
     public function definition()
     {
         return [
-            'token' => strtoupper(fake()->word())
+            'token' => strtoupper(fake()->word()),
         ];
     }
 }

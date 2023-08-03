@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UserCourseController extends Controller
 {
-    public function voucherPayment(Request $request, $id)
+    public function buy(Request $request, $id)
     {
         $user_id = Auth::id();
         $user = User::findOrFail($user_id);
@@ -23,9 +23,10 @@ class UserCourseController extends Controller
                 UserCourse::create([
                     'user_id' => $user_id,
                     'course_id' => $id,
-                    'payment_status' => "sukses",
-                    'payment_receipt' => 'Lunas (Voucher Code)'
+                    'payment_status' => 'sukses',
+                    'payment_receipt' => 'Lunas (Voucher Code)',
                 ]);
+
                 return Redirect::route('member_course_index')->with('message', 'COURSE SUKSES DITAMBAH');
             } else {
                 return Redirect::back()->with('message', 'COURSE tidak sukses ditambah');
@@ -34,26 +35,27 @@ class UserCourseController extends Controller
             return Redirect::back()->with('message', 'bukan member');
         }
     }
-    public function summaryPayment($id, $user_id)
-    {
-        $user = User::findOrFail($user_id);
-        $course = Course::findOrFail($id);
-        return view('member.transaction.payment', compact('course'));
-    }
 
-    public function payment(Request $paymentRequest)
-    {
-        $file = $paymentRequest->file('payment_receipt');
-        $path = time() . '_' . $paymentRequest->name . '.' . $file->getClientOriginalExtension();
-        $user_id = Auth::id();
-        Storage::disk('local')->put('public/' . $path, file_get_contents($file));
-        UserCourse::create([
-            'user_id' => $user_id,
-            'course_id' => $paymentRequest->course_id,
-            'payment_status' => "pending",
-            'payment_receipt' => $path
-        ]);
+    // public function summaryPayment($id, $user_id)
+    // {
+    //     $user = User::findOrFail($user_id);
+    //     $course = Course::findOrFail($id);
+    //     return view('member.transaction.payment', compact('course'));
+    // }
 
-        return Redirect::route('member_transaction')->with('message', 'Pembayaran anda sedang di validasi oleh admin');
-    }
+    // public function payment(Request $paymentRequest)
+    // {
+    //     $file = $paymentRequest->file('payment_receipt');
+    //     $path = time() . '_' . $paymentRequest->name . '.' . $file->getClientOriginalExtension();
+    //     $user_id = Auth::id();
+    //     Storage::disk('local')->put('public/' . $path, file_get_contents($file));
+    //     UserCourse::create([
+    //         'user_id' => $user_id,
+    //         'course_id' => $paymentRequest->course_id,
+    //         'payment_status' => "pending",
+    //         'payment_receipt' => $path
+    //     ]);
+
+    //     return Redirect::route('member_transaction')->with('message', 'Pembayaran anda sedang di validasi oleh admin');
+    // }
 }

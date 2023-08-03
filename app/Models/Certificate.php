@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Certificate extends Model
 {
     use HasFactory;
-    protected $guarded =['id'];
+
+    protected $guarded = ['id'];
+
     /**
      * Get the user that owns the Certificate
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(): BelongsTo
     {
@@ -22,8 +22,6 @@ class Certificate extends Model
 
     /**
      * Get the course that owns the Certificate
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function course(): BelongsTo
     {

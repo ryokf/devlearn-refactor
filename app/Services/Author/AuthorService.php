@@ -2,7 +2,6 @@
 
 namespace App\Services\Author;
 
-use App\Http\Resources\DashboardResource;
 use App\Models\Certificate;
 use App\Models\Course;
 use App\Models\Lesson;
@@ -11,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class AuthorService
 {
-    function dashboard()
+    public function dashboard()
     {
         // course
         $course = Course::where('author_id', auth()->user()->id)->get();
@@ -67,23 +66,23 @@ class AuthorService
         }
 
         return [
-            "coursePercentage" => [$coursePercentage, $coursePercentage > 0 ? true : false],
-            "lessonPercentage" => [$lessonPercentage, $lessonPercentage > 0 ? true : false],
-            "transactionPercentage" => [$transactionPercentage, $transactionPercentage > 0 ? true : false],
-            "incomePercentage" => [$incomePercentage, $incomePercentage > 0 ? true : false],
-            "course" => $course,
-            "topBought" => collect($topBought),
-            "topPass" => $topPass,
-            "lesson_count" => $lesson_count,
-            "member_count" => $member_count,
-            "income" => $income,
-            "buyer_count" => $buyerPerMonth,
-            "graduate_count" => $graduatePerMonth,
-            "income_per_month" => $incomePerMonth
+            'coursePercentage' => [$coursePercentage, $coursePercentage > 0 ? true : false],
+            'lessonPercentage' => [$lessonPercentage, $lessonPercentage > 0 ? true : false],
+            'transactionPercentage' => [$transactionPercentage, $transactionPercentage > 0 ? true : false],
+            'incomePercentage' => [$incomePercentage, $incomePercentage > 0 ? true : false],
+            'course' => $course,
+            'topBought' => collect($topBought),
+            'topPass' => $topPass,
+            'lesson_count' => $lesson_count,
+            'member_count' => $member_count,
+            'income' => $income,
+            'buyer_count' => $buyerPerMonth,
+            'graduate_count' => $graduatePerMonth,
+            'income_per_month' => $incomePerMonth,
         ];
     }
 
-    function lessonCount($course)
+    public function lessonCount($course)
     {
         $lesson = [];
         $lesson_count = 0;
@@ -97,7 +96,7 @@ class AuthorService
         return $lesson_count;
     }
 
-    function memberCount($course)
+    public function memberCount($course)
     {
         $member = [];
         $member_count = 0;
@@ -111,7 +110,7 @@ class AuthorService
         return $member_count;
     }
 
-    function incomeThisMonth($course)
+    public function incomeThisMonth($course)
     {
         $buyerThisMonth = [];
         $courseBought = [];
@@ -137,7 +136,7 @@ class AuthorService
         return $income;
     }
 
-    function buyerPerMonth($course)
+    public function buyerPerMonth($course)
     {
         $buyerPerMonth = [];
         for ($i = 1; $i <= 12; $i++) {
@@ -150,10 +149,11 @@ class AuthorService
             }
             array_push($buyerPerMonth, $count);
         }
+
         return $buyerPerMonth;
     }
 
-    function graduatePerMonth($course)
+    public function graduatePerMonth($course)
     {
         $graduatePerMonth = [];
         for ($i = 1; $i <= 12; $i++) {
@@ -166,24 +166,25 @@ class AuthorService
             }
             array_push($graduatePerMonth, $count);
         }
+
         return $graduatePerMonth;
     }
 
-    function percentCount($lastMonthValue, $thisMonthValue)
+    public function percentCount($lastMonthValue, $thisMonthValue)
     {
-         // Cek apakah lastMonthValue adalah 0 atau tidak
-    if ($lastMonthValue == 0) {
-        if ($thisMonthValue == 0) {
-            return 0; // Jika thisMonthValue juga 0, maka persentase 0
-        } else {
-            return 100; // Jika thisMonthValue bukan 0, maka persentase infinity (tidak terhingga)
+        // Cek apakah lastMonthValue adalah 0 atau tidak
+        if ($lastMonthValue == 0) {
+            if ($thisMonthValue == 0) {
+                return 0; // Jika thisMonthValue juga 0, maka persentase 0
+            } else {
+                return 100; // Jika thisMonthValue bukan 0, maka persentase infinity (tidak terhingga)
+            }
         }
+
+        return (($thisMonthValue - $lastMonthValue) / $lastMonthValue) * 100;
     }
 
-    return (($thisMonthValue - $lastMonthValue) / $lastMonthValue) * 100;
-    }
-
-    function lessonPercentage($course)
+    public function lessonPercentage($course)
     {
         $LessonThisMonth = [];
         $LessonLastMonth = [];
@@ -199,10 +200,11 @@ class AuthorService
         foreach ($LessonLastMonth as $count) {
             $lastMonth += $count;
         }
+
         return $this->percentCount($lastMonth, $thisMonth);
     }
 
-    function transactionPercentage($course)
+    public function transactionPercentage($course)
     {
         $transactionThisMonth = [];
         $transactionLastMonth = [];
@@ -222,7 +224,7 @@ class AuthorService
         return $this->percentCount($lastMonth, $thisMonth);
     }
 
-    function incomePercentage($course)
+    public function incomePercentage($course)
     {
         $thisMonth = 0;
         $lastMonth = 0;
@@ -269,7 +271,7 @@ class AuthorService
         return $this->percentCount($incomeLastMonth, $incomeThisMonth);
     }
 
-    function topBought()
+    public function topBought()
     {
         $courseIds = Course::where('author_id', auth()->user()->id)
             ->pluck('id');
@@ -296,12 +298,12 @@ class AuthorService
             // Ada data yang ditemukan, ambil course yang sesuai.
             return Course::whereIn('id', $courseIdsTopBought)
                 ->whereIn('id', $courseIds)
-                ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopBought->implode(',') . ')'))
+                ->orderBy(DB::raw('FIELD(id, '.$courseIdsTopBought->implode(',').')'))
                 ->get();
         }
     }
 
-    function topPass()
+    public function topPass()
     {
         $courseIds = Course::where('author_id', auth()->user()->id)
             ->pluck('id');
@@ -328,7 +330,7 @@ class AuthorService
             // Ada data yang ditemukan, ambil course yang sesuai.
             return Course::whereIn('id', $courseIdsTopPass)
                 ->whereIn('id', $courseIds)
-                ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopPass->implode(',') . ')'))
+                ->orderBy(DB::raw('FIELD(id, '.$courseIdsTopPass->implode(',').')'))
                 ->get();
         }
     }

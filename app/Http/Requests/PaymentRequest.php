@@ -25,7 +25,7 @@ class PaymentRequest extends FormRequest
     {
         return [
             'course_id' => 'required',
-            'payment_receipt' => 'required'
+            'payment_receipt' => 'required',
         ];
     }
 }

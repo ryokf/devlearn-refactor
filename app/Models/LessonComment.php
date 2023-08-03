@@ -11,13 +11,11 @@ class LessonComment extends Model
 {
     use HasFactory;
 
-    protected $guarded =['id'];
+    protected $guarded = ['id'];
+
     /**
      * Get all of the user for the UserCourse
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-
     public function users(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
@@ -25,10 +23,7 @@ class LessonComment extends Model
 
     /**
      * Get all of the course for the UserCourse
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-
     public function lessons(): belongsTo
     {
         return $this->belongsTo(Lesson::class, 'lesson_id', 'id');

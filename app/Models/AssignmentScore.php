@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class AssignmentScore extends Model
 {
     use HasFactory;
-    protected $guarded =['id'];
+
+    protected $guarded = ['id'];
+
     /**
      * Get the assignment that owns the AssignmentScore
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function assignment(): BelongsTo
     {

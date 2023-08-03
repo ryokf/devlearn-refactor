@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -19,57 +18,56 @@ class SpatieSeeder extends Seeder
     {
         Role::create([
             'name' => 'member',
-            'guard_name' => 'web'
+            'guard_name' => 'web',
         ]);
         Role::create([
             'name' => 'author',
-            'guard_name' => 'web'
+            'guard_name' => 'web',
         ]);
         Role::create([
             'name' => 'admin',
-            'guard_name' => 'web'
+            'guard_name' => 'web',
         ]);
 
         Permission::create([
             'name' => 'buy course',
-            'guard_name' => 'web'
+            'guard_name' => 'web',
         ]);
 
         Permission::create([
             'name' => 'create course',
-            'guard_name' => 'web'
+            'guard_name' => 'web',
         ]);
 
         Permission::create([
             'name' => 'edit course',
-            'guard_name' => 'web'
+            'guard_name' => 'web',
         ]);
 
         Permission::create([
             'name' => 'delete course',
-            'guard_name' => 'web'
+            'guard_name' => 'web',
         ]);
 
         Permission::create([
             'name' => 'create category',
-            'guard_name' => 'web'
+            'guard_name' => 'web',
         ]);
 
         Permission::create([
             'name' => 'edit category',
-            'guard_name' => 'web'
+            'guard_name' => 'web',
         ]);
 
         Permission::create([
             'name' => 'delete category',
-            'guard_name' => 'web'
+            'guard_name' => 'web',
         ]);
 
         Permission::create([
             'name' => 'validate transaction',
-            'guard_name' => 'web'
+            'guard_name' => 'web',
         ]);
-
 
         for ($i = 1; $i <= 2; $i++) {
             $user = User::find($i);
@@ -85,14 +83,14 @@ class SpatieSeeder extends Seeder
                 $role = Role::findById(1);
                 $permission = Permission::findById(1);
                 $role->givePermissionTo($permission);
-            } elseif($i == 2){
-                for($j = 2; $j <= 4; $j++){
+            } elseif ($i == 2) {
+                for ($j = 2; $j <= 4; $j++) {
                     $role = Role::findById(2);
                     $permission = Permission::findById($j);
                     $role->givePermissionTo($permission);
                 }
-            }elseif($i == 3){
-                for($j = 5; $j <= 8; $j++){
+            } elseif ($i == 3) {
+                for ($j = 5; $j <= 8; $j++) {
                     $role = Role::findById(3);
                     $permission = Permission::findById($j);
                     $role->givePermissionTo($permission);

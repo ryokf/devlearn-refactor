@@ -70,7 +70,7 @@ class MemberService
         $course_count = [];
         foreach ($categories as $key => $category) {
             array_push($course_count, []);
-            foreach ($user_course as  $course) {
+            foreach ($user_course as $course) {
                 if ($category->id == $course->courses->category_id) {
                     array_push($course_count[$key], $course->courses->title);
                 }
@@ -91,7 +91,7 @@ class MemberService
             array_push($courses, Course::where('id', $course->course_id)->get());
         }
 
-        return  collect($courses)->flatten();
+        return collect($courses)->flatten();
     }
 
     public function recentFinish()
@@ -103,6 +103,6 @@ class MemberService
             array_push($courses, Course::where('id', $course->course_id)->get());
         }
 
-        return  collect($courses)->flatten();
+        return collect($courses)->flatten();
     }
 }

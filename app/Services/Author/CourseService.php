@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Storage;
 
 class CourseService
 {
-    function getCategory()
+    public function getCategory()
     {
         $categories = Category::all();
 
         return $categories;
     }
 
-    function sortOption()
+    public function sortOption()
     {
         return [
             'terbaru',
@@ -28,44 +28,45 @@ class CourseService
         ];
     }
 
-    function getCourses($request, $author_id)
+    public function getCourses($request, $author_id)
     {
         $courses = Course::where('author_id', $author_id)->where('is_public', 1);
 
-        if($request->search != null){
-            $courses = $courses->where('title', 'like', '%' . $request->search . '%');
+        if ($request->search != null) {
+            $courses = $courses->where('title', 'like', '%'.$request->search.'%');
         }
 
         $courses = $courses->when($request->sort == 'terlama', function ($query) {
             return $query->orderBy('created_at', 'asc');
         })
-        ->when($request->sort == 'abjad A-Z', function ($query) {
-            return $query->orderBy('title', 'asc');
-        })
-        ->when($request->sort == 'abjad Z-A', function ($query) {
-            return $query->orderBy('title', 'desc');
-        })
-        ->when($request->sort == 'termahal', function ($query) {
-            return $query->orderBy('price', 'desc');
-        })
-        ->when($request->sort == 'termurah', function ($query) {
-            return $query->orderBy('price', 'asc');
-        })
-        ->orderBy('created_at', 'desc');
+            ->when($request->sort == 'abjad A-Z', function ($query) {
+                return $query->orderBy('title', 'asc');
+            })
+            ->when($request->sort == 'abjad Z-A', function ($query) {
+                return $query->orderBy('title', 'desc');
+            })
+            ->when($request->sort == 'termahal', function ($query) {
+                return $query->orderBy('price', 'desc');
+            })
+            ->when($request->sort == 'termurah', function ($query) {
+                return $query->orderBy('price', 'asc');
+            })
+            ->orderBy('created_at', 'desc');
 
         // dd($courses->paginate(10));
 
-        return  $courses->paginate(10);
+        return $courses->paginate(10);
     }
 
-    function getDraftCourse($author_id)
+    public function getDraftCourse($author_id)
     {
         $courses = Course::where('author_id', $author_id)->where('is_public', 0)->paginate(10);
 
         return $courses;
     }
 
-    function getCourse($id){
+    public function getCourse($id)
+    {
         return Course::where('id', $id)->first();
     }
 
@@ -99,7 +100,8 @@ class CourseService
         return $course;
     }
 
-    function update($request){
+    public function update($request)
+    {
         $course = Course::findOrFail($request->id);
 
         $course->fill($request->only([

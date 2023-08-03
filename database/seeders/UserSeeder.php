@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,7 +23,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('rahasia'),
             'occupation' => 'mahasiswa',
             'office' => 'univeristas dian nuswantoro',
-            'photo' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100
+            'photo' => 'https://source.unsplash.com/random/'.mt_rand(3, 8) * 100 .'x'.mt_rand(3, 8) * 100,
         ]);
 
         User::create([
@@ -33,14 +32,14 @@ class UserSeeder extends Seeder
             'password' => Hash::make('rahasia'),
             'occupation' => 'mahasiswa',
             'office' => 'univeristas dian nuswantoro',
-            'photo' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100
+            'photo' => 'https://source.unsplash.com/random/'.mt_rand(3, 8) * 100 .'x'.mt_rand(3, 8) * 100,
         ]);
 
         User::create([
             'name' => 'devlearn admin',
             'email' => 'admin@admin.admin',
             'password' => Hash::make('rahasiaAdmin'),
-            'photo' => "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100
+            'photo' => 'https://source.unsplash.com/random/'.mt_rand(3, 8) * 100 .'x'.mt_rand(3, 8) * 100,
         ]);
     }
 }

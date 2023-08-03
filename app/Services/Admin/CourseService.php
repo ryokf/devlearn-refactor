@@ -4,7 +4,6 @@ namespace App\Services\Admin;
 
 use App\Models\Course;
 use App\Models\Voucher;
-use Illuminate\Support\Facades\DB;
 
 class CourseService
 {
@@ -12,6 +11,7 @@ class CourseService
     {
         $courses = Course::with('auhtor')->paginate(6);
         $vouchers = Voucher::all();
+
         return [
             'courses' => $courses,
             'vouchers' => $vouchers,

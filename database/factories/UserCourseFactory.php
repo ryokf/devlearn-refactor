@@ -18,8 +18,8 @@ class UserCourseFactory extends Factory
     {
         return [
             'user_id' => 2,
-            'course_id' => mt_rand(1,15),
-            'created_at' => fake()->dateTimeThisYear
+            'course_id' => mt_rand(1, 15),
+            'created_at' => fake()->dateTimeThisYear,
         ];
     }
 }

@@ -17,8 +17,8 @@ class UserLessonFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => mt_rand(4,10),
-            'lesson_id' => mt_rand(1,100),
+            'user_id' => mt_rand(4, 10),
+            'lesson_id' => mt_rand(1, 100),
         ];
     }
 }

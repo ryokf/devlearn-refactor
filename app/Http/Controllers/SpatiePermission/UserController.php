@@ -13,8 +13,10 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(7);
+
         return view('admin.users.index', compact('users'));
     }
+
     public function show(User $user)
     {
         $roles = Role::all();
@@ -22,20 +24,25 @@ class UserController extends Controller
 
         return view('admin.users.role', compact('user', 'roles', 'permissions'));
     }
+
     public function giveRole(Request $request, User $user)
     {
         if ($user->hasRole($request->role)) {
             return Redirect::back()->with('message', 'Role Exist');
         }
         $user->assignRole($request->role);
+
         return Redirect::back()->with('message', 'Role assigned');
     }
+
     public function revokeRole(User $user, Role $role)
     {
         if ($user->hasRole($role)) {
             $user->removeRole($role);
+
             return Redirect::back()->with('message', 'Role Revoke');
         }
+
         return Redirect::back()->with('message', 'Role not exist');
     }
 
@@ -45,6 +52,7 @@ class UserController extends Controller
             return back()->with('message', 'Permission exists.');
         }
         $user->givePermissionTo($request->permission);
+
         return back()->with('message', 'Permission added.');
     }
 
@@ -52,14 +60,17 @@ class UserController extends Controller
     {
         if ($user->hasPermissionTo($permission)) {
             $user->revokePermissionTo($permission);
+
             return Redirect::back()->with('message', 'Permission Revoke');
         }
+
         return Redirect::back()->with('message', 'Permission not exist');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
+
         return Redirect::back()->with('message', 'User Deleted Succesfully');
     }
 }

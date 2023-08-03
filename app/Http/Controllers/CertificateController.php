@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Certificate;
-use Illuminate\Http\Request;
 
 class CertificateController extends Controller
 {
@@ -11,7 +10,7 @@ class CertificateController extends Controller
     {
         Certificate::create([
             'user_id' => $user_id,
-            'course_id' => $course_id, 'photo' => "kosong"
+            'course_id' => $course_id, 'photo' => 'kosong',
         ]);
         $certificate = Certificate::where('course_id', $course_id)
             ->where('user_id', $user_id)

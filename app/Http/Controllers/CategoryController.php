@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateCategoryRequest;
 use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Http\Request;
@@ -10,35 +9,39 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
-    function index(Category $category){
+    public function index(Category $category)
+    {
         return $category->orderBy('name')->get();
     }
 
-    function show(Course $course, $id){
+    public function show(Course $course, $id)
+    {
         return $course->where('category_id', $id)->get();
     }
 
-    function store(Request $request){
+    public function store(Request $request)
+    {
         $file = $request->file('photo');
-        $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
-        Storage::disk('local')->put('public/' . $path, file_get_contents($file));
+        $path = time().'_'.$request->name.'.'.$file->getClientOriginalExtension();
+        Storage::disk('local')->put('public/'.$path, file_get_contents($file));
         Category::create(
             [
                 'name' => $request->name,
-                'photo' => $path
+                'photo' => $path,
             ]
         );
 
         return redirect()->back()->with('message', 'Category succesfully added!');
     }
 
-    function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $category = Category::findOrFail($id);
         $category->name = $request->input('name');
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
-            $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
-            Storage::disk('local')->put('public/' . $path, file_get_contents($file));
+            $path = time().'_'.$request->name.'.'.$file->getClientOriginalExtension();
+            Storage::disk('local')->put('public/'.$path, file_get_contents($file));
             $category->photo = $path;
         }
 
@@ -50,6 +53,7 @@ class CategoryController extends Controller
     public function delete($id)
     {
         Category::findOrFail($id)->delete();
+
         return back()->with('message', 'Category Deleted');
     }
 }

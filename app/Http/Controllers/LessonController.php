@@ -32,7 +32,6 @@ class LessonController extends Controller
             ->where('payment_status', 'sukses')
             ->first();
 
-
         $user = User::findOrFail($id_user);
         if ($user->hasRole('author') || $user->hasRole('admin')) {
             $nextChapter = $chapter + 1;
@@ -54,13 +53,12 @@ class LessonController extends Controller
                 ->where('chapter', $nextChapter)
                 ->exists();
 
-
             return view('member.courses.lesson', [
                 'lesson' => $courseResource['lesson'],
                 'lesson_detail' => $courseResource['lesson_detail'],
                 'course' => $courseResource['course'],
                 'nextChapter' => $nextChapterExists ? $nextChapter : null,
-                'lastChapter' => $isLastChapter
+                'lastChapter' => $isLastChapter,
             ]);
         }
         //jika member tapi belum punya course maka :
@@ -87,27 +85,26 @@ class LessonController extends Controller
                 ->where('chapter', $nextChapter)
                 ->exists();
 
-
             return view('member.courses.lesson', [
                 'lesson' => $courseResource['lesson'],
                 'lesson_detail' => $courseResource['lesson_detail'],
                 'course' => $courseResource['course'],
                 'nextChapter' => $nextChapterExists ? $nextChapter : null,
-                'lastChapter' => $isLastChapter
+                'lastChapter' => $isLastChapter,
             ]);
         } else {
             return redirect()->back()->with('status', 'unpaid');
         }
     }
 
-    function create(Request $request)
+    public function create(Request $request)
     {
         return view('author.lesson.create', [
-            'menu' => parent::$menuSidebar
+            'menu' => parent::$menuSidebar,
         ]);
     }
 
-    function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'course_id' => 'required|exists:courses,id',
@@ -125,7 +122,7 @@ class LessonController extends Controller
         $chapter++;
         if ($request->hasFile('media_content')) {
             $file = $request->file('media_content');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = time().'_'.$file->getClientOriginalName();
             $file->storeAs('public/media_content', $filename);
         }
 
@@ -147,16 +144,17 @@ class LessonController extends Controller
             ->with('success', 'Lesson created successfully!');
     }
 
-    function edit(Request $request){
+    public function edit(Request $request)
+    {
         $lesson = Lesson::where('id', $request->id)->first();
 
         return view('author.lesson.edit', [
             'menu' => parent::$menuSidebar,
-            'lesson' => $lesson
+            'lesson' => $lesson,
         ]);
     }
 
-    function update(Request $request)
+    public function update(Request $request)
     {
         // dd($request);
 
@@ -187,9 +185,10 @@ class LessonController extends Controller
             ->with('success', 'Lesson updated successfully!');
     }
 
-    function delete(Request $request)
+    public function delete(Request $request)
     {
         Lesson::where('id', $request->id)->delete();
+
         return back()->with('success', 'bab berhasil dihapus');
     }
 }

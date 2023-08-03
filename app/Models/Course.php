@@ -11,11 +11,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Course extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $guarded =['id'];
+
+    protected $guarded = ['id'];
+
     /**
      * Get the category that owns the Course
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function category(): BelongsTo
     {
@@ -24,8 +24,6 @@ class Course extends Model
 
     /**
      * Get the auhtor that owns the Course
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function auhtor(): BelongsTo
     {
@@ -34,8 +32,6 @@ class Course extends Model
 
     /**
      * Get all of the lessons for the Course
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function lessons(): HasMany
     {
@@ -44,8 +40,6 @@ class Course extends Model
 
     /**
      * Get all of the userCourse for the Course
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function userCourse(): HasMany
     {
@@ -54,8 +48,6 @@ class Course extends Model
 
     /**
      * Get all of the certificates for the Course
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function certificates(): HasMany
     {
@@ -64,8 +56,6 @@ class Course extends Model
 
     /**
      * Get the voucher that owns the Course
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function voucher(): BelongsTo
     {

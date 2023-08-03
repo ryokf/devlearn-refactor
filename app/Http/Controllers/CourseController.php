@@ -13,12 +13,12 @@ class CourseController extends Controller
 {
     private $courseService;
 
-    function __construct(CourseService $courseService)
+    public function __construct(CourseService $courseService)
     {
         $this->courseService = $courseService;
     }
 
-    function index(Request $request)
+    public function index(Request $request)
     {
         $courses = $this->courseService->getCourses($request, auth()->user()->id);
         $draft_courses = $this->courseService->getDraftCourse(auth()->user()->id);
@@ -33,40 +33,43 @@ class CourseController extends Controller
         ]);
     }
 
-    function show(Request $request){
+    public function show(Request $request)
+    {
         $course = Course::where('id', $request->id)->first();
         $lessons = Lesson::where('course_id', $request->id)->orderBy('chapter')->get();
 
         return view('author.course.detail', [
             'menu' => parent::$menuSidebar,
             'course' => $course,
-            'lessons' => $lessons
+            'lessons' => $lessons,
         ]);
     }
 
-    function create()
+    public function create()
     {
         $data = $this->courseService->getCategory();
 
         return view('author.course.create', [
             'menu' => parent::$menuSidebar,
-            'data' => json_decode($data)
+            'data' => json_decode($data),
         ]);
     }
 
-    function store(CreateCourseRequest $request)
+    public function store(CreateCourseRequest $request)
     {
         if ($this->courseService->createCourse($request)) {
             $message = 'Kursus berhasil ditambahkan';
+
             return redirect(route('author_course_index'))->with('success', $message);
         } else {
             $message = 'Kursus gagal ditambahkan';
+
             return redirect(route('author_course_index'))->with('erorr', $message);
         }
 
     }
 
-    function edit($id)
+    public function edit($id)
     {
         $categories = $this->courseService->getCategory();
         $course = $this->courseService->getCourse($id);
@@ -74,22 +77,23 @@ class CourseController extends Controller
         return view('author.course.edit', [
             'menu' => parent::$menuSidebar,
             'course' => json_decode($course),
-            'categories' => json_decode($categories)
+            'categories' => json_decode($categories),
         ]);
     }
 
-    function update(UpdateCourseRequest $request)
+    public function update(UpdateCourseRequest $request)
     {
-        if( $this->courseService->update($request)){
+        if ($this->courseService->update($request)) {
             return redirect(route('author_course_index'))->with('success', 'kursus berhasil diedit');
         }
 
         return redirect(route('author_course_index'))->with('error', 'kursus gagal diedit');
     }
 
-    function delete(Request $request)
+    public function delete(Request $request)
     {
         Course::where('id', $request->id)->delete();
+
         return back()->with('success', 'kursus berhasil dihapus');
     }
 }

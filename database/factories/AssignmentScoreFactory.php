@@ -17,11 +17,11 @@ class AssignmentScoreFactory extends Factory
     public function definition()
     {
         return [
-            'assignment_id' => mt_rand(1,100),
-            'user_id' => mt_rand(1,100),
-            'score' => mt_rand(0,100),
-            'file' => "file.pdf",
-            'explanation' => fake()->paragraph(3)
+            'assignment_id' => mt_rand(1, 100),
+            'user_id' => mt_rand(1, 100),
+            'score' => mt_rand(0, 100),
+            'file' => 'file.pdf',
+            'explanation' => fake()->paragraph(3),
         ];
     }
 }

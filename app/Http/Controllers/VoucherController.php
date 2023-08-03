@@ -12,41 +12,51 @@ use Illuminate\Support\Facades\Redirect;
 class VoucherController extends Controller
 {
     private $coursesService;
+
     public function __construct(CourseService $coursesService)
     {
         $this->coursesService = $coursesService;
     }
+
     public function index()
     {
         $coursesData = $this->coursesService->course();
+
         return view('admin.courses.index', [
             'courses' => $coursesData['courses'],
-            'vouchers' => $coursesData['vouchers']
+            'vouchers' => $coursesData['vouchers'],
         ]);
     }
-    public function updateVoucher(Request $request, $id)
+
+    public function update(Request $request, $id)
     {
         $course = Course::findOrFail($id);
         $course->update([
-            'voucher_id' => $request->voucher_id
+            'voucher_id' => $request->voucher_id,
         ]);
 
-        return Redirect::route('admin.course.index')->with('message',  'Voucher token for course : ' . $course->title . ' successfully Updated');
+        return Redirect::route('admin.course.index')->with('message', 'Voucher token for course : '.$course->title.' successfully Updated');
     }
-    public function editVoucher($id)
+
+    public function edit($id)
     {
         $vouchers = Voucher::all();
         $course = Course::findOrFail($id);
+
         return view('admin.courses.editVoucher', compact('course', 'vouchers'));
     }
-    public function addVoucher(VoucherRequest $request)
+
+    public function store(VoucherRequest $request)
     {
         Voucher::create($request->all());
+
         return redirect()->back()->with('message', 'Voucher token successfully added!');
     }
-    public function deleteVoucher($id)
+
+    public function delete($id)
     {
         Voucher::findOrFail($id)->delete();
+
         return redirect()->back()->with('message', 'Voucher token succesfully deleted');
     }
 }

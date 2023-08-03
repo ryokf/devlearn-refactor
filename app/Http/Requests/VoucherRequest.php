@@ -24,7 +24,7 @@ class VoucherRequest extends FormRequest
     public function rules()
     {
         return [
-            'token' => 'required|max:12'
+            'token' => 'required|max:12',
         ];
     }
 }

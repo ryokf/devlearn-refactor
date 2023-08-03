@@ -27,7 +27,7 @@ class User extends Authenticatable
     //     'photo'
     // ];
 
-        protected $guarded = ['id'];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -50,8 +50,6 @@ class User extends Authenticatable
 
     /**
      * Get all of the userCourse for the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function userCourse(): HasMany
     {
@@ -60,8 +58,6 @@ class User extends Authenticatable
 
     /**
      * Get all of the course for the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function course(): HasMany
     {
@@ -70,8 +66,6 @@ class User extends Authenticatable
 
     /**
      * Get all of the assignmentScore for the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function assignmentScore(): HasMany
     {

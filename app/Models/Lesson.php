@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Lesson extends Model
 {
     use HasFactory;
-    protected $guarded =['id'];
+
+    protected $guarded = ['id'];
+
     /**
      * Get the course that owns the Lesson
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function course(): BelongsTo
     {
@@ -23,8 +23,6 @@ class Lesson extends Model
 
     /**
      * Get all of the assignments for the Lesson
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function assignments(): HasMany
     {
@@ -35,6 +33,4 @@ class Lesson extends Model
     {
         return $this->hasMany(LessonComment::class, 'lesson_id', 'id');
     }
-
-
 }
