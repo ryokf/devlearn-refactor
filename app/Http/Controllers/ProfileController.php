@@ -18,11 +18,15 @@ class ProfileController extends Controller
         $user = User::findOrFail($id);
 
         if ($user->hasRole('admin')) {
-            return 'ini admin';
+            return view('admin.dashboard', [
+                // 'menu' => parent::$menuSidebar
+            ]);
         } elseif ($user->hasRole('mentor')) {
-            return 'ini mentor';
+            return view('mentor.dashboard', [
+                'menu' => parent::$menuSidebarMentor
+            ]);
         } else {
-            return 'ini member';
+            return view('memebr.dashboard');
         }
     }
 

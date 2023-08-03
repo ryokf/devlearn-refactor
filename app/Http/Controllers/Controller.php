@@ -11,11 +11,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public static $menuSidebar = [
-        '/author' => ['dashboard', 'fa-solid fa-chart-line'],
-        '/author/course' => ['kursus anda', 'fa-solid fa-chalkboard'],
-        '/author/course-create' => ['tambah kursus', 'fa-solid fa-person-chalkboard'],
-        '/author/member' => ['daftar transaksi', 'fa-solid fa-arrow-right-arrow-left'],
+    public static $menuSidebarMentor = [
+        '/dashboard' => ['dashboard', 'fa-solid fa-chart-line'],
+        '/course' => ['kursus anda', 'fa-solid fa-chalkboard'],
+        '/course-create' => ['tambah kursus', 'fa-solid fa-person-chalkboard'],
+        '/member' => ['daftar transaksi', 'fa-solid fa-arrow-right-arrow-left'],
         // '/author/profile' => ['lihat profile', 'fa-solid fa-user'],
         '/profile' => ['profile', 'fa-solid fa-user-pen'],
     ];
