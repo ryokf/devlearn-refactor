@@ -93,10 +93,9 @@ Route::controller(UserCourseController::class)->group(function(){
 });
 
 Route::controller(VoucherController::class)->group(function(){
-    Route::get('/voucher', 'index')->name('voucher.index');
-
     Route::middleware('role:admin')->group(function(){
-        Route::get('/voucher', 'create')->name('voucher.create');
+        Route::get('/voucher', 'index')->name('voucher.index');
+        // Route::get('/voucher-create', 'create')->name('voucher.create');
         Route::post('/voucher', 'store')->name('voucher.store');
         Route::get('/voucher', 'edit')->name('voucher.edit');
         Route::put('/voucher', 'update')->name('voucher.create');
@@ -110,5 +109,6 @@ Route::controller(ProfileController::class)->middleware('auth')->group(function(
     Route::patch('/profile','update')->name('profile.update');
     Route::delete('/profile','destroy')->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';
