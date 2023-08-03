@@ -31,17 +31,42 @@ class SpatieSeeder extends Seeder
         ]);
 
         Permission::create([
-            'name' => 'admin territory',
+            'name' => 'buy course',
             'guard_name' => 'web'
         ]);
 
         Permission::create([
-            'name' => 'author territory',
+            'name' => 'create course',
             'guard_name' => 'web'
         ]);
 
         Permission::create([
-            'name' => 'member territory',
+            'name' => 'edit course',
+            'guard_name' => 'web'
+        ]);
+
+        Permission::create([
+            'name' => 'delete course',
+            'guard_name' => 'web'
+        ]);
+
+        Permission::create([
+            'name' => 'create category',
+            'guard_name' => 'web'
+        ]);
+
+        Permission::create([
+            'name' => 'edit category',
+            'guard_name' => 'web'
+        ]);
+
+        Permission::create([
+            'name' => 'delete category',
+            'guard_name' => 'web'
+        ]);
+
+        Permission::create([
+            'name' => 'validate transaction',
             'guard_name' => 'web'
         ]);
 
@@ -56,9 +81,23 @@ class SpatieSeeder extends Seeder
         }
 
         for ($i = 1; $i <= 3; $i++) {
-            $role = Role::findById($i);
-            $permission = Permission::findById($i);
-            $role->givePermissionTo($permission);
+            if ($i == 1) {
+                $role = Role::findById(1);
+                $permission = Permission::findById(1);
+                $role->givePermissionTo($permission);
+            } elseif($i == 2){
+                for($j = 2; $j <= 4; $j++){
+                    $role = Role::findById(2);
+                    $permission = Permission::findById($j);
+                    $role->givePermissionTo($permission);
+                }
+            }elseif($i == 3){
+                for($j = 5; $j <= 8; $j++){
+                    $role = Role::findById(3);
+                    $permission = Permission::findById($j);
+                    $role->givePermissionTo($permission);
+                }
+            }
         }
 
         $admin = User::where('email', 'admin@admin.admin')->first();

@@ -37,13 +37,14 @@ Route::controller(AssignmentScoreController::class)->group(function(){
 
 Route::controller(CategoryController::class)->group(function(){
     Route::get('/category', 'index')->name('category.index');
+    Route::get('/category-course/{id}', 'show')->name('category.show');
 
     Route::middleware('role:admin')->group(function(){
-        Route::get('/category', 'create')->name('category.create');
+        Route::get('/category-create', 'create')->name('category.create');
         Route::post('/category', 'store')->name('category.store');
-        Route::get('/category', 'edit')->name('category.edit');
-        Route::put('/category', 'update')->name('category.create');
-        Route::delete('/category', 'delete')->name('category.delete');
+        Route::get('/category-edit', 'edit')->name('category.edit');
+        Route::put('/category/{id}', 'update')->name('category.create');
+        Route::delete('/category/{id}', 'delete')->name('category.delete');
     });
 
 });
@@ -109,9 +110,5 @@ Route::controller(ProfileController::class)->middleware('auth')->group(function(
     Route::patch('/profile','update')->name('profile.update');
     Route::delete('/profile','destroy')->name('profile.destroy');
 });
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 require __DIR__.'/auth.php';
