@@ -11,7 +11,7 @@ class MemberService
 {
     public function courseBought()
     {
-        $courseBought = UserCourse::where('user_id', auth()->user()->id)->where('payment_status', 'sukses')->get();
+        $courseBought = UserCourse::where('user_id', auth()->user()->id)->get();
 
         return $courseBought;
     }
@@ -84,7 +84,7 @@ class MemberService
 
     public function recentBought()
     {
-        $courseBought = UserCourse::where('user_id', auth()->user()->id)->orderBy('created_at')->get();
+        $courseBought = UserCourse::where('user_id', auth()->user()->id)->orderBy('created_at')->limit(5)->get();
         $courses = [];
 
         foreach ($courseBought as $course) {

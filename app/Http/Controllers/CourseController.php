@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\User;
+use App\Models\UserCourse;
 use App\Services\Author\CourseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,11 +44,15 @@ class CourseController extends Controller
                 'draft_courses' => $draft_courses,
             ]);
         } elseif ($user->hasRole('member')) {
-            return view('member.dashboard');
+            $courses = UserCourse::where('user_id', auth()->user()->id)->paginate(16);
+
+            return view('member.course.index', [
+                'menu' => parent::$memberMenuSidebar,
+                'courses' => $courses,
+            ]);
         } else {
             return true;
         }
-
     }
 
     public function show(Request $request)
@@ -55,7 +60,7 @@ class CourseController extends Controller
         $course = Course::where('id', $request->id)->first();
         $lessons = Lesson::where('course_id', $request->id)->orderBy('chapter')->get();
 
-        return view('author.course.detail', [
+        return view('author.course.show', [
             'menu' => parent::$menuSidebarauthor,
             'course' => $course,
             'lessons' => $lessons,

@@ -1,31 +1,32 @@
-@dd($data)
+{{-- @dd($data) --}}
 @extends('layouts.layout')
 
 @section('body')
+<x-dashboard-sidebar :menu=$menu></x-dashboard-sidebar>
     <div class="relative md:ml-72 bg-blueGray-50">
         <x-dashboard-header></x-dashboard-header>
-        <div class="relative bg-primary md:pt-32 pb-32 pt-12">
+        <div class="relative bg-slate-800 md:pt-32 pb-32 pt-12">
             <div class="px-4 md:px-10 mx-auto w-full">
                 <div>
                     <!-- Card stats -->
                     <div class="flex flex-wrap justify-end">
                         {{-- <x-author_stastitic_card title="jumlah kursus yang dibeli" value="{{ count($courseBought) }}"
-                            icon='fa-solid fa-book' iconBgColor="bg-primary" percentage="{{ 12.2 }}"
+                            icon='fa-solid fa-book' iconBgColor="bg-slate-800" percentage="{{ 12.2 }}"
                             arrow="{{ null }}" />
                         <x-author_stastitic_card title="jumlah kursus yang diselesaikan" value="{{ count($coursePass) }}"
-                            icon='fa-solid fa-scroll' iconBgColor="bg-primary" percentage="{{ 12.2 }}"
+                            icon='fa-solid fa-scroll' iconBgColor="bg-slate-800" percentage="{{ 12.2 }}"
                             arrow="{{ null }}" /> --}}
-                        <x-stastitic-card title="jumlah kursus yang dibeli" value="{{ count($courseBought) }}"
-                            icon='fa-solid fa-book' iconBgColor="bg-primary" />
-                        <x-stastitic-card title="jumlah kursus yang diselesaikan" value="{{ count($coursePass) }}"
-                            icon='fa-solid fa-scroll' iconBgColor="bg-primary" />
+                        <x-stastitic-card title="jumlah kursus yang dibeli" value="{{ count($data['courseBought']) }}"
+                            icon='fa-solid fa-book' iconBgColor="bg-slate-800" percentage="{{ 12.2 }}" arrow="{{ null }}"/>
+                        <x-stastitic-card title="jumlah kursus yang diselesaikan" value="{{ count($data['coursePass']) }}"
+                            icon='fa-solid fa-scroll' iconBgColor="bg-slate-800" percentage="{{ 12.2 }}" arrow="{{ null }}"/>
                     </div>
                 </div>
             </div>
         </div>
         <div class="px-4 md:px-10 mx-auto w-full -m-24">
             <div class="flex flex-wrap">
-                <div class="w-3/5 mb-12 xl:mb-0 px-4">
+                <div class="w-full md:w-3/5 mb-12 xl:mb-0 px-4">
                     <div
                         class="bg-white relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
                         <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
@@ -42,7 +43,7 @@
                         </div>
                         <div class="p-4 flex-auto">
                             <!-- Chart -->
-                            <div class="relative h-350-px ">
+                            <div class="relative h-350-px ">z
                                 <div class="chartjs-size-monitor">
                                     <div class="chartjs-size-monitor-expand">
                                         <div class=""></div>
@@ -57,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-2/5 mb-12 xl:mb-0 px-4">
+                <div class="w-full md:w-2/5 mb-12 xl:mb-0 px-4">
                     <div
                         class="bg-white relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
                         <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
@@ -93,14 +94,14 @@
                     <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
                         <div class="rounded-t mb-0 px-4 py-3 border-0">
                             <div class="flex flex-wrap items-center">
-                                <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                                <div class="relative w-full px-4  flex-grow flex-1">
                                     <h3 class="font-semibold text-base text-blueGray-700">
                                         Kursus yang anda beli bulan ini
                                     </h3>
                                 </div>
                                 <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
                                     <a href="author/course"
-                                        class="bg-primary text-white active:bg-neutral-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        class="bg-slate-800 text-white active:bg-neutral-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button">
                                         lihat semua
                                     </a>
@@ -131,7 +132,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($recentBought as $course)
+                                    @foreach ($data['recentBought'] as $course)
                                         <tr>
                                             <th
                                                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
@@ -160,14 +161,14 @@
                     <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
                         <div class="rounded-t mb-0 px-4 py-3 border-0">
                             <div class="flex flex-wrap items-center">
-                                <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                                <div class="relative w-full px-4 flex-grow flex-1">
                                     <h3 class="font-semibold text-base text-blueGray-700">
-                                        kursus yang anda selesaikan bulan ini
+                                        Kursus yang anda selesaikan bulan ini
                                     </h3>
                                 </div>
                                 <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                                    <a href="/author/course"
-                                        class="bg-primary text-white active:bg-neutral-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                    <a href="author/course"
+                                        class="bg-slate-800 text-white active:bg-neutral-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button">
                                         lihat semua
                                     </a>
@@ -194,7 +195,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($recentFinish as $course)
+                                    @foreach ($data['recentFinish'] as $course)
                                         <tr>
                                             <th
                                                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
@@ -279,7 +280,7 @@
                             backgroundColor: "#4f46e5",
                             borderColor: "#4f46e5",
                             data: [
-                                @foreach ($courseBoughtPerMonth as $count)
+                                @foreach ($data['courseBoughtPerMonth'] as $count)
                                     {{ $count . ',' }}
                                 @endforeach
                             ],
@@ -290,7 +291,7 @@
                             backgroundColor: "#db2777",
                             borderColor: "#db2777",
                             data: [
-                                @foreach ($coursePassPerMonth as $count)
+                                @foreach ($data['coursePassPerMonth'] as $count)
                                     {{ $count . ',' }}
                                 @endforeach
                             ],
@@ -371,7 +372,7 @@
                 type: "radar",
                 data: {
                     labels: [
-                        @foreach ($categories as $count)
+                        @foreach ($data['categories'] as $count)
                             "{{ $count->name }}",
                         @endforeach
                     ],
@@ -382,7 +383,7 @@
                         borderColor: "#10b981",
                         borderWidth: 1,
                         data: [
-                            @foreach ($passPerCategory as $count)
+                            @foreach ($data['passPerCategory'] as $count)
                                 {{ count($count) }},
                             @endforeach
                         ],

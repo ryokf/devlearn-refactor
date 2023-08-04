@@ -13,7 +13,7 @@ class TableList extends Component
     public $category;
     public $member;
     public $status;
-    public $photo;
+    // public $photo;
 
     /**
      * Create a new component instance.
@@ -28,7 +28,7 @@ class TableList extends Component
         $category,
         $member,
         $status,
-        $photo
+        // $photo
     ) {
         $this->$id = $id;
         $this->$number = $number;
@@ -37,7 +37,7 @@ class TableList extends Component
         $this->$category = $category;
         $this->$member = $member;
         $this->$status = $status;
-        $this->$photo = $photo;
+        // $this->$photo = $photo;
     }
 
     /**

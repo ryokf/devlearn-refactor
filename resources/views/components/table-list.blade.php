@@ -4,7 +4,7 @@
     </th>
     <th
         class="max-w-sm border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs p-4 text-left flex items-center">
-        <img src="{{ asset('storage/' . $photo) }}" class="h-12 w-12 bg-white rounded border object-cover" alt="..." />
+        {{-- <img src="{{ asset('storage/' . $photo) }}" class="h-12 w-12 bg-white rounded border object-cover" alt="..." /> --}}
         <span class="ml-3 font-bold text-blueGray-600 whitespace-normal">
             {{ $title }}
         </span>

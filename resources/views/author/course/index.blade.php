@@ -5,7 +5,7 @@
     <div class="relative md:ml-72 bg-blueGray-50">
         <!-- Header -->
         <x-dashboard-header></x-dashboard-header>
-        <div class="relative bg-primary md:pt-32 pb-32 pt-12">
+        <div class="relative bg-slate-800 md:pt-32 pb-32 pt-12">
         </div>
         <div class="px-4 md:px-10 mx-auto w-full -m-36">
             <div class="flex flex-wrap mt-4">
@@ -52,7 +52,6 @@
                                     <tr>
                                         <th
                                             class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
-
                                             No.
                                         </th>
                                         <th
@@ -83,14 +82,15 @@
                                 <tbody>
                                     @foreach ($courses as $number => $course)
                                         @if ($course['is_public'])
-                                        {{-- <x-table-list :id="$course['id']" :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course['title']"
-                                            :category="$course['category']['name']" :photo="$course['photo']" :price="$course['price']" :status="$course['status']"
-                                            :member="count($course['userCourse'])" /> --}}
-                                        <x-table-list id="1" number="1" :title="1"
+                                        <x-table-list id="{{ $course['id'] }}" number="{{ $number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10 }}" title="{{ $course['title'] }}"
+                                            category="{{ $course['category']['name'] }}" price="{{ $course['price'] }}" status="{{ $course['status'] }}"
+                                            member="{{ count($course['userCourse']) }}"></x-table-list>
+                                        {{-- <x-table-list :id="1" :number="1" :title="1"
                                             :category="1" :photo="1" :price="1" :status="1"
-                                            :member="1" />
-                                        @endif
-                                    @endforeach
+                                            :member="1" /> --}}
+                                            @endif
+                                            {{-- @dd() --}}
+                                            @endforeach
                                 </tbody>
                             </table>
                             <div class="flex justify-center py-6">
@@ -146,13 +146,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($draft_courses as $number => $course)
+                                    @foreach ($draft_courses as $number => $course)
                                         @if (!$course->is_public)
-                                            <x-author_course_tile :id="$course->id" :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course->title"
-                                                :category="$course->category" :photo="$course->photo" :price="$course->price" :status="$course->status"
-                                                :member="$course->member" />
+                                        <x-table-list :id="$course['id']" :number="$number + 1 + ((request()->query()['page'] ?? 1) - 1) * 10" :title="$course['title']"
+                                            :category="$course['category']['name']" :photo="$course['photo']" :price="$course['price']" :status="$course['status']"
+                                            :member="count($course['userCourse'])" />
                                         @endif
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                             <div class="flex justify-center">

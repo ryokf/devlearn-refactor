@@ -21,9 +21,9 @@ class Controller extends BaseController
     ];
 
     public static $memberMenuSidebar = [
-        '/member' => ['dashboard', 'fa-solid fa-chart-line'],
-        '/member/course' => ['kursus anda', 'fa-solid fa-chalkboard'],
-        '/member/transaction' => ['daftar transaksi', 'fa-solid fa-arrow-right-arrow-left'],
+        '/dashboard' => ['dashboard', 'fa-solid fa-chart-line'],
+        '/course' => ['kursus anda', 'fa-solid fa-chalkboard'],
+        // '/member/transaction' => ['daftar transaksi', 'fa-solid fa-arrow-right-arrow-left'],
         '/profile' => ['profile', 'fa-solid fa-user-pen'],
     ];
 }

@@ -39,7 +39,7 @@ class ProfileController extends Controller
             ]);
         } else {
             return view('member.dashboard', [
-                'menu' => parent::$menuSidebarauthor,
+                'menu' => parent::$memberMenuSidebar,
                 'data' => $this->memberService->dashboard(),
             ]);
         }

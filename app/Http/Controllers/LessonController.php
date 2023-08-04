@@ -100,7 +100,7 @@ class LessonController extends Controller
     public function create(Request $request)
     {
         return view('author.lesson.create', [
-            'menu' => parent::$menuSidebar,
+            'menu' => parent::$menuSidebarauthor,
         ]);
     }
 
@@ -149,7 +149,7 @@ class LessonController extends Controller
         $lesson = Lesson::where('id', $request->id)->first();
 
         return view('author.lesson.edit', [
-            'menu' => parent::$menuSidebar,
+            'menu' => parent::$menuSidebarauthor,
             'lesson' => $lesson,
         ]);
     }

@@ -63,7 +63,7 @@ Route::controller(CourseController::class)->group(function () {
         Route::get('/course-create', 'create')->name('course.create');
         Route::post('/course', 'store')->name('course.store');
         Route::get('/course-edit/{id}', 'edit')->name('course.edit');
-        Route::put('/course', 'update')->name('course.create');
+        Route::put('/course', 'update')->name('course.update');
         Route::delete('/course', 'delete')->name('course.delete');
     });
 });
@@ -72,10 +72,10 @@ Route::controller(LessonController::class)->group(function () {
     Route::get('/lesson', 'show')->middleware('auth')->name('lesson.show');
 
     Route::middleware('role:author')->group(function () {
-        Route::get('/lesson-create', 'create')->name('lesson.create');
+        Route::get('/lesson-create/{course_id}', 'create')->name('lesson.create');
         Route::post('/lesson', 'store')->name('lesson.store');
         Route::get('/lesson-edit', 'edit')->name('lesson.edit');
-        Route::put('/lesson', 'update')->name('lesson.create');
+        Route::put('/lesson', 'update')->name('lesson.update');
         Route::delete('/lesson', 'delete')->name('lesson.delete');
     });
 });
