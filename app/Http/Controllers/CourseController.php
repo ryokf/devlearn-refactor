@@ -6,8 +6,10 @@ use App\Http\Requests\CreateCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\User;
 use App\Services\Author\CourseService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -20,17 +22,32 @@ class CourseController extends Controller
 
     public function index(Request $request)
     {
-        $courses = $this->courseService->getCourses($request, auth()->user()->id);
-        $draft_courses = $this->courseService->getDraftCourse(auth()->user()->id);
 
-        $sortOption = $this->courseService->sortOption();
+        $id = Auth::id();
+        $user = User::findOrFail($id);
 
-        return view('author.course.index', [
-            'menu' => parent::$menuSidebarauthor,
-            'sorts' => $sortOption,
-            'courses' => $courses,
-            'draft_courses' => $draft_courses,
-        ]);
+        if ($user->hasRole('admin')) {
+            return view('admin.dashboard', [
+                // 'menu' => parent::$menuSidebar
+            ]);
+        } elseif ($user->hasRole('author')) {
+            $courses = $this->courseService->getCourses($request, auth()->user()->id);
+            $draft_courses = $this->courseService->getDraftCourse(auth()->user()->id);
+
+            $sortOption = $this->courseService->sortOption();
+
+            return view('author.course.index', [
+                'menu' => parent::$menuSidebarauthor,
+                'sorts' => $sortOption,
+                'courses' => $courses,
+                'draft_courses' => $draft_courses,
+            ]);
+        } elseif ($user->hasRole('member')) {
+            return view('member.dashboard');
+        } else {
+            return true;
+        }
+
     }
 
     public function show(Request $request)
@@ -59,14 +76,11 @@ class CourseController extends Controller
     {
         if ($this->courseService->createCourse($request)) {
             $message = 'Kursus berhasil ditambahkan';
-
-            return redirect(route('author_course_index'))->with('success', $message);
+            return redirect(route('course.index'))->with('success', $message);
         } else {
             $message = 'Kursus gagal ditambahkan';
-
-            return redirect(route('author_course_index'))->with('erorr', $message);
+            return redirect(route('course.index'))->with('erorr', $message);
         }
-
     }
 
     public function edit($id)

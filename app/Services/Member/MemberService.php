@@ -105,4 +105,27 @@ class MemberService
 
         return collect($courses)->flatten();
     }
-}
+
+    public function dashboard()
+    {
+        $courseBought = $this->courseBought();
+        $coursePass = $this->coursePass();
+        $courseBoughtPerMonth = $this->courseBoughtPerMonth();
+        $coursePassPerMonth = $this->coursePassPerMonth();
+        $categories = $this->getCategory();
+        $passPerCategory = $this->passPerCategory();
+        $recentBought = $this->recentBought();
+        $recentFinish = $this->recentFinish();
+
+
+        return [
+            'courseBought' => $courseBought,
+            'coursePass' => $coursePass,
+            'categories' => $categories,
+            'courseBoughtPerMonth' => $courseBoughtPerMonth,
+            'coursePassPerMonth' => $coursePassPerMonth,
+            'passPerCategory' => $passPerCategory,
+            'recentBought' => $recentBought,
+            'recentFinish' => $recentFinish,
+        ];
+}}

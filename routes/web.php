@@ -55,14 +55,14 @@ Route::controller(CertificateController::class)->middleware('auth|role:member')-
 
 Route::controller(CourseController::class)->group(function () {
     Route::get('/course-all', 'all')->name('course.index.all');
-    Route::get('/course', 'show')->name('course.show');
+    Route::get('/course-show/{id}', 'show')->name('course.show');
 
     Route::get('/course', 'index')->middleware('auth')->name('course.index');
 
     Route::middleware('role:author')->group(function () {
         Route::get('/course-create', 'create')->name('course.create');
         Route::post('/course', 'store')->name('course.store');
-        Route::get('/course-edit', 'edit')->name('course.edit');
+        Route::get('/course-edit/{id}', 'edit')->name('course.edit');
         Route::put('/course', 'update')->name('course.create');
         Route::delete('/course', 'delete')->name('course.delete');
     });

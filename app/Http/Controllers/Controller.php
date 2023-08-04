@@ -15,7 +15,7 @@ class Controller extends BaseController
         '/dashboard' => ['dashboard', 'fa-solid fa-chart-line'],
         '/course' => ['kursus anda', 'fa-solid fa-chalkboard'],
         '/course-create' => ['tambah kursus', 'fa-solid fa-person-chalkboard'],
-        '/member' => ['daftar transaksi', 'fa-solid fa-arrow-right-arrow-left'],
+        // '/member' => ['daftar transaksi', 'fa-solid fa-arrow-right-arrow-left'],
         // '/author/profile' => ['lihat profile', 'fa-solid fa-user'],
         '/profile' => ['profile', 'fa-solid fa-user-pen'],
     ];
