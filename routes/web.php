@@ -59,7 +59,7 @@ Route::controller(CourseController::class)->group(function () {
 
     Route::get('/course', 'index')->middleware('auth')->name('course.index');
 
-    Route::middleware('role:mentor')->group(function () {
+    Route::middleware('role:author')->group(function () {
         Route::get('/course-create', 'create')->name('course.create');
         Route::post('/course', 'store')->name('course.store');
         Route::get('/course-edit', 'edit')->name('course.edit');
@@ -71,7 +71,7 @@ Route::controller(CourseController::class)->group(function () {
 Route::controller(LessonController::class)->group(function () {
     Route::get('/lesson', 'show')->middleware('auth')->name('lesson.show');
 
-    Route::middleware('role:mentor')->group(function () {
+    Route::middleware('role:author')->group(function () {
         Route::get('/lesson-create', 'create')->name('lesson.create');
         Route::post('/lesson', 'store')->name('lesson.store');
         Route::get('/lesson-edit', 'edit')->name('lesson.edit');

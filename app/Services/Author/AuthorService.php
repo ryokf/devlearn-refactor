@@ -71,8 +71,8 @@ class AuthorService
             'transactionPercentage' => [$transactionPercentage, $transactionPercentage > 0 ? true : false],
             'incomePercentage' => [$incomePercentage, $incomePercentage > 0 ? true : false],
             'course' => $course,
-            'topBought' => collect($topBought),
-            'topPass' => $topPass,
+            'course_top_bought' => $topBought,
+            'course_top_pass' => $topPass,
             'lesson_count' => $lesson_count,
             'member_count' => $member_count,
             'income' => $income,
@@ -280,7 +280,7 @@ class AuthorService
             ->select('course_id', DB::raw('COUNT(*) as total'))
             ->groupBy('course_id')
             ->whereMonth('created_at', date('n'))
-            ->orderBy('total')
+            ->orderByDesc('total')
             ->orderBy('course_id')
             ->limit(5)
             ->get();

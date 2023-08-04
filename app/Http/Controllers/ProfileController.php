@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
+use App\Services\Author\AuthorService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,13 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    private $authorService;
+
+    function __construct(AuthorService $authorService)
+    {
+        $this->authorService = $authorService;
+    }
+
     public function dashboard()
     {
         $id = Auth::id();
@@ -21,12 +29,13 @@ class ProfileController extends Controller
             return view('admin.dashboard', [
                 // 'menu' => parent::$menuSidebar
             ]);
-        } elseif ($user->hasRole('mentor')) {
-            return view('mentor.dashboard', [
-                'menu' => parent::$menuSidebarMentor
+        } elseif ($user->hasRole('author')) {
+            return view('author.dashboard', [
+                'menu' => parent::$menuSidebarauthor,
+                'data' => $this->authorService->dashboard(),
             ]);
         } else {
-            return view('memebr.dashboard');
+            return view('member.dashboard');
         }
     }
 

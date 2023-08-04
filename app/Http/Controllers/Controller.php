@@ -11,7 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public static $menuSidebarMentor = [
+    public static $menuSidebarauthor = [
         '/dashboard' => ['dashboard', 'fa-solid fa-chart-line'],
         '/course' => ['kursus anda', 'fa-solid fa-chalkboard'],
         '/course-create' => ['tambah kursus', 'fa-solid fa-person-chalkboard'],

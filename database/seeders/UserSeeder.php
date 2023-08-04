@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
         // User::factory()->count(9)->create();
 
         User::create([
-            'name' => 'dev_mentor',
-            'email' => 'mentor@gmail.com',
+            'name' => 'dev_author',
+            'email' => 'author@gmail.com',
             'password' => Hash::make('rahasia123'),
             'occupation' => 'mahasiswa',
             'office' => 'univeristas dian nuswantoro',

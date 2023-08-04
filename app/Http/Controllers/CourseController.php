@@ -26,7 +26,7 @@ class CourseController extends Controller
         $sortOption = $this->courseService->sortOption();
 
         return view('author.course.index', [
-            'menu' => parent::$menuSidebarMentor,
+            'menu' => parent::$menuSidebarauthor,
             'sorts' => $sortOption,
             'courses' => $courses,
             'draft_courses' => $draft_courses,
@@ -39,7 +39,7 @@ class CourseController extends Controller
         $lessons = Lesson::where('course_id', $request->id)->orderBy('chapter')->get();
 
         return view('author.course.detail', [
-            'menu' => parent::$menuSidebarMentor,
+            'menu' => parent::$menuSidebarauthor,
             'course' => $course,
             'lessons' => $lessons,
         ]);
@@ -50,7 +50,7 @@ class CourseController extends Controller
         $data = $this->courseService->getCategory();
 
         return view('author.course.create', [
-            'menu' => parent::$menuSidebarMentor,
+            'menu' => parent::$menuSidebarauthor,
             'data' => json_decode($data),
         ]);
     }
@@ -75,7 +75,7 @@ class CourseController extends Controller
         $course = $this->courseService->getCourse($id);
 
         return view('author.course.edit', [
-            'menu' => parent::$menuSidebarMentor,
+            'menu' => parent::$menuSidebarauthor,
             'course' => json_decode($course),
             'categories' => json_decode($categories),
         ]);
