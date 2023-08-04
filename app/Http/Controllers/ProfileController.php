@@ -19,7 +19,7 @@ class ProfileController extends Controller
 
         if ($user->hasRole('admin')) {
             return view('admin.dashboard', [
-                // 'menu' => parent::$menuSidebar
+                'menu' => parent::$menuSidebarAdmin
             ]);
         } elseif ($user->hasRole('mentor')) {
             return view('mentor.dashboard', [

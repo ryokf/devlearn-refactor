@@ -1,17 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Spatie;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RoleRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $menuSidebarAdmin = parent::$menuSidebarAdmin;
+        view()->share('menu', $menuSidebarAdmin);
+    }
     public function index()
     {
         // $menu = parent::$menuSidebar;
@@ -33,7 +37,7 @@ class RoleController extends Controller
     {
         Role::create($request->all());
 
-        return to_route('admin.roles.index')->with('message', 'Role Created Succesfully');
+        return to_route('roles.index')->with('message', 'Role Created Succesfully');
     }
 
     public function edit(Role $role)
@@ -47,7 +51,7 @@ class RoleController extends Controller
     {
         $role->update($request->all());
 
-        return to_route('admin.roles.index')->with('message', 'Role Updated Succesfully');
+        return to_route('roles.index')->with('message', 'Role Updated Succesfully');
     }
 
     public function destroy(Role $role)

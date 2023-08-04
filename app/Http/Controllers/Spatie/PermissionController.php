@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Spatie;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PermissionRequest;
@@ -11,6 +11,11 @@ use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
+    public function __construct()
+    {
+        $menuSidebarAdmin = parent::$menuSidebarAdmin;
+        view()->share('menu', $menuSidebarAdmin);
+    }
     public function create()
     {
         return view('admin.permissions.create');
@@ -20,7 +25,7 @@ class PermissionController extends Controller
     {
         Permission::create($request->all());
 
-        return to_route('admin.roles.index')->with('message', 'Permission created successful');
+        return to_route('roles.index')->with('message', 'Permission created successful');
     }
 
     public function edit(Permission $permission)
@@ -34,7 +39,7 @@ class PermissionController extends Controller
     {
         $permission->update($request->all());
 
-        return to_route('admin.roles.index')->with('message', 'Permission updated successful');
+        return to_route('roles.index')->with('message', 'Permission updated successful');
     }
 
     public function destroy(Permission $permission)

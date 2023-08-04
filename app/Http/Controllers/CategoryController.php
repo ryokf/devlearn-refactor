@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+    }
     public function index(Category $category)
     {
         return $category->orderBy('name')->get();
@@ -16,7 +19,10 @@ class CategoryController extends Controller
 
     public function indexAdmin(Category $category)
     {
-        return $category->orderBy('name')->get();
+        $menuSidebarAdmin = parent::$menuSidebarAdmin;
+        view()->share('menu', $menuSidebarAdmin);
+        $categories = $category->orderBy('name')->get();
+        return view('admin.category.index', compact('categories'));
     }
 
     public function show(Course $course, $id)
@@ -27,8 +33,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $file = $request->file('photo');
-        $path = time().'_'.$request->name.'.'.$file->getClientOriginalExtension();
-        Storage::disk('local')->put('public/'.$path, file_get_contents($file));
+        $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
+        Storage::disk('local')->put('public/' . $path, file_get_contents($file));
         Category::create(
             [
                 'name' => $request->name,
@@ -45,20 +51,25 @@ class CategoryController extends Controller
         $category->name = $request->input('name');
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
-            $path = time().'_'.$request->name.'.'.$file->getClientOriginalExtension();
-            Storage::disk('local')->put('public/'.$path, file_get_contents($file));
+            $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('public/' . $path, file_get_contents($file));
             $category->photo = $path;
         }
 
         $category->save();
 
-        return redirect()->route('category.index')->with('message', 'Category successfully updated!');
+        return redirect()->route('category.index.admin')->with('message', 'Category successfully updated!');
     }
 
     public function delete($id)
     {
         Category::findOrFail($id)->delete();
-
         return back()->with('message', 'Category Deleted');
+    }
+
+    public function edit($id)
+    {
+        $category = Category::findOrFail($id);
+        return view('admin.category.edit', compact('category'));
     }
 }

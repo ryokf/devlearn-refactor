@@ -6,13 +6,15 @@ use App\Http\Requests\CreateCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\Voucher;
+use App\Services\Admin\CourseService as AdminCourseService;
 use App\Services\Author\CourseService;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
     private $courseService;
-
+    private $adminCourseService;
     public function __construct(CourseService $courseService)
     {
         $this->courseService = $courseService;
@@ -66,7 +68,6 @@ class CourseController extends Controller
 
             return redirect(route('author_course_index'))->with('erorr', $message);
         }
-
     }
 
     public function edit($id)
@@ -95,5 +96,19 @@ class CourseController extends Controller
         Course::where('id', $request->id)->delete();
 
         return back()->with('success', 'kursus berhasil dihapus');
+    }
+
+
+    public function indexAdmin()
+    {
+        $courses = Course::paginate(6);
+        $vouchers = Voucher::all();
+        $menuSidebarAdmin = parent::$menuSidebarAdmin;
+        view()->share('menu', $menuSidebarAdmin);
+        return view(
+            'admin.course.index',
+            compact('courses', 'vouchers')
+
+        );
     }
 }
