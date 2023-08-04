@@ -26,7 +26,7 @@ class ProfileController extends Controller
                 'menu' => parent::$menuSidebarMentor
             ]);
         } else {
-            return view('memebr.dashboard');
+            return view('member.dashboard');
         }
     }
 

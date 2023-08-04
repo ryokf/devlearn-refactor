@@ -76,12 +76,16 @@
                                                     {{ $voucher->token }}
                                                 </td>
                                                 <td>
-                                                    <form action="{{ route('voucher.delete', $voucher->id) }}"></form>
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button
-                                                        class="bg-red-500 text-white active:bg-red-600 hover:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                                        type="submit">Delete</button>
+                                                    <form action="{{ route('voucher.delete', $voucher->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button
+                                                            class="bg-red-500 text-white active:bg-red-600 hover:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                            type="submit">Delete</button>
+
+                                                    </form>
+
 
                                                 </td>
                                             </tr>
@@ -149,7 +153,7 @@
                                     </td>
                                     <td scope="row"
                                         class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        {{ $course->auhtor->username }}
+                                        {{ $course->author->username }}
                                     </td>
                                     <td scope="row"
                                         class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">

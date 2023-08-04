@@ -27,7 +27,7 @@ class UserController extends Controller
         $roles = Role::all();
         $permissions = Permission::all();
 
-        return view('admin.users.role', compact('user', 'roles', 'permissions'));
+        return view('admin.user.role', compact('user', 'roles', 'permissions'));
     }
 
     public function giveRole(Request $request, User $user)

@@ -32,6 +32,8 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        $menuSidebarAdmin = parent::$menuSidebarAdmin;
+        view()->share('menu', $menuSidebarAdmin);
         $file = $request->file('photo');
         $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
         Storage::disk('local')->put('public/' . $path, file_get_contents($file));
@@ -47,6 +49,8 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
+        $menuSidebarAdmin = parent::$menuSidebarAdmin;
+        view()->share('menu', $menuSidebarAdmin);
         $category = Category::findOrFail($id);
         $category->name = $request->input('name');
         if ($request->hasFile('photo')) {
@@ -69,6 +73,8 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
+        $menuSidebarAdmin = parent::$menuSidebarAdmin;
+        view()->share('menu', $menuSidebarAdmin);
         $category = Category::findOrFail($id);
         return view('admin.category.edit', compact('category'));
     }

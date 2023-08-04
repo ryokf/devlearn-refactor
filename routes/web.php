@@ -103,19 +103,16 @@ Route::controller(UserCourseController::class)->group(function () {
 });
 
 Route::controller(VoucherController::class)->middleware('role:admin')->group(function () {
-    //voucher index
-    Route::get('/voucher', 'index')->name('voucher.index');
+
     //voucher add
     Route::post('/voucher', 'store')->name('voucher.store');
-
-
-    // Route::get('/voucher-edit', 'edit')->name('course.voucher.edit');
-    // Route::put('/voucher', 'update')->name('voucher.update');
-    Route::delete('/voucher', 'delete')->name('voucher.delete');
-
+    // voucher delete
+    Route::delete('/voucher/{id}', 'delete')->name('voucher.delete');
+    //buat ke halaman tambah voucher ke course
     Route::get('/voucher/{id}', 'edit')->name('course.voucher.edit');
+    //add ke database voucher
     Route::put('/voucher/{id}', 'update')->name('course.voucher.update');
-    Route::delete('/voucher/delete/{id}', 'delete')->name('course.voucher.delete');
+
 });
 
 Route::controller(ProfileController::class)->middleware('auth')->group(function () {

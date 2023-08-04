@@ -48,16 +48,16 @@
                                     </td>
                                     <td scope="row"
                                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        {{-- <a class="bg-blue-500 text-white active:bg-blue-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                    href="{{ route('admin.users.show', $user->id) }}">Roles</a>
+                                        <a class="bg-blue-500 text-white active:bg-blue-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                            href="{{ route('users.show', $user->id) }}">Roles</a>
 
-                                <form class=" inline" action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
-                                    onsubmit="return confirm('Are you sure??')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button
-                                        class="bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                        type="submit">Delete</button> --}}
+                                        <form class=" inline" action="{{ route('users.destroy', $user->id) }}"
+                                            method="POST" onsubmit="return confirm('Are you sure??')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button
+                                                class="bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                type="submit">Delete</button>
                                         </form>
 
                                     </td>

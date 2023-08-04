@@ -23,9 +23,9 @@ class Course extends Model
     }
 
     /**
-     * Get the auhtor that owns the Course
+     * Get the author that owns the Course
      */
-    public function auhtor(): BelongsTo
+    public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id', 'id');
     }
