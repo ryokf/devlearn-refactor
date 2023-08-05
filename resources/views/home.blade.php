@@ -289,10 +289,7 @@
             </h2>
             <h2 class="font-semibold text-4xl pb-3 md:pb-0">Learning Platfrom</h2>
             <p class="text-gray-500 my-3 px-0 md:px-40 md:mt-4 mt-1">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
-                eaque, amet error magnam laudantium aperiam perferendis maxime
-                corporis, omnis, optio officia id. Veritatis at cum velit delectus id
-                voluptas earum?
+                "Unlock Your Potential: Join the Learning Revolution!"
             </p>
             <!-- button mulai belajar -->
             <a href="#_"
@@ -327,11 +324,11 @@
                         </svg>
                     </div>
                     <div class="text">
-                        <h2 class="font-semibold text-xl pb-3 md:pb-0">Cepat & Mudah</h2>
+                        <h2 class="font-semibold text-xl pb-3 md:pb-0">Mudah Dipahami</h2>
                     </div>
                 </div>
                 <!-- item end -->
-                <!-- item start -->
+                {{-- <!-- item start -->
                 <div class="flex gap-3 items-center md:basis-1/5">
                     <div class="icon icon bg-slate-200 p-3 rounded-xl">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -342,11 +339,11 @@
                     </div>
                     <div class="text">
                         <h2 class="font-semibold text-xl pb-3 md:pb-0">
-                            Simple & Tinggal Belajar
+                            Mudah
                         </h2>
                     </div>
                 </div>
-                <!-- item end -->
+                <!-- item end --> --}}
                 <!-- item start -->
                 <div class="flex gap-3 items-center md:basis-1/5">
                     <div class="icon icon bg-slate-200 p-3 rounded-xl">
@@ -358,7 +355,7 @@
                     </div>
                     <div class="text">
                         <h2 class="font-semibold text-xl pb-3 md:pb-0">
-                            Materi Up-To-Date
+                            Materi Terbaru
                         </h2>
                     </div>
                 </div>
@@ -373,7 +370,7 @@
                         </svg>
                     </div>
                     <div class="text">
-                        <h2 class="font-semibold text-xl pb-3 md:pb-0">User Friendly</h2>
+                        <h2 class="font-semibold text-xl pb-3 md:pb-0">Ramah Pengguna</h2>
                     </div>
                 </div>
                 <!-- item end -->
@@ -454,7 +451,7 @@
     </section>
     <!-- End Categories By Divisi Section -->
 
-    <!-- Start Categories Section -->
+    {{-- <!-- Start Categories Section -->
     <section id="categories" class="mt-12">
         <div class="container mx-auto">
             <h2 class="font-bold text-2xl my-12 text-center">
@@ -545,7 +542,7 @@
             </div>
         </div>
     </section>
-    <!-- End Categories Section -->
+    <!-- End Categories Section --> --}}
 
     <!-- Start New Courses Section -->
     <section id="courses" class="pt-20">
@@ -757,7 +754,7 @@
     <footer class="bg-[#00103F] text-white mt-20">
         <div class="container mx-auto px-5 py-16">
             <div class="flex flex-col md:flex-row">
-                <div class="basis-1/6">
+                <div class="basis-1/3">
                     <div class="p-4">
                         <h3 class="font-medium mt-4 mb-3">Tentang Kami</h3>
                         <div class="text-sm">
@@ -785,7 +782,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="basis-1/6">
+                {{-- <div class="basis-1/6">
                     <div class="p-4">
                         <h3 class="font-medium mt-4 mb-3">Masuk - Sign In</h3>
                         <ul class="list-none mt-4">
@@ -797,8 +794,8 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-                <div class="basis-1/6">
+                </div> --}}
+                <div class="basis-1/3">
                     <div class="p-4">
                         <h3 class="font-medium mt-4 mb-3">Kategori</h3>
                         <ul class="list-none mt-4">
@@ -824,7 +821,7 @@
                     </div>
                 </div>
 
-                <div class="basis-1/6">
+                <div class="basis-1/3">
                     <div class="p-4">
                         <h3 class="font-medium mt-4 mb-3">Tentang Developer</h3>
                         <ul class="list-none mt-4">
@@ -840,7 +837,7 @@
                                     class="flex items-center text-sm hover:opacity-75">
                                     <img src="landingpage/images/icons/github.svg" alt="GitHub"
                                         class="h-5 w-5 mr-2" />
-                                    Mario Aprilnino Prasetya
+                                    Mario Aprilnino Prasetyo
                                 </a>
                             </li>
                             <li class="mb-1 hover:opacity-75">
@@ -862,7 +859,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="basis-2/6">
+                {{-- <div class="basis-1/3">
                     <div class="p-4">
                         <h3 class="font-medium mt-4 mb-3">
                             Tentang DNCC Learning Platform
@@ -876,7 +873,7 @@
                             Anda sepenuhnya hari ini!
                         </p>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <hr class="mb-4 mt-8" />
             <div class="text-center mt-4">
@@ -908,7 +905,8 @@
     <script src="{{ asset('landingpage/vendors/slick/slick.min.js') }}"></script>
 
     <!-- Main JS -->
-    <<<<<<< HEAD <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('landingpage/js/main.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
     <script>
         function dropDown() {
             document.querySelector("#submenu").classList.toggle("hidden");
@@ -921,17 +919,5 @@
         }
     </script>
 </body>
-=======
-<script src="{{ asset('landingpage/js/main.js') }}"></script>
-</body>
-<script>
-    function dropDown() {
-        document.querySelector("#submenu").classList.toggle("hidden");
-        document.querySelector("#arrow").classList.toggle("rotate-0");
-    }
-    dropDown(); >>>
-    >>> > fa7a4328ff472a27247592c78501d76898a51631
 
-
-        <
-        /html>
+</html>
