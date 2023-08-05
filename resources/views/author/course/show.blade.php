@@ -68,14 +68,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($lessons as $number => $lesson)
+                                    @foreach ($lessons as $number => $lesson)
 
-                                            <x-lesson_tile :id="$lesson->id" :chapter="$lesson->chapter" :title="$lesson->title"
+                                            <x-lesson_list :id="$lesson->id" :chapter="$lesson->chapter" :title="$lesson->title"
                                                 :description="$lesson->description"
                                                  />
-                                            <x-test>{{ $lesson->id }}</x-test>
+                                            {{-- <x-test>{{ $lesson->id }}</x-test> --}}
 
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

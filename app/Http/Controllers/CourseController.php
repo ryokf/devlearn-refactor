@@ -34,7 +34,6 @@ class CourseController extends Controller
         } elseif ($user->hasRole('author')) {
             $courses = $this->courseService->getCourses($request, auth()->user()->id);
             $draft_courses = $this->courseService->getDraftCourse(auth()->user()->id);
-
             $sortOption = $this->courseService->sortOption();
 
             return view('author.course.index', [

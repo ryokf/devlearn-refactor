@@ -43,6 +43,8 @@
                             @endif
 
                             @csrf
+
+
                             <div class="relative mt-10">
                                 <label for="floating_outlined"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

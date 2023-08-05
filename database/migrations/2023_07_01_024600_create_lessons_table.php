@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('title', 100);
             $table->text('description');
             $table->text('text_content');
-            $table->text('media_content');
+            // $table->text('media_content');
             $table->boolean('is_public')->default(true);
             $table->boolean('is_problem')->default(false);
             $table->timestamps();

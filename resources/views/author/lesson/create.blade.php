@@ -42,7 +42,7 @@
                             @endif
 
                             @csrf
-                                <input type="hidden" name="course_id" value="{{ request()->get('course_id') }}">
+                            <input type="hidden" name="course_id" value="{{ request()->get('course_id') }}">
 
                             <div class="relative mt-10">
                                 <label for="floating_outlined"
@@ -71,15 +71,6 @@
                                 <textarea id="message" rows="4" name="description"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-slate-500 focus:border-slate-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500"
                                 placeholder="contoh : tutorial yang cocok bagi kalian yang belum pernah menggunakan javascript dan ingin mempelajarinya"></textarea>
-                            </div>
-
-                            <div class="relative mt-6">
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    for="file_input">Materi video</label>
-                                <input name="media_content"
-                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                    aria-describedby="file_input_help" id="file_input" type="file">
-
                             </div>
 
                             <div class="relative mt-6">

@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class TableList extends Component
+class CourseList extends Component
 {
     public $id;
     public $number;
@@ -47,6 +47,6 @@ class TableList extends Component
      */
     public function render()
     {
-        return view('components.table-list');
+        return view('components.course-list');
     }
 }
