@@ -25,7 +25,6 @@ class CourseController extends Controller
 
     public function index(Request $request)
     {
-
         $id = Auth::id();
         $user = User::findOrFail($id);
 

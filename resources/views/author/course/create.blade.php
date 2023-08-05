@@ -69,12 +69,12 @@
                                 </select>
                             </div>
 
-                            <div class="relative mt-6">
+                            <div class="relative mt-6 hidden">
                                 <label for="floating_outlined"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     Masukkan Harga
                                 </label>
-                                <input type="number" id="floating_outlined" name="price"
+                                <input type="hidden" id="floating_outlined" name="price" value="0"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500"
                                     placeholder="contoh : 180000" />
                             </div>
