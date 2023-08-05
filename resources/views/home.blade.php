@@ -149,20 +149,34 @@
                     </div>
 
                     <!-- masuk -->
-                    <div class="hidden md:block relative">
-                        <a href="#_"
-                            class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
-                            Masuk
-                        </a>
-                    </div>
+                    @if (Auth::user())
+                        <div class="hidden md:block relative">
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button
+                                    class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800"
+                                    type="submit">Logout</button>
+                            </form>
 
-                    <!-- daftar -->
-                    <div class="hidden md:block relative">
-                        <a href="#_"
-                            class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-95">
-                            Daftar
-                        </a>
-                    </div>
+                        </div>
+                    @else
+                        <div class="hidden md:block relative">
+                            <a href="{{ route('login') }}"
+                                class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
+                                Masuk
+                            </a>
+                        </div>
+
+
+                        <!-- daftar -->
+                        <div class="hidden md:block relative">
+                            <a href="{{ route('register') }}"
+                                class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-95">
+                                Daftar
+                            </a>
+                        </div>
+                    @endif
+
                 </div>
             </div>
 
@@ -875,17 +889,18 @@
 
     <!-- Main JS -->
     <script src="{{ asset('js/main.js') }}"></script>
-</body>
-<script>
-    function dropDown() {
-        document.querySelector("#submenu").classList.toggle("hidden");
-        document.querySelector("#arrow").classList.toggle("rotate-0");
-    }
-    dropDown();
+    <script>
+        function dropDown() {
+            document.querySelector("#submenu").classList.toggle("hidden");
+            document.querySelector("#arrow").classList.toggle("rotate-0");
+        }
+        dropDown();
 
-    function Openbar() {
-        document.querySelector(".sidebar").classList.toggle("left-[-300px]");
-    }
-</script>
+        function Openbar() {
+            document.querySelector(".sidebar").classList.toggle("left-[-300px]");
+        }
+    </script>
+</body>
+
 
 </html>
