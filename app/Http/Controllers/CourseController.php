@@ -94,18 +94,18 @@ class CourseController extends Controller
 
         return view('author.course.edit', [
             'menu' => parent::$menuSidebarauthor,
-            'course' => json_decode($course),
-            'categories' => json_decode($categories),
+            'course' => $course,
+            'categories' => $categories,
         ]);
     }
 
     public function update(UpdateCourseRequest $request)
     {
         if ($this->courseService->update($request)) {
-            return redirect(route('author_course_index'))->with('success', 'kursus berhasil diedit');
+            return redirect(route('course.index'))->with('success', 'kursus berhasil diedit');
         }
 
-        return redirect(route('author_course_index'))->with('error', 'kursus gagal diedit');
+        return redirect(route('course.index'))->with('error', 'kursus gagal diedit');
     }
 
     public function delete(Request $request)

@@ -65,12 +65,17 @@
                                 <select id="countries" name="category_id"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500">
                                     <option disabled>Pilih kategori</option>
-                                    {{-- @foreach ($categories as $category)
-                                        @if ($category->name == $course->category)
-                                            <option class="focus:bg-neutral-700" value="{{ $category->id }}">
-                                                {{ $category->name }}</option>
-                                        @endif
-                                    @endforeach --}}
+                                    @foreach ($categories as $category)
+                                            <option
+                                            class="focus:bg-neutral-700"
+                                            value="{{ $category['id'] }}"
+                                            @if ($category['name'] == $course['category']['name'])
+                                                selected
+                                             @endif
+                                            >
+                                                {{ $category['name'] }}
+                                            </option>
+                                    @endforeach
                                 </select>
                             </div>
 
