@@ -1,23 +1,26 @@
-@extends('layouts.layout')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('body')
-    <h1>
-        ini adalah home, anda login sebagai {{ request()->user()->roles[0]['name'] ?? 'tamu' }}
-    </h1>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DNCC Learning Platform</title>
 
-    {{-- @role('admin')
-        Admin
-    @endrole --}}
+    <script src="https://kit.fontawesome.com/c473da0646.js" crossorigin="anonymous"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- @role('member')
-        Admin
-    @endrole --}}
-    <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
+    <!-- Style -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500&display=swap" rel="stylesheet" />
+</head>
 
+<body class="font-poppins text-gray-800 overflow-x-hidden" id="top">
+    <!-- Start Navbar -->
     <nav class="bg-white shadow p-4 sticky top-0 z-50">
         <div class="container mx-auto">
             <div class="flex justify-between">
@@ -30,21 +33,43 @@
                     <!-- kategori -->
                     <div class="hidden md:block ml-10 group relative">
                         <a href="#">Kategori</a>
-                        <div class="hidden border-gray-100 absolute group-hover:block min-w-[200px] pt-8 drop-shadow-md">
+                        <div
+                            class="hidden border-gray-100 absolute group-hover:block min-w-[200px] pt-8 drop-shadow-md">
                             <ul class="list-none">
                                 <li>
-                                    <a href="#" class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
-                                        Front-End Programming
+                                    <a href="#"
+                                        class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
+                                        Web Development
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
-                                        Back-End Programming
+                                    <a href="#"
+                                        class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
+                                        Mobile Development
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
-                                        Design
+                                    <a href="#"
+                                        class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
+                                        Game Development
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
+                                        Data Analyst
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
+                                        Jaringan
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
+                                        Multimedia
                                     </a>
                                 </li>
                             </ul>
@@ -72,7 +97,7 @@
                 </div>
 
                 <!-- cart, login, sign in -->
-                <div class="flex justify-center items-center pr-5 md:pr-0">
+                <div class="flex justify-center pr-5 md:pr-0">
                     <!-- cart -->
                     <div class="relative">
                         <ul class="list-none">
@@ -90,6 +115,7 @@
                                         </svg>
                                     </span>
                                 </a>
+                                <!-- content -->
                                 <div class="hidden group-hover:block absolute shadow w-80 p-4 bg-white ml-4 right-1">
                                     <div class="flex p-2 border-b border-slate-200">
                                         <!-- tampilan keranjang kosong -->
@@ -99,22 +125,23 @@
                                             </h3>
                                         </div>
                                     </div>
+                                    <!-- tampilan keranjang terisi -->
                                     <div class="flex p-2 border-slate-200 items-center">
-                                        <div class="flex">
-                                            <div class="mr-2">
-                                                <img src="./images/avatar1.png" alt=""
-                                                    class="object-cover w-12 h-12" />
-                                            </div>
-                                            <a href="#" class="details">
-                                                <h3 class="text-slate-800 font-bold font-xl">
-                                                    Nama Course
-                                                </h3>
-                                                <p class="text-gray-400 font-xs">Nama Author</p>
-                                                <p class="text-slate-800 font-md font-bold">
-                                                    Rp300.000
-                                                </p>
-                                            </a>
+                                        <!-- <div class="flex"> -->
+                                        <div class="mr-2">
+                                            <img src="./images/avatar1.png" alt=""
+                                                class="object-cover w-12 h-12" />
                                         </div>
+                                        <a href="#" class="details">
+                                            <h3 class="text-slate-800 font-bold text-lg">
+                                                Nama Course
+                                            </h3>
+                                            <p class="text-gray-400 text-sm">Nama Author</p>
+                                            <p class="text-slate-800 text-lg font-bold">
+                                                Rp300.000
+                                            </p>
+                                        </a>
+                                        <!-- </div> -->
                                     </div>
                                 </div>
                             </li>
@@ -152,17 +179,12 @@
         </div>
         <!-- mobile nav -->
         <div class="mobile-navbar hidden h-[102vh] bg-white absolute top-0 left-0 text-left shadow overflow-y">
-            <!-- <div class="text-center pt-2 flex items-center mt-3">
-                          <a href="index.html" class="m-0 mx-auto">
-                            <img src="./images/logo.png" alt="" class="w-36" />
-                          </a>
-                        </div> -->
             <div class="p-3">
                 <!-- search bar -->
                 <div class="relative mt-3">
                     <span class="absolute left-3 top-1.5 text-slate-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-5 h-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                         </svg>
@@ -229,19 +251,27 @@
     <!-- End Navbar -->
 
     <!-- Start Header / Hero Section -->
-    <header class="bg-[#DEF6FD] mt-0 md:mt-2 rounded-md text-center md:text-left">
-        <div class="container mx-auto py-10 md:py-40 md:bg-hero bg-contain bg-no-repeat bg-[right_0px_top_10px]">
-            <h2 class="text-4xl font-bold mb-1 pb-3 md:pb-0">DNCC</h2>
+    <header class="text-center justify-center bg-no-repeat bg-cover"
+        style="
+        background-image: url('images/heroimage.jpeg');
+        background-attachment: fixed;
+        background-position: center;
+      ">
+        <div class="w-full bg-slate-100 py-20 md:py-36 bg-opacity-90">
+            <h2
+                class="text-6xl font-black mb-1 pb-1 md:pb-0 from-sky-600 to-slate-800 bg-gradient-to-r bg-clip-text text-transparent">
+                DNCC
+            </h2>
             <h2 class="font-semibold text-4xl pb-3 md:pb-0">Learning Platfrom</h2>
-            <p class="text-gray-500 my-3 w-1/2">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. A quam ad
-                maiores inventore quo hic? Facilis exercitationem repellendus
-                provident laudantium sunt explicabo impedit temporibus autem. Dicta
-                eos harum eius. Consequatur.
+            <p class="text-gray-500 my-3 px-0 md:px-40 md:mt-4 mt-1">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
+                eaque, amet error magnam laudantium aperiam perferendis maxime
+                corporis, omnis, optio officia id. Veritatis at cum velit delectus id
+                voluptas earum?
             </p>
             <!-- button mulai belajar -->
             <a href="#_"
-                class="relative inline-flex items-center justify-center p-4 px-7 py-3 overflow-hidden font-medium text-slate-800 transition duration-300 ease-out border-2 border-slate-800 rounded-full group mt-1">
+                class="relative inline-flex items-center justify-center p-4 px-7 py-3 overflow-hidden font-medium text-slate-800 transition duration-300 ease-out border-2 border-slate-800 rounded-full group md:mt-5 mt-1">
                 <span
                     class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-slate-800 group-hover:translate-x-0 ease">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -255,58 +285,159 @@
                     Belajar</span>
                 <span class="relative invisible">Mulai Belajar</span>
             </a>
-
-            <!-- <form action="" method="get" class="mt-4">
-                          <div class="flex bg-white items-center p-4">
-                            <div class="basis-1/3 md:basis-3/6 relative">
-                              <span class="absolute top-0.5 left-4">
-                                <i class="fa-solid fa-search text-slate-300"></i>
-                              </span>
-                              <input
-                                type="search"
-                                class="pl-12 md:pl-16 pr-2 w-full outline-none focus:outline-none font-thin"
-                                placeholder="Cari Materi"
-                              />
-                            </div>
-                            <div class="basis-1/3 md:basis-2/6 flex">
-                              <div>
-                                <i class="fa-solid fa-cube text-gray-400 mr-2"></i>
-                              </div>
-                              <div class="flex-1">
-                                <select
-                                  name="category"
-                                  id="category_id"
-                                  class="bg-white text-gray-400 font-thin w-full"
-                                >
-                                  <option value="">Category</option>
-                                  <option value="">Bootstrap</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="justify-end">
-                              <button
-                                class="transition bg-red-500 text-white px-8 hover:opacity-75 rounded-full p-3 w-full ml-3"
-                              >
-                                Search
-                              </button>
-                            </div>
-                          </div>
-                        </form> -->
-
-            <!-- <p class="mt-6 text-gray-600">
-                          <strong>Popular Search: </strong>
-                          <span class="text-gray-400"> Designer, Developer, PHP </span>
-                        </p> -->
         </div>
     </header>
     <!-- End Header / Hero Section -->
 
+    <section class="w-full py-10 bg-slate-50 px-10">
+        <div class="container mx-auto">
+            <div class="flex flex-row gap-10 items-center flex-wrap md:justify-center">
+                <!-- item start -->
+                <div class="flex gap-4 items-center md:basis-1/5">
+                    <div class="icon bg-slate-200 p-3 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                        </svg>
+                    </div>
+                    <div class="text">
+                        <h2 class="font-semibold text-xl pb-3 md:pb-0">Cepat & Mudah</h2>
+                    </div>
+                </div>
+                <!-- item end -->
+                <!-- item start -->
+                <div class="flex gap-3 items-center md:basis-1/5">
+                    <div class="icon icon bg-slate-200 p-3 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                        </svg>
+                    </div>
+                    <div class="text">
+                        <h2 class="font-semibold text-xl pb-3 md:pb-0">
+                            Simple & Tinggal Belajar
+                        </h2>
+                    </div>
+                </div>
+                <!-- item end -->
+                <!-- item start -->
+                <div class="flex gap-3 items-center md:basis-1/5">
+                    <div class="icon icon bg-slate-200 p-3 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12" />
+                        </svg>
+                    </div>
+                    <div class="text">
+                        <h2 class="font-semibold text-xl pb-3 md:pb-0">
+                            Materi Up-To-Date
+                        </h2>
+                    </div>
+                </div>
+                <!-- item end -->
+                <!-- item start -->
+                <div class="flex gap-3 items-center md:basis-1/5">
+                    <div class="icon icon bg-slate-200 p-3 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+                        </svg>
+                    </div>
+                    <div class="text">
+                        <h2 class="font-semibold text-xl pb-3 md:pb-0">User Friendly</h2>
+                    </div>
+                </div>
+                <!-- item end -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Start Categories By Divisi Section -->
+    <section id="categories" class="mt-12">
+        <div class="container mx-auto">
+            <h2 class="font-bold text-2xl my-12 text-center">
+                Kategori Divisi
+            </h2>
+
+            <div
+                class="flex flex-row gap-2 items-center text-center flex-wrap pl-4 md:pl-0 justify-center items-center">
+                <div
+                    class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
+                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
+                        <img src="./images/icons/web.svg" alt="" class="w-16 h-16" />
+                    </div>
+                    <h4 class="mt-4 mb-2 font-medium">Web Development</h4>
+                    <p class="text-gray-500 text-xs">32 Courses</p>
+                </div>
+                <!-- End Single Category Item -->
+
+                <div
+                    class="transition basis-[45%] md:basis-[10.93%] bg-[#FEF9EC] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
+                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
+                        <img src="./images/icons/mobile.svg" alt="" class="w-16 h-16" />
+                    </div>
+                    <h4 class="mt-4 mb-2 font-medium">Mobile Development</h4>
+                    <p class="text-gray-500 text-xs">30 Courses</p>
+                </div>
+                <!-- End Single Category Item -->
+
+                <div
+                    class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
+                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
+                        <img src="./images/icons/game.svg" alt="" class="w-16 h-16" />
+                    </div>
+                    <h4 class="mt-4 mb-2 font-medium">Game Development</h4>
+                    <p class="text-gray-500 text-xs">32 Courses</p>
+                </div>
+                <!-- End Single Category Item -->
+
+                <div
+                    class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
+                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
+                        <img src="./images/icons/dataAnalis.svg" alt="" class="w-16 h-16" />
+                    </div>
+                    <h4 class="mt-4 mb-2 font-medium">Data Analyst</h4>
+                    <p class="text-gray-500 text-xs">32 Courses</p>
+                </div>
+                <!-- End Single Category Item -->
+
+                <div
+                    class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
+                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
+                        <img src="./images/icons/jaringan.svg" alt="" class="w-16 h-16" />
+                    </div>
+                    <h4 class="mt-4 mb-2 font-medium">Jaringan</h4>
+                    <p class="text-gray-500 text-xs">32 Courses</p>
+                </div>
+                <!-- End Single Category Item -->
+
+                <div
+                    class="transition basis-[45%] md:basis-[10.93%] bg-[#FEF9EC] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
+                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
+                        <img src="./images/icons/multimedia.svg" alt="" class="w-16 h-16" />
+                    </div>
+                    <h4 class="mt-4 mb-2 font-medium">Multimedia</h4>
+                    <p class="text-gray-500 text-xs">32 Courses</p>
+                </div>
+                <!-- End Single Category Item -->
+            </div>
+        </div>
+    </section>
+    <!-- End Categories By Divisi Section -->
+
     <!-- Start Categories Section -->
     <section id="categories" class="mt-12">
         <div class="container mx-auto">
-            <h2 class="font-medium my-5 text-center">Browse Categories By Language</h2>
+            <h2 class="font-bold text-2xl my-12 text-center">
+                Kategori Bahasa Pemrograman
+            </h2>
 
-            <div class="flex flex-row gap-2 items-center text-center flex-wrap pl-4 md:pl-0 justify-center items-center">
+            <div
+                class="flex flex-row gap-2 items-center text-center flex-wrap pl-4 md:pl-0 justify-center items-center">
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
@@ -391,440 +522,202 @@
     </section>
     <!-- End Categories Section -->
 
-    <!-- Start Categories By Divisi Section -->
-    <section id="categories" class="mt-12">
-        <div class="container mx-auto ">
-            <h2 class="font-medium my-5 text-center">Browse Categories By Our Devision</h2>
-            <div class="flex flex-row gap-2 items-center text-center flex-wrap pl-4 md:pl-0 justify-center items-center">
-                <div
-                    class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/web.svg" alt="" class="w-16 h-16" />
-                    </div>
-                    <h4 class="mt-4 mb-2 font-medium">Web Development</h4>
-                    <p class="text-gray-500 text-xs">32 Courses</p>
-                </div>
-                <!-- End Single Category Item -->
-
-                <div
-                    class="transition basis-[45%] md:basis-[10.93%] bg-[#FEF9EC] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/mobile.svg" alt="" class="w-16 h-16" />
-                    </div>
-                    <h4 class="mt-4 mb-2 font-medium">Mobile Development</h4>
-                    <p class="text-gray-500 text-xs">30 Courses</p>
-                </div>
-                <!-- End Single Category Item -->
-
-                <div
-                    class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/game.svg" alt="" class="w-16 h-16" />
-                    </div>
-                    <h4 class="mt-4 mb-2 font-medium">Game Development</h4>
-                    <p class="text-gray-500 text-xs">32 Courses</p>
-                </div>
-                <!-- End Single Category Item -->
-
-                <div
-                    class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/dataAnalis.svg" alt="" class="w-16 h-16" />
-                    </div>
-                    <h4 class="mt-4 mb-2 font-medium">Data Analyst Course</h4>
-                    <p class="text-gray-500 text-xs">32 Courses</p>
-                </div>
-                <!-- End Single Category Item -->
-
-                <div
-                    class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/jaringan.svg" alt="" class="w-16 h-16" />
-                    </div>
-                    <h4 class="mt-4 mb-2 font-medium">Jaringan Course</h4>
-                    <p class="text-gray-500 text-xs">32 Courses</p>
-                </div>
-                <!-- End Single Category Item -->
-
-                <div
-                    class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/multimedia.svg" alt="" class="w-16 h-16" />
-                    </div>
-                    <h4 class="mt-4 mb-2 font-medium">Multimedia Course</h4>
-                    <p class="text-gray-500 text-xs">32 Courses</p>
-                </div>
-                <!-- End Single Category Item -->
-            </div>
-        </div>
-    </section>
-    <!-- End Categories By Divisi Section -->
-
-    <!-- Start Popular Courses Section -->
-    <section id="courses" class="mt-12">
-        <div class="container mx-auto">
-            <h2 class="font-medium my-5 text-center">Popular Courses</h2>
-
-            <div id="popular-course">
-                <div class="course-item group">
-                    <div
-                        class="border border-gray-100 shadow-sm rounded mr-3 transition hover:shadow-md group-hover:opacity-75">
-                        <img src="https://source.unsplash.com/random/400×200/?programming" alt=""
-                            class="w-full rounded rounded-b-none" />
-                        <div class="mt-3 p-3">
-                            <div class="flex justify-between">
-                                <div>
-                                    <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 mb-4 text-xs">
-                                <h2 class="text-base mt-3 font-medium">
-                                    Front End Programming
-                                </h2>
-                                <p class="text-gray-400 mt-2">32 Lesson</p>
-                                <div class="flex mt-5 items-center">
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Course Item -->
-
-                <div class="course-item group">
-                    <div
-                        class="border border-gray-100 shadow-sm rounded mr-3 transition hover:shadow-md group-hover:opacity-75">
-                        <img src="https://source.unsplash.com/random/400×200/?programming" alt=""
-                            class="w-full rounded rounded-b-none" />
-                        <div class="mt-3 p-3">
-                            <div class="flex justify-between">
-                                <div>
-                                    <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 mb-4 text-xs">
-                                <h2 class="text-base mt-3 font-medium">
-                                    Front End Programming
-                                </h2>
-                                <p class="text-gray-400 mt-2">32 Lesson</p>
-                                <div class="flex mt-5 items-center">
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Course Item -->
-
-                <div class="course-item group">
-                    <div
-                        class="border border-gray-100 shadow-sm rounded mr-3 transition hover:shadow-md group-hover:opacity-75">
-                        <img src="https://source.unsplash.com/random/400×200/?programming" alt=""
-                            class="w-full rounded rounded-b-none" />
-                        <div class="mt-3 p-3">
-                            <div class="flex justify-between">
-                                <div>
-                                    <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 mb-4 text-xs">
-                                <h2 class="text-base mt-3 font-medium">
-                                    Front End Programming
-                                </h2>
-                                <p class="text-gray-400 mt-2">32 Lesson</p>
-                                <div class="flex mt-5 items-center">
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Course Item -->
-
-                <div class="course-item group">
-                    <div
-                        class="border border-gray-100 shadow-sm rounded mr-3 transition hover:shadow-md group-hover:opacity-75">
-                        <img src="https://source.unsplash.com/random/400×200/?programming" alt=""
-                            class="w-full rounded rounded-b-none" />
-                        <div class="mt-3 p-3">
-                            <div class="flex justify-between">
-                                <div>
-                                    <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 mb-4 text-xs">
-                                <h2 class="text-base mt-3 font-medium">
-                                    Front End Programming
-                                </h2>
-                                <p class="text-gray-400 mt-2">32 Lesson</p>
-                                <div class="flex mt-5 items-center">
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Course Item -->
-
-                <div class="course-item group">
-                    <div
-                        class="border border-gray-100 shadow-sm rounded mr-3 transition hover:shadow-md group-hover:opacity-75">
-                        <img src="https://source.unsplash.com/random/400×200/?programming" alt=""
-                            class="w-full rounded rounded-b-none" />
-                        <div class="mt-3 p-3">
-                            <div class="flex justify-between">
-                                <div>
-                                    <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 mb-4 text-xs">
-                                <h2 class="text-base mt-3 font-medium">
-                                    Front End Programming
-                                </h2>
-                                <p class="text-gray-400 mt-2">32 Lesson</p>
-                                <div class="flex mt-5 items-center">
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Course Item -->
-            </div>
-        </div>
-    </section>
-    <!-- End Popular Courses Section -->
-
     <!-- Start New Courses Section -->
-    <section id="courses" class="mt-12">
+    <section id="courses" class="pt-20">
         <div class="container mx-auto">
-            <h2 class="font-medium my-5 text-center">New Courses</h2>
+            <h2 class="font-bold my-12 text-2xl text-center">Course Terbaru</h2>
 
             <div id="popular-course">
+                <!-- Single New Item -->
                 <div class="course-item group">
-                    <div
-                        class="border border-gray-100 shadow-sm rounded mr-3 transition hover:shadow-md group-hover:opacity-75">
-                        <img src="https://source.unsplash.com/random/400×200/?programming" alt=""
-                            class="w-full rounded rounded-b-none" />
-                        <div class="mt-3 p-3">
-                            <div class="flex justify-between">
-                                <div>
-                                    <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 mb-4 text-xs">
-                                <h2 class="text-base mt-3 font-medium">
-                                    Front End Programming
-                                </h2>
-                                <p class="text-gray-400 mt-2">32 Lesson</p>
-                                <div class="flex mt-5 items-center">
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
+                    <a href="#">
+                        <div
+                            class="border border-gray-100 shadow-sm rounded shadow-md mr-3 transition group-hover:shadow-lg">
+                            <img src="images/course1.png" alt="" class="w-full rounded rounded-b-none" />
+                            <div class="mt-3 p-3">
+                                <div class="flex justify-between">
+                                    <div>
+                                        <span class="text-green-600 font-bold"> Rp. 0 </span>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </div>
 
+                                <div class="mt-4 mb-4 text-xs">
+                                    <h2 class="text-base mt-3 font-medium hover:text-blue-700">
+                                        Nama Course
+                                    </h2>
+                                    <p class="text-gray-400 mt-2">32 Lesson</p>
+                                    <div class="flex mt-5 items-center">
+                                        <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                            Kategori
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-                <!-- Single Course Item -->
-
+                <!-- Single New Item -->
                 <div class="course-item group">
-                    <div
-                        class="border border-gray-100 shadow-sm rounded mr-3 transition hover:shadow-md group-hover:opacity-75">
-                        <img src="https://source.unsplash.com/random/400×200/?programming" alt=""
-                            class="w-full rounded rounded-b-none" />
-                        <div class="mt-3 p-3">
-                            <div class="flex justify-between">
-                                <div>
-                                    <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 mb-4 text-xs">
-                                <h2 class="text-base mt-3 font-medium">
-                                    Front End Programming
-                                </h2>
-                                <p class="text-gray-400 mt-2">32 Lesson</p>
-                                <div class="flex mt-5 items-center">
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
+                    <a href="#">
+                        <div
+                            class="border border-gray-100 shadow-sm rounded shadow-md mr-3 transition group-hover:shadow-lg">
+                            <img src="images/course1.png" alt="" class="w-full rounded rounded-b-none" />
+                            <div class="mt-3 p-3">
+                                <div class="flex justify-between">
+                                    <div>
+                                        <span class="text-green-600 font-bold"> Rp. 0 </span>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </div>
 
+                                <div class="mt-4 mb-4 text-xs">
+                                    <h2 class="text-base mt-3 font-medium hover:text-blue-700">
+                                        Nama Course
+                                    </h2>
+                                    <p class="text-gray-400 mt-2">32 Lesson</p>
+                                    <div class="flex mt-5 items-center">
+                                        <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                            Kategori
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-                <!-- Single Course Item -->
-
+                <!-- Single New Item -->
                 <div class="course-item group">
-                    <div
-                        class="border border-gray-100 shadow-sm rounded mr-3 transition hover:shadow-md group-hover:opacity-75">
-                        <img src="https://source.unsplash.com/random/400×200/?programming" alt=""
-                            class="w-full rounded rounded-b-none" />
-                        <div class="mt-3 p-3">
-                            <div class="flex justify-between">
-                                <div>
-                                    <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 mb-4 text-xs">
-                                <h2 class="text-base mt-3 font-medium">
-                                    Front End Programming
-                                </h2>
-                                <p class="text-gray-400 mt-2">32 Lesson</p>
-                                <div class="flex mt-5 items-center">
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
+                    <a href="#">
+                        <div
+                            class="border border-gray-100 shadow-sm rounded shadow-md mr-3 transition group-hover:shadow-lg">
+                            <img src="images/course1.png" alt="" class="w-full rounded rounded-b-none" />
+                            <div class="mt-3 p-3">
+                                <div class="flex justify-between">
+                                    <div>
+                                        <span class="text-green-600 font-bold"> Rp. 0 </span>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </div>
 
+                                <div class="mt-4 mb-4 text-xs">
+                                    <h2 class="text-base mt-3 font-medium hover:text-blue-700">
+                                        Nama Course
+                                    </h2>
+                                    <p class="text-gray-400 mt-2">32 Lesson</p>
+                                    <div class="flex mt-5 items-center">
+                                        <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                            Kategori
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-                <!-- Single Course Item -->
-
+                <!-- Single New Item -->
                 <div class="course-item group">
-                    <div
-                        class="border border-gray-100 shadow-sm rounded mr-3 transition hover:shadow-md group-hover:opacity-75">
-                        <img src="https://source.unsplash.com/random/400×200/?programming" alt=""
-                            class="w-full rounded rounded-b-none" />
-                        <div class="mt-3 p-3">
-                            <div class="flex justify-between">
-                                <div>
-                                    <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 mb-4 text-xs">
-                                <h2 class="text-base mt-3 font-medium">
-                                    Front End Programming
-                                </h2>
-                                <p class="text-gray-400 mt-2">32 Lesson</p>
-                                <div class="flex mt-5 items-center">
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
+                    <a href="#">
+                        <div
+                            class="border border-gray-100 shadow-sm rounded shadow-md mr-3 transition group-hover:shadow-lg">
+                            <img src="images/course1.png" alt="" class="w-full rounded rounded-b-none" />
+                            <div class="mt-3 p-3">
+                                <div class="flex justify-between">
+                                    <div>
+                                        <span class="text-green-600 font-bold"> Rp. 0 </span>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </div>
 
+                                <div class="mt-4 mb-4 text-xs">
+                                    <h2 class="text-base mt-3 font-medium hover:text-blue-700">
+                                        Nama Course
+                                    </h2>
+                                    <p class="text-gray-400 mt-2">32 Lesson</p>
+                                    <div class="flex mt-5 items-center">
+                                        <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                            Kategori
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-                <!-- Single Course Item -->
-
+                <!-- Single New Item -->
                 <div class="course-item group">
-                    <div
-                        class="border border-gray-100 shadow-sm rounded mr-3 transition hover:shadow-md group-hover:opacity-75">
-                        <img src="https://source.unsplash.com/random/400×200/?programming" alt=""
-                            class="w-full rounded rounded-b-none" />
-                        <div class="mt-3 p-3">
-                            <div class="flex justify-between">
-                                <div>
-                                    <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 mb-4 text-xs">
-                                <h2 class="text-base mt-3 font-medium">
-                                    Front End Programming
-                                </h2>
-                                <p class="text-gray-400 mt-2">32 Lesson</p>
-                                <div class="flex mt-5 items-center">
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
-                                    <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                        Python
-                                    </span>
+                    <a href="#">
+                        <div
+                            class="border border-gray-100 shadow-sm rounded shadow-md mr-3 transition group-hover:shadow-lg">
+                            <img src="images/course1.png" alt="" class="w-full rounded rounded-b-none" />
+                            <div class="mt-3 p-3">
+                                <div class="flex justify-between">
+                                    <div>
+                                        <span class="text-green-600 font-bold"> Rp. 0 </span>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </div>
 
+                                <div class="mt-4 mb-4 text-xs">
+                                    <h2 class="text-base mt-3 font-medium hover:text-blue-700">
+                                        Nama Course
+                                    </h2>
+                                    <p class="text-gray-400 mt-2">32 Lesson</p>
+                                    <div class="flex mt-5 items-center">
+                                        <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                            Kategori
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-                <!-- Single Course Item -->
             </div>
         </div>
     </section>
@@ -834,103 +727,102 @@
     <footer class="bg-[#00103F] text-white mt-20">
         <div class="container mx-auto px-5 py-16">
             <div class="flex flex-col md:flex-row">
-                <div class="basis-2/6">
-                    <div class="p-5">
-                        <img src="./images/logo.webp" alt="" class="w-10" />
-                        <div>
-                            <h3 class="font-medium mt-4 mb-3">Call Us</h3>
-                            <div class="text-sm">
-                                <h4 class="mb-2">+88019626352323</h4>
-                                <h4 class="mb-2">hello@gmail.com</h4>
-                                <h4 class="mb-2">9AM- 5PM, Monday - Friday</h4>
-                                <h4 class="mb-2">
-                                    PO Box 567, Hostain st. 433 Los Angeles, California, US
-                                </h4>
-                            </div>
+                <div class="basis-1/6">
+                    <div class="p-4">
+                        <h3 class="font-medium mt-4 mb-3">Tentang Kami</h3>
+                        <div class="text-sm">
+                            <ul class="list-none mt-4">
+                                <li class="mb-1 hover:opacity-75">
+                                    <a href="#" class="text-sm"> Mulai Belajar </a>
+                                </li>
+                                <li class="mb-1 hover:opacity-75">
+                                    <a href="#" class="text-sm"> Lihat Semua Kursus </a>
+                                </li>
+                                <li class="mb-1 hover:opacity-75">
+                                    <a href="#" class="text-sm"> Kontak Kami </a>
+                                </li>
+                                <li class="mb-1 hover:opacity-75">
+                                    <a href="https://dnccudinus.org/" class="text-sm">
+                                        Website Resmi DNCC
+                                    </a>
+                                </li>
+                                <li class="mb-1 hover:opacity-75">
+                                    <a href="https://dinus.ac.id/" class="text-sm">
+                                        Website Resmi Universitas
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 <div class="basis-1/6">
                     <div class="p-4">
-                        <h3 class="font-medium mt-4 mb-3">Links</h3>
+                        <h3 class="font-medium mt-4 mb-3">Masuk - Sign In</h3>
                         <ul class="list-none mt-4">
-                            <li>
-                                <a href="#" class="text-sm">
-                                    <i class="fa-solid fa-chevron-right text-xs mr-3"></i>
-                                    Start here
-                                </a>
+                            <li class="mb-1 hover:opacity-75">
+                                <a href="#" class="text-sm"> Untuk Mahasiswa </a>
                             </li>
-                            <li>
-                                <a href="#" class="text-sm">
-                                    <i class="fa-solid fa-chevron-right text-xs mr-3"></i>
-                                    Blogs
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-sm">
-                                    <i class="fa-solid fa-chevron-right text-xs mr-3"></i>
-                                    About us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-sm">
-                                    <i class="fa-solid fa-chevron-right text-xs mr-3"></i>
-                                    Contact Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-sm">
-                                    <i class="fa-solid fa-chevron-right text-xs mr-3"></i>
-                                    Career
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-sm">
-                                    <i class="fa-solid fa-chevron-right text-xs mr-3"></i>
-                                    Courses
-                                </a>
+                            <li class="mb-1 hover:opacity-75">
+                                <a href="#" class="text-sm"> Untuk Pembelajar </a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="basis-1/6">
                     <div class="p-4">
-                        <h3 class="font-medium mt-4 mb-3">Information</h3>
+                        <h3 class="font-medium mt-4 mb-3">Kategori</h3>
                         <ul class="list-none mt-4">
-                            <li>
-                                <a href="#" class="text-sm">
-                                    <i class="fa-solid fa-chevron-right text-xs mr-3"></i>
-                                    Start here
+                            <li class="mb-1 hover:opacity-75">
+                                <a href="#" class="text-sm"> Web Development </a>
+                            </li>
+                            <li class="mb-1 hover:opacity-75">
+                                <a href="#" class="text-sm"> Mobile Development </a>
+                            </li>
+                            <li class="mb-1 hover:opacity-75">
+                                <a href="#" class="text-sm"> Game Development </a>
+                            </li>
+                            <li class="mb-1 hover:opacity-75">
+                                <a href="#" class="text-sm"> Jaringan Komputer </a>
+                            </li>
+                            <li class="mb-1 hover:opacity-75">
+                                <a href="#" class="text-sm"> Data Analis </a>
+                            </li>
+                            <li class="mb-1 hover:opacity-75">
+                                <a href="#" class="text-sm"> Multimedia </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="basis-1/6">
+                    <div class="p-4">
+                        <h3 class="font-medium mt-4 mb-3">Tentang Developer</h3>
+                        <ul class="list-none mt-4">
+                            <li class="mb-1 hover:opacity-75">
+                                <a href="https://github.com/ryokf" class="flex items-center text-sm hover:opacity-75">
+                                    <img src="./images/icons/github.svg" alt="GitHub" class="h-5 w-5 mr-2" />
+                                    Ryo Khrisna Fitriawan
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" class="text-sm">
-                                    <i class="fa-solid fa-chevron-right text-xs mr-3"></i>
-                                    Blogs
+                            <li class="mb-1 hover:opacity-75">
+                                <a href="https://github.com/marioapn3"
+                                    class="flex items-center text-sm hover:opacity-75">
+                                    <img src="./images/icons/github.svg" alt="GitHub" class="h-5 w-5 mr-2" />
+                                    Mario Aprilnino Prasetya
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" class="text-sm">
-                                    <i class="fa-solid fa-chevron-right text-xs mr-3"></i>
-                                    About us
+                            <li class="mb-1 hover:opacity-75">
+                                <a href="https://github.com/taliyameyswara"
+                                    class="flex items-center text-sm hover:opacity-75">
+                                    <img src="./images/icons/github.svg" alt="GitHub" class="h-5 w-5 mr-2" />
+                                    Taliya Meyswara
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" class="text-sm">
-                                    <i class="fa-solid fa-chevron-right text-xs mr-3"></i>
-                                    Contact Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-sm">
-                                    <i class="fa-solid fa-chevron-right text-xs mr-3"></i>
-                                    Career
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-sm">
-                                    <i class="fa-solid fa-chevron-right text-xs mr-3"></i>
-                                    Courses
+                            <li class="mb-1 hover:opacity-75">
+                                <a href="https://github.com/isnanramalia"
+                                    class="flex items-center text-sm hover:opacity-75 hover:opacity-75">
+                                    <img src="./images/icons/github.svg" alt="GitHub" class="h-5 w-5 mr-2" />
+                                    Isna Nur Amalia
                                 </a>
                             </li>
                         </ul>
@@ -938,23 +830,21 @@
                 </div>
                 <div class="basis-2/6">
                     <div class="p-4">
-                        <h3 class="font-medium mt-4 mb-3">Sign up for our newsletter</h3>
-                        <p class="text-sm">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut
-                            odit magnam officia sequi aliquid facere corporis dolorem
-                            beatae? Dolore pariatur illo odio nulla atque quibusdam dicta ut
-                            tempore, suscipit est.
-                        </p>
+                        <h3 class="font-medium mt-4 mb-3">
+                            Tentang DNCC Learning Platform
+                        </h3>
                         <p class="mt-4 relative">
-                            <input type="email" placeholder="Your e-mail"
-                                class="w-full p-3 pl-5 bg-white rounded-full text-gray-700 placeholder:text-gray-700" />
-                            <span class="absolute top-1 right-2 bg-red-600 px-5 p-2 rounded-full uppercase">
-                                Subscribe
-                            </span>
+                            Kami menyediakan pendidikan berkualitas dengan kursus-kursus
+                            komprehensif untuk semua. Misi kami adalah menyediakan
+                            kursus-kursus yang mudah diakses dan komprehensif untuk berbagai
+                            minat dan tingkat kemampuan. Bergabunglah dengan kami dalam
+                            perjalanan transformasi ilmu pengetahuan dan wujudkan potensi
+                            Anda sepenuhnya hari ini!
                         </p>
                     </div>
                 </div>
             </div>
+            <hr class="mb-4 mt-8" />
             <div class="text-center mt-4">
                 &copy; 2023 DNCC. All rights reserved.
             </div>
@@ -962,10 +852,10 @@
             <!-- scroll to top -->
             <div>
                 <a id="scroll-to-top" href="#top"
-                    class="transition hidden shadow bottom-1 right-1 w-14 h-14 rounded-[50%] bg-red-600 hover:opacity-80 z-50 border group">
+                    class="transition hidden shadow bottom-1 right-1 w-14 h-14 rounded-[50%] bg-sky-600 hover:opacity-80 z-50 border group">
                     <div class="transition pt-4 pl-4 text-white group-hover:-translate-y-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
                         </svg>
@@ -978,11 +868,24 @@
 
     <!-- Scripts -->
     <!-- Jquery JS -->
-    {{-- <script src="./vendors/jquery/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('vendors/jquery/jquery-3.6.0.min.js') }}"></script>
 
     <!-- Slick Carousel JS -->
-    <script src="./vendors/slick/slick.min.js"></script>
+    <script src="{{ asset('vendors/slick/slick.min.js') }}./vendors/slick/slick.min.js"></script>
 
     <!-- Main JS -->
-    <script src="./js/main.js"></script> --}}
-@endsection
+    <script src="{{ asset('js/main.js') }}"></script>
+</body>
+<script>
+    function dropDown() {
+        document.querySelector("#submenu").classList.toggle("hidden");
+        document.querySelector("#arrow").classList.toggle("rotate-0");
+    }
+    dropDown();
+
+    function Openbar() {
+        document.querySelector(".sidebar").classList.toggle("left-[-300px]");
+    }
+</script>
+
+</html>

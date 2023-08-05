@@ -59,7 +59,7 @@ Route::controller(CourseController::class)->group(function () {
 
     Route::get('/course-all', 'all')->name('course.index.all');
     Route::get('/course-show/{id}', 'show')->name('course.show');
-    
+
     Route::get('/course', 'index')->middleware('auth')->name('course.index');
 
     Route::middleware('role:author')->group(function () {
