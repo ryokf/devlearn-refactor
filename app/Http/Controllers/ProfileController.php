@@ -38,14 +38,10 @@ class ProfileController extends Controller
                 'data' => $this->authorService->dashboard(),
             ]);
         } else {
-<<<<<<< HEAD
-            return view('member.dashboard');
-=======
             return view('member.dashboard', [
                 'menu' => parent::$memberMenuSidebar,
                 'data' => $this->memberService->dashboard(),
             ]);
->>>>>>> 5035fd7d5fcc0a2b2781ffdcff34cc0e82747dae
         }
     }
 

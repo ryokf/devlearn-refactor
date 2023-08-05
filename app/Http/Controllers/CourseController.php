@@ -6,13 +6,10 @@ use App\Http\Requests\CreateCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
 use App\Models\Lesson;
-<<<<<<< HEAD
 use App\Models\Voucher;
 use App\Services\Admin\CourseService as AdminCourseService;
-=======
 use App\Models\User;
 use App\Models\UserCourse;
->>>>>>> 5035fd7d5fcc0a2b2781ffdcff34cc0e82747dae
 use App\Services\Author\CourseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
