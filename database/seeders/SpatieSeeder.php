@@ -21,7 +21,7 @@ class SpatieSeeder extends Seeder
             'guard_name' => 'web',
         ]);
         Role::create([
-            'name' => 'mentor',
+            'name' => 'author',
             'guard_name' => 'web',
         ]);
         Role::create([
@@ -72,7 +72,7 @@ class SpatieSeeder extends Seeder
         for ($i = 1; $i <= 2; $i++) {
             $user = User::find($i);
             if ($i < 2) {
-                $user->assignRole('mentor');
+                $user->assignRole('author');
             } else {
                 $user->assignRole('member');
             }

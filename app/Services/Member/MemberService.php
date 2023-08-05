@@ -11,7 +11,7 @@ class MemberService
 {
     public function courseBought()
     {
-        $courseBought = UserCourse::where('user_id', auth()->user()->id)->where('payment_status', 'sukses')->get();
+        $courseBought = UserCourse::where('user_id', auth()->user()->id)->get();
 
         return $courseBought;
     }
@@ -84,7 +84,7 @@ class MemberService
 
     public function recentBought()
     {
-        $courseBought = UserCourse::where('user_id', auth()->user()->id)->orderBy('created_at')->get();
+        $courseBought = UserCourse::where('user_id', auth()->user()->id)->orderBy('created_at')->limit(5)->get();
         $courses = [];
 
         foreach ($courseBought as $course) {
@@ -105,4 +105,27 @@ class MemberService
 
         return collect($courses)->flatten();
     }
-}
+
+    public function dashboard()
+    {
+        $courseBought = $this->courseBought();
+        $coursePass = $this->coursePass();
+        $courseBoughtPerMonth = $this->courseBoughtPerMonth();
+        $coursePassPerMonth = $this->coursePassPerMonth();
+        $categories = $this->getCategory();
+        $passPerCategory = $this->passPerCategory();
+        $recentBought = $this->recentBought();
+        $recentFinish = $this->recentFinish();
+
+
+        return [
+            'courseBought' => $courseBought,
+            'coursePass' => $coursePass,
+            'categories' => $categories,
+            'courseBoughtPerMonth' => $courseBoughtPerMonth,
+            'coursePassPerMonth' => $coursePassPerMonth,
+            'passPerCategory' => $passPerCategory,
+            'recentBought' => $recentBought,
+            'recentFinish' => $recentFinish,
+        ];
+}}

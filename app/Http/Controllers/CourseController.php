@@ -6,10 +6,16 @@ use App\Http\Requests\CreateCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
 use App\Models\Lesson;
+<<<<<<< HEAD
 use App\Models\Voucher;
 use App\Services\Admin\CourseService as AdminCourseService;
+=======
+use App\Models\User;
+use App\Models\UserCourse;
+>>>>>>> 5035fd7d5fcc0a2b2781ffdcff34cc0e82747dae
 use App\Services\Author\CourseService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -22,17 +28,35 @@ class CourseController extends Controller
 
     public function index(Request $request)
     {
-        $courses = $this->courseService->getCourses($request, auth()->user()->id);
-        $draft_courses = $this->courseService->getDraftCourse(auth()->user()->id);
 
-        $sortOption = $this->courseService->sortOption();
+        $id = Auth::id();
+        $user = User::findOrFail($id);
 
-        return view('author.course.index', [
-            'menu' => parent::$menuSidebarMentor,
-            'sorts' => $sortOption,
-            'courses' => $courses,
-            'draft_courses' => $draft_courses,
-        ]);
+        if ($user->hasRole('admin')) {
+            return view('admin.dashboard', [
+                // 'menu' => parent::$menuSidebar
+            ]);
+        } elseif ($user->hasRole('author')) {
+            $courses = $this->courseService->getCourses($request, auth()->user()->id);
+            $draft_courses = $this->courseService->getDraftCourse(auth()->user()->id);
+            $sortOption = $this->courseService->sortOption();
+
+            return view('author.course.index', [
+                'menu' => parent::$menuSidebarauthor,
+                'sorts' => $sortOption,
+                'courses' => $courses,
+                'draft_courses' => $draft_courses,
+            ]);
+        } elseif ($user->hasRole('member')) {
+            $courses = UserCourse::where('user_id', auth()->user()->id)->paginate(16);
+
+            return view('member.course.index', [
+                'menu' => parent::$memberMenuSidebar,
+                'courses' => $courses,
+            ]);
+        } else {
+            return true;
+        }
     }
 
     public function show(Request $request)
@@ -40,8 +64,8 @@ class CourseController extends Controller
         $course = Course::where('id', $request->id)->first();
         $lessons = Lesson::where('course_id', $request->id)->orderBy('chapter')->get();
 
-        return view('author.course.detail', [
-            'menu' => parent::$menuSidebarMentor,
+        return view('author.course.show', [
+            'menu' => parent::$menuSidebarauthor,
             'course' => $course,
             'lessons' => $lessons,
         ]);
@@ -52,7 +76,7 @@ class CourseController extends Controller
         $data = $this->courseService->getCategory();
 
         return view('author.course.create', [
-            'menu' => parent::$menuSidebarMentor,
+            'menu' => parent::$menuSidebarauthor,
             'data' => json_decode($data),
         ]);
     }
@@ -61,12 +85,10 @@ class CourseController extends Controller
     {
         if ($this->courseService->createCourse($request)) {
             $message = 'Kursus berhasil ditambahkan';
-
-            return redirect(route('author_course_index'))->with('success', $message);
+            return redirect(route('course.index'))->with('success', $message);
         } else {
             $message = 'Kursus gagal ditambahkan';
-
-            return redirect(route('author_course_index'))->with('erorr', $message);
+            return redirect(route('course.index'))->with('erorr', $message);
         }
     }
 
@@ -76,19 +98,19 @@ class CourseController extends Controller
         $course = $this->courseService->getCourse($id);
 
         return view('author.course.edit', [
-            'menu' => parent::$menuSidebarMentor,
-            'course' => json_decode($course),
-            'categories' => json_decode($categories),
+            'menu' => parent::$menuSidebarauthor,
+            'course' => $course,
+            'categories' => $categories,
         ]);
     }
 
     public function update(UpdateCourseRequest $request)
     {
         if ($this->courseService->update($request)) {
-            return redirect(route('author_course_index'))->with('success', 'kursus berhasil diedit');
+            return redirect(route('course.index'))->with('success', 'kursus berhasil diedit');
         }
 
-        return redirect(route('author_course_index'))->with('error', 'kursus gagal diedit');
+        return redirect(route('course.index'))->with('error', 'kursus gagal diedit');
     }
 
     public function delete(Request $request)

@@ -97,10 +97,10 @@ class LessonController extends Controller
         }
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('author.lesson.create', [
-            'menu' => parent::$menuSidebar,
+            'menu' => parent::$menuSidebarauthor,
         ]);
     }
 
@@ -108,48 +108,40 @@ class LessonController extends Controller
     {
         $request->validate([
             'course_id' => 'required|exists:courses,id',
-            // 'chapter' => ['required', 'integer', new UniqueChapterPerCourse($request->input('course_id'))],
             'title' => 'required|string|max:100',
             'description' => 'required|string',
             'text_content' => 'required|string',
-            'media_content' => 'required',
-            // 'thumbnail' => 'string',
-            'is_public' => 'boolean',
-            'is_problem' => 'boolean',
         ]);
 
-        $chapter = Lesson::where('course_id', $request->course_id)->orderByDesc('chapter')->first()->chapter ?? 0;
-        $chapter++;
-        if ($request->hasFile('media_content')) {
-            $file = $request->file('media_content');
-            $filename = time().'_'.$file->getClientOriginalName();
-            $file->storeAs('public/media_content', $filename);
-        }
+        $chapter = Lesson::max('chapter', ['course_id' => $request->course_id]) + 1;
 
-        $lesson = new Lesson();
-        $lesson->course_id = $request->input('course_id');
-        $lesson->chapter = $chapter;
-        $lesson->title = $request->input('title');
-        $lesson->description = $request->input('description');
-        $lesson->text_content = $request->input('text_content');
-        $lesson->media_content = $filename; // Save the filename in the database
-        // $lesson->thumbnail = $request->input('thumbnail');
-        $lesson->is_public = $request->input('is_public', true);
-        $lesson->is_problem = $request->input('is_problem', false);
+        // $lesson = new Lesson();
+        // $lesson->course_id = $request->course_id;
+        // $lesson->chapter = $chapter;
+        // $lesson->title = $request->input('title');
+        // $lesson->description = $request->input('description');
+        // $lesson->text_content = $request->input('text_content');
 
-        $lesson->save();
+        // $lesson->saveOrFail();
 
-        // Optionally, you can redirect to a success page or show a success message.
-        return redirect()->route('author_course_show', ['id' => $request->get('course_id')])
-            ->with('success', 'Lesson created successfully!');
+        Lesson::create([
+            'course_id' => $request->course_id,
+            'chapter' => $chapter,
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'text_content' => $request->input('text_content'),
+        ]);
+
+        return redirect()->route('course.show', $request->course_id)->with('success', 'Lesson created successfully!');
     }
+
 
     public function edit(Request $request)
     {
         $lesson = Lesson::where('id', $request->id)->first();
 
         return view('author.lesson.edit', [
-            'menu' => parent::$menuSidebar,
+            'menu' => parent::$menuSidebarauthor,
             'lesson' => $lesson,
         ]);
     }

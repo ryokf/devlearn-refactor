@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
+use App\Services\Author\AuthorService;
+use App\Services\Member\MemberService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +14,15 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    private $authorService;
+    private $memberService;
+
+    function __construct(AuthorService $authorService, MemberService $memberService)
+    {
+        $this->authorService = $authorService;
+        $this->memberService = $memberService;
+    }
+
     public function dashboard()
     {
         $id = Auth::id();
@@ -21,12 +32,20 @@ class ProfileController extends Controller
             return view('admin.dashboard', [
                 'menu' => parent::$menuSidebarAdmin
             ]);
-        } elseif ($user->hasRole('mentor')) {
-            return view('mentor.dashboard', [
-                'menu' => parent::$menuSidebarMentor
+        } elseif ($user->hasRole('author')) {
+            return view('author.dashboard', [
+                'menu' => parent::$menuSidebarauthor,
+                'data' => $this->authorService->dashboard(),
             ]);
         } else {
+<<<<<<< HEAD
             return view('member.dashboard');
+=======
+            return view('member.dashboard', [
+                'menu' => parent::$memberMenuSidebar,
+                'data' => $this->memberService->dashboard(),
+            ]);
+>>>>>>> 5035fd7d5fcc0a2b2781ffdcff34cc0e82747dae
         }
     }
 
@@ -36,6 +55,7 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         return view('profile.edit', [
+            'menu' => auth()->user()->roles[0]['name'] == "author" ? parent::$menuSidebarauthor : parent::$memberMenuSidebar,
             'user' => $request->user(),
         ]);
     }

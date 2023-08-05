@@ -20,4 +20,6 @@ class MemberService
 
         return collect($member)->forPage($request->get('page'), 10);
     }
+
+
 }

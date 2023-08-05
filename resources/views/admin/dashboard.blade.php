@@ -5,5 +5,6 @@
 
     <h1>
         ini adalah dashboard, anda login sebagai {{ request()->user()->roles[0]['name'] ?? 'tamu' }}
+        Admin
     </h1>
 @endsection
