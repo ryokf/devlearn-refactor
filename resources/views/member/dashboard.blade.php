@@ -43,7 +43,7 @@
                         </div>
                         <div class="p-4 flex-auto">
                             <!-- Chart -->
-                            <div class="relative h-350-px ">z
+                            <div class="relative h-350-px ">
                                 <div class="chartjs-size-monitor">
                                     <div class="chartjs-size-monitor-expand">
                                         <div class=""></div>
@@ -253,8 +253,8 @@
             document.getElementById(dropdownID).classList.toggle("block");
         }
 
+(function(){
 
-        (function() {
             /* Chart initialisations */
             /* Line Chart */
             var config = {
@@ -407,8 +407,8 @@
             };
             var ctx = document.getElementById("income-chart").getContext("2d");
             window.myLine = new Chart(ctx, config);
+        })
 
-
-        })();
+        ();
     </script>
 @endsection
