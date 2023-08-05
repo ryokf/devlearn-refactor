@@ -26,4 +26,13 @@ class Controller extends BaseController
         // '/member/transaction' => ['daftar transaksi', 'fa-solid fa-arrow-right-arrow-left'],
         '/profile' => ['profile', 'fa-solid fa-user-pen'],
     ];
+
+    public static $menuSidebarAdmin = [
+        '/dashboard' => ['dashboard', 'fa-solid fa-chart-line'],
+        '/users' => ['Users', 'fa-solid fa-chalkboard'],
+        '/roles' => ['Roles', 'fa-solid fa-person-chalkboard'],
+        '/category-admin' => ['Category', 'fa-solid fa-arrow-right-arrow-left'],
+        '/course-admin' => ['Course', 'fa-solid fa-user'],
+        '/profile' => ['profile', 'fa-solid fa-user-pen'],
+    ];
 }

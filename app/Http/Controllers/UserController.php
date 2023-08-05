@@ -10,11 +10,16 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $menuSidebarAdmin = parent::$menuSidebarAdmin;
+        view()->share('menu', $menuSidebarAdmin);
+    }
     public function index()
     {
         $users = User::paginate(7);
 
-        return view('admin.users.index', compact('users'));
+        return view('admin.user.index', compact('users'));
     }
 
     public function show(User $user)
@@ -22,7 +27,7 @@ class UserController extends Controller
         $roles = Role::all();
         $permissions = Permission::all();
 
-        return view('admin.users.role', compact('user', 'roles', 'permissions'));
+        return view('admin.user.role', compact('user', 'roles', 'permissions'));
     }
 
     public function giveRole(Request $request, User $user)

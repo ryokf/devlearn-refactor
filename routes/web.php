@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Spatie\RoleController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\AssignmentScoreController;
 use App\Http\Controllers\CategoryController;
@@ -8,7 +9,10 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Spatie\PermissionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserCourseController;
+use App\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,25 +31,24 @@ Route::controller(HomeController::class)->group(function () {
 });
 
 Route::controller(AssignmentController::class)->group(function () {
-
 });
 
 Route::controller(AssignmentScoreController::class)->group(function () {
-
 });
 
 Route::controller(CategoryController::class)->group(function () {
     Route::get('/category', 'index')->name('category.index');
     Route::get('/category-course/{id}', 'show')->name('category.show');
 
+    //CRUD Category Course by admin
     Route::middleware('role:admin')->group(function () {
         Route::get('/category-admin', 'indexAdmin')->name('category.index.admin');
-        Route::post('/category', 'store')->name('category.store');
-        Route::get('/category-edit', 'edit')->name('category.edit');
-        Route::put('/category/{id}', 'update')->name('category.create');
+        Route::post('/category', 'store')->name('category.add');
         Route::delete('/category/{id}', 'delete')->name('category.delete');
-    });
 
+        Route::get('/category-edit/{id}', 'edit')->name('category.edit');
+        Route::put('/category/{id}', 'update')->name('category.update');
+    });
 });
 
 Route::controller(CertificateController::class)->middleware('auth|role:member')->group(function () {
@@ -54,6 +57,7 @@ Route::controller(CertificateController::class)->middleware('auth|role:member')-
 });
 
 Route::controller(CourseController::class)->group(function () {
+
     Route::get('/course-all', 'all')->name('course.index.all');
     Route::get('/course-show/{id}', 'show')->name('course.show');
 
@@ -66,6 +70,12 @@ Route::controller(CourseController::class)->group(function () {
         Route::put('/course', 'update')->name('course.update');
         Route::delete('/course', 'delete')->name('course.delete');
     });
+
+    //index course
+    Route::get('/course-admin', 'indexAdmin')->name('course.index.admin');
+
+    //lihat lesson
+    Route::get('/course-admin/{id}', 'edit')->name('course.detail');
 });
 
 Route::controller(LessonController::class)->group(function () {
@@ -93,11 +103,16 @@ Route::controller(UserCourseController::class)->group(function () {
 });
 
 Route::controller(VoucherController::class)->middleware('role:admin')->group(function () {
-    Route::get('/voucher', 'index')->name('voucher.index');
+
+    //voucher add
     Route::post('/voucher', 'store')->name('voucher.store');
-    Route::get('/voucher-edit', 'edit')->name('voucher.edit');
-    Route::put('/voucher', 'update')->name('voucher.create');
-    Route::delete('/voucher', 'delete')->name('voucher.delete');
+    // voucher delete
+    Route::delete('/voucher/{id}', 'delete')->name('voucher.delete');
+    //buat ke halaman tambah voucher ke course
+    Route::get('/voucher/{id}', 'edit')->name('course.voucher.edit');
+    //add ke database voucher
+    Route::put('/voucher/{id}', 'update')->name('course.voucher.update');
+
 });
 
 Route::controller(ProfileController::class)->middleware('auth')->group(function () {
@@ -130,4 +145,4 @@ Route::controller(UserController::class)->group(function () {
     Route::delete('/users/{user}/permissions/{permission}', 'revokePermission')->name('users.permissions.revoke');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
