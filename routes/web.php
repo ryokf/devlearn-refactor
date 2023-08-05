@@ -42,12 +42,11 @@ Route::controller(CategoryController::class)->group(function () {
 
     //CRUD Category Course by admin
     Route::middleware('role:admin')->group(function () {
-        Route::get('/category-admin', 'indexAdmin')->name('category.index.admin');
-        Route::post('/category', 'store')->name('category.add');
-        Route::delete('/category/{id}', 'delete')->name('category.delete');
-
-        Route::get('/category-edit/{id}', 'edit')->name('category.edit');
-        Route::put('/category/{id}', 'update')->name('category.update');
+        Route::get('/category-admin', 'indexAdmin')->middleware('can:view category')->name('category.index.admin');
+        Route::post('/category', 'store')->middleware('can:create category')->name('category.add');
+        Route::delete('/category/{id}', 'delete')->middleware('can:delete category')->name('category.delete');
+        Route::get('/category-edit/{id}', 'edit')->middleware('can:edit category')->name('category.edit');
+        Route::put('/category/{id}', 'update')->middleware('can:edit category')->name('category.update');
     });
 });
 
@@ -60,7 +59,7 @@ Route::controller(CourseController::class)->group(function () {
 
     Route::get('/course-all', 'all')->name('course.index.all');
     Route::get('/course-show/{id}', 'show')->name('course.show');
-
+    
     Route::get('/course', 'index')->middleware('auth')->name('course.index');
 
     Route::middleware('role:author')->group(function () {
@@ -112,7 +111,6 @@ Route::controller(VoucherController::class)->middleware('role:admin')->group(fun
     Route::get('/voucher/{id}', 'edit')->name('course.voucher.edit');
     //add ke database voucher
     Route::put('/voucher/{id}', 'update')->name('course.voucher.update');
-
 });
 
 Route::controller(ProfileController::class)->middleware('auth')->group(function () {
