@@ -10,8 +10,19 @@
     <script src="https://kit.fontawesome.com/c473da0646.js" crossorigin="anonymous"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="./landingpage/css/font-awesome/css/all.min.css" />
+
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" href="./landingpage/vendors/slick/slick.css" />
+    <link rel="stylesheet" href="./landingpage/vendors/slick/slick-theme.css" />
+
     <!-- Style -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" href="./landingpage/css/style.css" />
+
+
+    <!-- Style -->
+    <link rel="stylesheet" href="{{ asset('landingpage/css/style.css') }}" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,7 +38,7 @@
                 <div class="flex justify-center items-center text-slate-800">
                     <div class="min-w-max inline-flex relative">
                         <a href="index.html">
-                            <img src="./images/logo.webp" class="w-full h-7" alt="" />
+                            <img src="landingpage/images/logo.webp" class="w-full h-7" alt="" />
                         </a>
                     </div>
                     <!-- kategori -->
@@ -129,7 +140,7 @@
                                     <div class="flex p-2 border-slate-200 items-center">
                                         <!-- <div class="flex"> -->
                                         <div class="mr-2">
-                                            <img src="./images/avatar1.png" alt=""
+                                            <img src="landingpage/images/avatar1.png" alt=""
                                                 class="object-cover w-12 h-12" />
                                         </div>
                                         <a href="#" class="details">
@@ -267,7 +278,7 @@
     <!-- Start Header / Hero Section -->
     <header class="text-center justify-center bg-no-repeat bg-cover"
         style="
-        background-image: url('images/heroimage.jpeg');
+        background-image: url('landingpage/images/heroimage.jpeg');
         background-attachment: fixed;
         background-position: center;
       ">
@@ -382,7 +393,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/web.svg" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/web.svg" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">Web Development</h4>
                     <p class="text-gray-500 text-xs">32 Courses</p>
@@ -392,7 +403,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#FEF9EC] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/mobile.svg" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/mobile.svg" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">Mobile Development</h4>
                     <p class="text-gray-500 text-xs">30 Courses</p>
@@ -402,7 +413,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/game.svg" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/game.svg" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">Game Development</h4>
                     <p class="text-gray-500 text-xs">32 Courses</p>
@@ -412,7 +423,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/dataAnalis.svg" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/dataAnalis.svg" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">Data Analyst</h4>
                     <p class="text-gray-500 text-xs">32 Courses</p>
@@ -422,7 +433,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/jaringan.svg" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/jaringan.svg" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">Jaringan</h4>
                     <p class="text-gray-500 text-xs">32 Courses</p>
@@ -432,7 +443,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#FEF9EC] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/multimedia.svg" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/multimedia.svg" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">Multimedia</h4>
                     <p class="text-gray-500 text-xs">32 Courses</p>
@@ -455,7 +466,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/bootstrap.png" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/bootstrap.png" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">Bootstrap</h4>
                     <p class="text-gray-500 text-xs">32 Courses</p>
@@ -465,7 +476,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#FEF9EC] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/html.png" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/html.png" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">HTML</h4>
                     <p class="text-gray-500 text-xs">30 Courses</p>
@@ -475,7 +486,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/php.png" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/php.png" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">PHP</h4>
                     <p class="text-gray-500 text-xs">32 Courses</p>
@@ -485,7 +496,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/javascript.webp" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/javascript.webp" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">JavaScript</h4>
                     <p class="text-gray-500 text-xs">32 Courses</p>
@@ -495,7 +506,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/flutter.webp" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/flutter.webp" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">Flutter</h4>
                     <p class="text-gray-500 text-xs">32 Courses</p>
@@ -505,7 +516,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#FEF9EC] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/c++.png" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/cplus.png" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">C++</h4>
                     <p class="text-gray-500 text-xs">32 Courses</p>
@@ -515,7 +526,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/python.png" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/python.png" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">Python</h4>
                     <p class="text-gray-500 text-xs">32 Courses</p>
@@ -525,7 +536,7 @@
                 <div
                     class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
                     <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="./images/icons/sql.png" alt="" class="w-16 h-16" />
+                        <img src="landingpage/images/icons/sql.png" alt="" class="w-16 h-16" />
                     </div>
                     <h4 class="mt-4 mb-2 font-medium">SQL</h4>
                     <p class="text-gray-500 text-xs">32 Courses</p>
@@ -547,7 +558,8 @@
                     <a href="#">
                         <div
                             class="border border-gray-100 shadow-sm rounded shadow-md mr-3 transition group-hover:shadow-lg">
-                            <img src="images/course1.png" alt="" class="w-full rounded rounded-b-none" />
+                            <img src="landingpage/images/course1.png" alt=""
+                                class="w-full rounded rounded-b-none" />
                             <div class="mt-3 p-3">
                                 <div class="flex justify-between">
                                     <div>
@@ -585,7 +597,8 @@
                     <a href="#">
                         <div
                             class="border border-gray-100 shadow-sm rounded shadow-md mr-3 transition group-hover:shadow-lg">
-                            <img src="images/course1.png" alt="" class="w-full rounded rounded-b-none" />
+                            <img src="landingpage/images/course1.png" alt=""
+                                class="w-full rounded rounded-b-none" />
                             <div class="mt-3 p-3">
                                 <div class="flex justify-between">
                                     <div>
@@ -623,7 +636,8 @@
                     <a href="#">
                         <div
                             class="border border-gray-100 shadow-sm rounded shadow-md mr-3 transition group-hover:shadow-lg">
-                            <img src="images/course1.png" alt="" class="w-full rounded rounded-b-none" />
+                            <img src="landingpage/images/course1.png" alt=""
+                                class="w-full rounded rounded-b-none" />
                             <div class="mt-3 p-3">
                                 <div class="flex justify-between">
                                     <div>
@@ -661,7 +675,8 @@
                     <a href="#">
                         <div
                             class="border border-gray-100 shadow-sm rounded shadow-md mr-3 transition group-hover:shadow-lg">
-                            <img src="images/course1.png" alt="" class="w-full rounded rounded-b-none" />
+                            <img src="landingpage/images/course1.png" alt=""
+                                class="w-full rounded rounded-b-none" />
                             <div class="mt-3 p-3">
                                 <div class="flex justify-between">
                                     <div>
@@ -699,7 +714,8 @@
                     <a href="#">
                         <div
                             class="border border-gray-100 shadow-sm rounded shadow-md mr-3 transition group-hover:shadow-lg">
-                            <img src="images/course1.png" alt="" class="w-full rounded rounded-b-none" />
+                            <img src="landingpage/images/course1.png" alt=""
+                                class="w-full rounded rounded-b-none" />
                             <div class="mt-3 p-3">
                                 <div class="flex justify-between">
                                     <div>
@@ -814,28 +830,32 @@
                         <ul class="list-none mt-4">
                             <li class="mb-1 hover:opacity-75">
                                 <a href="https://github.com/ryokf" class="flex items-center text-sm hover:opacity-75">
-                                    <img src="./images/icons/github.svg" alt="GitHub" class="h-5 w-5 mr-2" />
+                                    <img src="landingpage/images/icons/github.svg" alt="GitHub"
+                                        class="h-5 w-5 mr-2" />
                                     Ryo Khrisna Fitriawan
                                 </a>
                             </li>
                             <li class="mb-1 hover:opacity-75">
                                 <a href="https://github.com/marioapn3"
                                     class="flex items-center text-sm hover:opacity-75">
-                                    <img src="./images/icons/github.svg" alt="GitHub" class="h-5 w-5 mr-2" />
+                                    <img src="landingpage/images/icons/github.svg" alt="GitHub"
+                                        class="h-5 w-5 mr-2" />
                                     Mario Aprilnino Prasetya
                                 </a>
                             </li>
                             <li class="mb-1 hover:opacity-75">
                                 <a href="https://github.com/taliyameyswara"
                                     class="flex items-center text-sm hover:opacity-75">
-                                    <img src="./images/icons/github.svg" alt="GitHub" class="h-5 w-5 mr-2" />
+                                    <img src="landingpage/images/icons/github.svg" alt="GitHub"
+                                        class="h-5 w-5 mr-2" />
                                     Taliya Meyswara
                                 </a>
                             </li>
                             <li class="mb-1 hover:opacity-75">
                                 <a href="https://github.com/isnanramalia"
                                     class="flex items-center text-sm hover:opacity-75 hover:opacity-75">
-                                    <img src="./images/icons/github.svg" alt="GitHub" class="h-5 w-5 mr-2" />
+                                    <img src="landingpage/images/icons/github.svg" alt="GitHub"
+                                        class="h-5 w-5 mr-2" />
                                     Isna Nur Amalia
                                 </a>
                             </li>
@@ -882,13 +902,13 @@
 
     <!-- Scripts -->
     <!-- Jquery JS -->
-    <script src="{{ asset('vendors/jquery/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('landingpage/vendors/jquery/jquery-3.6.0.min.js') }}"></script>
 
     <!-- Slick Carousel JS -->
-    <script src="{{ asset('vendors/slick/slick.min.js') }}./vendors/slick/slick.min.js"></script>
+    <script src="{{ asset('landingpage/vendors/slick/slick.min.js') }}"></script>
 
     <!-- Main JS -->
-    <script src="{{ asset('js/main.js') }}"></script>
+    <<<<<<< HEAD <script src="{{ asset('js/main.js') }}"></script>
     <script>
         function dropDown() {
             document.querySelector("#submenu").classList.toggle("hidden");
@@ -901,6 +921,17 @@
         }
     </script>
 </body>
+=======
+<script src="{{ asset('landingpage/js/main.js') }}"></script>
+</body>
+<script>
+    function dropDown() {
+        document.querySelector("#submenu").classList.toggle("hidden");
+        document.querySelector("#arrow").classList.toggle("rotate-0");
+    }
+    dropDown(); >>>
+    >>> > fa7a4328ff472a27247592c78501d76898a51631
 
 
-</html>
+        <
+        /html>
