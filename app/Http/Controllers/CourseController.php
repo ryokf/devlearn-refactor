@@ -13,6 +13,7 @@ use App\Models\UserCourse;
 use App\Services\Author\CourseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -46,7 +47,6 @@ class CourseController extends Controller
             ]);
         } elseif ($user->hasRole('member')) {
             $courses = UserCourse::where('user_id', auth()->user()->id)->paginate(16);
-
             return view('member.course.index', [
                 'menu' => parent::$memberMenuSidebar,
                 'courses' => $courses,

@@ -33,4 +33,9 @@ class Lesson extends Model
     {
         return $this->hasMany(LessonComment::class, 'lesson_id', 'id');
     }
+
+    public function userLesson(): HasMany
+    {
+        return $this->hasMany(UserLesson::class, 'lesson_id', 'id');
+    }
 }
