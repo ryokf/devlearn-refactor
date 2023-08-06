@@ -129,6 +129,7 @@ class LessonController extends Controller
             'chapter' => $chapter,
             'title' => $request->input('title'),
             'description' => $request->input('description'),
+            'media_link' => $request->input('media_link'),
             'text_content' => $request->input('text_content'),
         ]);
 
@@ -148,8 +149,6 @@ class LessonController extends Controller
 
     public function update(Request $request)
     {
-        // dd($request);
-
         $lesson = Lesson::findOrFail($request->id);
 
         $request->validate([
@@ -173,7 +172,7 @@ class LessonController extends Controller
         $lesson->save();
 
         // Optionally, you can redirect to a success page or show a success message.
-        return redirect()->route('author_course_show', ['id' => $lesson->course_id])
+        return redirect()->route('course.show', ['id' => $lesson->course_id])
             ->with('success', 'Lesson updated successfully!');
     }
 
