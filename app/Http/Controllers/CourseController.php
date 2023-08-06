@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 class CourseController extends Controller
 {
     private $courseService;
-    private $adminCourseService;
+
     public function __construct(CourseService $courseService)
     {
         $this->courseService = $courseService;
@@ -42,6 +42,7 @@ class CourseController extends Controller
                 'sorts' => $sortOption,
                 'courses' => $courses,
                 'draft_courses' => $draft_courses,
+
             ]);
         } elseif ($user->hasRole('member')) {
             $courses = UserCourse::where('user_id', auth()->user()->id)->paginate(16);
@@ -55,15 +56,17 @@ class CourseController extends Controller
         }
     }
 
-    public function show(Request $request)
+    public function show(Request $request, Course $course, UserCourse $userCourse)
     {
         $course = Course::where('id', $request->id)->first();
         $lessons = Lesson::where('course_id', $request->id)->orderBy('chapter')->get();
+        $member = $this->courseService->member($course, $userCourse);
 
         return view('author.course.show', [
             'menu' => parent::$menuSidebarauthor,
             'course' => $course,
             'lessons' => $lessons,
+            'member' => $member
         ]);
     }
 

@@ -5,6 +5,7 @@ namespace App\Services\Author;
 use App\Http\Requests\CreateCourseRequest;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\UserCourse;
 use Illuminate\Support\Facades\Storage;
 
 class CourseService
@@ -68,6 +69,14 @@ class CourseService
     public function getCourse($id)
     {
         return Course::where('id', $id)->first();
+    }
+
+    public function member(Course $course, UserCourse $userCourse){
+        $courses = $course->where('author_id', auth()->user()->id)->get();
+
+        foreach($courses as $course){
+
+        }
     }
 
     public function createCourse(CreateCourseRequest $request)

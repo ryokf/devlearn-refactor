@@ -1,3 +1,4 @@
+@dd($member)
 @extends('layouts.layout')
 
 @section('body')

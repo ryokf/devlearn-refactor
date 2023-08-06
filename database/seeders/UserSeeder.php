@@ -15,7 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory()->count(9)->create();
 
         User::create([
             'name' => 'dev_author',
@@ -41,5 +40,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('rahasiaAdmin'),
             'photo' => 'https://source.unsplash.com/random/'.mt_rand(3, 8) * 100 .'x'.mt_rand(3, 8) * 100,
         ]);
+
+        User::factory()->count(9)->create();
     }
 }
