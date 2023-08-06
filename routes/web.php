@@ -13,6 +13,8 @@ use App\Http\Controllers\Spatie\PermissionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserCourseController;
 use App\Http\Controllers\VoucherController;
+use App\Models\Lesson;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -107,6 +109,14 @@ Route::middleware('role:admin')->group(function () {
 
 });
 
+Route::get('/testing', function () {
+    $user = User::with('userLesson')->findOrFail(2);
+    //$user1 = $user->userLesson->status;
+    // dd($user);
+    $lesson = Lesson::with('userLesson')->findOrFail(1);
+
+    dd($lesson->userLesson[0]->status);
+});
 
 
 Route::controller(HomeController::class)->group(function () {
@@ -151,11 +161,12 @@ Route::controller(CourseController::class)->group(function () {
     Route::get('/course-admin', 'indexAdmin')->name('course.index.admin');
 
     //lihat lesson
-    Route::get('/course-admin/{id}', 'edit')->name('course.detail'); //??ini route buat apa???
+
 });
 
 Route::controller(LessonController::class)->group(function () {
-    Route::get('/lesson', 'show')->middleware('auth')->name('lesson.show');
+    //Route::get('/lesson', 'show')->middleware('auth')->name('lesson.show');
+    Route::get('/lesson/{id}/{chapter}', 'show')->name('lesson.index');
 
     Route::middleware('role:author')->group(function () {
         Route::get('/lesson-create', 'create')->name('lesson.create');
