@@ -556,7 +556,7 @@
     <!-- Start New Courses Section -->
     <section id="courses">
         <div class="container mx-auto">
-            <h2 class="font-bold text-3xl text-center mt-12">Course Terbaru</h2>
+            <h2 class="font-bold text-3xl text-center my-12">Course Terbaru</h2>
             <div class="swiper swiper-container-2 slide-container w-full">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
