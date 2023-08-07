@@ -82,7 +82,7 @@ class CourseService
     {
         // $data = $request->validate([
         //     'title' => 'required|string|max:100',
-        //     'category_id' => 'required',
+        //     'id_category' => 'required',
         //     'price' => 'required|numeric',
         //     'photo' => 'required|image',
         //     'description' => 'required|string',
@@ -98,7 +98,7 @@ class CourseService
         $course = Course::create([
             'title' => $request->title,
             'author_id' => auth()->user()->id,
-            'category_id' => $request->category_id,
+            'id_category' => $request->id_category,
             'description' => $request->description,
             'photo' => $photoPath,
             'price' => $request->price,
@@ -115,7 +115,7 @@ class CourseService
         $course->fill($request->only([
             'title',
             'author_id',
-            'category_id',
+            'id_category',
             'description',
             'price',
             'status',

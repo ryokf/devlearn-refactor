@@ -15,6 +15,8 @@ use App\Http\Controllers\UserCourseController;
 use App\Http\Controllers\VoucherController;
 use App\Models\Lesson;
 use App\Models\User;
+use App\Models\UserCourse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -192,23 +194,92 @@ Route::controller(ProfileController::class)->middleware('auth')->group(function 
 });
 
 
-Route::get('/attach-data', function () {
+//ini ketika beli course maka pakai ini
+Route::get('/attach-data/{id}', function ($id) {
     //course id
     //lesson id yang ada di course
     //user id yg login
+    $id_user = Auth::id();
+    $user = User::find($id_user);
+    //tambah data di userCourse
+    UserCourse::create([
+        'user_id' => $id_user,
+        'course_id' => $id,
+        'payment_status' => "pending",
+    ]);
+    //cari semua id lesson
+    $LessonInCourse = Lesson::where('course_id', $id)->pluck('id');
+    //var_dump($LessonInCourse);
+    //$user->lessons()->sync([3, 4, 5, 6]);
+    $user->lessons()->syncWithoutDetaching($LessonInCourse);
+    // $user->lessons()->syncWithoutDetaching([
+    //     1 => ['status' => true]
+    // ]);
 
-    $user = User::find(1);
+    // foreach ($user->lessons as $lesson) {
+    //     var_dump($lesson->pivot->status);
+    // }
+});
+
+//ini ketika next untuk simpan progress
+Route::get('/next/{id}', function ($id) {
+    //course id
+    //lesson id yang ada di course
+    //user id yg login
+    $id_user = Auth::id();
+    $user = User::find($id_user);
+    //tambah data di userCourse
+    //cari semua id lesson
+    //var_dump($LessonInCourse);
     //$user->lessons()->sync([3, 4, 5, 6]);
     $user->lessons()->syncWithoutDetaching([
-        1, 2, 3, 4, 5
-        // tambahkan catatan lain di sini
+        $id => ['status' => true]
     ]);
     $user->lessons()->syncWithoutDetaching([
         1 => ['status' => true]
     ]);
+});
 
-    foreach ($user->lessons as $lesson) {
-        var_dump($lesson->pivot->status);
+// Route::get('/see_proggres/{id_course}', function ($id_course) {
+//     $id_user = Auth::id();
+//     $user = User::find($id_user);
+//     $kriteria = Lesson::where('course_id', $id_course)->pluck('id');
+//     // foreach ($lessons->users as $lesson) {
+//     //     var_dump($lesson->pivot->status);
+//     // }
+//     // foreach ($user->lessons as $lesson) {
+//     //     var_dump($lesson->pivot->status);
+//     // }
+//     $lessons = $user->lessons()->whereInPivot('lesson_id', $kriteria)->get();
+//     foreach ($lessons as $lesson) {
+//         $status = $lesson->pivot->status;
+//         var_dump("Lesson ID: {$lesson->id}, Status: {$status}");
+//     }
+// });
+
+Route::get('/see/{id_course}', function ($id_course) {
+    $id_user = Auth::id();
+    $user = User::find($id_user);
+
+    // $id_lesson = Lesson::where('course_id', $id_course)->pluck('id');
+
+    $lessons = $user->lessons();
+
+    foreach ($lessons as $lesson) {
+        $status = $lesson->pivot->status;
+        var_dump("Lesson ID: {$lesson->id}, Status: {$status}");
+    }
+});
+
+Route::get('/see2/{id_course}', function ($id_course) {
+    $id_user = Auth::id();
+    $user = User::find($id_user);
+
+    $lessons = $user->lessons()->where('course_id', $id_course)->get();
+
+    foreach ($lessons as $lesson) {
+        $status = $lesson->pivot->status;
+        var_dump("Lesson ID: {$lesson->id}, Status: {$status}");
     }
 });
 

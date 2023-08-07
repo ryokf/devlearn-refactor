@@ -27,7 +27,7 @@ class CategoryController extends Controller
 
     public function show(Course $course, $id)
     {
-        return $course->where('category_id', $id)->get();
+        return $course->where('id_category', $id)->get();
     }
 
     public function store(Request $request)

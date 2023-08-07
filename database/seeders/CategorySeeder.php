@@ -16,32 +16,32 @@ class CategorySeeder extends Seeder
     {
         Category::create([
             'name' => 'web programming',
-            'photo' => 'https://source.unsplash.com/random/400×200/?programming',
+            'photo' => 'landingpage/images/icons/web.svg',
         ]);
 
         Category::create([
             'name' => 'mobile programming',
-            'photo' => 'https://source.unsplash.com/random/400×200/?html',
+            'photo' => 'landingpage/images/icons/mobile.svg',
         ]);
 
         Category::create([
             'name' => 'game programming',
-            'photo' => 'https://source.unsplash.com/random/400×200/?html',
+            'photo' => 'landingpage/images/icons/game.svg',
         ]);
 
         Category::create([
             'name' => 'data analysis',
-            'photo' => 'https://source.unsplash.com/random/400×200/?design',
+            'photo' => 'landingpage/images/icons/dataAnalis.svg',
         ]);
 
         Category::create([
             'name' => 'IoT',
-            'photo' => 'https://source.unsplash.com/random/400×200/?design',
+            'photo' => 'landingpage/images/icons/jaringan.svg',
         ]);
 
         Category::create([
             'name' => 'Design',
-            'photo' => 'https://source.unsplash.com/random/400×200/?design',
+            'photo' => 'landingpage/images/icons/multimedia.svg',
         ]);
     }
 }
