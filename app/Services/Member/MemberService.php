@@ -71,7 +71,7 @@ class MemberService
         foreach ($categories as $key => $category) {
             array_push($course_count, []);
             foreach ($user_course as $course) {
-                if ($category->id == $course->courses->category_id) {
+                if ($category->id == $course->courses->id_category) {
                     array_push($course_count[$key], $course->courses->title);
                 }
             }

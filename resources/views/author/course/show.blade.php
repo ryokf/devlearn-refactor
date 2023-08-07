@@ -127,7 +127,6 @@
                                                 :description="$member->users->email" :photo="$member->users->photo"
                                                  />
                                             {{-- <x-test>{{ $lesson->id }}</x-test> --}}
-
                                     @endforeach
                                 </tbody>
                             </table>

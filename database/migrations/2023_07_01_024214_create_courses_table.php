@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100);
             $table->foreignId('author_id');
-            $table->foreignId('category_id');
+            $table->foreignId('id_category');
             $table->text('description');
             $table->string('photo')->default('photos/image-course.jpg');
             $table->text('price');

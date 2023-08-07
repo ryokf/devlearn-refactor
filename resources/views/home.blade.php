@@ -1,4 +1,3 @@
-@dd($popularCourse)
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +31,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500&display=swap" rel="stylesheet" />
+
+    <link rel="icon" type="image/x-icon" href="landingpage/images/logo_dl.png">
 </head>
 
 <body class="font-poppins text-gray-800 overflow-x-hidden" id="top">
@@ -53,41 +54,14 @@
                             class="hidden border-gray-100 absolute group-hover:block min-w-[200px] pt-8 drop-shadow-md">
                             <ul class="list-none">
                                 <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
-                                        Web Development
-                                    </a>
+                                    @foreach ($categories as $category)
+                                        <a href="{{ route('category.show', [$category->id]) }}"
+                                            class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
+                                            {{ $category->name }}
+                                        </a>
+                                    @endforeach
                                 </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
-                                        Mobile Development
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
-                                        Game Development
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
-                                        Data Analyst
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
-                                        Jaringan
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
-                                        Multimedia
-                                    </a>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -116,84 +90,105 @@
                 <div class="flex my-auto pr-0 md:pr-5">
 
                     @if (Auth::user())
-                    <!-- dropdown avatar -->    
-                    <div class="relative">
+                        <!-- dropdown avatar -->
+                        <div class="relative">
                             <div x-data="{ open: false }" class="w-full inline-flex flex  items-center">
                                 <!-- close -->
-                                <div @click="open = !open" 
-                                    class="relative border-b-4 border-transparent " 
-                                    >
-                                <div class="flex justify-center items-center space-x-3 cursor-pointer">
-                                <div class="w-10 h-10 rounded-full overflow-hidden border-2  border-slate-800 hover:opacity-90">
-                                    <img src="landingpage/images/course1.png" alt="" class="w-full h-full object-cover">
-                                </div>
-                                <div class="text-slate-800 mx-auto font-semibold">
-                                    <div class="cursor-pointer">
-                                      {{ Auth::user()->name }}
+                                <div @click="open = !open" class="relative border-b-4 border-transparent ">
+                                    <div class="flex justify-center items-center space-x-3 cursor-pointer">
+                                        <div
+                                            class="w-10 h-10 rounded-full overflow-hidden border-2  border-slate-800 hover:opacity-90">
+                                            <img src="{{ asset('storage/' . auth()->user()->photo) }}" alt=""
+                                                class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="text-slate-800 mx-auto font-semibold">
+                                            <div class="cursor-pointer">
+                                                {{ Auth::user()->name }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- open -->
+                                    <div x-show="open"
+                                        class="absolute w-50 py-2 bg-white  shadow-md border dark:border-transparent mt-3">
+                                        <!-- dropdown -->
+
+                                        <ul class="list-none">
+                                            <li>
+                                                <a href="{{ route('dashboard') }}"
+                                                    class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
+                                                        </path>
+                                                    </svg>
+                                                    Profil
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"
+                                                    class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                                                        </path>
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+                                                        </path>
+                                                    </svg>
+                                                    Pengaturan
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <hr class="border-slate-200 mx-4">
+
+                                                    <button data-modal-target="popup-modal-logout" data-modal-toggle="popup-modal-logout"
+                                                        class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 hover:border-red-600 text-red-600 w-full">
+                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                                            </path>
+                                                        </svg>
+                                                        Keluar
+                                                    </button>
+
+                                            </li>
+
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            <!-- open -->
-                            <div x-show="open" class="absolute w-50 py-2 bg-white  shadow-md border dark:border-transparent mt-3">
-                            <!-- dropdown -->
-    
-                            <ul class="list-none">
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                                    Profil
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                        Pengaturan
-                                    </a>
-                                </li>
-                                <li>
-                                <hr class="border-slate-200 mx-4">
-                                <form action="{{ route('logout') }}" method="post">
-                                    @csrf
-                                    <button
-                                        class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 hover:border-red-600 text-red-600 w-full type="submit">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-                                    Keluar
-                                    </button>
-                                </form>
-                                </li>
-                             
-                            </ul>
+
+                            <!-- button masuk -->
+                        @else
+                            <div class="hidden md:block relative">
+                                <a href="{{ route('login') }}"
+                                    class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
+                                    Masuk
+                                </a>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- button masuk -->
-                    @else
-                        <div class="hidden md:block relative">
-                            <a href="{{ route('login') }}"
-                                class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
-                                Masuk
-                            </a>
-                        </div>
 
 
-                    <!-- button daftar -->
-                        <div class="hidden md:block relative">
-                            <a href="{{ route('register') }}"
-                                class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-95">
-                                Daftar
-                            </a>
-                        </div>
+                            <!-- button daftar -->
+                            <div class="hidden md:block relative">
+                                <a href="{{ route('register') }}"
+                                    class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-95">
+                                    Daftar
+                                </a>
+                            </div>
                     @endif
                 </div>
 
                 <!-- nav toggle mobile -->
                 <div class="flex md:hidden cursor-pointer my-auto">
                     <span class="navbar-toggle text-slate-900 flex-end">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                         </svg>
@@ -254,22 +249,22 @@
                 </ul>
 
                 @if (!Auth::user())
-                <div class="flex gap-3 mt-5">
-                    <!-- masuk -->
-                    <div class="relative">
-                        <a href="{{ route('login') }}"
-                            class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
-                            Masuk
-                        </a>
+                    <div class="flex gap-3 mt-5">
+                        <!-- masuk -->
+                        <div class="relative">
+                            <a href="{{ route('login') }}"
+                                class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
+                                Masuk
+                            </a>
+                        </div>
+                        <!-- daftar -->
+                        <div class="relative">
+                            <a href="{{ route('register') }}"
+                                class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-95 text-center">
+                                Daftar
+                            </a>
+                        </div>
                     </div>
-                    <!-- daftar -->
-                    <div class="relative">
-                        <a href="{{ route('register') }}"
-                            class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-95 text-center">
-                            Daftar
-                        </a>
-                    </div>
-                </div>
                 @endif
 
             </div>
@@ -294,7 +289,7 @@
                 "Unlock Your Potential: Join the Learning Revolution!"
             </p>
             <!-- button mulai belajar -->
-            <a href="#_"
+            <a href="#categories"
                 class="relative inline-flex items-center justify-center p-4 px-7 py-3 overflow-hidden font-medium text-slate-800 transition duration-300 ease-out border-2 border-slate-800 rounded-full group md:mt-5 mt-1">
                 <span
                     class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-slate-800 group-hover:translate-x-0 ease">
@@ -389,73 +384,19 @@
                 Kategori Course
             </h2>
 
-            <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 items-center text-center mx-auto">
-                <!-- Start Single Category Item -->
-                <div
-                    class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2 h-full">
-                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-100">
-                        <img src="landingpage/images/icons/web.svg" alt="" class="w-16 h-16" />
-                    </div>
-                    <h4 class="mt-4 mb-2 font-medium">Web Development</h4>
-                    <p class="text-gray-500 text-xs">32 Courses</p>
-                </div>
-                <!-- End Single Category Item -->
-
-                <!-- Start Single Category Item -->
-                <div
-                    class="transition basis-[45%] md:basis-[10.93%] bg-[#FEF9EC] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2 h-full">
-                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-100">
-                        <img src="landingpage/images/icons/mobile.svg" alt="" class="w-16 h-16" />
-                    </div>
-                    <h4 class="mt-4 mb-2 font-medium">Mobile Development</h4>
-                    <p class="text-gray-500 text-xs">30 Courses</p>
-                </div>
-                <!-- End Single Category Item -->
-
-                <!-- Start Single Category Item -->
-                <div
-                    class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2 h-full">
-                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                        <img src="landingpage/images/icons/game.svg" alt="" class="w-16 h-16" />
-                    </div>
-                    <h4 class="mt-4 mb-2 font-medium">Game Development</h4>
-                    <p class="text-gray-500 text-xs">32 Courses</p>
-                </div>
-                <!-- End Single Category Item -->
-
-                <!-- Start Single Category Item -->
-                <div
-                    class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2 h-full">
-                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-100">
-                        <img src="landingpage/images/icons/dataAnalis.svg" alt="" class="w-16 h-16" />
-                    </div>
-                    <h4 class="mt-4 mb-2 font-medium">Data Analyst</h4>
-                    <p class="text-gray-500 text-xs">32 Courses</p>
-                </div>
-                <!-- End Single Category Item -->
-
-                <!-- Start Single Category Item -->
-                <div
-                    class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2 h-full">
-                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-100">
-                        <img src="landingpage/images/icons/jaringan.svg" alt="" class="w-16 h-16" />
-                    </div>
-                    <h4 class="mt-4 mb-2 font-medium">Jaringan</h4>
-                    <p class="text-gray-500 text-xs">32 Courses</p>
-                </div>
-                <!-- End Single Category Item -->
-
-                <!-- Start Single Category Item -->
-                <div
-                    class="transition basis-[45%] md:basis-[10.93%] bg-[#FEF9EC] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2 h-full">
-                    <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-100">
-                        <img src="landingpage/images/icons/multimedia.svg" alt="" class="w-16 h-16" />
-                    </div>
-                    <h4 class="mt-4 mb-2 font-medium">Multimedia</h4>
-                    <p class="text-gray-500 text-xs">32 Courses</p>
-                </div>
-                <!-- End Single Category Item -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 items-center text-center mx-auto">
+                @foreach ($categories as $category)
+                    <!-- Start Single Category Item -->
+                    <a href="{{ route('category.show', $category->id) }}"
+                        class="transition basis-[45%] md:basis-[10.93%] bg-slate-800 cursor-pointer rounded-lg mr-3 p-5 hover:opacity-75 group hover:-translate-y-2 h-full">
+                        <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-100">
+                            <img src="{{ $category->photo }}" alt="" class="w-16 h-16" />
+                        </div>
+                        <h4 class="mt-4 mb-2 font-medium text-white">{{ $category->name }}</h4>
+                        <p class="text-gray-300 text-xs">{{ count($category->course) }} kursus</p>
+                    </a>
+                    <!-- End Single Category Item -->
+                @endforeach
             </div>
         </div>
     </section>
@@ -559,292 +500,119 @@
         <div class="container mx-auto">
             <h2 class="font-bold text-3xl text-center my-12">Course Terbaru</h2>
             <div class="swiper swiper-container-2 slide-container w-full">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div
-                            class="border border-gray-100 shadow-sm rounded shadow-md transition group-hover:shadow-lg">
-                            <img src="landingpage/images/course1.png" alt=""
-                                class="w-full rounded rounded-b-none" />
-                            <div class="mt-3 p-3">
-                                <div class="flex justify-between">
-                                    <div>
-                                        <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                    </div>
-                                    <div>
-                                        <a href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="mt-4 mb-4 text-xs">
-                                    <h2 class="text-base mt-3 font-medium hover:text-blue-700">
-                                        Nama Course
-                                    </h2>
-                                    <p class="text-gray-400 mt-2">32 Lesson</p>
-                                    <div class="flex mt-5 items-center">
-                                        <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                            Kategori
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+                <div class="swiper-wrapper">
+                    @foreach ($latestCourse as $course)
+                        <x-course-card :id="$course->id" :title="$course->title" :category="$course->category->name" :price="$course->price"
+                            :count="count($course->lessons)" :photo="$course->photo" />
+                    @endforeach
                 </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div
-                            class="border border-gray-100 shadow-sm rounded shadow-md transition group-hover:shadow-lg">
-                            <img src="landingpage/images/course1.png" alt=""
-                                class="w-full rounded rounded-b-none" />
-                            <div class="mt-3 p-3">
-                                <div class="flex justify-between">
-                                    <div>
-                                        <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                    </div>
-                                    <div>
-                                        <a href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
 
-                                <div class="mt-4 mb-4 text-xs">
-                                    <h2 class="text-base mt-3 font-medium hover:text-blue-700">
-                                        Nama Course
-                                    </h2>
-                                    <p class="text-gray-400 mt-2">32 Lesson</p>
-                                    <div class="flex mt-5 items-center">
-                                        <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                            Kategori
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div
-                            class="border border-gray-100 shadow-sm rounded shadow-md transition group-hover:shadow-lg">
-                            <img src="landingpage/images/course1.png" alt=""
-                                class="w-full rounded rounded-b-none" />
-                            <div class="mt-3 p-3">
-                                <div class="flex justify-between">
-                                    <div>
-                                        <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                    </div>
-                                    <div>
-                                        <a href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
+                <div class="swiper-button-next rounded-full bg-slate-100 nav-btn"></div>
+                <div class="swiper-button-prev rounded-full bg-slate-100 nav-btn"></div>
 
-                                <div class="mt-4 mb-4 text-xs">
-                                    <h2 class="text-base mt-3 font-medium hover:text-blue-700">
-                                        Nama Course
-                                    </h2>
-                                    <p class="text-gray-400 mt-2">32 Lesson</p>
-                                    <div class="flex mt-5 items-center">
-                                        <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                            Kategori
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div
-                            class="border border-gray-100 shadow-sm rounded shadow-md transition group-hover:shadow-lg">
-                            <img src="landingpage/images/course1.png" alt=""
-                                class="w-full rounded rounded-b-none" />
-                            <div class="mt-3 p-3">
-                                <div class="flex justify-between">
-                                    <div>
-                                        <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                    </div>
-                                    <div>
-                                        <a href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
 
-                                <div class="mt-4 mb-4 text-xs">
-                                    <h2 class="text-base mt-3 font-medium hover:text-blue-700">
-                                        Nama Course
-                                    </h2>
-                                    <p class="text-gray-400 mt-2">32 Lesson</p>
-                                    <div class="flex mt-5 items-center">
-                                        <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                            Kategori
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div
-                            class="border border-gray-100 shadow-sm rounded shadow-md transition group-hover:shadow-lg">
-                            <img src="landingpage/images/course1.png" alt=""
-                                class="w-full rounded rounded-b-none" />
-                            <div class="mt-3 p-3">
-                                <div class="flex justify-between">
-                                    <div>
-                                        <span class="text-green-600 font-bold"> Rp. 0 </span>
-                                    </div>
-                                    <div>
-                                        <a href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="mt-4 mb-4 text-xs">
-                                    <h2 class="text-base mt-3 font-medium hover:text-blue-700">
-                                        Nama Course
-                                    </h2>
-                                    <p class="text-gray-400 mt-2">32 Lesson</p>
-                                    <div class="flex mt-5 items-center">
-                                        <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                            Kategori
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
             </div>
-
-        <div class="swiper-button-next rounded-full bg-slate-100 nav-btn"></div>
-        <div class="swiper-button-prev rounded-full bg-slate-100 nav-btn"></div>
-
-           
-        </div>
         </div>
     </section>
     <!-- End New Courses Section -->
+
+    <!-- Start Popular Courses Section -->
+    <section id="courses">
+        <div class="container mx-auto">
+            <h2 class="font-bold text-3xl text-center my-12">Course Terpopuler</h2>
+            <div class="swiper swiper-container-2 slide-container w-full">
+                <div class="swiper-wrapper">
+                    @foreach ($popularCourse as $course)
+                        <x-course-card :id="$course->id" :title="$course->title" :category="$course->category_name" :price="$course->price"
+                            :count="count($course->lessons)" :photo="$course->photo" />
+                    @endforeach
+                </div>
+
+                <div class="swiper-button-next rounded-full bg-slate-100 nav-btn"></div>
+                <div class="swiper-button-prev rounded-full bg-slate-100 nav-btn"></div>
+
+
+            </div>
+        </div>
+    </section>
+    <!-- End Popular Courses Section -->
 
     <!-- Start FAQ Section -->
     <section id="faq">
         <div class="container mx-auto">
             <div class="flex justify-center items-start">
                 <div class="w-full sm:w-10/12 md:w-1/2">
-                <h2 class="text-center font-semibold font-bold py-12 text-3xl">
-                    Frequently Asked Question
-                </h2>
-                <ul class="flex flex-col">
-                    <li class="bg-white my-2 shadow-md" x-data="accordion(1)">
-                    <h2
-                        @click="handleClick()"
-                        class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
-                    >
-                        <span> Apakah ada biaya untuk mengakses kursus di platform ini?</span>
-                        <svg
-                        :class="handleRotate()"
-                        class="fill-current text-blue-700 h-6 w-6 transform transition-transform duration-500"
-                        viewBox="0 0 20 20"
-                        >
-                        <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
-                        </svg>
+                    <h2 class="text-center font-semibold font-bold py-12 text-3xl">
+                        Frequently Asked Question
                     </h2>
-                    <div
-                        x-ref="tab"
-                        :style="handleToggle()"
-                        class="border-l-2 border-blue-600 overflow-hidden max-h-0 duration-500 transition-all"
-                    >
-                        <p class="p-3 text-gray-900">
-                        Tergantung pada jenis kursus yang Anda pilih, beberapa kursus mungkin memerlukan biaya pendaftaran. Namun, kami juga menyediakan sejumlah kursus gratis untuk memberikan akses pendidikan yang lebih inklusif kepada semua peserta.
-                        </p>
-                    </div>
-                    </li>
-                    <li class="bg-white my-2 shadow-md" x-data="accordion(2)">
-                    <h2
-                        @click="handleClick()"
-                        class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
-                    >
-                        <span>Bagaimana cara mendaftar di DNCC Learn?</span>
-                        <svg
-                        :class="handleRotate()"
-                        class="fill-current text-blue-700 h-6 w-6 transform transition-transform duration-500"
-                        viewBox="0 0 20 20"
-                        >
-                        <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
-                        </svg>
-                    </h2>
-                    <div
-                        class="border-l-2 border-blue-600 overflow-hidden max-h-0 duration-500 transition-all"
-                        x-ref="tab"
-                        :style="handleToggle()"
-                    >
-                        <p class="p-3 text-gray-900">
-                        Untuk mendaftar, klik tombol "Registrasi" yang terdapat di halaman utama. Isi formulir pendaftaran dengan informasi yang diperlukan dan ikuti instruksi yang diberikan. Setelah berhasil mendaftar, Anda akan dapat mengakses berbagai kursus kami.
-                        </p>
-                    </div>
-                    </li>
-                    <li class="bg-white my-2 shadow-md" x-data="accordion(3)">
-                    <h2
-                        @click="handleClick()"
-                        class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
-                    >
-                        <span>
-                        Apakah saya akan mendapatkan sertifikat setelah menyelesaikan kursus?
-                        </span>
-                        <svg
-                        :class="handleRotate()"
-                        class="fill-current text-blue-700 h-6 w-6 transform transition-transform duration-500"
-                        viewBox="0 0 20 20"
-                        >
-                        <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
-                        </svg>
-                    </h2>
-                    <div
-                        class="border-l-2 border-blue-600 overflow-hidden max-h-0 duration-500 transition-all"
-                        x-ref="tab"
-                        :style="handleToggle()"
-                    >
-                        <p class="p-3 text-gray-900">
-                        Ya, setelah Anda berhasil menyelesaikan kursus, Anda akan menerima sertifikat keberhasilan yang dapat diunduh langsung dari akun Anda. Sertifikat ini akan mencantumkan rincian kursus dan pencapaian Anda sebagai bukti partisipasi.
-                        </p>
-                    </div>
-                    </li>
-                </ul>
+                    <ul class="flex flex-col">
+                        <li class="bg-white my-2 shadow-md" x-data="accordion(1)">
+                            <h2 @click="handleClick()"
+                                class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer">
+                                <span> Apakah ada biaya untuk mengakses kursus di platform ini?</span>
+                                <svg :class="handleRotate()"
+                                    class="fill-current text-blue-700 h-6 w-6 transform transition-transform duration-500"
+                                    viewBox="0 0 20 20">
+                                    <path
+                                        d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10">
+                                    </path>
+                                </svg>
+                            </h2>
+                            <div x-ref="tab" :style="handleToggle()"
+                                class="border-l-2 border-blue-600 overflow-hidden max-h-0 duration-500 transition-all">
+                                <p class="p-3 text-gray-900">
+                                    Tergantung pada jenis kursus yang Anda pilih, beberapa kursus mungkin memerlukan
+                                    biaya pendaftaran. Namun, kami juga menyediakan sejumlah kursus gratis untuk
+                                    memberikan akses pendidikan yang lebih inklusif kepada semua peserta.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="bg-white my-2 shadow-md" x-data="accordion(2)">
+                            <h2 @click="handleClick()"
+                                class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer">
+                                <span>Bagaimana cara mendaftar di DNCC Learn?</span>
+                                <svg :class="handleRotate()"
+                                    class="fill-current text-blue-700 h-6 w-6 transform transition-transform duration-500"
+                                    viewBox="0 0 20 20">
+                                    <path
+                                        d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10">
+                                    </path>
+                                </svg>
+                            </h2>
+                            <div class="border-l-2 border-blue-600 overflow-hidden max-h-0 duration-500 transition-all"
+                                x-ref="tab" :style="handleToggle()">
+                                <p class="p-3 text-gray-900">
+                                    Untuk mendaftar, klik tombol "Registrasi" yang terdapat di halaman utama. Isi
+                                    formulir pendaftaran dengan informasi yang diperlukan dan ikuti instruksi yang
+                                    diberikan. Setelah berhasil mendaftar, Anda akan dapat mengakses berbagai kursus
+                                    kami.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="bg-white my-2 shadow-md" x-data="accordion(3)">
+                            <h2 @click="handleClick()"
+                                class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer">
+                                <span>
+                                    Apakah saya akan mendapatkan sertifikat setelah menyelesaikan kursus?
+                                </span>
+                                <svg :class="handleRotate()"
+                                    class="fill-current text-blue-700 h-6 w-6 transform transition-transform duration-500"
+                                    viewBox="0 0 20 20">
+                                    <path
+                                        d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10">
+                                    </path>
+                                </svg>
+                            </h2>
+                            <div class="border-l-2 border-blue-600 overflow-hidden max-h-0 duration-500 transition-all"
+                                x-ref="tab" :style="handleToggle()">
+                                <p class="p-3 text-gray-900">
+                                    Ya, setelah Anda berhasil menyelesaikan kursus, Anda akan menerima sertifikat
+                                    keberhasilan yang dapat diunduh langsung dari akun Anda. Sertifikat ini akan
+                                    mencantumkan rincian kursus dan pencapaian Anda sebagai bukti partisipasi.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -853,203 +621,152 @@
 
     <!-- Start Testimoni Section -->
     <section class="bg-slate-100 mt-20">
-    <div
-        class="mx-auto max-w-[1340px] px-4 py-16 sm:px-6 sm:py-24 lg:me-0 lg:pe-0 lg:ps-8"
-    >
-        <div
-        class="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:items-center lg:gap-x-16"
-        >
-        <div class="max-w-xl text-center mx-auto">
-            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
-            Testimoni
-            <br class="hidden sm:block lg:hidden" />
-            Pengguna
-            </h2>
+        <div class="mx-auto max-w-[1340px] px-4 py-16 sm:px-6 sm:py-24 lg:me-0 lg:pe-0 lg:ps-8">
+            <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:items-center lg:gap-x-16">
+                <div class="max-w-xl text-center mx-auto">
+                    <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
+                        Testimoni
+                        <br class="hidden sm:block lg:hidden" />
+                        Pengguna
+                    </h2>
 
-            <p class="mt-4 text-gray-500">
-            Berikut adalah testimoni pengguna DNCC Learn yang telah menyelesaikan course.
-            </p>
+                    <p class="mt-4 text-gray-500">
+                        Berikut adalah testimoni pengguna DNCC Learn yang telah menyelesaikan course.
+                    </p>
 
-            <div class="hidden lg:mt-8 lg:flex lg:gap-4">
-            <button
-                class="prev-button rounded-full border border-slate-600 p-3 text-slate-500 hover:bg-slate-600 hover:text-white"
-            >
-                <span class="sr-only">Previous Slide</span>
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="h-5 w-5 rtl:rotate-180"
-                >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-                </svg>
-            </button>
+                    <div class="hidden lg:mt-8 lg:flex lg:gap-4">
+                        <button
+                            class="prev-button rounded-full border border-slate-600 p-3 text-slate-500 hover:bg-slate-600 hover:text-white">
+                            <span class="sr-only">Previous Slide</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="h-5 w-5 rtl:rotate-180">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.75 19.5L8.25 12l7.5-7.5" />
+                            </svg>
+                        </button>
 
-            <button
-                class="next-button rounded-full border border-slate-600 p-3 text-slate-500 hover:bg-slate-600 hover:text-white"
-            >
-                <span class="sr-only">Next Slide</span>
-                <svg
-                class="h-5 w-5 rtl:rotate-180"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                >
-                <path
-                    d="M9 5l7 7-7 7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                />
-                </svg>
-            </button>
-            </div>
-        </div>
-
-        <div class="-mx-6 lg:col-span-2 lg:mx-0">
-            <div class="swiper-container !overflow-hidden">
-            <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <blockquote
-                    class="flex flex-col justify-between bg-white p-12 h-96"
-                >
-                    <div>
-                    <div class="flex gap-0.5 text-green-500">
-                        <!-- star -->
-                        <svg
-                        class="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                        >
-                        <path
-                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        />
-                        </svg>
+                        <button
+                            class="next-button rounded-full border border-slate-600 p-3 text-slate-500 hover:bg-slate-600 hover:text-white">
+                            <span class="sr-only">Next Slide</span>
+                            <svg class="h-5 w-5 rtl:rotate-180" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </svg>
+                        </button>
                     </div>
-
-                    <div class="mt-4">
-                        <p class="text-2xl font-bold text-slate-800 sm:text-3xl">
-                        Farhan
-                        </p>
-
-                        <p class="mt-4 leading-relaxed text-gray-500">
-                        “Mengandalkan kuliah saja, tidak cukup. Dengan DNCC Learn, saya mantap tinggalkan dunia gaming lantas belajar dunia Android yang ternyata menyenangkan. Yang nomor satu, DNCC Learn mengajarkan ilmu berorientasi kerja. Kini saya sangat terbantu dalam karir saya.”
-                        </p>
-                    </div>
-                    </div>
-
-                </blockquote>
                 </div>
 
-            <div class="swiper-slide">
-                <blockquote
-                    class="flex flex-col justify-between bg-white p-12 h-96"
-                >
-                    <div>
-                    <div class="flex gap-0.5 text-green-500">
-                        <!-- star -->
-                        <svg
-                        class="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                        >
-                        <path
-                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        />
-                        </svg>
-                    </div>
+                <div class="-mx-6 lg:col-span-2 lg:mx-0">
+                    <div class="swiper-container !overflow-hidden">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <blockquote class="flex flex-col justify-between bg-white p-12 h-96">
+                                    <div>
+                                        <div class="flex gap-0.5 text-green-500">
+                                            <!-- star -->
+                                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                        </div>
 
-                    <div class="mt-4">
-                        <p class="text-2xl font-bold text-slate-800 sm:text-3xl">
-                        Sigit
-                        </p>
+                                        <div class="mt-4">
+                                            <p class="text-2xl font-bold text-slate-800 sm:text-3xl">
+                                                Farhan
+                                            </p>
 
-                        <p class="mt-4 leading-relaxed text-gray-500">
-                        “Saya khusus mendedikasikan waktu saya untuk belajar ngoding. Di DNCC Learn belajarnya step by step, library-nya up-to-date. Kalau ada eror, nggak bingung. Di sini saya juga belajar untuk nggak asal coding. CV pun jadi bagus. Saya jadi percaya diri.”
-                        </p>
+                                            <p class="mt-4 leading-relaxed text-gray-500">
+                                                “Mengandalkan kuliah saja, tidak cukup. Dengan DNCC Learn, saya mantap
+                                                tinggalkan dunia gaming lantas belajar dunia Android yang ternyata
+                                                menyenangkan. Yang nomor satu, DNCC Learn mengajarkan ilmu berorientasi
+                                                kerja. Kini saya sangat terbantu dalam karir saya.”
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </blockquote>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <blockquote class="flex flex-col justify-between bg-white p-12 h-96">
+                                    <div>
+                                        <div class="flex gap-0.5 text-green-500">
+                                            <!-- star -->
+                                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <p class="text-2xl font-bold text-slate-800 sm:text-3xl">
+                                                Sigit
+                                            </p>
+
+                                            <p class="mt-4 leading-relaxed text-gray-500">
+                                                “Saya khusus mendedikasikan waktu saya untuk belajar ngoding. Di DNCC
+                                                Learn belajarnya step by step, library-nya up-to-date. Kalau ada eror,
+                                                nggak bingung. Di sini saya juga belajar untuk nggak asal coding. CV pun
+                                                jadi bagus. Saya jadi percaya diri.”
+                                            </p>
+                                        </div>
+                                    </div>
+                                </blockquote>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </blockquote>
                 </div>
             </div>
+
+            <div class="mt-8 flex justify-center gap-4 lg:hidden">
+                <button aria-label="Previous slide"
+                    class="prev-button rounded-full border border-slate-600 p-4 text-slate-500 hover:bg-slate-600 hover:text-white">
+                    <svg class="h-5 w-5 -rotate-180 transform" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                    </svg>
+                </button>
+
+                <button aria-label="Next slide"
+                    class="next-button rounded-full border border-slate-600 p-4 text-slate-500 hover:bg-slate-600 hover:text-white">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                    </svg>
+                </button>
             </div>
         </div>
-        </div>
-
-        <div class="mt-8 flex justify-center gap-4 lg:hidden">
-        <button
-            aria-label="Previous slide"
-            class="prev-button rounded-full border border-slate-600 p-4 text-slate-500 hover:bg-slate-600 hover:text-white"
-        >
-            <svg
-            class="h-5 w-5 -rotate-180 transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            >
-            <path
-                d="M9 5l7 7-7 7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-            />
-            </svg>
-        </button>
-
-        <button
-            aria-label="Next slide"
-            class="next-button rounded-full border border-slate-600 p-4 text-slate-500 hover:bg-slate-600 hover:text-white"
-        >
-            <svg
-            class="h-5 w-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            >
-            <path
-                d="M9 5l7 7-7 7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-            />
-            </svg>
-        </button>
-        </div>
-    </div>
     </section>
     <!-- End Testimoni Section -->
 
-     <!-- Start Mentor Section -->
-     <section id="mentor" class="bg-cover bg-no-repeat" style="
+    <!-- Start Mentor Section -->
+    <section id="mentor" class="bg-cover bg-no-repeat"
+        style="
         background-image: url('landingpage/images/heroimage.jpeg');
-        background-position: center;" >
-            <div class="py-20 md:py-36 bg-black/50 lg:px-80 p-20">
-                <h2 class="font-bold md:text-4xl text-2xl text-center text-white">JADILAH MENTOR UNTUK MENGAJAR DI DNCC LEARN</h2>
+        background-position: center;">
+        <div class="py-20 md:py-36 bg-black/50 lg:px-80 p-20">
+            <h2 class="font-bold md:text-4xl text-2xl text-center text-white">JADILAH MENTOR UNTUK MENGAJAR DI DNCC
+                LEARN</h2>
 
-                <p class="text-center text-white pt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nisi corrupti fugiat corporis eaque inventore laudantium deleniti nulla quae consectetur, a recusandae earum quidem numquam aut quia, fugit, incidunt voluptatem? Vitae accusantium fugit molestiae eaque. Quis dignissimos mollitia est quia?
-                </p>
+            <p class="text-center text-white pt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+                nisi corrupti fugiat corporis eaque inventore laudantium deleniti nulla quae consectetur, a recusandae
+                earum quidem numquam aut quia, fugit, incidunt voluptatem? Vitae accusantium fugit molestiae eaque. Quis
+                dignissimos mollitia est quia?
+            </p>
 
-                <div class="text-center mt-8">
+            <div class="text-center mt-8">
                 <a href="{{ route('login') }}"
-                                    class="w-full px-6 py-3 rounded-full ml-2 text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
-                                    Mulai Mengajar
-                                </a>
-                </div>
-  
+                    class="w-full px-6 py-3 rounded-full ml-2 text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
+                    Mulai Mengajar
+                </a>
             </div>
+
+        </div>
         <!-- <div class="h-96"></div> -->
-        
+
     </section>
     <!-- End Mentor Section -->
 
@@ -1200,7 +917,46 @@
     </footer>
     <!-- End Footer Section -->
 
-       
+    {{-- start modal logout --}}
+    <div id="popup-modal-logout" tabindex="-1"
+        class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button type="button"
+                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="popup-modal-logout">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="p-6 text-center ">
+
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">anda yakin ingin melakukan
+                        logout?</h3>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        {{-- <button type="submit"
+                            class="text-white hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                            iyah
+                        </button> --}}
+                        <button type="submit"
+                            class="text-gray-500 bg-red-600 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                            batal</button>
+                        <button data-modal-hide="popup-modal-logout" type="button"
+                            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                            batal</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end modal logout --}}
+
+    {{-- flowbite script --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
 
     <!-- Scripts -->
     <!-- Jquery JS -->
@@ -1227,92 +983,93 @@
         }
     </script>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        new Swiper('.swiper-container', {
-        loop: true,
-        autoplay: {
-            delay: 8000,
-        },
-        breakpoints: {
-            640: {
-            centeredSlides: true,
-            slidesPerView: 1.25,
-            },
-            1024: {
-            centeredSlides: false,
-            slidesPerView: 1.5,
-            },
-        },
-        navigation: {
-            nextEl: '.next-button',
-            prevEl: '.prev-button',
-        },
+        document.addEventListener('DOMContentLoaded', function() {
+            new Swiper('.swiper-container', {
+                loop: true,
+                autoplay: {
+                    delay: 8000,
+                },
+                breakpoints: {
+                    640: {
+                        centeredSlides: true,
+                        slidesPerView: 1.25,
+                    },
+                    1024: {
+                        centeredSlides: false,
+                        slidesPerView: 1.5,
+                    },
+                },
+                navigation: {
+                    nextEl: '.next-button',
+                    prevEl: '.prev-button',
+                },
+            })
         })
-    })
 
-    var swiper2 = new Swiper(".swiper-container-2", {
-    loop: true,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-        dynamicBullets: true,
-      },
-      breakpoints: {
-        0: {
-          slidesPerView: 1,
-          spaceBetween: 50,
-        },
-        520: {
-          slidesPerView: 2,
-          spaceBetween: 50,
-        },
-        950: {
-          slidesPerView: 3,
-          spaceBetween: 50,
-        },
-      },
-    });
+        var swiper2 = new Swiper(".swiper-container-2", {
+            loop: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                    spaceBetween: 50,
+                },
+                520: {
+                    slidesPerView: 2,
+                    spaceBetween: 50,
+                },
+                950: {
+                    slidesPerView: 3,
+                    spaceBetween: 50,
+                },
+            },
+        });
     </script>
     <script>
         document.addEventListener('alpine:init', () => {
-        Alpine.store('accordion', {
-            tab: 0
-        });
-        
-        Alpine.data('accordion', (idx) => ({
-            init() {
-            this.idx = idx;
-            },
-            idx: -1,
-            handleClick() {
-            this.$store.accordion.tab = this.$store.accordion.tab === this.idx ? 0 : this.idx;
-            },
-            handleRotate() {
-            return this.$store.accordion.tab === this.idx ? 'rotate-180' : '';
-            },
-            handleToggle() {
-            return this.$store.accordion.tab === this.idx ? `max-height: ${this.$refs.tab.scrollHeight}px` : '';
-            }
-        }));
+            Alpine.store('accordion', {
+                tab: 0
+            });
+
+            Alpine.data('accordion', (idx) => ({
+                init() {
+                    this.idx = idx;
+                },
+                idx: -1,
+                handleClick() {
+                    this.$store.accordion.tab = this.$store.accordion.tab === this.idx ? 0 : this.idx;
+                },
+                handleRotate() {
+                    return this.$store.accordion.tab === this.idx ? 'rotate-180' : '';
+                },
+                handleToggle() {
+                    return this.$store.accordion.tab === this.idx ?
+                        `max-height: ${this.$refs.tab.scrollHeight}px` : '';
+                }
+            }));
         })
     </script>
 
     <style>
         .nav-btn {
-        color: black;
-        height: 50px;
-        width: 50px;
-        /* margin-inline: -10px; */
+            color: black;
+            height: 50px;
+            width: 50px;
+            /* margin-inline: -10px; */
         }
 
         .nav-btn::after,
         .nav-btn::before {
-        font-size: 20px !important;
-        font-weight: bolder;
+            font-size: 20px !important;
+            font-weight: bolder;
         }
     </style>
 </body>

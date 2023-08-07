@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('rahasia123'),
             'occupation' => 'mahasiswa',
             'office' => 'univeristas dian nuswantoro',
-            'photo' => 'https://source.unsplash.com/random/'.mt_rand(3, 8) * 100 .'x'.mt_rand(3, 8) * 100,
+            'photo' => 'assets/dummy-img.jpg'
         ]);
 
         User::create([
@@ -31,14 +31,14 @@ class UserSeeder extends Seeder
             'password' => Hash::make('rahasia123'),
             'occupation' => 'mahasiswa',
             'office' => 'univeristas dian nuswantoro',
-            'photo' => 'https://source.unsplash.com/random/'.mt_rand(3, 8) * 100 .'x'.mt_rand(3, 8) * 100,
+            'photo' => 'assets/dummy-img.jpg'
         ]);
 
         User::create([
             'name' => 'devlearn admin',
             'email' => 'admin@admin.admin',
             'password' => Hash::make('rahasiaAdmin'),
-            'photo' => 'https://source.unsplash.com/random/'.mt_rand(3, 8) * 100 .'x'.mt_rand(3, 8) * 100,
+            'photo' => 'assets/dummy-img.jpg'
         ]);
 
         User::factory()->count(9)->create();
