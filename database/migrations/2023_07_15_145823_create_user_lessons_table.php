@@ -18,7 +18,7 @@ return new class extends Migration
             // $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             // $table->foreignId('lesson_id')->constrained('lessons')->cascadeOnUpdate()->cascadeOnDelete();
             // $table->boolean('status')->default(false);
-            $table->id();
+            // $table->id();
             $table->unsignedBiginteger('user_id')->unsigned();
             $table->unsignedBiginteger('lesson_id')->unsigned();
             $table->boolean('status')->default(false)->nullable();
@@ -26,7 +26,6 @@ return new class extends Migration
                 ->on('users')->onDelete('cascade');
             $table->foreign('lesson_id')->references('id')
                 ->on('lessons')->onDelete('cascade');
-
             $table->timestamps();
         });
     }

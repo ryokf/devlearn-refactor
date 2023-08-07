@@ -42,6 +42,6 @@ class Lesson extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'user_lessons', 'lesson_id', 'user_id');
+        return $this->belongsToMany(User::class, 'user_lessons', 'lesson_id', 'user_id')->withPivot('status');
     }
 }

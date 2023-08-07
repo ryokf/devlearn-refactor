@@ -58,4 +58,8 @@ class UserCourseController extends Controller
 
     //     return Redirect::route('member_transaction')->with('message', 'Pembayaran anda sedang di validasi oleh admin');
     // }
+    public function enroll()
+    {
+        $user_id = Auth::id();
+    }
 }

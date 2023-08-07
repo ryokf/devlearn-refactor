@@ -109,15 +109,6 @@ Route::middleware('role:admin')->group(function () {
 
 });
 
-Route::get('/testing', function () {
-    $user = User::with('userLesson')->findOrFail(2);
-    //$user1 = $user->userLesson->status;
-    // dd($user);
-    $lesson = Lesson::with('userLesson')->findOrFail(1);
-
-    dd($lesson->userLesson[0]->status);
-});
-
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('homepage');
@@ -201,5 +192,24 @@ Route::controller(ProfileController::class)->middleware('auth')->group(function 
 });
 
 
+Route::get('/attach-data', function () {
+    //course id
+    //lesson id yang ada di course
+    //user id yg login
+
+    $user = User::find(1);
+    //$user->lessons()->sync([3, 4, 5, 6]);
+    $user->lessons()->syncWithoutDetaching([
+        1, 2, 3, 4, 5
+        // tambahkan catatan lain di sini
+    ]);
+    $user->lessons()->syncWithoutDetaching([
+        1 => ['status' => true]
+    ]);
+
+    foreach ($user->lessons as $lesson) {
+        var_dump($lesson->pivot->status);
+    }
+});
 
 require __DIR__ . '/auth.php';
