@@ -60,13 +60,14 @@
 
                                 </a>
                                 <hr class="mb-1">
-                                @foreach ($lesson->userLesson as $item)
-                                    @if ($item->status)
-                                        1
+                                @foreach ($lesson->users as $user)
+                                    @if ($user->pivot->status == true)
+                                        Sudah Selesai
                                     @else
-                                        2
+                                        Belum Selesai
                                     @endif
                                 @endforeach
+
                             </li>
                         @endforeach
                     </ul>

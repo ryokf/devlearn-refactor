@@ -4,17 +4,23 @@ namespace App\Services\Member;
 
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CourseService
 {
     public function getLesson($id, $chapter)
     {
-        $lessons = Lesson::with('userLesson')
-            ->where('course_id', $id)
+        $userId = Auth::id();
+        $user = Auth::user();
+
+        $lessons = Lesson::where('course_id', $id)
+            ->whereHas('users', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
             ->orderBy('chapter', 'asc')
             ->get();
-
         $lesson_detail = DB::table('lessons')
             ->where('course_id', $id)
             ->where('chapter', $chapter)
