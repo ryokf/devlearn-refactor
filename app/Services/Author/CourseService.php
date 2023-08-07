@@ -6,6 +6,7 @@ use App\Http\Requests\CreateCourseRequest;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\UserCourse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class CourseService
@@ -71,12 +72,10 @@ class CourseService
         return Course::where('id', $id)->first();
     }
 
-    public function member(Course $course, UserCourse $userCourse){
-        $courses = $course->where('author_id', auth()->user()->id)->get();
+    public function member(UserCourse $userCourse, Request $request){
 
-        foreach($courses as $course){
+        return $userCourse->where('course_id', $request->id)->paginate(10);
 
-        }
     }
 
     public function createCourse(CreateCourseRequest $request)

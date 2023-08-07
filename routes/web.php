@@ -196,6 +196,8 @@ Route::controller(ProfileController::class)->middleware('auth')->group(function 
     Route::get('/profile', 'edit')->name('profile.edit');
     Route::patch('/profile', 'update')->name('profile.update');
     Route::delete('/profile', 'destroy')->name('profile.destroy');
+
+    Route::get('profile-detail/{id}', 'profile-detail')->name('profile.detail');
 });
 
 

@@ -60,13 +60,13 @@ class CourseController extends Controller
     {
         $course = Course::where('id', $request->id)->first();
         $lessons = Lesson::where('course_id', $request->id)->orderBy('chapter')->get();
-        $member = $this->courseService->member($course, $userCourse);
+        $member = $this->courseService->member($userCourse, $request);
 
         return view('author.course.show', [
             'menu' => parent::$menuSidebarauthor,
             'course' => $course,
             'lessons' => $lessons,
-            'member' => $member
+            'members' => $member
         ]);
     }
 
