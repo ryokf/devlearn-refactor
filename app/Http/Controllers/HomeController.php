@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Course;
+use App\Models\UserCourse;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index(Category $category)
+    public function index(Category $category, Course $course, UserCourse $userCourse)
     {
         $category = $category->leftJoin('courses', 'categories.id', '=', 'courses.category_id')
             ->limit(6)
@@ -16,8 +18,26 @@ class HomeController extends Controller
             ->orderByDesc('course_count')
             ->get();
 
+        $popularCourse = $course->select('courses.id', 'courses.title', 'categories.name as category_name', DB::raw('COUNT(user_courses.course_id) as count'))
+        ->join('user_courses', 'courses.id', '=', 'user_courses.course_id')
+        ->join('categories', 'courses.category_id', '=', 'categories.id')
+        // ->leftJoin('lessons', 'courses.id', '=', 'lessons.course_id')
+        ->groupBy('courses.id', 'courses.title', 'categories.name')
+        ->orderBy('count', 'desc')
+        ->limit(8)
+        ->get();
+
+
+        $latestCourse = $course->latest()->limit(8)->get();
+
         return view('home', [
-            'category' => $category
+            'category' => $category,
+            'popularCourse' => $popularCourse,
+            'latestCourse' => $latestCourse
         ]);
+    }
+
+    public function search(){
+        return 'halaman cari';
     }
 }

@@ -1,3 +1,4 @@
+@dd($popularCourse)
 <!DOCTYPE html>
 <html lang="en">
 
