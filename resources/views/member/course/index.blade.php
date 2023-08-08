@@ -1,44 +1,24 @@
 @extends('layouts.layout')
 
 @section('body')
-<x-dashboard-sidebar :menu=$menu></x-dashboard-sidebar>
+    <x-dashboard-sidebar :menu=$menu></x-dashboard-sidebar>
     <div class="relative md:ml-72 bg-blueGray-50">
         <x-dashboard-header></x-dashboard-header>
         <div class="relative bg-slate-800 md:pt-32 pb-32 pt-12 -z-50">
-
+            <div class="text-3xl font-bold text-white px-4 md:px-10">
+                <h1 class="container">Kursus Anda</h1>
+                </div>
         </div>
         <div class="px-4 md:px-10 -m-24 mx-auto">
-            <div class="flex flex-wrap justify-start mb-10">
+            <div class="container mx-auto flex flex-wrap gap-6">
                 @foreach ($courses as $course)
-                    <div
-                        class="w-1/2 sm:max-w-xs m-4 mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <div href="#" class=" w-80 h-40">
-                            <img class="w-80 h-40 rounded-t-lg " src="{{ asset('storage/' . $course->courses->photo) }}"
-                                alt="" />
-                        </div>
-                        <div class="p-5">
-                            <a href="">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                    {{ Str::limit($course->courses->title, 30, '...') }}</h5>
-                            </a>
-                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                {!! Str::limit($course->courses->description, 50, '...') !!}
-                            </p>
-                            <a href="{{ route('lesson.show', ['id' => $course->courses->id, 'chapter' => 1]) }}"
-                                class="inline-flex items-center mt-5 px-3 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-slate-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Mulai belajar
-                                <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                </svg>
-                            </a>
-                        </div>
+                    <div class="w-40 sm:w-64 md:w-80 mx-auto">
+                        <x-course-card :id="$course->courses->id" :title="$course->courses->title" :category="$course->courses->category->name" :price="$course->courses->price"
+                            :count="count($course->courses->lessons)" :photo="$course->courses->photo" />
                     </div>
                 @endforeach
-
             </div>
-            <div class="max-w-xl mx-auto">
+            <div class="max-w-xl mx-auto mt-6">
 
                 {{ $courses->onEachSide(1)->links() }}
             </div>

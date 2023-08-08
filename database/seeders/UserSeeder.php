@@ -34,6 +34,8 @@ class UserSeeder extends Seeder
             'photo' => 'assets/dummy-img.jpg'
         ]);
 
+        User::factory()->count(9)->create();
+
         User::create([
             'name' => 'devlearn admin',
             'email' => 'admin@admin.admin',
@@ -41,6 +43,5 @@ class UserSeeder extends Seeder
             'photo' => 'assets/dummy-img.jpg'
         ]);
 
-        User::factory()->count(9)->create();
     }
 }

@@ -502,8 +502,10 @@
             <div class="swiper swiper-container-2 slide-container w-full">
                 <div class="swiper-wrapper">
                     @foreach ($latestCourse as $course)
+                    <div class="swiper-slide">
                         <x-course-card :id="$course->id" :title="$course->title" :category="$course->category->name" :price="$course->price"
                             :count="count($course->lessons)" :photo="$course->photo" />
+                    </div>
                     @endforeach
                 </div>
 
@@ -523,8 +525,10 @@
             <div class="swiper swiper-container-2 slide-container w-full">
                 <div class="swiper-wrapper">
                     @foreach ($popularCourse as $course)
+                    <div class="swiper-slide">
                         <x-course-card :id="$course->id" :title="$course->title" :category="$course->category_name" :price="$course->price"
                             :count="count($course->lessons)" :photo="$course->photo" />
+                    </div>
                     @endforeach
                 </div>
 

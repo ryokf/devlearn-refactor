@@ -22,7 +22,7 @@ class HomeController extends Controller
         ->join('user_courses', 'courses.id', '=', 'user_courses.course_id')
         ->join('categories', 'courses.id_category', '=', 'categories.id')
         // ->leftJoin('lessons', 'courses.id', '=', 'lessons.course_id')
-        ->groupBy('courses.id', 'courses.title', 'categories.name')
+        ->groupBy('courses.id', 'courses.title', 'categories.name', 'courses.price')
         ->orderBy('count', 'desc')
         ->limit(8)
         ->get();

@@ -56,18 +56,24 @@ class CourseController extends Controller
         }
     }
 
-    public function show(Request $request, Course $course, UserCourse $userCourse)
+    public function show(Request $request, Course $course, UserCourse $userCourse, User $user)
     {
-        $course = Course::where('id', $request->id)->first();
-        $lessons = Lesson::where('course_id', $request->id)->orderBy('chapter')->get();
-        $member = $this->courseService->member($userCourse, $request);
+        $user = $user->find(auth()->user()->id);
 
-        return view('author.course.show', [
-            'menu' => parent::$menuSidebarauthor,
-            'course' => $course,
-            'lessons' => $lessons,
-            'members' => $member
-        ]);
+        if ($user->hasRole('author')) {
+            $course = Course::where('id', $request->id)->first();
+            $lessons = Lesson::where('course_id', $request->id)->orderBy('chapter')->get();
+            $member = $this->courseService->member($userCourse, $request);
+
+            return view('author.course.show', [
+                'menu' => parent::$menuSidebarauthor,
+                'course' => $course,
+                'lessons' => $lessons,
+                'members' => $member
+            ]);
+        }
+
+        return 'halaman detail course';
     }
 
     public function create()
