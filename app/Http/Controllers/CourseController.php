@@ -13,11 +13,12 @@ use App\Models\UserCourse;
 use App\Services\Author\CourseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
     private $courseService;
-    private $adminCourseService;
+
     public function __construct(CourseService $courseService)
     {
         $this->courseService = $courseService;
@@ -42,10 +43,10 @@ class CourseController extends Controller
                 'sorts' => $sortOption,
                 'courses' => $courses,
                 'draft_courses' => $draft_courses,
+
             ]);
         } elseif ($user->hasRole('member')) {
             $courses = UserCourse::where('user_id', auth()->user()->id)->paginate(16);
-
             return view('member.course.index', [
                 'menu' => parent::$memberMenuSidebar,
                 'courses' => $courses,
@@ -55,16 +56,24 @@ class CourseController extends Controller
         }
     }
 
-    public function show(Request $request)
+    public function show(Request $request, Course $course, UserCourse $userCourse, User $user)
     {
-        $course = Course::where('id', $request->id)->first();
-        $lessons = Lesson::where('course_id', $request->id)->orderBy('chapter')->get();
+        $user = $user->find(auth()->user()->id);
 
-        return view('author.course.show', [
-            'menu' => parent::$menuSidebarauthor,
-            'course' => $course,
-            'lessons' => $lessons,
-        ]);
+        if ($user->hasRole('author')) {
+            $course = Course::where('id', $request->id)->first();
+            $lessons = Lesson::where('course_id', $request->id)->orderBy('chapter')->get();
+            $member = $this->courseService->member($userCourse, $request);
+
+            return view('author.course.show', [
+                'menu' => parent::$menuSidebarauthor,
+                'course' => $course,
+                'lessons' => $lessons,
+                'members' => $member
+            ]);
+        }
+
+        return 'halaman detail course';
     }
 
     public function create()

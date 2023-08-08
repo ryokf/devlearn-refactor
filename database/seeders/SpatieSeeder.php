@@ -48,21 +48,36 @@ class SpatieSeeder extends Seeder
             'name' => 'delete course',
             'guard_name' => 'web',
         ]);
-
+        //permission category admin
         Permission::create([
-            'name' => 'create category',
+            'name' => 'manage category',
             'guard_name' => 'web',
         ]);
 
+        //permission voucher admin
         Permission::create([
-            'name' => 'edit category',
+            'name' => 'manage voucher',
             'guard_name' => 'web',
         ]);
 
+        //permission to manage roles and permissions
         Permission::create([
-            'name' => 'delete category',
+            'name' => 'manage roles_permission',
             'guard_name' => 'web',
         ]);
+
+        //permission to manage user
+        Permission::create([
+            'name' => 'manage user',
+            'guard_name' => 'web',
+        ]);
+
+        //permission to manage course by admin
+        Permission::create([
+            'name' => 'manage course',
+            'guard_name' => 'web',
+        ]);
+
 
         Permission::create([
             'name' => 'validate transaction',
@@ -100,5 +115,8 @@ class SpatieSeeder extends Seeder
 
         $admin = User::where('email', 'admin@admin.admin')->first();
         $admin->assignRole('admin');
+        $adminRole = Role::findByName('admin');
+
+        $adminRole->givePermissionTo('manage category', 'manage voucher', 'manage roles_permission', 'manage user', 'manage course');
     }
 }

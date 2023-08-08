@@ -12,7 +12,7 @@
                 <div class="md:p-5 max-w-6xl mx-auto mb-10 z-10 bg-white border shadow-lg rounded">
                     <div class="flex lg:flex-row flex-col items-center p-1 justify-center w-3/4 mx-auto">
                         <div class="p-1 hidden lg:block aspect-square w-[300px] h-[300px] rounded-lg">
-                            <img src="{{ $course->photo }}" alt="" class=" object-cover rounded-lg">
+                            <img src="{{ asset('storage/' . $course->photo) }}" alt="" class="object-cover rounded-lg">
                         </div>
                         <div class="mx-4"></div>
                         <div class="p-1 ">
@@ -78,6 +78,61 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full mb-12 px-4">
+                    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+                        <div class="rounded-t mb-0 px-4 py-3 border-0">
+                            <div class="flex flex-wrap items-center">
+                                <div class="relative w-full px-4 max-w-full flex-grow flex-1 flex flex-wrap justify-between">
+                                    <div class="font-semibold text-lg text-blueGray-700">
+                                       <h1 class="text-xl font-bold">Daftar anggota pada kursus ini</h1>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block w-full overflow-x-auto">
+                            @if (session('success'))
+                                <x-alert bgColor="bg-green-500"> {{ session('success') }}</x-alert>
+                            @endif
+                            <!-- Projects table -->
+                            <table class="items-center w-full bg-transparent border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th
+                                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            No.
+                                        </th>
+                                        <th
+                                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            Nama Pengguna
+                                        </th>
+                                        <th
+                                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            Email
+                                        </th>
+                                        <th
+                                            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($members as $number => $member)
+
+                                            <x-member-list :id="$member->users->id" :chapter="++$number" :title="$member->users->name"
+                                                :description="$member->users->email" :photo="$member->users->photo"
+                                                 />
+                                            {{-- <x-test>{{ $lesson->id }}</x-test> --}}
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <div class="pb-2 pt-4 w-max mx-auto">
+                                {{ $members->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

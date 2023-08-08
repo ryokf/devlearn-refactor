@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lesson;
 use App\Models\User;
 use App\Models\UserCourse;
+use App\Models\UserLesson;
 use App\Services\Member\CourseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,19 +22,20 @@ class LessonController extends Controller
 
     public function show($id, $chapter)
     {
+        //course data mengambil service course service getLesson
         $courseData = $this->coursesService->getLesson($id, $chapter);
-
-        // Membuat resource dari data yang diambil
-        $courseResource = $courseData;
+        //mengambil user id
         $id_user = Auth::id();
-
+        //mencari user di table users menggunakan id_user
+        $user = User::findOrFail($id_user);
+        //pengecekan apakah user memiliki course di tabel userCourse
         $userCourse = UserCourse::where('user_id', $id_user)
             ->where('course_id', $id)
             ->where('payment_status', 'sukses')
             ->first();
-
-        $user = User::findOrFail($id_user);
-        if ($user->hasRole('author') || $user->hasRole('admin')) {
+        //jika role nya author / admin / $userCourse = datanya ada ga di table userCourse
+        if ($user->hasRole('author') || $user->hasRole('admin') || $userCourse) {
+            //untuk button next chapter
             $nextChapter = $chapter + 1;
 
             // Query untuk mendapatkan chapter terakhir
@@ -53,19 +55,37 @@ class LessonController extends Controller
                 ->where('chapter', $nextChapter)
                 ->exists();
 
-            return view('member.courses.lesson', [
-                'lesson' => $courseResource['lesson'],
-                'lesson_detail' => $courseResource['lesson_detail'],
-                'course' => $courseResource['course'],
+            return view('member.lesson.index', [
+                'lessons' => $courseData['lessons'],
+                'lesson_detail' => $courseData['lesson_detail'],
+                'course' => $courseData['course'],
                 'nextChapter' => $nextChapterExists ? $nextChapter : null,
                 'lastChapter' => $isLastChapter,
             ]);
+        } else {
+            return redirect()->back()->with('status', 'unpaid');
         }
-        //jika member tapi belum punya course maka :
+    }
 
-        //jika punya permission untuk lihat atau punya course dan sudah bayar
-        if ($userCourse) {
-
+    public function next($id, $chapter)
+    {
+    }
+    public function progressLesson($id, $chapter)
+    {
+        //course data mengambil service course service getLesson
+        $courseData = $this->coursesService->getLesson($id, $chapter);
+        //mengambil user id
+        $id_user = Auth::id();
+        //mencari user di table users menggunakan id_user
+        $user = User::findOrFail($id_user);
+        //pengecekan apakah user memiliki course di tabel userCourse
+        $userCourse = UserCourse::where('user_id', $id_user)
+            ->where('course_id', $id)
+            ->where('payment_status', 'sukses')
+            ->first();
+        //jika role nya author / admin / $userCourse = datanya ada ga di table userCourse
+        if ($user->hasRole('author') || $user->hasRole('admin') || $userCourse) {
+            //untuk button next chapter
             $nextChapter = $chapter + 1;
 
             // Query untuk mendapatkan chapter terakhir
@@ -85,10 +105,10 @@ class LessonController extends Controller
                 ->where('chapter', $nextChapter)
                 ->exists();
 
-            return view('member.courses.lesson', [
-                'lesson' => $courseResource['lesson'],
-                'lesson_detail' => $courseResource['lesson_detail'],
-                'course' => $courseResource['course'],
+            return view('member.lesson.index', [
+                'lessons' => $courseData['lessons'],
+                'lesson_detail' => $courseData['lesson_detail'],
+                'course' => $courseData['course'],
                 'nextChapter' => $nextChapterExists ? $nextChapter : null,
                 'lastChapter' => $isLastChapter,
             ]);
@@ -129,6 +149,7 @@ class LessonController extends Controller
             'chapter' => $chapter,
             'title' => $request->input('title'),
             'description' => $request->input('description'),
+            'media_link' => $request->input('media_link'),
             'text_content' => $request->input('text_content'),
         ]);
 
@@ -148,8 +169,6 @@ class LessonController extends Controller
 
     public function update(Request $request)
     {
-        // dd($request);
-
         $lesson = Lesson::findOrFail($request->id);
 
         $request->validate([
@@ -173,7 +192,7 @@ class LessonController extends Controller
         $lesson->save();
 
         // Optionally, you can redirect to a success page or show a success message.
-        return redirect()->route('author_course_show', ['id' => $lesson->course_id])
+        return redirect()->route('course.show', ['id' => $lesson->course_id])
             ->with('success', 'Lesson updated successfully!');
     }
 

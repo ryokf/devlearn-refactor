@@ -5,6 +5,8 @@ namespace App\Services\Author;
 use App\Http\Requests\CreateCourseRequest;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\UserCourse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class CourseService
@@ -70,11 +72,17 @@ class CourseService
         return Course::where('id', $id)->first();
     }
 
+    public function member(UserCourse $userCourse, Request $request){
+
+        return $userCourse->where('course_id', $request->id)->paginate(10);
+
+    }
+
     public function createCourse(CreateCourseRequest $request)
     {
         // $data = $request->validate([
         //     'title' => 'required|string|max:100',
-        //     'category_id' => 'required',
+        //     'id_category' => 'required',
         //     'price' => 'required|numeric',
         //     'photo' => 'required|image',
         //     'description' => 'required|string',
@@ -90,7 +98,7 @@ class CourseService
         $course = Course::create([
             'title' => $request->title,
             'author_id' => auth()->user()->id,
-            'category_id' => $request->category_id,
+            'id_category' => $request->id_category,
             'description' => $request->description,
             'photo' => $photoPath,
             'price' => $request->price,
@@ -107,7 +115,7 @@ class CourseService
         $course->fill($request->only([
             'title',
             'author_id',
-            'category_id',
+            'id_category',
             'description',
             'price',
             'status',

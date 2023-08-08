@@ -71,4 +71,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(AssignmentScore::class, 'user_id', 'id');
     }
+
+
+    public function userLesson(): HasMany
+    {
+        return $this->hasMany(UserLesson::class, 'user_id', 'id');
+    }
 }

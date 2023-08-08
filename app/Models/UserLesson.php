@@ -11,11 +11,11 @@ class UserLesson extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-
+    protected $fillable = ['status'];
     /**
      * Get all of the user for the UserCourse
      */
-    public function users(): BelongsTo
+    public function users(): belongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
