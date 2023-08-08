@@ -172,7 +172,7 @@
                                         class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
 
                                         {{-- Buka Detail Course --}}
-                                        <a href="{{ route('lesson.index', ['id' => $course->id, 'chapter' => 1]) }}"
+                                        <a href="{{ route('lesson.show', ['id' => $course->id, 'chapter' => 1]) }}"
                                             class="bg-teal-500 text-white active:bg-teal-600 hover:bg-teal-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                                             <i class="fas fa-info-circle"></i></a>
 

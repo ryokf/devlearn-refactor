@@ -65,7 +65,7 @@
                         </h1>
                     </div>
 
-                    <form action="{{ route('register') }}" class="mt-8 grid grid-cols-6 gap-6">
+                    <form method="POST" action="{{ route('register') }}" class="mt-8 grid grid-cols-6 gap-6">
                         @csrf
                         <div class="col-span-12 sm:col-span-6">
                             <label for="FirstName" class="block text-sm font-medium text-gray-700">
@@ -117,10 +117,18 @@
                                 </a>
                             </p>
                         </div>
-
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
                         <div class="col-span-12 sm:col-span-6 ">
-                            <button
+                            <button type="submit"
                                 class="mx-auto inline-block shrink-0 rounded-md bg-slate-800 hover:bg-slate-700 px-12 py-3 text-sm font-medium text-white w-full">
                                 Daftar
                             </button>

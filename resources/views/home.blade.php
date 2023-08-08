@@ -528,11 +528,8 @@
                             :count="count($course->lessons)" :photo="$course->photo" />
                     @endforeach
                 </div>
-
                 <div class="swiper-button-next rounded-full bg-slate-100 nav-btn"></div>
                 <div class="swiper-button-prev rounded-full bg-slate-100 nav-btn"></div>
-
-
             </div>
         </div>
     </section>

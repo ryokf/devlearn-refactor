@@ -27,7 +27,6 @@ class HomeController extends Controller
             ->limit(8)
             ->get();
 
-
         $latestCourse = $course->latest()->limit(8)->get();
 
         return view('home', [

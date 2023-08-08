@@ -12,15 +12,14 @@ class CourseService
 {
     public function getLesson($id, $chapter)
     {
-        $userId = Auth::id();
-        $user = Auth::user();
 
-        $lessons = Lesson::where('course_id', $id)
-            ->whereHas('users', function ($query) use ($userId) {
-                $query->where('user_id', $userId);
-            })
-            ->orderBy('chapter', 'asc')
-            ->get();
+
+        // $lessons = Lesson::where('course_id', $id)
+        //     ->orderBy('chapter', 'asc')
+        //     ->get();
+        $id_user = Auth::id();
+        $user = User::find($id_user);
+        $lessons = $user->lessons()->where('course_id', $id)->orderBy('chapter')->get();
         $lesson_detail = DB::table('lessons')
             ->where('course_id', $id)
             ->where('chapter', $chapter)

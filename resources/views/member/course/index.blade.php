@@ -1,12 +1,17 @@
 @extends('layouts.layout')
 
 @section('body')
-<x-dashboard-sidebar :menu=$menu></x-dashboard-sidebar>
+    <x-dashboard-sidebar :menu=$menu></x-dashboard-sidebar>
     <div class="relative md:ml-72 bg-blueGray-50">
         <x-dashboard-header></x-dashboard-header>
         <div class="relative bg-slate-800 md:pt-32 pb-32 pt-12 -z-50">
 
         </div>
+        @if (session('message') === 'unpaid')
+            <div class="alert alert-warning">
+                Payment is still pending. Please complete the payment to access the course.
+            </div>
+        @endif
         <div class="px-4 md:px-10 -m-24 mx-auto">
             <div class="flex flex-wrap justify-start mb-10">
                 @foreach ($courses as $course)

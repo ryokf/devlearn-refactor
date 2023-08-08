@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Models\Category;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Voucher;
@@ -131,5 +132,12 @@ class CourseController extends Controller
             compact('courses', 'vouchers')
 
         );
+    }
+
+    public function detailCourse(Request $request, Course $course)
+    {
+        $categories = Category::all();
+        $course = $course->where('id', $request->id)->first(); 
+        return view('general.course.show', compact('course', 'categories'));
     }
 }

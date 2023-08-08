@@ -139,6 +139,7 @@ Route::controller(CourseController::class)->group(function () {
 
     Route::get('/course-all', 'all')->name('course.index.all');
     Route::get('/course-show/{id}', 'show')->name('course.show');
+    Route::get('/course/{id}', 'detailCourse')->name('course.detail');
 
     Route::get('/course', 'index')->middleware('auth')->name('course.index');
 
@@ -158,8 +159,9 @@ Route::controller(CourseController::class)->group(function () {
 });
 
 Route::controller(LessonController::class)->group(function () {
-    //Route::get('/lesson', 'show')->middleware('auth')->name('lesson.show');
-    Route::get('/lesson/{id}/{chapter}', 'show')->name('lesson.index');
+    // Route::get('/lesson', 'show')->middleware('auth')->name('lesson.show');
+    Route::get('/lesson/{id}/{chapter}', 'show')->name('lesson.show');
+    Route::post('/lesson/{id}/{chapter}', 'next')->name('lesson.next');
 
     Route::middleware('role:author')->group(function () {
         Route::get('/lesson-create', 'create')->name('lesson.create');
@@ -180,6 +182,9 @@ Route::controller(UserCourseController::class)->group(function () {
     // Route::middleware('role:admin')->group(function(){
     //     Route::put('/transaction/set-status', 'set_status')->name('transaction.set_status');
     // });
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/transaction/free/{id_course}', 'freeCourse')->name('freeCourse');
+    });
 });
 
 
@@ -261,26 +266,14 @@ Route::get('/see/{id_course}', function ($id_course) {
     $id_user = Auth::id();
     $user = User::find($id_user);
 
-    // $id_lesson = Lesson::where('course_id', $id_course)->pluck('id');
-
-    $lessons = $user->lessons();
+    $lessons = $user->lessons()->where('course_id', $id_course)->orderBy('chapter')->get();
 
     foreach ($lessons as $lesson) {
         $status = $lesson->pivot->status;
-        var_dump("Lesson ID: {$lesson->id}, Status: {$status}");
+        echo "Lesson ID: {$lesson->id}, {$lesson->title} Status: {$status}" .  "<br>";
     }
 });
 
-Route::get('/see2/{id_course}', function ($id_course) {
-    $id_user = Auth::id();
-    $user = User::find($id_user);
 
-    $lessons = $user->lessons()->where('course_id', $id_course)->get();
-
-    foreach ($lessons as $lesson) {
-        $status = $lesson->pivot->status;
-        var_dump("Lesson ID: {$lesson->id}, Status: {$status}");
-    }
-});
 
 require __DIR__ . '/auth.php';

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\UserCourse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
@@ -25,11 +27,29 @@ class CategoryController extends Controller
         return view('admin.category.index', compact('categories'));
     }
 
-    public function show(Course $course, $id)
+    // public function show(Course $course, $id)
+    // {
+    //     $indexCourse = $course->where('id_category', $id)->get();
+    //     return view('member.course.index', compact('indexCourse'));
+    // }
+    public function show($id, Course $course, Category $category)
     {
-        return $course->where('id_category', $id)->get();
-    }
+        $categories = $category->all();
+        $courses = $course->where('id_category', $id)->get();
 
+        $populer = UserCourse::select('course_id', DB::raw('count(course_id) as count'))
+            ->groupBy('course_id')
+            ->orderByDesc('count')
+            ->get();
+
+        $popularCourseIds = $populer->pluck('course_id'); // Extract the course_id values from the collection
+
+        $coursesPopuler = Course::whereIn('id', $popularCourseIds)
+            ->where('id_category', $id)
+            ->take(4)
+            ->get();
+        return view('general.category.show', compact('courses', 'coursesPopuler', 'categories'));
+    }
     public function store(Request $request)
     {
         $menuSidebarAdmin = parent::$menuSidebarAdmin;
