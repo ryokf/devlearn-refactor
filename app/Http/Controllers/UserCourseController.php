@@ -53,7 +53,7 @@ class UserCourseController extends Controller
 
         if ($user->hasRole('member')) {
             if ($existingCourse) {
-                return Redirect::route('lesson.index', ['id' => $id_course, 'chapter' => 1]);
+                return Redirect::route('lesson.show', ['id' => $id_course, 'chapter' => 1]);
             } else {
                 UserCourse::create([
                     'user_id' => $user_id,
