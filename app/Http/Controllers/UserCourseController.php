@@ -69,7 +69,7 @@ class UserCourseController extends Controller
                 return Redirect::route('course.index');
             }
         } else {
-            return Redirect::route('lesson.index', ['id' => $id_course, 'chapter' => 1]);
+            return Redirect::route('lesson.show', ['id' => $id_course, 'chapter' => 1]);
         }
     }
     // public function payment(Request $paymentRequest)
