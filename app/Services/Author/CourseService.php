@@ -66,9 +66,13 @@ class CourseService
     {
         $userCourses = UserCourse::where('user_id', $user_id);
 
-        // if ($request->search != null) {
-        //     $courses = $courses->where('title', 'like', '%'.$request->search.'%');
-        // }
+        if ($request->search != null) {
+            $userCourses = $userCourses->orderByDesc('created_at')->pluck('course_id');
+
+            $userCourses = Course::whereIn('id', $userCourses)->where('title', 'like', '%'.$request->search.'%');
+
+            return $userCourses->get();
+        }
 
         if($request->sort == 'terlama'){
             $userCourses = $userCourses->orderBy('created_at')->pluck('course_id');

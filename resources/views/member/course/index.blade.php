@@ -14,7 +14,25 @@
         </div>
         <div class="px-4 md:px-10 -m-14 mx-auto">
             <div class="container mb-12 flex gap-4">
-                <x-dropdown-button :sorts="$sorts" buttonColor="bg-white" textColor="text-black">urutkan</x-dropdown-button>
+                <form class="flex items-center" action="" method="GET">
+                    <label for="simple-search" class="sr-only">Search</label>
+                    <div class="relative w-full">
+                        <input type="text" id="simple-search"
+                            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-2 pr-20 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="cari kursus..." name="search" required>
+                    </div>
+                    <button type="submit"
+                        class="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                        <span class="sr-only">Search</span>
+                    </button>
+                </form>
+                <x-dropdown-button :sorts="$sorts" buttonColor="bg-white"
+                    textColor="text-black">urutkan</x-dropdown-button>
                 {{-- <x-dropdown-button :sorts="$categories" buttonColor="bg-white"
                     textColor="text-black">kategori</x-dropdown-button> --}}
                 <a href="?status=pass"
@@ -26,6 +44,14 @@
                     type="button"> berjalan
                 </a>
             </div>
+            @if (request()->search != null && count($courses) == 0)
+                <h1 class="text-center mx-auto font-semibold text-xl">kursus yang anda cari tidak tersedia</h1>
+                <a title="kembali ke daftar kursus" class="block text-center mt-4" href="{{ route('course.index') }}"><i class="fa-solid fa-arrow-left fa-xl"></i></a>
+            @endif
+            @if(request()->search == null && count($courses) == 0)
+                <h1 class="text-center mx-auto font-semibold text-xl">anda belum memiliki kursus</h1>
+                <a class="block text-center mt-2 text-blue-600 text-lg" href="{{ route('homepage') }}#categories">beli kursus</a>
+            @endif
             <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach ($courses as $course)
                     <div class="mx-auto">
@@ -36,8 +62,9 @@
             </div>
 
             <div class="max-w-xl mx-auto mt-6">
-
-                {{ $courses->onEachSide(1)->links() }}
+                @if (request()->search == null)
+                    {{ $courses->onEachSide(1)->links() }}
+                @endif
             </div>
             <x-dashboard-footer />
         </div>
