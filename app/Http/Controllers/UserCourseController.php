@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Lesson;
 use App\Models\User;
 use App\Models\UserCourse;
 use Illuminate\Http\Request;
@@ -36,13 +37,41 @@ class UserCourseController extends Controller
         }
     }
 
-    // public function summaryPayment($id, $user_id)
-    // {
-    //     $user = User::findOrFail($user_id);
-    //     $course = Course::findOrFail($id);
-    //     return view('member.transaction.payment', compact('course'));
-    // }
+    public function summaryPayment($id, $user_id)
+    {
+        $user = User::findOrFail($user_id);
+        $course = Course::findOrFail($id);
+        return view('member.transaction.payment', compact('course'));
+    }
 
+    public function freeCourse($id_course)
+    {
+        $user_id = Auth::id();
+        $user = User::findOrFail($user_id);
+
+        $existingCourse = UserCourse::where('user_id', $user_id)->where('course_id', $id_course)->first();
+
+        if ($user->hasRole('member')) {
+            if ($existingCourse) {
+                return Redirect::route('lesson.show', ['id' => $id_course, 'chapter' => 1]);
+            } else {
+                UserCourse::create([
+                    'user_id' => $user_id,
+                    'course_id' => $id_course,
+                    'payment_status' => 'sukses',
+                    'payment_receipt' => 'Free',
+                ]);
+                //cari id lesson nya semua
+                $LessonInCourse = Lesson::where('course_id', $id_course)->pluck('id');
+                //masukan ke table pivot user_id dan lesson_id agar bisa tahu proggres nya
+                $user->lessons()->syncWithoutDetaching($LessonInCourse);
+
+                return Redirect::route('course.index');
+            }
+        } else {
+            return Redirect::route('lesson.index', ['id' => $id_course, 'chapter' => 1]);
+        }
+    }
     // public function payment(Request $paymentRequest)
     // {
     //     $file = $paymentRequest->file('payment_receipt');
@@ -58,4 +87,8 @@ class UserCourseController extends Controller
 
     //     return Redirect::route('member_transaction')->with('message', 'Pembayaran anda sedang di validasi oleh admin');
     // }
+    public function enroll()
+    {
+        $user_id = Auth::id();
+    }
 }

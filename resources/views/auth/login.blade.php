@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DNCC Learning Platform</title>
 
+
     <script src="https://kit.fontawesome.com/c473da0646.js" crossorigin="anonymous"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -34,8 +35,8 @@
 </head>
 
 <body class="font-poppins text-gray-800 overflow-x-hidden" id="top">
-     <!-- Start Navbar -->
-     <nav class="bg-white shadow p-4 sticky top-0 z-50">
+    <!-- Start Navbar -->
+    <nav class="bg-white shadow p-4 sticky top-0 z-50">
         <div class="container mx-auto">
             <div class="flex justify-between">
                 <!-- nav -->
@@ -115,90 +116,113 @@
                 <div class="flex my-auto pr-0 md:pr-5">
 
                     @if (Auth::user())
-                    <!-- dropdown avatar -->    
-                    <div class="relative">
+                        <!-- dropdown avatar -->
+                        <div class="relative">
                             <div x-data="{ open: false }" class="w-full inline-flex flex  items-center">
                                 <!-- close -->
-                                <div @click="open = !open" 
-                                    class="relative border-b-4 border-transparent " 
-                                    >
-                                <div class="flex justify-center items-center space-x-3 cursor-pointer">
-                                <div class="w-10 h-10 rounded-full overflow-hidden border-2  border-slate-800 hover:opacity-90">
-                                    <img src="landingpage/images/course1.png" alt="" class="w-full h-full object-cover">
-                                </div>
-                                <div class="text-slate-800 mx-auto font-semibold">
-                                    <div class="cursor-pointer">
-                                      {{ Auth::user()->name }}
+                                <div @click="open = !open" class="relative border-b-4 border-transparent ">
+                                    <div class="flex justify-center items-center space-x-3 cursor-pointer">
+                                        <div
+                                            class="w-10 h-10 rounded-full overflow-hidden border-2  border-slate-800 hover:opacity-90">
+                                            <img src="landingpage/images/course1.png" alt=""
+                                                class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="text-slate-800 mx-auto font-semibold">
+                                            <div class="cursor-pointer">
+                                                {{ Auth::user()->name }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- open -->
+                                    <div x-show="open"
+                                        class="absolute w-50 py-2 bg-white  shadow-md border dark:border-transparent mt-3">
+                                        <!-- dropdown -->
+
+                                        <ul class="list-none">
+                                            <li>
+                                                <a href="#"
+                                                    class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
+                                                        </path>
+                                                    </svg>
+                                                    Profil
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"
+                                                    class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                                                        </path>
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+                                                        </path>
+                                                    </svg>
+                                                    Pengaturan
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <hr class="border-slate-200 mx-4">
+                                                <form action="{{ route('logout') }}" method="post">
+                                                    @csrf
+                                                    <button
+                                                        class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 hover:border-red-600 text-red-600 w-full type="submit">
+                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                                            </path>
+                                                        </svg>
+                                                        Keluar
+                                                    </button>
+                                                </form>
+                                            </li>
+
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            <!-- open -->
-                            <div x-show="open" class="absolute w-50 py-2 bg-white  shadow-md border dark:border-transparent mt-3">
-                            <!-- dropdown -->
-    
-                            <ul class="list-none">
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                                    Profil
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                        Pengaturan
-                                    </a>
-                                </li>
-                                <li>
-                                <hr class="border-slate-200 mx-4">
-                                <form action="{{ route('logout') }}" method="post">
-                                    @csrf
-                                    <button
-                                        class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 hover:border-red-600 text-red-600 w-full type="submit">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-                                    Keluar
-                                    </button>
-                                </form>
-                                </li>
-                             
-                            </ul>
+
+                            <!-- button masuk -->
+                        @else
+                            <div class="hidden md:block relative">
+                                <a href="{{ route('login') }}"
+                                    class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
+                                    Masuk
+                                </a>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- button masuk -->
-                    @else
-                        <div class="hidden md:block relative">
-                            <a href="{{ route('login') }}"
-                                class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
-                                Masuk
-                            </a>
-                        </div>
 
 
-                    <!-- button daftar -->
-                        <div class="hidden md:block relative">
-                            <a href="{{ route('register') }}"
-                                class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-95">
-                                Daftar
-                            </a>
-                        </div>
+                            <!-- button daftar -->
+                            <div class="hidden md:block relative">
+                                <a href="{{ route('register') }}"
+                                    class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-95">
+                                    Daftar
+                                </a>
+                            </div>
                     @endif
                 </div>
 
                 <!-- nav toggle mobile -->
                 <div class="flex md:hidden cursor-pointer my-auto">
                     <span class="navbar-toggle text-slate-900 flex-end">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                         </svg>
                     </span>
                 </div>
             </div>
+
         </div>
         <!-- mobile nav -->
         <div class="mobile-navbar hidden h-[102vh] bg-white absolute top-0 left-0 text-left shadow overflow-y">
@@ -253,22 +277,22 @@
                 </ul>
 
                 @if (!Auth::user())
-                <div class="flex gap-3 mt-5">
-                    <!-- masuk -->
-                    <div class="relative">
-                        <a href="{{ route('login') }}"
-                            class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
-                            Masuk
-                        </a>
+                    <div class="flex gap-3 mt-5">
+                        <!-- masuk -->
+                        <div class="relative">
+                            <a href="{{ route('login') }}"
+                                class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
+                                Masuk
+                            </a>
+                        </div>
+                        <!-- daftar -->
+                        <div class="relative">
+                            <a href="{{ route('register') }}"
+                                class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-95 text-center">
+                                Daftar
+                            </a>
+                        </div>
                     </div>
-                    <!-- daftar -->
-                    <div class="relative">
-                        <a href="{{ route('register') }}"
-                            class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-95 text-center">
-                            Daftar
-                        </a>
-                    </div>
-                </div>
                 @endif
 
             </div>
@@ -278,65 +302,50 @@
 
     <section class="bg-white">
         <main
-        class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6 py-20"
-        >
-        
-        <div class="max-w-xl lg:max-w-3xl">
-        <div class="relative my-auto block lg:hidden lg:text-center justify-center">
-            <h1
-                class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl"
-            >
-            Masuk Akun DNCC Learn
-            </h1>
-            </div>
+            class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6 py-20">
 
-            <form method="POST" action="{{ route('login') }}" class="mt-8 grid grid-cols-6 gap-6">
-            @csrf
-
-            <div class="col-span-12">
-                <label for="Email" class="block text-sm font-medium text-gray-700">
-                Email
-                </label>
-
-                <input
-                type="email"
-                id="Email"
-                name="email"
-                class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                />
-            </div>
-
-            <div class="col-span-12">
-                <label
-                for="Password"
-                class="block text-sm font-medium text-gray-700"
-                >
-                Password
-                </label>
-
-                <input
-                type="password"
-                id="Password"
-                name="password"
-                class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                />
-            </div>
-
-            <div class="col-span-12">
-                <button
-                class="mx-auto inline-block shrink-0 rounded-md bg-slate-800 hover:bg-slate-700 px-12 py-3 text-sm font-medium text-white w-full"
-                >
-                Masuk
-                </button>
-                <div class="sm:flex sm:items-center sm:gap-4">
-                <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-                Belum punya akun?
-                <a href="{{ route('register') }}" class="text-gray-700 underline">Daftar</a>.
+            <div class="max-w-xl lg:max-w-3xl">
+                <div class="relative my-auto block lg:hidden lg:text-center justify-center">
+                    <h1 class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+                        Masuk Akun DNCC Learn
+                    </h1>
                 </div>
-                </p>
+
+                <form method="POST" action="{{ route('login') }}" class="mt-8 grid grid-cols-6 gap-6">
+                    @csrf
+
+                    <div class="col-span-12">
+                        <label for="Email" class="block text-sm font-medium text-gray-700">
+                            Email
+                        </label>
+
+                        <input type="email" id="Email" name="email"
+                            class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+                    </div>
+
+                    <div class="col-span-12">
+                        <label for="Password" class="block text-sm font-medium text-gray-700">
+                            Password
+                        </label>
+
+                        <input type="password" id="Password" name="password"
+                            class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+                    </div>
+
+                    <div class="col-span-12">
+                        <button
+                            class="mx-auto inline-block shrink-0 rounded-md bg-slate-800 hover:bg-slate-700 px-12 py-3 text-sm font-medium text-white w-full">
+                            Masuk
+                        </button>
+                        <div class="sm:flex sm:items-center sm:gap-4">
+                            <p class="mt-4 text-sm text-gray-500 sm:mt-0">
+                                Belum punya akun?
+                                <a href="{{ route('register') }}" class="text-gray-700 underline">Daftar</a>.
+                        </div>
+                        </p>
+                    </div>
+                </form>
             </div>
-            </form>
-        </div>
         </main>
     </section>
 
@@ -489,7 +498,7 @@
     </footer>
     <!-- End Footer Section -->
 
-       
+
 
     <!-- Scripts -->
     <!-- Jquery JS -->
@@ -516,52 +525,53 @@
         }
     </script>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        new Swiper('.swiper-container', {
-        loop: true,
-        slidesPerView: 1,
-        spaceBetween: 32,
-        autoplay: {
-            delay: 8000,
-        },
-        breakpoints: {
-            640: {
-            centeredSlides: true,
-            slidesPerView: 1.25,
-            },
-            1024: {
-            centeredSlides: false,
-            slidesPerView: 1.5,
-            },
-        },
-        navigation: {
-            nextEl: '.next-button',
-            prevEl: '.prev-button',
-        },
+        document.addEventListener('DOMContentLoaded', function() {
+            new Swiper('.swiper-container', {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 32,
+                autoplay: {
+                    delay: 8000,
+                },
+                breakpoints: {
+                    640: {
+                        centeredSlides: true,
+                        slidesPerView: 1.25,
+                    },
+                    1024: {
+                        centeredSlides: false,
+                        slidesPerView: 1.5,
+                    },
+                },
+                navigation: {
+                    nextEl: '.next-button',
+                    prevEl: '.prev-button',
+                },
+            })
         })
-    })
     </script>
     <script>
         document.addEventListener('alpine:init', () => {
-        Alpine.store('accordion', {
-            tab: 0
-        });
-        
-        Alpine.data('accordion', (idx) => ({
-            init() {
-            this.idx = idx;
-            },
-            idx: -1,
-            handleClick() {
-            this.$store.accordion.tab = this.$store.accordion.tab === this.idx ? 0 : this.idx;
-            },
-            handleRotate() {
-            return this.$store.accordion.tab === this.idx ? 'rotate-180' : '';
-            },
-            handleToggle() {
-            return this.$store.accordion.tab === this.idx ? `max-height: ${this.$refs.tab.scrollHeight}px` : '';
-            }
-        }));
+            Alpine.store('accordion', {
+                tab: 0
+            });
+
+            Alpine.data('accordion', (idx) => ({
+                init() {
+                    this.idx = idx;
+                },
+                idx: -1,
+                handleClick() {
+                    this.$store.accordion.tab = this.$store.accordion.tab === this.idx ? 0 : this.idx;
+                },
+                handleRotate() {
+                    return this.$store.accordion.tab === this.idx ? 'rotate-180' : '';
+                },
+                handleToggle() {
+                    return this.$store.accordion.tab === this.idx ?
+                        `max-height: ${this.$refs.tab.scrollHeight}px` : '';
+                }
+            }));
         })
     </script>
 </body>

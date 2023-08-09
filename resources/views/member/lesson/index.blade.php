@@ -53,20 +53,19 @@
                     <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                         @foreach ($lessons as $lesson)
                             <li class="items-center">
-                                <a href="{{ route('lesson.index', ['id' => $course->id, 'chapter' => $lesson->chapter]) }}"
+                                <a href="{{ route('lesson.show', ['id' => $course->id, 'chapter' => $lesson->chapter]) }}"
                                     class="w-11/12 text-xs uppercase py-3 font-bold block duration-100
-                                       {{ request()->routeIs('lesson.index') && request('id') == $course->id && request('chapter') == $lesson->chapter ? 'bg-slate-800 text-slate-100 px-2 rounded-xl ml-1' : 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }}">
+                                       {{ request()->routeIs('lesson.show') && request('id') == $course->id && request('chapter') == $lesson->chapter ? 'bg-slate-800 text-slate-100 px-2 rounded-xl ml-1' : 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }}">
                                     {{ $lesson->chapter }}.{{ $lesson->title }}
 
                                 </a>
+
+                                @if ($lesson->pivot->status == true)
+                                    <p class="text-green-500 uppercase">Sudah Selesai</p>
+                                @else
+                                    <p class="text-red-500 uppercase">Belum Selesai</p>
+                                @endif
                                 <hr class="mb-1">
-                                @foreach ($lesson->userLesson as $item)
-                                    @if ($item->status)
-                                        1
-                                    @else
-                                        2
-                                    @endif
-                                @endforeach
                             </li>
                         @endforeach
                     </ul>
@@ -82,7 +81,8 @@
         <div class="relative md:ml-80 md:px-12">
             @foreach ($lesson_detail as $item)
                 <div class="px-4 md:px-10 mx-auto w-full  mb-8">
-                    <p class="text-xl font-semibold bg-white p-4">{{ $item->chapter }} . {{ $item->title }}</p>
+                    <p class="text-xl font-semibold bg-white p-4">{{ $item->id }}. {{ $item->chapter }} .
+                        {{ $item->title }}</p>
                     <div class="p-8 flex flex-col md:flex-row md:space-x-8 justify-center items-center">
                         {{-- <img src="{{ $item->media_content }}" alt="{{ $item->title }}"
                             class="w-32 h-32 md:w-80 md:h-64 object-cover rounded-lg shadow-md"> --}}
@@ -97,20 +97,24 @@
                         <div class="mt-2 leading-relaxed">{!! $item->text_content !!}</div>
                     </div>
                 </div>
-            @endforeach
-            <!-- Next button -->
-            <div class="px-4 md:px-10 mx-auto w-full mb-8 flex justify-end">
-                @if ($nextChapter)
-                    <a href="{{ route('lesson.index', ['id' => $course->id, 'chapter' => $nextChapter]) }}"
-                        class="bg-slate-800 hover:bg-blue-900 text-white font-bold py-2 px-10 rounded">
-                        Next Chapter
-                    </a>
-                @endif
-                @if ($lastChapter)
-                    Sudah Selesai
-                @endif
-            </div>
 
+                <!-- Next button -->
+                <div class="px-4 md:px-10 mx-auto w-full mb-8 flex justify-end">
+                    @if ($nextChapter)
+                        <form action="{{ route('lesson.next', ['id' => $course->id, 'chapter' => $nextChapter]) }}"
+                            method="post">
+                            @csrf
+                            <input hidden type="text" name="id_lesson" value="{{ $item->id }}">
+                            <button type="submit"
+                                class="bg-slate-800 hover:bg-blue-900 text-white font-bold py-2 px-10 rounded">Next
+                                Chapter</button>
+                        </form>
+                    @endif
+                    @if ($lastChapter)
+                        Sudah Selesai
+                    @endif
+                </div>
+            @endforeach
             {{-- <x-author_footer class="" /> --}}
         </div>
 

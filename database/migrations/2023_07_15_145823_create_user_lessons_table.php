@@ -14,10 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_lessons', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('lesson_id')->constrained('lessons')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->boolean('status')->default(false);
+            // $table->id();
+            // $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
+            // $table->foreignId('lesson_id')->constrained('lessons')->cascadeOnUpdate()->cascadeOnDelete();
+            // $table->boolean('status')->default(false);
+            // $table->id();
+            $table->unsignedBiginteger('user_id')->unsigned();
+            $table->unsignedBiginteger('lesson_id')->unsigned();
+            $table->boolean('status')->default(false)->nullable();
+            $table->foreign('user_id')->references('id')
+                ->on('users')->onDelete('cascade');
+            $table->foreign('lesson_id')->references('id')
+                ->on('lessons')->onDelete('cascade');
             $table->timestamps();
         });
     }

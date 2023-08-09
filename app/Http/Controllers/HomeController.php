@@ -18,15 +18,14 @@ class HomeController extends Controller
             ->orderByDesc('course_count')
             ->get();
 
-        $popularCourse = $course->select('courses.id', 'courses.price' , 'courses.title', 'courses.photo', 'categories.name as category_name', DB::raw('COUNT(user_courses.course_id) as count'))
-        ->join('user_courses', 'courses.id', '=', 'user_courses.course_id')
-        ->join('categories', 'courses.id_category', '=', 'categories.id')
-        // ->leftJoin('lessons', 'courses.id', '=', 'lessons.course_id')
-        ->groupBy('courses.id', 'courses.title', 'categories.name', 'courses.price')
-        ->orderBy('count', 'desc')
-        ->limit(8)
-        ->get();
-
+        $popularCourse = $course->select('courses.id', 'courses.price', 'courses.title', 'courses.photo', 'categories.name as category_name', DB::raw('COUNT(user_courses.course_id) as count'))
+            ->join('user_courses', 'courses.id', '=', 'user_courses.course_id')
+            ->join('categories', 'courses.id_category', '=', 'categories.id')
+            // ->leftJoin('lessons', 'courses.id', '=', 'lessons.course_id')
+            ->groupBy('courses.id', 'courses.title', 'categories.name', 'courses.price', 'courses.photo')
+            ->orderBy('count', 'desc')
+            ->limit(8)
+            ->get();
 
         $latestCourse = $course->latest()->limit(8)->get();
 
@@ -37,7 +36,8 @@ class HomeController extends Controller
         ]);
     }
 
-    public function search(){
+    public function search()
+    {
         return 'halaman cari';
     }
 }
