@@ -272,107 +272,406 @@
         </div>
     </nav>
     <!-- End Navbar -->
+    <section>
 
-    <section class="bg-white">
-        <div class="px-10 sm:px-20 md:px-24">
-            <div class="bg-slate-100 p-6 shadow-md flex-col md:flex-row flex items-center justify-center gap-5 ">
-                <div class="md:w-1/2 mr-6 w-full mx-auto">
-                    <img src="https://images.unsplash.com/photo-1691392334237-c7b8b700c80d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                        alt="Course Image" class="rounded-md">
-                </div>
-                <div class="md:w-1/2 w-full items-start flex flex-col">
-                    <h1 class="text-2xl font-semibold">{{ $course->title }}</h1>
-                    <p class="text-gray-600 mt-2 items-start">{{ $course->description }}</p>
+        <div class="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
+            <div class="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
+                <img class="w-full" alt="image of a girl posing"
+                    src="https://images.unsplash.com/photo-1691392334237-c7b8b700c80d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" />
+
+            </div>
+            <div class="md:hidden">
+                <img class="w-full" alt="image of a girl posing"
+                    src="https://images.unsplash.com/photo-1691392334237-c7b8b700c80d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" />
+
+            </div>
+            <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
+                <div class="border-b border-gray-200 pb-6">
+
+                    <h1
+                        class="lg:text-4xl text-3xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white my-2">
+                        {{ $course->title }}</h1>
                     <div class="flex  mt-4 ">
-                        <div class="flex  ">
+                        <div class="flex   ">
                             <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                {{ $course->category->name }}
+                                <p>{{ $course->category->name }}</p>
                             </span>
                         </div>
                         <div class="ml-4 text-gray-500">
-                            <p class="text-gray-400 mt-2">{{ count($course->lessons) }} Lesson</p>
+                            <p class="text-gray-400 mt-1">{{ count($course->lessons) }} Lesson</p>
                         </div>
 
                     </div>
-                    <div class="flex flex-row mt-4 w-full gap-5 items-center">
-                        <div>
-                            @if ($course->price == 0)
-                                <a href="{{ route('freeCourse', ['id_course' => $course->id]) }}"><button
-                                        class=" bg-indigo-500 text-white py-2 px-6 rounded-md hover:bg-indigo-600">
-                                        Start Free Course
-                                    </button></a>
-                            @else
-                                <p>{{ $course->price }}</p>
-                                <button class=" bg-indigo-500 text-white py-2 px-6 rounded-md hover:bg-indigo-600">
-                                    Enroll Now
-                                </button>
-                            @endif
-                        </div>
-
-
+                </div>
+                <div class="py-4 border-b border-gray-200 flex items-start flex-col ">
+                    <p class="text-lg leading-4 text-gray-800 dark:text-gray-300">Description</p>
+                    <div class="flex items-center justify-center">
+                        <p class="text-sm leading-none text-gray-600 dark:text-gray-300">{{ $course->description }}
+                        </p>
                     </div>
+                </div>
+                <div class="py-4 border-b border-gray-200 flex items-center justify-between">
+                    @if ($course->price == 0)
+                        <a href="{{ route('freeCourse', ['id_course' => $course->id]) }}"
+                            class="dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700 focus:outline-none rounded-md">
+                            Start Free Course
+                        </a>
+                    @else
+                        <p>{{ $course->price }}</p>
+                        <button class=" bg-indigo-500 text-white py-2 px-6 rounded-md hover:bg-indigo-600">
+                            Enroll Now
+                        </button>
+                    @endif
+                </div>
+                @php
+                    $menit = count($course->lessons) * 10;
+                    $no = 1;
+                @endphp
+                <div class="py-4 border-b border-gray-200 flex items-start flex-col ">
+                    <p class="text-lg leading-4 text-gray-800 dark:text-gray-300">Course Content</p>
+                    <p class="text-base leading-4 text-gray-800 dark:text-gray-300">{{ count($course->lessons) }}
+                        sections • {{ $menit }} minutes total length</p>
+                    <ul class="relative m-0 w-full list-none overflow-hidden p-0 transition-[height] duration-200 ease-in-out"
+                        data-te-stepper-init data-te-stepper-type="vertical">
+                        <!--First item-->
+                        @foreach ($course->lessons as $lesson)
+                            <li data-te-stepper-step-ref
+                                class="relative h-fit after:absolute after:left-[2.45rem] after:top-[3.6rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#e0e0e0] after:content-[''] dark:after:bg-slate-800">
+                                <div data-te-stepper-head-ref
+                                    class="flex cursor-pointer items-center p-6 leading-[1.3rem] no-underline after:bg-[#e0e0e0] after:content-[''] hover:bg-[#f9f9f9] focus:outline-none dark:after:bg-slate-800 dark:hover:bg-[#3b3b3b]">
+                                    <span data-te-stepper-head-icon-ref
+                                        class="mr-3 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-[#ebedef] text-sm font-medium text-[#40464f]">
+                                        {{ $no }}
+                                    </span>
+                                    <span data-te-stepper-head-text-ref
+                                        class="text-slate-800 after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-slate-300">
+                                        {{ $lesson->title }}
+                                    </span>
+                                </div>
+                                <div data-te-stepper-content-ref
+                                    class="transition-[height, margin-bottom, padding-top, padding-bottom] left-0 overflow-hidden pb-6 pl-[3.75rem] pr-6 duration-300 ease-in-out">
+                                    {{ $lesson->description }}
+                                </div>
+                            </li>
+                            @php
+                                $no++;
+                            @endphp
+                        @endforeach
+                    </ul>
 
                 </div>
+
+
             </div>
 
 
-            <div class="my-6 ">
-                <h2 class="text-xl font-semibold">Course Curriculum</h2>
-                <div id="accordion-color" data-accordion="collapse" class="mt-5"
-                    data-active-classes="bg-blue-100 dark:bg-gray-800 text-blue-600 dark:text-white">
-                    @foreach ($course->lessons as $lesson)
-                        <h2 id="accordion-color-heading-{{ $loop->iteration }}">
-                            <button type="button"
-                                class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800"
-                                data-accordion-target="#accordion-color-body-{{ $loop->iteration }}"
-                                aria-expanded="false" aria-controls="accordion-color-body-{{ $loop->iteration }}">
-                                <span>{{ $lesson->title }}</span>
-                                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M9 5 5 1 1 5" />
+        </div>
+
+
+
+    </section>
+    <section>
+        <div class="bg-white py-6 sm:py-14">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mx-auto max-w-2xl sm:text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Opsi Pembayaran</h2>
+                    <p class="mt-6 text-lg leading-8 text-gray-600">"Tidak ada kesalahan dalam berinvestasi pada
+                        pendidikan, Langkah ini adalah langkah bijak untuk
+                        masa depan yang cerah."</p>
+                </div>
+                <div
+                    class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
+                    <div class="p-8 sm:p-10 lg:flex-auto">
+                        <h3 class="text-2xl font-bold tracking-tight text-gray-900">Akses Selamanya</h3>
+                        <p class="mt-6 text-base leading-7 text-gray-600">Nikmati akses tak terbatas ke komprehensif
+                            kami
+                            Konten kursus dan tingkatkan keterampilan Anda dengan sumber daya eksklusif kami.</p>
+                        <div class="mt-10 flex items-center gap-x-4">
+                            <h4 class="flex-none text-sm font-semibold leading-6 text-slate-800">What’s Included</h4>
+                            <div class="h-px flex-auto bg-gray-100"></div>
+                        </div>
+                        <ul role="list"
+                            class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6">
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-slate-800" viewBox="0 0 20 20" fill="currentColor"
+                                    aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                                        clip-rule="evenodd" />
                                 </svg>
-                            </button>
-                        </h2>
-                        <div id="accordion-color-body-{{ $loop->iteration }}" class="hidden"
-                            aria-labelledby="accordion-color-heading-{{ $loop->iteration }}">
-                            <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">{{ $lesson->description }}</p>
-                                <!-- Additional content can be added here -->
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-
-            </div>
-
-            <div class="my-6 ">
-                <h2 class="text-xl font-semibold">Prerequisites</h2>
-                <p class="text-gray-600 mt-2">
-                    {{-- {{ $course->category->description }} --}}
-                </p>
-            </div>
-
-            <div class="my-6 ">
-                <h2 class="text-xl font-semibold">Mentor</h2>
-                <div class="flex items-center  ">
-                    <div class="w-10 h-10 rounded-full overflow-hidden border-2  border-slate-800 hover:opacity-90">
-                        <img src="" alt="" class="w-full h-full object-cover">
+                                Akses Materi Kelas Premium
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-slate-800" viewBox="0 0 20 20" fill="currentColor"
+                                    aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Konsultaisi dengan para mentor
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-slate-800" viewBox="0 0 20 20" fill="currentColor"
+                                    aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Akses kelas dimana saja
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-slate-800" viewBox="0 0 20 20" fill="currentColor"
+                                    aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Sertifikat kelulusan kursus
+                            </li>
+                        </ul>
                     </div>
-                    <div class="text-slate-800 mx-auto font-semibold">
-                        <div class="">
-                            {{ $course->author->name }}
+                    <div class="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
+                        <div
+                            class="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
+                            <div class="mx-auto max-w-xs px-8">
+                                <p class="text-base font-semibold text-gray-600">Investasikan Sekarang</p>
+                                <p class="mt-6 flex items-baseline justify-center gap-x-2">
+                                    <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">Rp</span>
+                                    <span
+                                        class="text-5xl font-bold tracking-tight text-gray-900">{{ $course->price }}</span>
+                                </p>
+                                <a href="#"
+                                    class="mt-10 block w-full rounded-md bg-slate-800 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enroll
+                                    Now</a>
+                                <p class="mt-6 text-xs leading-5 text-gray-600">Receipts and Invoices for Reimbursement
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </section>
-
     {{-- EndCourse Detail --}}
 
+    <!-- Start Footer Section -->
+    <footer class="bg-white">
+        <div class="mx-auto container space-y-8 py-16 lg:space-y-16">
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 ">
+                <div>
+                    <div class="h-8">
+                        <img src="landingpage/images/logo-dncc.webp" class="w-25 h-10" alt="" />
+                    </div>
+
+                    <p class="mt-4 max-w-xs text-slate-500 text-sm pt-3">
+                        <b>Basecamp DNCC</b>
+                        <br>
+                        Jl. Nakula 1 No.5-11, Pendrikan Kidul,
+                        Kec. Semarang Tengah, Kota Semarang,
+                        Jawa Tengah 50131
+                    </p>
+
+                    <ul class="mt-8 flex gap-6">
+
+                        <li>
+                            <a href="https://www.instagram.com/dnccsemarang/?hl=id" rel="noreferrer" target="_blank"
+                                class="text-gray-700 transition hover:opacity-75">
+                                <span class="sr-only">Instagram</span>
+
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCbGj3OU4Qq8KOgaY9zuyZsA" rel="noreferrer"
+                                target="_blank" class="text-gray-700 transition hover:opacity-75">
+                                <span class="sr-only">YouTube</span>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6"
+                                    viewBox="0 0 576 512">
+                                    <path
+                                        d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
+                                </svg>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://github.com/dnccsemarang" rel="noreferrer" target="_blank"
+                                class="text-gray-700 transition hover:opacity-75">
+                                <span class="sr-only">GitHub</span>
+
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="grid grid-cols-2 gap-8 lg:col-span-2 md:grid-cols-3">
+                    <!-- tentang kami -->
+                    <div>
+                        <p class="font-medium text-gray-900">Tentang Kami</p>
+
+                        <ul class="mt-6 space-y-4 text-sm">
+                            <li>
+                                <a href="#" class="text-gray-700 transition hover:opacity-75">
+                                    Mulai Belajar
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="text-gray-700 transition hover:opacity-75">
+                                    Lihat Semua Kursus
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="text-gray-700 transition hover:opacity-75">
+                                    Kontak Kami
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="https://dnccudinus.org/" class="text-gray-700 transition hover:opacity-75">
+                                    Website Resmi DNCC
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="https://dinus.ac.id/" class="text-gray-700 transition hover:opacity-75">
+                                    Website Resmi Universitas
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- kategori -->
+                    <div>
+                        <p class="font-medium text-gray-900">Kategori</p>
+
+                        <ul class="mt-6 space-y-4 text-sm">
+                            <li>
+                                <a href="#" class="text-gray-700 transition hover:opacity-75">
+                                    Web Development
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="text-gray-700 transition hover:opacity-75">
+                                    Mobile Development
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="text-gray-700 transition hover:opacity-75">
+                                    Game Development
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-700 transition hover:opacity-75">
+                                    Jaringan Komputer
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-700 transition hover:opacity-75">
+                                    Data Analis
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-700 transition hover:opacity-75">
+                                    Multimedia
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- developer -->
+                    <div>
+                        <p class="font-medium text-gray-900">Tentang Developer</p>
+
+                        <ul class="mt-6 space-y-4 text-sm">
+                            <li>
+                                <a href="https://github.com/ryokf"
+                                    class="text-gray-700 transition hover:opacity-75 flex items-center text-sm">
+                                    <svg class="h-5 w-5 mr-3" fill="currentColor" viewBox="0 0 24 24"
+                                        aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Ryo Khrisna Fitriawan
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/rmarioapn3"
+                                    class="text-gray-700 transition hover:opacity-75 flex items-center text-sm">
+                                    <svg class="h-5 w-5 mr-3" fill="currentColor" viewBox="0 0 24 24"
+                                        aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Mario Aprilnino Prasetyo
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/taliyameyswara"
+                                    class="text-gray-700 transition hover:opacity-75 flex items-center text-sm">
+                                    <svg class="h-5 w-5 mr-3" fill="currentColor" viewBox="0 0 24 24"
+                                        aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Taliya Meyswara
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/isnanramalia"
+                                    class="text-gray-700 transition hover:opacity-75 flex items-center text-sm">
+                                    <svg class="h-5 w-5 mr-3" fill="currentColor" viewBox="0 0 24 24"
+                                        aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Isna Nur Amalia
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-xs text-gray-500 text-center">
+                &copy; 2023. DNCC. All rights reserved.
+            </p>
+        </div>
+    </footer>
+    <!-- End Footer Section -->
+    {{-- Script Template --}}
+    <script>
+        let elements = document.querySelectorAll("[data-menu]");
+        for (let i = 0; i < elements.length; i++) {
+            let main = elements[i];
+            main.addEventListener("click", function() {
+                let element = main.parentElement.parentElement;
+                let andicators = main.querySelectorAll("img");
+                let child = element.querySelector("#sect");
+                child.classList.toggle("hidden");
+                andicators[0].classList.toggle("rotate-180");
+            });
+        }
+    </script>
+    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
 
     {{-- flowbite script --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
