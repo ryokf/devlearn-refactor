@@ -50,21 +50,35 @@ class CategoryController extends Controller
             ->get();
         return view('general.category.show', compact('courses', 'coursesPopuler', 'categories'));
     }
+    // public function store(Request $request)
+    // {
+    //     $menuSidebarAdmin = parent::$menuSidebarAdmin;
+    //     view()->share('menu', $menuSidebarAdmin);
+    //     $file = $request->file('photo');
+    //     $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
+    //     Storage::disk('local')->put('public/' . $path, file_get_contents($file));
+    //     Category::create(
+    //         [
+    //             'name' => $request->name,
+    //             'photo' => $path,
+    //         ]
+    //     );
+
+    //     return redirect()->back()->with('message', 'Category succesfully added!');
+    // }
     public function store(Request $request)
     {
         $menuSidebarAdmin = parent::$menuSidebarAdmin;
         view()->share('menu', $menuSidebarAdmin);
         $file = $request->file('photo');
-        $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
-        Storage::disk('local')->put('public/' . $path, file_get_contents($file));
-        Category::create(
-            [
-                'name' => $request->name,
-                'photo' => $path,
-            ]
-        );
+        $path = 'public/' . time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
+        Storage::put($path, file_get_contents($file));
+        Category::create([
+            'name' => $request->name,
+            'photo' => $path,
+        ]);
 
-        return redirect()->back()->with('message', 'Category succesfully added!');
+        return redirect()->back()->with('message', 'Category successfully added!');
     }
 
     public function update(Request $request, $id)
@@ -75,8 +89,8 @@ class CategoryController extends Controller
         $category->name = $request->input('name');
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
-            $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
-            Storage::disk('local')->put('public/' . $path, file_get_contents($file));
+            $path = 'public/' . time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
+            Storage::put($path, file_get_contents($file));
             $category->photo = $path;
         }
 
