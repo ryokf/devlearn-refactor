@@ -7,15 +7,19 @@ use Illuminate\View\Component;
 class DropdownButton extends Component
 {
     public $sorts;
+    public $buttonColor;
+    public $textColor;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($sorts)
+    public function __construct($sorts, $buttonColor, $textColor)
     {
         $this->sorts = $sorts;
+        $this->buttonColor = $buttonColor;
+        $this->textColor = $textColor;
     }
 
     /**

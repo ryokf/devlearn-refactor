@@ -4,7 +4,9 @@ namespace App\Services\Author;
 
 use App\Http\Requests\CreateCourseRequest;
 use App\Models\Category;
+use App\Models\Certificate;
 use App\Models\Course;
+use App\Models\User;
 use App\Models\UserCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -35,7 +37,7 @@ class CourseService
         $courses = Course::where('author_id', $author_id)->where('is_public', 1);
 
         if ($request->search != null) {
-            $courses = $courses->where('title', 'like', '%'.$request->search.'%');
+            $courses = $courses->where('title', 'like', '%' . $request->search . '%');
         }
 
         $courses = $courses->when($request->sort == 'terlama', function ($query) {
@@ -60,6 +62,56 @@ class CourseService
         return $courses->paginate(10);
     }
 
+    public function getUserCourses(Request $request, $user_id)
+    {
+        $userCourses = UserCourse::where('user_id', $user_id);
+
+        // if ($request->search != null) {
+        //     $courses = $courses->where('title', 'like', '%'.$request->search.'%');
+        // }
+
+        if($request->sort == 'terlama'){
+            $userCourses = $userCourses->orderBy('created_at')->pluck('course_id');
+
+            $userCourses = Course::whereIn('id', $userCourses)->orderByDesc('title');
+        } elseif($request->sort == 'abjad A-Z'){
+            $userCourses = $userCourses->pluck('course_id');
+
+            $userCourses = Course::whereIn('id', $userCourses)->orderBy('title');
+        } elseif($request->sort == 'abjad Z-A'){
+            $userCourses = $userCourses->pluck('course_id');
+
+            $userCourses = Course::whereIn('id', $userCourses)->orderByDesc('title');
+        } elseif($request->sort == 'termahal'){
+            $userCourses = $userCourses->pluck('course_id');
+
+            $userCourses = Course::whereIn('id', $userCourses)->orderByDesc('price');
+        }elseif($request->sort == 'termurah'){
+            $userCourses = $userCourses->pluck('course_id');
+
+            $userCourses = Course::whereIn('id', $userCourses)->orderBy('price');
+        }elseif($request->get('status') == 'pass'){
+            $userCourses = $userCourses->pluck('course_id');
+
+            $userCourses = Certificate::where('user_id', $user_id)->whereIn('course_id', $userCourses)->pluck('course_id');
+
+            $userCourses = Course::whereIn('id', $userCourses);
+        } elseif($request->get('status') == 'ongoing'){
+            $userCourses = $userCourses->pluck('course_id');
+
+            $userCourses = Certificate::where('user_id', $user_id)->whereNotIn('course_id', $userCourses)->pluck('course_id');
+
+            $userCourses = Course::whereIn('id', $userCourses);
+        }else{
+            $userCourses = $userCourses->orderByDesc('created_at')->pluck('course_id');
+
+            $userCourses = Course::whereIn('id', $userCourses)->orderByDesc('title');
+        }
+
+        return $userCourses->paginate(10);
+
+    }
+
     public function getDraftCourse($author_id)
     {
         $courses = Course::where('author_id', $author_id)->where('is_public', 0)->paginate(10);
@@ -72,22 +124,14 @@ class CourseService
         return Course::where('id', $id)->first();
     }
 
-    public function member(UserCourse $userCourse, Request $request){
+    public function member(UserCourse $userCourse, Request $request)
+    {
 
         return $userCourse->where('course_id', $request->id)->paginate(10);
-
     }
 
     public function createCourse(CreateCourseRequest $request)
     {
-        // $data = $request->validate([
-        //     'title' => 'required|string|max:100',
-        //     'id_category' => 'required',
-        //     'price' => 'required|numeric',
-        //     'photo' => 'required|image',
-        //     'description' => 'required|string',
-        // ]);
-
         if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
             $photoPath = $photo->store('photos', 'public');
