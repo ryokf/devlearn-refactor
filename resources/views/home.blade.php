@@ -94,8 +94,8 @@
                         <div class="relative">
                             <div x-data="{ open: false }" class="w-full inline-flex flex  items-center">
                                 <!-- close -->
-                                <div @click="open = !open" 
-                                    class="relative border-b-4 border-transparent " 
+                                <div @click="open = !open"
+                                    class="relative border-b-4 border-transparent "
                                     >
                                 <div class="flex justify-center items-center space-x-3 cursor-pointer">
                                 <div class="w-10 h-10 rounded-full overflow-hidden border-2  border-slate-800 hover:opacity-90">
@@ -119,10 +119,10 @@
                             <!-- dropdown -->
                             <ul class="list-none">
                                 <li>
-                                    <a href="#"
+                                    <a href="{{ route('dashboard') }}"
                                         class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                                    Profil
+                                    Dashboard
                                     </a>
                                 </li>
                                 <li>
@@ -143,7 +143,7 @@
                                     </button>
                                 </form>
                                 </li>
-                             
+
                             </ul>
                             </div>
                         </div>
@@ -158,14 +158,14 @@
                         >
                          <ul class="list-none">
                                 <li>
-                                    <a href="#"
+                                    <a href="{{ route('dashboard') }}"
                                         class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                                    Profil
+                                    Dashboard
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#"
+                                    <a href=""
                                         class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                         Pengaturan
@@ -182,12 +182,12 @@
                                     </button>
                                 </form>
                                 </li>
-                             
+
                             </ul>
-                  
+
                         </div>
 
-                            
+
                     </div>
 
                             <!-- button masuk -->
@@ -867,7 +867,7 @@
             <div class="py-20 md:py-36 bg-black/50 md:px-40 px-10 ">
                 <h2 class="font-bold md:text-4xl text-3xl text-center text-white">JADILAH MENTOR UNTUK MENGAJAR DI DNCC LEARN</h2>
 
-                <p class="text-center text-white pt-5 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nisi corrupti fugiat corporis eaque inventore laudantium deleniti nulla quae consectetur, a recusandae earum quidem numquam aut quia, fugit, incidunt voluptatem? Vitae accusantium fugit molestiae eaque. Quis dignissimos mollitia est quia?
+                <p class="text-center text-white pt-5 max-w-4xl mx-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nisi corrupti fugiat corporis eaque inventore laudantium deleniti nulla quae consectetur, a recusandae earum quidem numquam aut quia, fugit, incidunt voluptatem? Vitae accusantium fugit molestiae eaque. Quis dignissimos mollitia est quia?
                 </p>
 
             <div class="text-center mt-8">
@@ -886,9 +886,9 @@
     <!-- Start Footer Section -->
     <footer class="bg-white">
     <div
-        class="mx-auto max-w-screen-xl space-y-8 px-10 py-16 sm:px-6 lg:space-y-16"
+        class="mx-auto container space-y-8 py-16 lg:space-y-16"
     >
-        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 ">
             <div>
                 <div class="h-8">
                 <img src="landingpage/images/logo-dncc.webp" class="w-25 h-10" alt="" />

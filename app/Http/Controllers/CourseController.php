@@ -46,10 +46,17 @@ class CourseController extends Controller
 
             ]);
         } elseif ($user->hasRole('member')) {
-            $courses = UserCourse::where('user_id', auth()->user()->id)->paginate(16);
+            // dd($this->courseService->getUserCourses($request, auth()->user()->id));
+
+            $courses = $this->courseService->getUserCourses($request, auth()->user()->id);
+            $sortOption = $this->courseService->sortOption();
+            $categories = $this->courseService->getCategory();
+
             return view('member.course.index', [
                 'menu' => parent::$memberMenuSidebar,
                 'courses' => $courses,
+                'sorts' => $sortOption,
+                'categories' => $categories
             ]);
         } else {
             return true;
