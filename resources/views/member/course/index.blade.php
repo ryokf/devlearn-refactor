@@ -26,14 +26,15 @@
                     type="button"> berjalan
                 </a>
             </div>
-            <div class="container mx-auto flex flex-wrap gap-6">
+            <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach ($courses as $course)
-                    <div class="w-40 sm:w-64 md:w-80 mx-auto">
+                    <div class="mx-auto">
                         <x-course-card :id="$course->id" :title="$course->title" :category="$course->category->name" :price="$course->price"
                             :count="count($course->lessons)" :photo="$course->photo" />
                     </div>
                 @endforeach
             </div>
+
             <div class="max-w-xl mx-auto mt-6">
 
                 {{ $courses->onEachSide(1)->links() }}
