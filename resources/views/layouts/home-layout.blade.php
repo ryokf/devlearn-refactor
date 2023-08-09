@@ -372,6 +372,7 @@
     <!-- End Navbar -->
 
     @yield('body')
+
     <!-- Start Footer Section -->
     <footer class="bg-white">
         <div class="mx-auto container space-y-8 py-16 lg:space-y-16">
@@ -381,7 +382,6 @@
                         <img src="{{ asset('landingpage/images/logo-dncc.webp') }}" class="w-25 h-10"
                             alt="" />
                     </div>
-
                     <p class="mt-4 max-w-xs text-slate-500 text-sm pt-3">
                         <b>Basecamp DNCC</b>
                         <br>
@@ -476,38 +476,17 @@
                         <p class="font-medium text-gray-900">Kategori</p>
 
                         <ul class="mt-6 space-y-4 text-sm">
-                            <li>
-                                <a href="#" class="text-gray-700 transition hover:opacity-75">
-                                    Web Development
-                                </a>
-                            </li>
+                            @foreach ($categories as $item)
+                                <li>
+                                    <a href="{{ route('category.show', [$category->id]) }}"
+                                        class="text-gray-700 transition hover:opacity-75">
+                                        {{ $item->name }}
+                                    </a>
+                                </li>
+                            @endforeach
 
-                            <li>
-                                <a href="#" class="text-gray-700 transition hover:opacity-75">
-                                    Mobile Development
-                                </a>
-                            </li>
 
-                            <li>
-                                <a href="#" class="text-gray-700 transition hover:opacity-75">
-                                    Game Development
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-700 transition hover:opacity-75">
-                                    Jaringan Komputer
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-700 transition hover:opacity-75">
-                                    Data Analis
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-700 transition hover:opacity-75">
-                                    Multimedia
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
 
