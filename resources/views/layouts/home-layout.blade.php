@@ -99,7 +99,7 @@
                                     <div class="flex justify-center items-center space-x-3 cursor-pointer">
                                         <div
                                             class="w-10 h-10 rounded-full overflow-hidden border-2  border-slate-800 hover:opacity-90">
-                                            <img src="landingpage/images/course1.png" alt=""
+                                            <img src="{{ asset('landingpage/images/course1.png') }}" alt=""
                                                 class="w-full h-full object-cover">
                                         </div>
                                         <div class="text-slate-800 mx-auto font-semibold">
@@ -378,7 +378,8 @@
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 ">
                 <div>
                     <div class="h-8">
-                        <img src="landingpage/images/logo-dncc.webp" class="w-25 h-10" alt="" />
+                        <img src="{{ asset('landingpage/images/logo-dncc.webp') }}" class="w-25 h-10"
+                            alt="" />
                     </div>
 
                     <p class="mt-4 max-w-xs text-slate-500 text-sm pt-3">
