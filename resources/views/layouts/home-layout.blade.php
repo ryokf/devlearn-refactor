@@ -476,11 +476,11 @@
                         <p class="font-medium text-gray-900">Kategori</p>
 
                         <ul class="mt-6 space-y-4 text-sm">
-                            @foreach ($categories as $item)
+                            @foreach ($categories as $category)
                                 <li>
                                     <a href="{{ route('category.show', [$category->id]) }}"
                                         class="text-gray-700 transition hover:opacity-75">
-                                        {{ $item->name }}
+                                        {{ $category->name }}
                                     </a>
                                 </li>
                             @endforeach

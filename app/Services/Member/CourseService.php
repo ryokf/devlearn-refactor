@@ -14,12 +14,12 @@ class CourseService
     {
 
 
-        // $lessons = Lesson::where('course_id', $id)
-        //     ->orderBy('chapter', 'asc')
-        //     ->get();
+        $lessons_all = Lesson::where('course_id', $id)
+            ->orderBy('chapter', 'asc')
+            ->get();
         $id_user = Auth::id();
         $user = User::find($id_user);
-        $lessons = $user->lessons()->where('course_id', $id)->orderBy('chapter')->get();
+        $lessons_member = $user->lessons()->where('course_id', $id)->orderBy('chapter')->get();
         $lesson_detail = DB::table('lessons')
             ->where('course_id', $id)
             ->where('chapter', $chapter)
@@ -36,7 +36,8 @@ class CourseService
         $course = Course::findOrFail($id);
 
         return [
-            'lessons' => $lessons,
+            'lessons_member' => $lessons_member,
+            'lessons_all' => $lessons_all,
             'lesson_detail' => $lesson_detail,
             'course' => $course,
             'id_lesson' => $id_lesson,

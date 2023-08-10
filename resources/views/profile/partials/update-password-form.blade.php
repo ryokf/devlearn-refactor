@@ -90,10 +90,8 @@
                                 <button type="submit"
                                     class="bg-slate-800 hover:bg-slate-950 text-white font-bold py-2 px-4 rounded">Change
                                     Password</button>
-
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
