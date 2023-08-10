@@ -380,7 +380,7 @@
     @yield('body')
 
     <!-- Start Footer Section -->
-    <footer class="bg-white">
+    <footer class="bg-gray-100">
         <div class="mx-auto container space-y-8 py-16 lg:space-y-16">
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 ">
                 <div>

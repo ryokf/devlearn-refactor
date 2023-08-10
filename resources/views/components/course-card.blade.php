@@ -1,7 +1,7 @@
 <div>
     <a href="{{ route('course.show', $id) }}">
         <div class="border border-gray-100 shadow-sm rounded shadow-md transition group-hover:shadow-lg">
-            <img src="{{ asset('storage/' . $photo) }}" alt="" class="w-full rounded rounded-b-none" />
+            <img src="{{ "https://source.unsplash.com/random/" . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100 }}" alt="" class="w-full rounded rounded-b-none max-h-60 min-h-60" />
             <div class="mt-3 p-3">
                 <div class="flex justify-between">
                     <div>
