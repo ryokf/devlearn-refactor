@@ -37,7 +37,7 @@
                                         </form>
                                     </div>
                                     <div class="flex">
-                                        <x-dropdown-button :sorts="$sorts"> urutkan </x-dropdown-button>
+                                        <x-dropdown-button :sorts="$sorts" buttonColor="bg-slate-800" textColor="text-white"> urutkan </x-dropdown-button>
                                     </div>
                                 </div>
                             </div>

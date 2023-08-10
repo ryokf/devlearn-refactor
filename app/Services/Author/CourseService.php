@@ -101,9 +101,9 @@ class CourseService
 
             $userCourses = Course::whereIn('id', $userCourses);
         } elseif($request->get('status') == 'ongoing'){
-            $userCourses = $userCourses->pluck('course_id');
+            $pass = Certificate::where('user_id', $user_id)->pluck('course_id');
 
-            $userCourses = Certificate::where('user_id', $user_id)->whereNotIn('course_id', $userCourses)->pluck('course_id');
+            $userCourses = UserCourse::where('user_id', $user_id)->whereNotIn('course_id', $pass)->pluck('course_id');
 
             $userCourses = Course::whereIn('id', $userCourses);
         }else{
@@ -112,7 +112,7 @@ class CourseService
             $userCourses = Course::whereIn('id', $userCourses)->orderByDesc('title');
         }
 
-        return $userCourses->paginate(10);
+        return $userCourses->paginate(12);
 
     }
 

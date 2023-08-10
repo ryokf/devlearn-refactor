@@ -36,11 +36,11 @@
                 {{-- <x-dropdown-button :sorts="$categories" buttonColor="bg-white"
                     textColor="text-black">kategori</x-dropdown-button> --}}
                 <a href="?status=pass"
-                    class="text-black bg-white focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    class="{{ request()->status == 'pass' ? 'bg-blue-600 text-white' : 'bg-white text-black' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     type="button"> diselesaikan
                 </a>
                 <a href="?status=ongoing"
-                    class="text-black bg-white focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    class="{{ request()->status == 'ongoing' ? 'bg-blue-600 text-white' : 'bg-white text-black' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     type="button"> berjalan
                 </a>
             </div>

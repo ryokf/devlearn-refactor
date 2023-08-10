@@ -6,6 +6,8 @@ use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\User;
 use App\Models\UserCourse;
+use App\Services\Author\CourseService;
+use App\Services\Member\TransactionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -13,6 +15,24 @@ use Illuminate\Support\Facades\Storage;
 
 class UserCourseController extends Controller
 {
+    private $courseService;
+    private $transactionService;
+
+    public function __construct(CourseService $courseService, TransactionService $transactionService)
+    {
+        $this->courseService = $courseService;
+        $this->transactionService = $transactionService;
+    }
+
+    public function index(Request $request){
+        return view('member.transaction.index',[
+            'sorts' => $this->courseService->sortOption(),
+            'menu' => parent::$memberMenuSidebar,
+            // 'transactions' => UserCourse::where('user_id', auth()->user()->id)->paginate(20)
+            'transactions' => $this->transactionService->getTransaction($request, auth()->user()->id),
+        ]);
+    }
+
     public function buy(Request $request, $id)
     {
         $user_id = Auth::id();
