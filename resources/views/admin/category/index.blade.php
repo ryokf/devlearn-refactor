@@ -113,7 +113,7 @@
                                     </td>
                                     <th scope="row"
                                         class="border-t-0 px-9 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        <img src="{{ asset('storage/' . $category->photo) }}" class="w-20 h-20"
+                                        <img src="{{ asset(Storage::url($category->photo)) }}" class="w-20 h-20"
                                             alt="">
                                     </th>
                                     <th scope="row"
