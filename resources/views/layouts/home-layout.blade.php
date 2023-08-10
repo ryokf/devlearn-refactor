@@ -82,9 +82,11 @@
                                 d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                         </svg>
                     </span>
-                    <input type="search"
+                    <form action="{{ route('course.search') }}">
+                        <input type="search" name="search"
                         class="transition w-full text-xs rounded-full border border-slate-800 p-4 pl-12 bg-slate-100 outline-none"
                         placeholder="Cari Materi.." />
+                    </form>
                 </div>
 
                 <!--  masuk, daftar -->
@@ -150,20 +152,22 @@
                                             </li>
                                             <li>
                                                 <hr class="border-slate-200 mx-4">
-                                                <form action="{{ route('logout') }}" method="post">
-                                                    @csrf
-                                                    <button
-                                                        class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 hover:border-red-600 text-red-600 w-full type="submit">
-                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
-                                                            </path>
-                                                        </svg>
-                                                        Keluar
-                                                    </button>
-                                                </form>
+
+                                                @csrf
+                                                <button data-modal-target="popup-modal-logout"
+                                                    data-modal-toggle="popup-modal-logout"
+                                                    class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 hover:border-red-600 text-red-600 w-full"
+                                                    type="button">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                                        </path>
+                                                    </svg>
+                                                    Keluar
+                                                </button>
+
                                             </li>
 
                                         </ul>
@@ -209,20 +213,22 @@
                                         </li>
                                         <li>
                                             <hr class="border-slate-200 mx-4">
-                                            <form action="{{ route('logout') }}" method="post">
-                                                @csrf
-                                                <button
-                                                    class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 hover:border-red-600 text-red-600 w-full type="submit">
-                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2"
-                                                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
-                                                        </path>
-                                                    </svg>
-                                                    Keluar
-                                                </button>
-                                            </form>
+
+                                            @csrf
+                                            <button data-modal-target="popup-modal-logout"
+                                                data-modal-toggle="popup-modal-logout"
+                                                class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 hover:border-red-600 text-red-600 w-full"
+                                                type="button">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                                    </path>
+                                                </svg>
+                                                Keluar
+                                            </button>
+
                                         </li>
 
                                     </ul>

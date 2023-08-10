@@ -84,6 +84,12 @@ class CourseController extends Controller
         return 'halaman detail course';
     }
 
+    public function search(Request $request ,Course $course){
+        return view('general.course.search', [
+            'courses' => $course->where('title', 'like', '%'.$request->search.'%')->get()
+        ]);
+    }
+
     public function create()
     {
         $data = $this->courseService->getCategory();
@@ -150,7 +156,7 @@ class CourseController extends Controller
     public function detailCourse(Request $request, Course $course)
     {
         $categories = Category::all();
-        $course = $course->where('id', $request->id)->first(); 
+        $course = $course->where('id', $request->id)->first();
         return view('general.course.show', compact('course', 'categories'));
     }
 }
