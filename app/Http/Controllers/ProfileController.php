@@ -50,8 +50,18 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $id = Auth::id();
+        $user = User::findOrFail($id);
+        if ($user->hasRole('admin')) {
+            $menu = parent::$menuSidebarAdmin;
+        } elseif ($user->hasRole('author')) {
+
+            $menu = parent::$menuSidebarauthor;
+        } else {
+            $menu = parent::$memberMenuSidebar;
+        }
         return view('profile.edit', [
-            'menu' => auth()->user()->roles[0]['name'] == "author" ? parent::$menuSidebarauthor : parent::$memberMenuSidebar,
+            'menu' => $menu,
             'user' => $request->user(),
         ]);
     }

@@ -51,9 +51,13 @@ class LessonController extends Controller
                 ->where('course_id', $id)
                 ->where('chapter', $nextChapter)
                 ->exists();
-
+            if ($user->hasRole('admin') || $user->hasRole('author')) {
+                $lessons = $courseData['lessons_all'];
+            } else {
+                $lessons = $courseData['lessons_member'];
+            }
             return view('member.lesson.index', [
-                'lessons' => $courseData['lessons'],
+                'lessons' => $lessons,
                 'lesson_detail' => $courseData['lesson_detail'],
                 'course' => $courseData['course'],
                 'nextChapter' => $nextChapterExists ? $nextChapter : null,
@@ -79,17 +83,17 @@ class LessonController extends Controller
             //untuk button next chapter
             $nextChapter = $chapter;
 
-            // Query untuk mendapatkan chapter terakhir
-            $lastChapter = DB::table('lessons')
-                ->where('course_id', $id)
-                ->orderBy('chapter', 'desc')
-                ->first();
+            // // Query untuk mendapatkan chapter terakhir
+            // $lastChapter = DB::table('lessons')
+            //     ->where('course_id', $id)
+            //     ->orderBy('chapter', 'desc')
+            //     ->first();
 
-            // Menandai apakah ini chapter terakhir atau bukan
-            $isLastChapter = false;
-            if ($lastChapter && $chapter == $lastChapter->chapter) {
-                $isLastChapter = true;
-            }
+            // // Menandai apakah ini chapter terakhir atau bukan
+            // $isLastChapter = false;
+            // if ($lastChapter && $chapter == $lastChapter->chapter) {
+            //     $isLastChapter = true;
+            // }
 
             $nextChapterExists = DB::table('lessons')
                 ->where('course_id', $id)
@@ -99,63 +103,17 @@ class LessonController extends Controller
             $user->lessons()->syncWithoutDetaching([
                 $request->id_lesson => ['status' => true]
             ]);
+            // if ($user->hasRole('admin') || $user->hasRole('author')) {
+            //     $lessons = $courseData['lessons_all'];
+            // } else {
+            //     $lessons = $courseData['lessons_member'];
+            // }
             return redirect()->route('lesson.show', [
                 'id' => $id,
                 'chapter' => $nextChapterExists ? $nextChapter : null,
-                'lessons' => $courseData['lessons'],
-                'lesson_detail' => $courseData['lesson_detail'],
-                'course' => $courseData['course'],
-                // 'nextChapter' => $nextChapterExists ? $nextChapter : null,
-                'lastChapter' => $isLastChapter,
             ]);
         }
     }
-
-    // {
-    //     //course data mengambil service course service getLesson
-    //     $courseData = $this->coursesService->getLesson($id, $chapter);
-    //     //mengambil user id
-    //     $id_user = Auth::id();
-    //     //mencari user di table users menggunakan id_user
-    //     $user = User::findOrFail($id_user);
-    //     //pengecekan apakah user memiliki course di tabel userCourse
-    //     $userCourse = UserCourse::where('user_id', $id_user)
-    //         ->where('course_id', $id)
-    //         ->where('payment_status', 'sukses')
-    //         ->first();
-    //     //jika role nya author / admin / $userCourse = datanya ada ga di table userCourse
-    //     if ($user->hasRole('author') || $user->hasRole('admin') || $userCourse) {
-    //         //untuk button next chapter
-    //         $nextChapter = $chapter + 1;
-
-    //         // Query untuk mendapatkan chapter terakhir
-    //         $lastChapter = DB::table('lessons')
-    //             ->where('course_id', $id)
-    //             ->orderBy('chapter', 'desc')
-    //             ->first();
-
-    //         // Menandai apakah ini chapter terakhir atau bukan
-    //         $isLastChapter = false;
-    //         if ($lastChapter && $chapter == $lastChapter->chapter) {
-    //             $isLastChapter = true;
-    //         }
-
-    //         $nextChapterExists = DB::table('lessons')
-    //             ->where('course_id', $id)
-    //             ->where('chapter', $nextChapter)
-    //             ->exists();
-
-    //         return view('member.lesson.index', [
-    //             'lessons' => $courseData['lessons'],
-    //             'lesson_detail' => $courseData['lesson_detail'],
-    //             'course' => $courseData['course'],
-    //             'nextChapter' => $nextChapterExists ? $nextChapter : null,
-    //             'lastChapter' => $isLastChapter,
-    //         ]);
-    //     } else {
-    //         return redirect()->back()->with('status', 'unpaid');
-    //     }
-    // }
 
     public function create()
     {

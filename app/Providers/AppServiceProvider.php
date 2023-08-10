@@ -35,5 +35,16 @@ class AppServiceProvider extends ServiceProvider
                 ->get();
             $view->with('categories', $categories);
         });
+
+
+        View::composer('member.lesson.index', function ($view) {
+            $categories = Category::leftJoin('courses', 'categories.id', '=', 'courses.id_category')
+                ->limit(5)
+                ->select('categories.id', 'categories.name', 'categories.photo', DB::raw('COUNT(courses.id) as course_count'))
+                ->groupBy('categories.id', 'categories.name', 'categories.photo')
+                ->orderByDesc('course_count')
+                ->get();
+            $view->with('categories', $categories);
+        });
     }
 }
