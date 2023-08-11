@@ -1,9 +1,9 @@
 <div>
     <a href="{{ route('course.show', $id) }}">
     <div class="rounded-lg overflow-hidden shadow-lg bg-white h-96">
-    <img src="{{ 'https://source.unsplash.com/random/' . mt_rand(3,8) * 100 .  "x" . mt_rand(3,8) * 100 }}" class="w-full h-48 object-cover" />
+    <img src="{{ asset('storage/' . $photo) }}" class="w-full h-48 object-cover" />
     <div class="px-4 py-4">
-        <span class="text-green-600 font-bold"> Rp.{{ $price }} </span>
+        <span class="text-green-600 font-bold"> {{ $price == 0 ? 'Gratis' : 'Rp.' . $price }} </span>
         <div class="mb-4 text-xs">
             <a href="{{ route('course.detail', $id) }}">
                 <h2 class="text-base font-medium hover:text-blue-700">
