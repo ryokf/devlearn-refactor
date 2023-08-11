@@ -629,7 +629,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             new Swiper('.swiper-container', {
-                loop: true,
                 autoplay: {
                     delay: 8000,
                 },

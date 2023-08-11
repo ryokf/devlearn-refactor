@@ -3,18 +3,17 @@
 @section('body')
     <x-dashboard-sidebar :menu=$menu></x-dashboard-sidebar>
     <div class="relative md:ml-72 bg-blueGray-50">
-        <x-dashboard-header></x-dashboard-header>
-        <div class="relative bg-slate-800 md:pt-28 pb-24 pt-12 -z-50">
-            <div class=" text-white px-4 md:px-10">
+        <div class="relative bg-slate-800 mb-10 py-10">
+         <x-dashboard-header></x-dashboard-header>
+
+            <div class="text-white mt-10 px-auto md:pl-5">
                 <h1 class="container text-4xl font-bold">Kursus Anda</h1>
                 <p class="container mt-2 font-thin">
                     Upgrade terus ilmu dan pengalaman terbaru kamu di bidang teknologi
                 </p>
             </div>
-        </div>
-        <div class="px-4 md:px-10 -m-14 mx-auto">
-            <div class="container mb-12 flex gap-4">
-                <form class="flex items-center" action="" method="GET">
+            <div class="lg:flex md:pl-5 pt-5 items-center">
+                <form class="container flex items-center" action="" method="GET">
                     <label for="simple-search" class="sr-only">Search</label>
                     <div class="relative w-full">
                         <input type="text" id="simple-search"
@@ -22,7 +21,7 @@
                             placeholder="cari kursus..." name="search" required>
                     </div>
                     <button type="submit"
-                        class="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        class="p-3 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -31,19 +30,26 @@
                         <span class="sr-only">Search</span>
                     </button>
                 </form>
-                <x-dropdown-button :sorts="$sorts" buttonColor="bg-white"
-                    textColor="text-black">urutkan</x-dropdown-button>
-                {{-- <x-dropdown-button :sorts="$categories" buttonColor="bg-white"
-                    textColor="text-black">kategori</x-dropdown-button> --}}
-                <a href="?status=pass"
-                    class="{{ request()->status == 'pass' ? 'bg-blue-600 text-white' : 'bg-white text-black' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    type="button"> diselesaikan
-                </a>
-                <a href="?status=ongoing"
-                    class="{{ request()->status == 'ongoing' ? 'bg-blue-600 text-white' : 'bg-white text-black' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    type="button"> berjalan
-                </a>
+
+
+                <div class="container flex md:overflow-hidden overflow-x-auto items-center gap-3 my-3 lg:my-0">
+                    <x-dropdown-button :sorts="$sorts" buttonColor="bg-white"
+                        textColor="text-black">urutkan</x-dropdown-button>
+                    {{-- <x-dropdown-button :sorts="$categories" buttonColor="bg-white"
+                        textColor="text-black">kategori</x-dropdown-button> --}}
+                    <a href="?status=pass"
+                        class="{{ request()->status == 'pass' ? 'bg-blue-600 text-white' : 'bg-white text-black' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        type="button"> diselesaikan
+                    </a>
+                    <a href="?status=ongoing"
+                        class="{{ request()->status == 'ongoing' ? 'bg-blue-600 text-white' : 'bg-white text-black' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        type="button"> berjalan
+                    </a>
+                </div>
+       
             </div>
+        </div>
+        <div class="px-10 mx-auto">
             @if (request()->search != null && count($courses) == 0)
                 <h1 class="text-center mx-auto font-semibold text-xl">kursus yang anda cari tidak tersedia</h1>
                 <a title="kembali ke daftar kursus" class="block text-center mt-4" href="{{ route('course.index') }}"><i class="fa-solid fa-arrow-left fa-xl"></i></a>
@@ -52,7 +58,7 @@
                 <h1 class="text-center mx-auto font-semibold text-xl">anda belum memiliki kursus</h1>
                 <a class="block text-center mt-2 text-blue-600 text-lg" href="{{ route('homepage') }}#categories">beli kursus</a>
             @endif
-            <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
                 @foreach ($courses as $course)
                         <x-course-card :id="$course->id" :title="$course->title" :category="$course->category->name" :price="$course->price"
                             :count="count($course->lessons)" :photo="$course->photo" />

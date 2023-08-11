@@ -227,7 +227,7 @@
     <section id="courses">
         <div class="container mx-auto">
             <h2 class="font-bold text-3xl text-center my-12">Course Terbaru</h2>
-            <div class="swiper swiper-container-2 slide-container w-full">
+            <div class="swiper swiper-container-2 slide-container py-3 px-10">
                 <div class="swiper-wrapper">
                     @foreach ($latestCourse as $course)
                         <div class="swiper-slide">
@@ -250,7 +250,7 @@
     <section id="courses">
         <div class="container mx-auto">
             <h2 class="font-bold text-3xl text-center my-12">Course Terpopuler</h2>
-            <div class="swiper swiper-container-2 slide-container w-full">
+            <div class="swiper swiper-container-2 slide-container py-3 px-10">
                 <div class="swiper-wrapper">
                     @foreach ($popularCourse as $course)
                         <div class="swiper-slide">
