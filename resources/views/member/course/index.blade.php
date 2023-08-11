@@ -13,8 +13,8 @@
             </div>
         </div>
         <div class="px-4 md:px-10 -m-14 mx-auto">
-            <div class="container mb-12 flex gap-4">
-                <form class="flex items-center" action="" method="GET">
+            <div class="container mb-12 flex flex-wrap gap-4 sm:flex-nowrap">
+                <form class="flex items-center w-full sm:w-1/3" action="" method="GET">
                     <label for="simple-search" class="sr-only">Search</label>
                     <div class="relative w-full">
                         <input type="text" id="simple-search"
@@ -31,31 +31,37 @@
                         <span class="sr-only">Search</span>
                     </button>
                 </form>
-                <x-dropdown-button :sorts="$sorts" buttonColor="bg-white"
-                    textColor="text-black">urutkan</x-dropdown-button>
-                {{-- <x-dropdown-button :sorts="$categories" buttonColor="bg-white"
+                <div class="flex max-w-min gap-2 overflow-x-scroll sm:overflow-hidden">
+                    <div class="border rounded-lg">
+                        <x-dropdown-button :sorts="$sorts" buttonColor="bg-white"
+                        textColor="text-black">urutkan</x-dropdown-button>
+                    </div>
+                        {{-- <x-dropdown-button :sorts="$categories" buttonColor="bg-white"
                     textColor="text-black">kategori</x-dropdown-button> --}}
-                <a href="?status=pass"
-                    class="{{ request()->status == 'pass' ? 'bg-blue-600 text-white' : 'bg-white text-black' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    type="button"> diselesaikan
-                </a>
-                <a href="?status=ongoing"
-                    class="{{ request()->status == 'ongoing' ? 'bg-blue-600 text-white' : 'bg-white text-black' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    type="button"> berjalan
-                </a>
+                    <a href="?status=pass"
+                        class="border rounded-lg {{ request()->status == 'pass' ? 'bg-blue-600 text-white' : 'bg-white text-black' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        type="button"> diselesaikan
+                    </a>
+                    <a href="?status=ongoing"
+                        class="border rounded-lg {{ request()->status == 'ongoing' ? 'bg-blue-600 text-white' : 'bg-white text-black' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        type="button"> berjalan
+                    </a>
+                </div>
             </div>
             @if (request()->search != null && count($courses) == 0)
                 <h1 class="text-center mx-auto font-semibold text-xl">kursus yang anda cari tidak tersedia</h1>
-                <a title="kembali ke daftar kursus" class="block text-center mt-4" href="{{ route('course.index') }}"><i class="fa-solid fa-arrow-left fa-xl"></i></a>
+                <a title="kembali ke daftar kursus" class="block text-center mt-4" href="{{ route('course.index') }}"><i
+                        class="fa-solid fa-arrow-left fa-xl"></i></a>
             @endif
-            @if(request()->search == null && count($courses) == 0)
+            @if (request()->search == null && count($courses) == 0)
                 <h1 class="text-center mx-auto font-semibold text-xl">anda belum memiliki kursus</h1>
-                <a class="block text-center mt-2 text-blue-600 text-lg" href="{{ route('homepage') }}#categories">beli kursus</a>
+                <a class="block text-center mt-2 text-blue-600 text-lg" href="{{ route('homepage') }}#categories">beli
+                    kursus</a>
             @endif
             <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach ($courses as $course)
-                        <x-course-card :id="$course->id" :title="$course->title" :category="$course->category->name" :price="$course->price"
-                            :count="count($course->lessons)" :photo="$course->photo" />
+                    <x-course-card :id="$course->id" :title="$course->title" :category="$course->category->name" :price="$course->price" :count="count($course->lessons)"
+                        :photo="$course->photo" />
                 @endforeach
             </div>
 

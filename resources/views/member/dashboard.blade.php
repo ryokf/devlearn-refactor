@@ -292,7 +292,7 @@
                         "Des"
                     ],
                     datasets: [{
-                            label: "pembeli",
+                            label: "pembelian",
                             fill: false,
                             backgroundColor: "#4f46e5",
                             borderColor: "#4f46e5",
@@ -303,7 +303,7 @@
                             ],
                         },
                         {
-                            label: "lulusan",
+                            label: "kelulusan",
                             fill: false,
                             backgroundColor: "#db2777",
                             borderColor: "#db2777",
