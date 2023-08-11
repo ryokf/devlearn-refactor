@@ -30,8 +30,6 @@
                         <span class="sr-only">Search</span>
                     </button>
                 </form>
-
-
                 <div class="container flex md:overflow-hidden overflow-x-auto items-center gap-3 my-3 lg:my-0">
                     <x-dropdown-button :sorts="$sorts" buttonColor="bg-white"
                         textColor="text-black">urutkan</x-dropdown-button>
@@ -46,22 +44,23 @@
                         type="button"> berjalan
                     </a>
                 </div>
-       
             </div>
         </div>
         <div class="px-10 mx-auto">
             @if (request()->search != null && count($courses) == 0)
                 <h1 class="text-center mx-auto font-semibold text-xl">kursus yang anda cari tidak tersedia</h1>
-                <a title="kembali ke daftar kursus" class="block text-center mt-4" href="{{ route('course.index') }}"><i class="fa-solid fa-arrow-left fa-xl"></i></a>
+                <a title="kembali ke daftar kursus" class="block text-center mt-4" href="{{ route('course.index') }}"><i
+                        class="fa-solid fa-arrow-left fa-xl"></i></a>
             @endif
-            @if(request()->search == null && count($courses) == 0)
+            @if (request()->search == null && count($courses) == 0)
                 <h1 class="text-center mx-auto font-semibold text-xl">anda belum memiliki kursus</h1>
-                <a class="block text-center mt-2 text-blue-600 text-lg" href="{{ route('homepage') }}#categories">beli kursus</a>
+                <a class="block text-center mt-2 text-blue-600 text-lg" href="{{ route('homepage') }}#categories">beli
+                    kursus</a>
             @endif
             <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
                 @foreach ($courses as $course)
-                        <x-course-card :id="$course->id" :title="$course->title" :category="$course->category->name" :price="$course->price"
-                            :count="count($course->lessons)" :photo="$course->photo" />
+                    <x-course-card :id="$course->id" :title="$course->title" :category="$course->category->name" :price="$course->price" :count="count($course->lessons)"
+                        :photo="$course->photo" />
                 @endforeach
             </div>
 
