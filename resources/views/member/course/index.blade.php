@@ -52,12 +52,10 @@
                 <h1 class="text-center mx-auto font-semibold text-xl">anda belum memiliki kursus</h1>
                 <a class="block text-center mt-2 text-blue-600 text-lg" href="{{ route('homepage') }}#categories">beli kursus</a>
             @endif
-            <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach ($courses as $course)
-                    <div class="mx-auto">
                         <x-course-card :id="$course->id" :title="$course->title" :category="$course->category->name" :price="$course->price"
                             :count="count($course->lessons)" :photo="$course->photo" />
-                    </div>
                 @endforeach
             </div>
 
