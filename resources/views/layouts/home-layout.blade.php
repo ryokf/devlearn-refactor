@@ -38,7 +38,7 @@
 
 <body class="font-poppins text-gray-800 overflow-x-hidden dark:bg-slate-800" id="top">
     <!-- Start Navbar -->
-    <nav class="bg-white shadow p-4 sticky top-0 z-50 dark:bg-slate-800">
+    <nav class="bg-white shadow p-4 sticky top-0 z-50 dark:bg-slate-800 dark:shadow-blue-500/50">
         <div class="container mx-auto">
             <div class="flex justify-between">
                 <!-- nav -->
@@ -106,21 +106,21 @@
                             <!-- close -->
                             <div @click="open = !open" class="relative border-b-4 border-transparent ">
                                 <div class="flex justify-center items-center space-x-3 cursor-pointer">
-                                    <div class="w-10 h-10 rounded-full overflow-hidden border-2  border-slate-800 hover:opacity-90">
+                                    <div class="w-10 h-10 rounded-full overflow-hidden border-2  border-slate-800 hover:opacity-90 dark:border-white">
                                         <img src="{{ asset('landingpage/images/course1.png') }}" alt="" class="w-full h-full object-cover">
                                     </div>
-                                    <div class="text-slate-800 mx-auto font-semibold">
+                                    <div class="text-slate-800 mx-auto font-semibold dark:text-white">
                                         <div class="cursor-pointer hidden md:block">
                                             {{ Auth::user()->name }}
                                         </div>
                                     </div>
                                 </div>
                                 <!-- open -->
-                                <div x-show="open" class="absolute w-50 py-2 bg-white  shadow-md border dark:border-transparent mt-3 hidden md:block" x-transition:enter="transition ease-out origin-top-left duration-200" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition origin-top-left ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
+                                <div x-show="open" class="absolute w-50 py-2 bg-white  shadow-md border dark:border-transparent  dark:bg-slate-800 mt-3 hidden md:block" x-transition:enter="transition ease-out origin-top-left duration-200" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition origin-top-left ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
                                     <!-- dropdown -->
                                     <ul class="list-none">
                                         <li>
-                                            <a href="{{ route('dashboard') }}" class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
+                                            <a href="{{ route('dashboard') }}" class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700">
                                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
                                                     </path>
@@ -129,7 +129,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
+                                            <a href="#" class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700">
                                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
                                                     </path>
@@ -143,7 +143,7 @@
                                             <hr class="border-slate-200 mx-4">
 
                                             @csrf
-                                            <button data-modal-target="popup-modal-logout" data-modal-toggle="popup-modal-logout" class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 hover:border-red-600 text-red-600 w-full" type="button">
+                                            <button data-modal-target="popup-modal-logout" data-modal-toggle="popup-modal-logout" class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 hover:border-red-600 text-red-600 w-full dark:bg-slate-800 dark:hover:bg-slate-700" type="button">
                                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
                                                     </path>
@@ -219,7 +219,12 @@
 
                     <!-- nav toggle mobile -->
                     <div class="flex md:hidden cursor-pointer my-auto ml-2">
-                        <span class="navbar-toggle text-slate-900 flex-end">
+                        <span class="navbar-toggle text-slate-900 flex-end dark:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                        </span>
+                        <span class="navbar-toggle text-white flex-end dark:flex hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                             </svg>
@@ -228,56 +233,61 @@
                 </div>
             </div>
             <!-- mobile nav -->
-            <div class="mobile-navbar hidden h-[102vh] bg-white absolute top-0 left-0 text-left shadow overflow-y">
+            <div class="mobile-navbar hidden h-[102vh] bg-white absolute top-0 left-0 text-left shadow overflow-y dark:bg-slate-800">
                 <div class="p-3">
                     <!-- search bar -->
                     <div class="relative mt-3">
-                        <span class="absolute left-3 top-1.5 text-slate-600">
+                        <span class="absolute left-3 top-1.5 text-slate-600 dark:text-slate-800">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                             </svg>
                         </span>
-                        <input type="search" class="transition w-full text-xs rounded-full border border-slate-800 p-2 pl-10 bg-slate-100 outline-none" placeholder="Cari Materi.." />
+                        <input type="search" class="transition w-full text-xs rounded-full border border-slate-800 p-2 pl-10 bg-slate-100 outline-none dark:text-white" placeholder="Cari Materi.." />
                     </div>
                     <ul class="mt-3 list-none">
                         <li class="py-3">
                             <div class="flex justify-between w-full items-center" onclick="dropDown()">
-                                <span class="text-[15px] ml-2 text-slate-800 font-semibold">Kategori</span>
+                                <span class="text-[15px] ml-2 text-slate-800 font-semibold dark:text-white">Kategori</span>
                                 <span class="text-sm rotate-180" id="arrow">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:hidden">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </span>
+                                <span class="text-sm rotate-180" id="arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:text-white dark:flex hidden">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                     </svg>
                                 </span>
                             </div>
-                            <div class="text-left text-sm font-normal text-slate-800 mt-1 w-4/5 mx-auto" id="submenu">
+                            <div class="text-left text-sm font-normal text-slate-800 mt-1 w-4/5 mx-auto dark:text-white" id="submenu">
                                 <ul class="list-none">
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-700">
                                             Web Development
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-700">
                                             Mobile Development
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-700">
                                             Game Development
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-700">
                                             Data Analyst
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-700">
                                             Jaringan
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-700">
                                             Multimedia
                                         </a>
                                     </li>
@@ -286,9 +296,14 @@
                         </li>
                         <li class="py-3">
                             <div class="flex justify-between w-full items-center">
-                                <span class="text-[15px] ml-2 text-slate-800 font-semibold">Mentor</span>
+                                <span class="text-[15px] ml-2 text-slate-800 font-semibold dark:text-white">Mentor</span>
                                 <span class="text-sm">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 dark:hidden">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                    </svg>
+                                </span>
+                                <span class="text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 dark:text-white dark:flex hidden">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                                     </svg>
                                 </span>
@@ -300,13 +315,13 @@
                     <div class="flex gap-3 mt-5">
                         <!-- masuk -->
                         <div class="relative">
-                            <a href="{{ route('login') }}" class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
+                            <a href="{{ route('login') }}" class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800 dark:text-slate-800 dark:border-white">
                                 Masuk
                             </a>
                         </div>
                         <!-- daftar -->
                         <div class="relative">
-                            <a href="{{ route('register') }}" class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-95 text-center">
+                            <a href="{{ route('register') }}" class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-80 text-center dark:border-white">
                                 Daftar
                             </a>
                         </div>
