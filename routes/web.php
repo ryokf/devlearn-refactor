@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LessonCommentController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Spatie\PermissionController;
@@ -170,6 +171,10 @@ Route::controller(LessonController::class)->group(function () {
         Route::put('/lesson', 'update')->name('lesson.update');
         Route::delete('/lesson', 'delete')->name('lesson.delete');
     });
+});
+
+Route::controller(LessonCommentController::class)->group(function(){
+    Route::post('/lesson-comment', 'store')->name('comment.store');
 });
 
 Route::controller(UserCourseController::class)->group(function () {
