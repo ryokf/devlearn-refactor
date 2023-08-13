@@ -9,7 +9,7 @@
         <x-dashboard-header />
         <div class="relative bg-slate-800 md:pt-32 pb-32 pt-12">
             <div class="px-4 md:px-10 mx-auto w-full">
-                {{-- <div>
+                <div>
                     <!-- Card stats -->
                     <div class="flex flex-wrap">
                         <x-stastitic-card title="jumlah kursus" value="{{ count($data['course']) }}" icon='fa-solid fa-book'
@@ -26,7 +26,7 @@
                             icon='fa-solid fa-rupiah-sign' iconBgColor="bg-slate-800"
                             percentage="{{ $data['incomePercentage'][0] }}" arrow="{{ $data['incomePercentage'][1] }}" />
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
         <div class="px-4 md:px-10 mx-auto w-full -m-24">
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="flex flex-wrap mt-4">
+                <div class="flex flex-wrap mt-4">
                     <div class="w-full mb-12">
                         <div class="flex flex-wrap mt-4">
                             <div class="w-full xl:w-7/12 mb-12 xl:mb-0 px-4">
@@ -247,14 +247,14 @@
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
             </div>
             <x-dashboard-footer />
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
         <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
-        {{-- <script type="text/javascript">
+        <script type="text/javascript">
             /* Make dynamic date appear */
             (function() {
                 if (document.getElementById("get-current-year")) {
@@ -505,5 +505,5 @@
 
 
             })();
-        </script> --}}
+        </script>
     @endsection
