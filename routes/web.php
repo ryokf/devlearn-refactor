@@ -173,7 +173,7 @@ Route::controller(LessonController::class)->group(function () {
     });
 });
 
-Route::controller(LessonCommentController::class)->group(function(){
+Route::controller(LessonCommentController::class)->group(function () {
     Route::post('/lesson-comment', 'store')->name('comment.store');
 });
 
