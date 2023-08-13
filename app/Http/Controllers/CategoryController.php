@@ -76,6 +76,7 @@ class CategoryController extends Controller
         Category::create([
             'name' => $request->name,
             'photo' => $path,
+            'description' => $request->description
         ]);
 
         return redirect()->back()->with('message', 'Category successfully added!');
@@ -86,7 +87,11 @@ class CategoryController extends Controller
         $menuSidebarAdmin = parent::$menuSidebarAdmin;
         view()->share('menu', $menuSidebarAdmin);
         $category = Category::findOrFail($id);
-        $category->name = $request->input('name');
+        // $category->name = $request->input('name');
+        $category->update([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $path = 'public/' . time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
