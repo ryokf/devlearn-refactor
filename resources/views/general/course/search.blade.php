@@ -1,6 +1,9 @@
 @extends('layouts.home-layout')
 @section('body')
-<div class="min-h-screen">
-@dd($courses)
-</div>
+    <div class="min-h-screen">
+
+        @foreach ($course as $item)
+            {{ $item->title }}
+        @endforeach
+    </div>
 @endsection

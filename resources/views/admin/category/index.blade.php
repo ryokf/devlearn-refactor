@@ -56,7 +56,18 @@
                                         <input type="text" id="name" name="name"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             required>
+
                                     </div>
+                                    <div class="mb-6">
+                                        <label for="name"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
+                                            Description</label>
+                                        <input type="text" id="description" name="description"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            required>
+
+                                    </div>
+
                                     <div class="mb-6">
                                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                             for="file_input">Upload file</label>
@@ -92,6 +103,10 @@
                                 </th>
                                 <th scope="col"
                                     class="px-9 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Category Description
+                                </th>
+                                <th scope="col"
+                                    class="px-9 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                     Photo
                                 </th>
                                 <th scope="col"
@@ -110,6 +125,10 @@
                                     <td scope="row"
                                         class="border-t-0 px-9 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                         {{ $category->name }}
+                                    </td>
+                                    <td scope="row"
+                                        class="border-t-0 px-9 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        {{ $category->description }}
                                     </td>
                                     <th scope="row"
                                         class="border-t-0 px-9 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">

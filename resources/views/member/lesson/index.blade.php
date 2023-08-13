@@ -280,13 +280,11 @@
                     <p class="text-xl font-semibold bg-white p-4">{{ $item->chapter }} .
                         {{ $item->title }}</p>
                     <div class="p-8 flex flex-col md:flex-row md:space-x-8 justify-center items-center">
-                        {{-- <img src="{{ $item->media_content }}" alt="{{ $item->title }}"
-                            class="w-32 h-32 md:w-80 md:h-64 object-cover rounded-lg shadow-md"> --}}
-                        {{-- <video controls>
-                            <source src="{{ asset('/storage/media_content/' . $item->media_content) }}"
-                                type="video/webm" />
-                            Browsermu tidak mendukung tag ini, upgrade donk!
-                        </video> --}}
+                        <div class="w-full h-0 relative" style="padding-bottom: 56.25%;">
+                            <iframe class="w-full h-full absolute inset-0 object-cover"
+                                src="https://youtube.com/embed/{{ $item->media_link }}" frameborder="0"
+                                allowfullscreen></iframe>
+                        </div>
                     </div>
 
                     <div class="p-8">
@@ -538,6 +536,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <script>
+        function enableFullscreen() {
+            var iframe = document.querySelector('iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                iframe.webkitRequestFullscreen();
+            }
+        }
+    </script>
+
+
     <script>
         (function() {
             if (document.getElementById("get-current-year")) {

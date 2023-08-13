@@ -84,8 +84,8 @@
                     </span>
                     <form action="{{ route('course.search') }}">
                         <input type="search" name="search"
-                        class="transition w-full text-xs rounded-full border border-slate-800 p-4 pl-12 bg-slate-100 outline-none"
-                        placeholder="Cari Materi.." />
+                            class="transition w-full text-xs rounded-full border border-slate-800 p-4 pl-12 bg-slate-100 outline-none"
+                            placeholder="Cari Materi.." />
                     </form>
                 </div>
 
@@ -300,42 +300,14 @@
                         </div>
                         <div class="text-left text-sm font-normal text-slate-800 mt-1 w-4/5 mx-auto" id="submenu">
                             <ul class="list-none">
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600">
-                                        Web Development
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600">
-                                        Mobile Development
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600">
-                                        Game Development
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600">
-                                        Data Analyst
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600">
-                                        Jaringan
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600">
-                                        Multimedia
-                                    </a>
-                                </li>
+                                @foreach ($categories as $category)
+                                    <li>
+                                        <a href="{{ route('category.show', [$category->id]) }}"
+                                            class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600">
+                                            {{ $category->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </li>
