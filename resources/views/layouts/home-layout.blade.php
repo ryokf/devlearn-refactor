@@ -310,7 +310,6 @@
                             </div>
                         </li>
                     </ul>
-
                     @if (!Auth::user())
                     <div class="flex gap-3 mt-5">
                         <!-- masuk -->
