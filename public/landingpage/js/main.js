@@ -95,4 +95,24 @@ $(document).ready(function () {
             $("#scroll-to-top").addClass("hidden");
         }
     });
+
+
+    /*********************************************
+    *               Toogle Switch Theme
+    /*********************************************/
+    const darkToggle = document.querySelector('#dark-toggle');
+    const html = document.querySelector('html');
+    const toggleIcon = document.querySelector('.toggle-icon');
+
+    darkToggle.addEventListener('click', function () {
+    if (darkToggle.checked) {
+        html.classList.add('dark');
+        toggleIcon.classList.remove('fa-sun');
+        toggleIcon.classList.add('fa-moon');
+    } else {
+        html.classList.remove('dark');
+        toggleIcon.classList.remove('fa-moon');
+        toggleIcon.classList.add('fa-sun');
+    }
+    });
 });

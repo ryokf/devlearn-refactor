@@ -73,6 +73,10 @@ hr {
   /* 3 */
 }
 
+#dark-toggle:checked ~ label .toggle-icon {
+  transform: translateX(30px);
+}
+
 /*
 Add the correct text decoration in Chrome, Edge, and Safari.
 */
