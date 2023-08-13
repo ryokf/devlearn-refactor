@@ -5,7 +5,9 @@ namespace App\Services\Member;
 use App\Models\Category;
 use App\Models\Certificate;
 use App\Models\Course;
+use App\Models\Lesson;
 use App\Models\UserCourse;
+use App\Models\UserLesson;
 
 class MemberService
 {
@@ -106,6 +108,24 @@ class MemberService
         return collect($courses)->flatten();
     }
 
+    public function lastStudy(){
+        $userLesson = UserLesson::where('user_id', auth()->user()->id)->where('status', true)->first();
+
+        if($userLesson == null){
+            return null;
+        } else {
+            $userLesson = $userLesson->pluck('lesson_id');
+        }
+
+        $lesson = Lesson::whereIn('id', $userLesson)->first();
+
+        $course = Course::where('id', $lesson->course_id)->first();
+
+        // return UserCourse::where('user_id', auth()->user()->id)->latest()->first();
+
+        return [$course, $lesson];
+    }
+
     public function dashboard()
     {
         $courseBought = $this->courseBought();
@@ -116,7 +136,7 @@ class MemberService
         $passPerCategory = $this->passPerCategory();
         $recentBought = $this->recentBought();
         $recentFinish = $this->recentFinish();
-
+        $lastStudy = $this->lastStudy();
 
         return [
             'courseBought' => $courseBought,
@@ -127,5 +147,6 @@ class MemberService
             'passPerCategory' => $passPerCategory,
             'recentBought' => $recentBought,
             'recentFinish' => $recentFinish,
+            'lastStudy' => $lastStudy,
         ];
 }}

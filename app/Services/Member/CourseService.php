@@ -12,8 +12,6 @@ class CourseService
 {
     public function getLesson($id, $chapter)
     {
-
-
         $lessons_all = Lesson::where('course_id', $id)
             ->orderBy('chapter', 'asc')
             ->get();

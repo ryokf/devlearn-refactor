@@ -2,7 +2,7 @@
 @extends('layouts.layout')
 
 @section('body')
-<x-dashboard-sidebar :menu=$menu></x-dashboard-sidebar>
+    <x-dashboard-sidebar :menu=$menu></x-dashboard-sidebar>
     <div class="relative md:ml-72 bg-blueGray-50">
         <x-dashboard-header></x-dashboard-header>
         <div class="relative bg-slate-800 md:pt-32 pb-32 pt-12">
@@ -10,23 +10,55 @@
                 <div>
                     <!-- Card stats -->
                     <div class="flex flex-wrap justify-end">
-                        {{-- <x-author_stastitic_card title="jumlah kursus yang dibeli" value="{{ count($courseBought) }}"
+                        <div class="w-full xl:w-6/12 px-4">
+                            <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+                                <div class="flex-auto p-4">
+                                    <div class="flex flex-wrap">
+                                        <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                                            <h5 class="text-blueGray-400 uppercase font-bold text-xs">
+                                                lanjutkan belajar
+                                            </h5>
+                                            <span class="font-thin mt-1 block text-blueGray-700">
+                                                @if ($data['lastStudy'] == null)
+                                                    <span class="font-semibold">anda belum memiliki kursus</span>
+                                                @else
+                                                    <span class="font-semibold">{{ $data['lastStudy'][0]->title }}</span> |
+                                                    {{ $data['lastStudy'][1]->chapter }}. {{ $data['lastStudy'][1]->title }}
+                                                @endif
+                                            </span>
+                                        </div>
+                                        <div class="relative w-auto pl-4 flex-initial">
+                                            <div
+                                                class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-slate-800">
+                                                <i class="fa-solid fa-hourglass-half"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @if ($data['lastStudy'] == null)
+                                    <a href="{{ route('homepage') . '#categories' }}"
+                                        class="mt-3 block text-blue-600">beli kelas <i
+                                            class="fa-solid fa-arrow-right"></i></a>
+                                    @else
+                                        <a href="{{ route('lesson.show', ['chapter' => $data['lastStudy'][1]->chapter, 'id' => $data['lastStudy'][0]->id]) }}"
+                                        class="mt-3 block text-blue-600">lanjutkan <i
+                                            class="fa-solid fa-arrow-right"></i></a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <x-stastitic-card title="jumlah kursus yang dibeli" value="{{ count($data['courseBought']) }}"
                             icon='fa-solid fa-book' iconBgColor="bg-slate-800" percentage="{{ 12.2 }}"
                             arrow="{{ null }}" />
-                        <x-author_stastitic_card title="jumlah kursus yang diselesaikan" value="{{ count($coursePass) }}"
-                            icon='fa-solid fa-scroll' iconBgColor="bg-slate-800" percentage="{{ 12.2 }}"
-                            arrow="{{ null }}" /> --}}
-                        <x-stastitic-card title="jumlah kursus yang dibeli" value="{{ count($data['courseBought']) }}"
-                            icon='fa-solid fa-book' iconBgColor="bg-slate-800" percentage="{{ 12.2 }}" arrow="{{ null }}"/>
                         <x-stastitic-card title="jumlah kursus yang diselesaikan" value="{{ count($data['coursePass']) }}"
-                            icon='fa-solid fa-scroll' iconBgColor="bg-slate-800" percentage="{{ 12.2 }}" arrow="{{ null }}"/>
+                            icon='fa-solid fa-scroll' iconBgColor="bg-slate-800" percentage="{{ 12.2 }}"
+                            arrow="{{ null }}" />
                     </div>
                 </div>
             </div>
         </div>
         <div class="px-4 md:px-10 mx-auto w-full -m-24">
             <div class="flex flex-wrap">
-                <div class="w-full md:w-3/5 mb-12 xl:mb-0 px-4">
+                <div class="w-full xl:w-3/5 mb-12 xl:mb-0 px-4">
                     <div
                         class="bg-white relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
                         <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
@@ -58,7 +90,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full md:w-2/5 mb-12 xl:mb-0 px-4">
+                <div class="w-full xl:w-2/5 mb-12 xl:mb-0 px-4">
                     <div
                         class="bg-white relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
                         <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
@@ -253,7 +285,7 @@
             document.getElementById(dropdownID).classList.toggle("block");
         }
 
-(function(){
+        (function() {
 
             /* Chart initialisations */
             /* Line Chart */
@@ -275,7 +307,7 @@
                         "Des"
                     ],
                     datasets: [{
-                            label: "pembeli",
+                            label: "pembelian",
                             fill: false,
                             backgroundColor: "#4f46e5",
                             borderColor: "#4f46e5",
@@ -286,7 +318,7 @@
                             ],
                         },
                         {
-                            label: "lulusan",
+                            label: "kelulusan",
                             fill: false,
                             backgroundColor: "#db2777",
                             borderColor: "#db2777",
