@@ -5,9 +5,7 @@
             <p class="text-lg font-semibold text-blue-500 mb-1">#EasyLearnWithUs</p>
             @foreach ($courses as $course)
                 <p class="text-2xl mb-2 ">Kelas {{ $course->category->name }} </p>
-                <p class="text-base">Jika kamu tidak tahan terhadap penatnya belajar, maka kamu akan menanggung
-                    pedihnya
-                    kebodohan (Imam Syafi'i)</p>
+                <p class="text-base">{{ $course->category->description }}</p>
                 @php
                     break;
                 @endphp
