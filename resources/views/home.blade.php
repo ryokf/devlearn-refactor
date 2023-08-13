@@ -486,7 +486,8 @@
             </p>
 
             <div class="text-center mt-8">
-                <a href="{{ route('login') }}"
+
+                <a href="https://wa.me/6281247430546"
                     class="w-full px-6 py-3 rounded-full ml-2 text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
                     Mulai Mengajar
                 </a>

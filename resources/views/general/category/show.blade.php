@@ -20,8 +20,6 @@
                     <x-course-card :id="$course->id" :title="$course->title" :category="$course->category->name" :price="$course->price" :count="count($course->lessons)"
                         :photo="$course->photo" />
                 @endforeach
-
-
             </div>
         </div>
         <div class="py-8">
