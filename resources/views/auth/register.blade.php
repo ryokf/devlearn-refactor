@@ -76,6 +76,9 @@
                             <p class="text-sm text-gray-500 mt-2">
                                 Masukkan nama lengkap Anda
                             </p>
+                            @error('name')
+                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="col-span-12 sm:col-span-6">
@@ -87,8 +90,11 @@
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
 
                             <p class="text-sm text-gray-500 mt-2">
-                                Masukkan nama lengkap Anda
+                                Masukkan email Anda
                             </p>
+                            @error('email')
+                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="md:col-span-3 col-span-12">
@@ -98,6 +104,9 @@
 
                             <input type="password" id="Password" name="password"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+                            @error('password')
+                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="md:col-span-3 col-span-12">
@@ -107,6 +116,9 @@
 
                             <input type="password" id="PasswordConfirmation" name="password_confirmation"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+                            @error('password_confirmation')
+                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="col-span-12 sm:col-span-6">
@@ -117,16 +129,6 @@
                                 </a>
                             </p>
                         </div>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
                         <div class="col-span-12 sm:col-span-6 ">
                             <button type="submit"
                                 class="mx-auto inline-block shrink-0 rounded-md bg-slate-800 hover:bg-slate-700 px-12 py-3 text-sm font-medium text-white w-full">
