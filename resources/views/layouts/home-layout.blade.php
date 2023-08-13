@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500&display=swap" rel="stylesheet" />
 
-    <link rel="icon" type="image/x-icon" href="landingpage/images/logo_dl.png">
+    <link rel="icon" type="image/x-icon" href="{{ asset('landingpage/images/logo_dl.png') }}">
 </head>
 
 <body class="font-poppins text-gray-800 overflow-x-hidden dark:bg-slate-800" id="top">
@@ -202,7 +202,7 @@
                         <!-- button masuk -->
                         @else
                         <div class="hidden md:block relative">
-                            <a href="{{ route('login') }}" class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800">
+                            <a href="{{ route('login') }}" class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800 dark:border-white">
                                 Masuk
                             </a>
                         </div>
@@ -262,32 +262,32 @@
                             <div class="text-left text-sm font-normal text-slate-800 mt-1 w-4/5 mx-auto dark:text-white" id="submenu">
                                 <ul class="list-none">
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-700">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
                                             Web Development
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-700">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
                                             Mobile Development
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-700">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
                                             Game Development
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-700">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
                                             Data Analyst
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-700">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
                                             Jaringan
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-700">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
                                             Multimedia
                                         </a>
                                     </li>

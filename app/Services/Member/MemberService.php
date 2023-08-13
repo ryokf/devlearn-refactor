@@ -109,7 +109,13 @@ class MemberService
     }
 
     public function lastStudy(){
-        $userLesson = UserLesson::where('user_id', auth()->user()->id)->where('status', true)->first()->pluck('lesson_id');
+        $userLesson = UserLesson::where('user_id', auth()->user()->id)->where('status', true)->first();
+
+        if($userLesson == null){
+            return null;
+        } else {
+            $userLesson = $userLesson->pluck('lesson_id');
+        }
 
         $lesson = Lesson::whereIn('id', $userLesson)->first();
 

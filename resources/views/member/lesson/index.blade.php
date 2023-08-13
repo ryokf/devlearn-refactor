@@ -14,6 +14,7 @@
 </head>
 
 <body class="text-blueGray-700 antialiased">
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <!-- Start Navbar -->
     <nav class="bg-white shadow p-4 sticky top-0 z-50">
@@ -279,13 +280,11 @@
                     <p class="text-xl font-semibold bg-white p-4">{{ $item->chapter }} .
                         {{ $item->title }}</p>
                     <div class="p-8 flex flex-col md:flex-row md:space-x-8 justify-center items-center">
-                        {{-- <img src="{{ $item->media_content }}" alt="{{ $item->title }}"
-                            class="w-32 h-32 md:w-80 md:h-64 object-cover rounded-lg shadow-md"> --}}
-                        {{-- <video controls>
-                            <source src="{{ asset('/storage/media_content/' . $item->media_content) }}"
-                                type="video/webm" />
-                            Browsermu tidak mendukung tag ini, upgrade donk!
-                        </video> --}}
+                        <div class="w-full h-0 relative" style="padding-bottom: 56.25%;">
+                            <iframe class="w-full h-full absolute inset-0 object-cover"
+                                src="https://youtube.com/embed/{{ $item->media_link }}" frameborder="0"
+                                allowfullscreen></iframe>
+                        </div>
                     </div>
 
                     <div class="p-8">
@@ -312,6 +311,39 @@
             @endforeach
             {{-- <x-author_footer class="" /> --}}
 
+            <hr>
+
+            <div class="container mt-5">
+                <div class=" mb-10">
+                    <h1 class="text-xl font-bold">Forum pembahasan</h1>
+                    <p class="text-gray-400">bergabung bersama yang lain dalam membahas maetri tersebut, jawaban yang
+                        anda tanyakan akan segera mentor balas</p>
+                </div>
+                <x-comment-section></x-comment-section>
+                <x-comment-section></x-comment-section>
+                <x-comment-section></x-comment-section>
+                <x-comment-section></x-comment-section>
+                <div class="mt-5">
+                    <form class="flex items-center">
+                        <label for="simple-search" class="sr-only">Search</label>
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <i class="fa-regular fa-message"></i>
+                            </div>
+                            <input type="text" id="simple-search"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="tuliskan komentar anda..." required>
+                        </div>
+                        <button type="submit"
+                            class="p-2.5 ml-2 text-sm font-medium text-white bg-slate-700 rounded-lg border border-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">
+                            <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>
+                            <span class="sr-only">Search</span>
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+            <hr class="mt-5">
 
             <!-- Start Footer Section -->
             <footer class="bg-white">
@@ -501,8 +533,23 @@
 
 
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <script>
+        function enableFullscreen() {
+            var iframe = document.querySelector('iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                iframe.webkitRequestFullscreen();
+            }
+        }
+    </script>
+
+
     <script>
         (function() {
             if (document.getElementById("get-current-year")) {

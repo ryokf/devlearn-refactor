@@ -2,7 +2,7 @@
 @extends('layouts.layout')
 
 @section('body')
-<x-dashboard-sidebar :menu=$menu></x-dashboard-sidebar>
+    <x-dashboard-sidebar :menu=$menu></x-dashboard-sidebar>
     <div class="relative md:ml-72 bg-blueGray-50">
         <x-dashboard-header></x-dashboard-header>
         <div class="relative bg-slate-800 md:pt-32 pb-32 pt-12">
@@ -19,7 +19,12 @@
                                                 lanjutkan belajar
                                             </h5>
                                             <span class="font-thin mt-1 block text-blueGray-700">
-                                                <span class="font-semibold">{{ $data['lastStudy'][0]->title }}</span> | {{ $data['lastStudy'][1]->chapter }}. {{ $data['lastStudy'][1]->title }}
+                                                @if ($data['lastStudy'] == null)
+                                                    <span class="font-semibold">anda belum memiliki kursus</span>
+                                                @else
+                                                    <span class="font-semibold">{{ $data['lastStudy'][0]->title }}</span> |
+                                                    {{ $data['lastStudy'][1]->chapter }}. {{ $data['lastStudy'][1]->title }}
+                                                @endif
                                             </span>
                                         </div>
                                         <div class="relative w-auto pl-4 flex-initial">
@@ -29,14 +34,24 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('lesson.show', ['chapter' => $data['lastStudy'][1]->chapter, 'id' => $data['lastStudy'][0]->id ]) }}" class="mt-3 block text-blue-600">lanjutkan <i class="fa-solid fa-arrow-right"></i></a>
+                                    @if ($data['lastStudy'] == null)
+                                    <a href="{{ route('homepage') . '#categories' }}"
+                                        class="mt-3 block text-blue-600">beli kelas <i
+                                            class="fa-solid fa-arrow-right"></i></a>
+                                    @else
+                                        <a href="{{ route('lesson.show', ['chapter' => $data['lastStudy'][1]->chapter, 'id' => $data['lastStudy'][0]->id]) }}"
+                                        class="mt-3 block text-blue-600">lanjutkan <i
+                                            class="fa-solid fa-arrow-right"></i></a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                         <x-stastitic-card title="jumlah kursus yang dibeli" value="{{ count($data['courseBought']) }}"
-                            icon='fa-solid fa-book' iconBgColor="bg-slate-800" percentage="{{ 12.2 }}" arrow="{{ null }}"/>
+                            icon='fa-solid fa-book' iconBgColor="bg-slate-800" percentage="{{ 12.2 }}"
+                            arrow="{{ null }}" />
                         <x-stastitic-card title="jumlah kursus yang diselesaikan" value="{{ count($data['coursePass']) }}"
-                            icon='fa-solid fa-scroll' iconBgColor="bg-slate-800" percentage="{{ 12.2 }}" arrow="{{ null }}"/>
+                            icon='fa-solid fa-scroll' iconBgColor="bg-slate-800" percentage="{{ 12.2 }}"
+                            arrow="{{ null }}" />
                     </div>
                 </div>
             </div>
@@ -270,7 +285,7 @@
             document.getElementById(dropdownID).classList.toggle("block");
         }
 
-(function(){
+        (function() {
 
             /* Chart initialisations */
             /* Line Chart */
