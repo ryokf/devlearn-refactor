@@ -168,8 +168,6 @@
                                     </div>
                                 </li>
                             </ul>
-
-
                             <div class="w-full flex justify-end">
                                 <button type="submit"
                                     class="self-end w-32 mt-10 focus:outline-none text-white border border-slate-800 bg-slate-800 hover:bg-neutral-800 focus:ring-4 focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-neutral-700 dark:hover:bg-slate-700 dark:focus:ring-slate-800">update</button>
