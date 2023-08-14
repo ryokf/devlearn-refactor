@@ -1,6 +1,6 @@
 @extends('layouts.home-layout')
 @section('body')
-    <section class="md:pt-20 pt-5 md:px-24 px-5">
+    <section class="md:pt-10 pt-5 sm:px-10 md:px-14 lg:px-20 ">
         <div class="pt-8">
             <p class="text-lg font-semibold text-blue-500 mb-1">#EasyLearnWithUs</p>
             @foreach ($courses as $course)
