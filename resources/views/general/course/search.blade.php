@@ -21,15 +21,18 @@
         </div>
     </div>
     <div class=" py-8">
+        @php
+        $searchQuery = request()->get('search');
+        @endphp
         @if (count($courses) === 0)
         <div class="p-24 text-center">
             <p class="text-xl font-semibold dark:text-white">
-                Maaf, hasil dari "{{-- $searchQuery --}}" tidak ditemukan. Coba cari kata kunci lain ya😊
+                Maaf, hasil dari {{ $searchQuery }} tidak ditemukan. Coba cari kata kunci lain ya😊
             </p>
         </div>
         @else
         <p class="py-8 text-xl font-semibold dark:text-white">
-            Hasil pencarian dari "{{-- $searchQuery --}}" ditemukan ({{ count($courses) }}).
+            Hasil pencarian dari {{ $searchQuery }} ditemukan ({{ count($courses) }}).
         </p>
         <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             @foreach ($courses as $course)
