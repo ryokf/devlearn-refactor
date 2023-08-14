@@ -52,11 +52,11 @@
                     <!-- kategori -->
                     <div class="hidden md:block ml-10 group relative dark:text-white">
                         <a href="#categories">Kategori</a>
-                        <div class="hidden border-gray-100 absolute group-hover:block min-w-[200px] pt-8 drop-shadow-md">
+                        <div class="hidden border-gray-100 absolute group-hover:block min-w-[200px] pt-8 drop-shadow-md ">
                             <ul class="list-none">
                                 <li>
                                     @foreach ($categories as $category)
-                                    <a href="{{ route('category.show', [$category->id]) }}" class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600">
+                                    <a href="{{ route('category.show', [$category->id]) }}" class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700">
                                         {{ $category->name }}
                                     </a>
                                     @endforeach
@@ -335,7 +335,7 @@
     @yield('body')
 
     <!-- Start Footer Section -->
-    <footer class="bg-gray-100 dark:bg-slate-800">
+    <footer class="bg-gray-100 dark:bg-slate-700">
         <div class="mx-auto container space-y-8 py-16 lg:space-y-16">
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 ">
                 <div>

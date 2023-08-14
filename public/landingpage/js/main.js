@@ -104,15 +104,33 @@ $(document).ready(function () {
     const html = document.querySelector('html');
     const toggleIcon = document.querySelector('.toggle-icon');
 
-    darkToggle.addEventListener('click', function () {
-    if (darkToggle.checked) {
-        html.classList.add('dark');
-        toggleIcon.classList.remove('fa-sun');
-        toggleIcon.classList.add('fa-moon');
-    } else {
-        html.classList.remove('dark');
-        toggleIcon.classList.remove('fa-moon');
-        toggleIcon.classList.add('fa-sun');
+    function storeDarkMode(value) {
+        localStorage.setItem('darkmode', value);
     }
+
+    darkToggle.addEventListener('change', () => {
+        if (darkToggle.checked) {
+            html.classList.add('dark');
+            toggleIcon.classList.remove('fa-sun');
+            toggleIcon.classList.add('fa-moon');
+            storeDarkMode(true);
+        } else {
+            html.classList.remove('dark');
+            toggleIcon.classList.remove('fa-moon');
+            toggleIcon.classList.add('fa-sun');
+            storeDarkMode(false); 
+        }
     });
+
+    function loadDarkMode() {
+        const darkmode = localStorage.getItem('darkmode');
+        if (darkmode === 'true') {
+            html.classList.add('dark');
+            toggleIcon.classList.remove('fa-sun');
+            toggleIcon.classList.add('fa-moon');
+        }
+    }
+
+    loadDarkMode();
+
 });

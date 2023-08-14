@@ -84,9 +84,10 @@ class CourseController extends Controller
         return 'halaman detail course';
     }
 
-    public function search(Request $request ,Course $course){
+    public function search(Request $request, Course $course)
+    {
         return view('general.course.search', [
-            'courses' => $course->where('title', 'like', '%'.$request->search.'%')->get()
+            'courses' => $course->where('title', 'like', '%' . $request->search . '%')->get()
         ]);
     }
 
