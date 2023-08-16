@@ -16,7 +16,7 @@ class LessonComment extends Model
     /**
      * Get all of the user for the UserCourse
      */
-    public function users(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }

@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             CertificateSeeder::class,
             CourseSeeder::class,
             LessonSeeder::class,
+            LessonCommentSeeder::class,
             UserCourseSeeder::class,
             // UserLessonSeeder::class,
             VoucherSeeder::class,

@@ -9,6 +9,8 @@ class LessonCommentController extends Controller
 {
     public function store(Request $request)
     {
+        // dd($request->all());
+
         // Validasi input dari request
         $validatedData = $request->validate([
             'lesson_id' => 'required|exists:lessons,id',

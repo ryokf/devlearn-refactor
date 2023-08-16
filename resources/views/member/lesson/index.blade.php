@@ -312,25 +312,40 @@
             {{-- <x-author_footer class="" /> --}}
 
             <hr>
-
             <div class="container mt-5">
                 <div class=" mb-10">
                     <h1 class="text-xl font-bold">Forum pembahasan</h1>
-                    <p class="text-gray-400">bergabung bersama yang lain dalam membahas maetri tersebut, jawaban yang
+                    <p class="text-gray-400">bergabung bersama yang lain dalam membahas maetri tersebut, pertanyaan yang
                         anda tanyakan akan segera mentor balas</p>
                 </div>
-                <x-comment-section></x-comment-section>
-                <x-comment-section></x-comment-section>
-                <x-comment-section></x-comment-section>
-                <x-comment-section></x-comment-section>
+                {{-- @dd($comments) --}}
+                @if (count($comments) == 0)
+                    <h1 class="text-center font-semibold text-xl my-10">belum ada diskusi pada materi ini</h1>
+                @else
+                    @foreach ($comments as $comment)
+                        {{-- <x-comment-section :name="$comment->user->name", :photo="$comment->user->photo", :comment="$comment->comment" :userId="$comment->user->id" /> --}}
+                        <x-comment-section :id="$comment->id" :userId="$comment->user_id" :name="$comment->user->name" :photo="$comment->user->photo"
+                            :comment="$comment->comment"></x-comment-section>
+                    @endforeach
+                    <div class="mt-10">
+                        {{ $comments->links() }}
+                    </div>
+                @endif
+
+
+
                 <div class="mt-5">
-                    <form class="flex items-center">
+                    <form action="{{ route('comment.store') }}" method="post" class="flex items-center">
+                        @csrf
+
+                        <input type="hidden" name="lesson_id" value="{{ $id_lesson->id }}">
+
                         <label for="simple-search" class="sr-only">Search</label>
                         <div class="relative w-full">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <i class="fa-regular fa-message"></i>
                             </div>
-                            <input type="text" id="simple-search"
+                            <input type="text" id="simple-search" name="comment"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="tuliskan komentar anda..." required>
                         </div>

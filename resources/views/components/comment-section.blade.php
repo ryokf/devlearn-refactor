@@ -1,16 +1,17 @@
 <div class="flex items-start space-x-4 my-5">
-    <img class="w-10 h-10 rounded-full" src="https://source.unsplash.com/random/300×300" alt="">
+    <img class="w-10 h-10 rounded-full" src="{{ $photo }}" alt="">
     <div class=" dark:text-white">
-        <div class="text-sm font-semibold">Jese Leos</div>
-        <div class="max-w-xl">permisi kak mau tanya, setelah saya coba dengan sedikit ubahan di bagian anu, kok
-            programnya malah error ya kak, kira-kira yang salah apa ya?</div>
+        <a href="{{ $userId }}">
+            <div class="text-sm font-semibold">{{ $name }}</div>
+        </a>
+        <div class="max-w-xl">{{ $comment }}</div>
         <div class="" id="accordion-collapse" data-accordion="collapse">
             <div class="flex gap-4">
             <a href="" class="text-xs text-gray-400">balas</a>
-                <span id="accordion-collapse-heading-1"  data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
+                <span id="accordion-collapse-heading-{{ $id }}"  data-accordion-target="#accordion-collapse-body-{{ $id }}" aria-expanded="false"
                 aria-controls="accordion-collapse-body-1" class="text-xs text-gray-40 cursor-pointer">lihat 1 balasan</span>
             </div>
-            <div id="accordion-collapse-body-1" class="hidden border-l pl-2" aria-labelledby="accordion-collapse-heading-1">
+            <div id="accordion-collapse-body-{{ $id }}" class="hidden border-l pl-2" aria-labelledby="accordion-collapse-heading-{{ $id }}">
                 <x-reply-comment-section></x-reply-comment-section>
             </div>
         </div>

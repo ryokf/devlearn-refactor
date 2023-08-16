@@ -4,12 +4,19 @@ namespace App\Services\Member;
 
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\LessonComment;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CourseService
 {
+    function getComment($id){
+        $lessonComment = LessonComment::where('lesson_id', $id)->paginate(10);
+
+        return $lessonComment;
+    }
+
     public function getLesson($id, $chapter)
     {
         $lessons_all = Lesson::where('course_id', $id)
@@ -30,6 +37,8 @@ class CourseService
             ->where('chapter', $chapter)
             ->value('id');
 
+        $comments = $this->getComment($id_lesson);
+
 
         $course = Course::findOrFail($id);
 
@@ -39,6 +48,7 @@ class CourseService
             'lesson_detail' => $lesson_detail,
             'course' => $course,
             'id_lesson' => $id_lesson,
+            'comments' => $comments
         ];
     }
 }

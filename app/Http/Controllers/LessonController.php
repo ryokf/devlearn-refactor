@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lesson;
+use App\Models\LessonComment;
 use App\Models\User;
 use App\Models\UserCourse;
 use App\Models\UserLesson;
@@ -62,6 +63,8 @@ class LessonController extends Controller
                 'course' => $courseData['course'],
                 'nextChapter' => $nextChapterExists ? $nextChapter : null,
                 'lastChapter' => $isLastChapter,
+                'comments' => $courseData['comments'],
+                'id_lesson' => Lesson::where('course_id', $id)->where('chapter', $chapter)->first()
             ]);
         } else {
             return redirect()->back()->with('message', 'unpaid');
