@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\User;
 use Illuminate\View\Component;
 
 class CommentSection extends Component
@@ -11,6 +12,8 @@ class CommentSection extends Component
     public $name;
     public $photo;
     public $comment;
+    public $replyCount;
+    public $user;
 
     /**
      * Create a new component instance.
@@ -22,13 +25,15 @@ class CommentSection extends Component
      * @param  string  $comment
      * @return void
      */
-    public function __construct($id, $userId, $name, $photo, $comment)
+    public function __construct($id, $userId, $name, $photo, $comment, $replyCount)
     {
         $this->id = $id;
         $this->userId = $userId;
         $this->name = $name;
         $this->photo = $photo;
         $this->comment = $comment;
+        $this->replyCount = $replyCount;
+        $this->user = User::find($this->userId);
     }
 
     /**

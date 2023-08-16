@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\LessonCommentReply;
 use Illuminate\Database\Seeder;
 
 class LessonCommentReplySeeder extends Seeder
@@ -13,6 +14,6 @@ class LessonCommentReplySeeder extends Seeder
      */
     public function run()
     {
-        //
+        LessonCommentReply::factory()->count(2000)->create();
     }
 }

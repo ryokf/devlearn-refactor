@@ -3,16 +3,33 @@
     <div class=" dark:text-white">
         <a href="{{ $userId }}">
             <div class="text-sm font-semibold">{{ $name }}</div>
+
+            @if ($user->hasRole('author'))
+                <i class="fa-solid fa-medal"></i>
+            @endif
+
         </a>
         <div class="max-w-xl">{{ $comment }}</div>
         <div class="" id="accordion-collapse" data-accordion="collapse">
             <div class="flex gap-4">
-            <a href="" class="text-xs text-gray-400">balas</a>
-                <span id="accordion-collapse-heading-{{ $id }}"  data-accordion-target="#accordion-collapse-body-{{ $id }}" aria-expanded="false"
-                aria-controls="accordion-collapse-body-1" class="text-xs text-gray-40 cursor-pointer">lihat 1 balasan</span>
+                <a href="?replyTo={{ $id }}&name={{ $name }}#comment-form"
+                    class="text-xs text-gray-400">balas</a>
+                <span id="accordion-collapse-heading-{{ $id }}"
+                    data-accordion-target="#accordion-collapse-body-{{ $id }}" aria-expanded="false"
+                    aria-controls="accordion-collapse-body-1" class="text-xs text-gray-40 cursor-pointer">
+                    @if (count($replyCount) == 0)
+                        belum ada balasan
+                    @else
+                        lihat {{ count($replyCount) }} balasan
+                    @endif
+                </span>
             </div>
-            <div id="accordion-collapse-body-{{ $id }}" class="hidden border-l pl-2" aria-labelledby="accordion-collapse-heading-{{ $id }}">
-                <x-reply-comment-section></x-reply-comment-section>
+            <div id="accordion-collapse-body-{{ $id }}" class="hidden border-l pl-2"
+                aria-labelledby="accordion-collapse-heading-{{ $id }}">
+                @foreach ($replyCount as $reply)
+                    <x-reply-comment-section :id="$reply->user_id" :name="$reply->user->name" :photo="$reply->user->photo" :replyTo="$name"
+                        :reply="$reply->reply"></x-reply-comment-section>
+                @endforeach
             </div>
         </div>
     </div>

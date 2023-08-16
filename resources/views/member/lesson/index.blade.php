@@ -315,7 +315,8 @@
             <div class="container mt-5">
                 <div class=" mb-10">
                     <h1 class="text-xl font-bold">Forum pembahasan</h1>
-                    <p class="text-gray-400">bergabung bersama yang lain dalam membahas maetri tersebut, pertanyaan yang
+                    <p class="text-gray-400">bergabung bersama yang lain dalam membahas maetri tersebut, pertanyaan
+                        yang
                         anda tanyakan akan segera mentor balas</p>
                 </div>
                 {{-- @dd($comments) --}}
@@ -325,35 +326,64 @@
                     @foreach ($comments as $comment)
                         {{-- <x-comment-section :name="$comment->user->name", :photo="$comment->user->photo", :comment="$comment->comment" :userId="$comment->user->id" /> --}}
                         <x-comment-section :id="$comment->id" :userId="$comment->user_id" :name="$comment->user->name" :photo="$comment->user->photo"
-                            :comment="$comment->comment"></x-comment-section>
+                            :comment="$comment->comment" :replyCount="$comment->lessonCommentReply"></x-comment-section>
                     @endforeach
                     <div class="mt-10">
                         {{ $comments->links() }}
                     </div>
                 @endif
 
+                <div id="comment-form" class="mt-5">
 
-
-                <div class="mt-5">
-                    <form action="{{ route('comment.store') }}" method="post" class="flex items-center">
+                    <form action="{{ route('comment.store') }}" method="post" class="flex items-end">
                         @csrf
 
-                        <input type="hidden" name="lesson_id" value="{{ $id_lesson->id }}">
+                        @if (request()->get('replyTo'))
+                            <input type="hidden" name="lesson_comment_id" value="{{ request()->get('replyTo') }}">
 
-                        <label for="simple-search" class="sr-only">Search</label>
-                        <div class="relative w-full">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <i class="fa-regular fa-message"></i>
+
+
+                            <label for="simple-search" class="sr-only">Search</label>
+                            <div class="relative w-full -mb-3">
+                                <div
+                                    class="max-w-max flex justify-between items-center px-2 py-1 mr-2 text-sm font-medium text-gray-800 bg-gray-100 rounded dark:bg-gray-700 dark:text-gray-300">
+                                    membalas komentar {{ '@' . request()->get('name') }}
+                                    <a href="{{ route('lesson.show', ['id' => $course->id, 'chapter' => $lesson_detail['0']->chapter]) . '#comment-form' }}"
+                                        class="inline-flex items-center p-1 ml-2 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </a>
+                                </div>
+                                <input type="text" id="simple-search" name="reply"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-2 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="tuliskan balasan anda..."
+                                    required>
                             </div>
-                            <input type="text" id="simple-search" name="comment"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="tuliskan komentar anda..." required>
-                        </div>
-                        <button type="submit"
+
+                            <button type="submit"
+                            class="p-2.5 ml-2 -mb-3 text-sm font-medium text-white bg-slate-700 rounded-lg border border-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">
+                            <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>
+                            <span class="sr-only">Search</span>
+                        </button>
+                        @else
+                            <input type="hidden" name="lesson_id" value="{{ $id_lesson->id }}">
+
+                            <label for="simple-search" class="sr-only">Search</label>
+                            <div class="relative w-full">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <i class="fa-regular fa-message"></i>
+                                </div>
+                                <input type="text" id="simple-search" name="comment"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="tuliskan komentar anda..." required>
+                            </div>
+
+                            <button type="submit"
                             class="p-2.5 ml-2 text-sm font-medium text-white bg-slate-700 rounded-lg border border-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">
                             <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>
                             <span class="sr-only">Search</span>
                         </button>
+                        @endif
+
                     </form>
 
                 </div>
