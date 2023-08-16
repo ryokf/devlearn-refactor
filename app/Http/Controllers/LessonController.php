@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lesson;
-use App\Models\LessonComment;
 use App\Models\User;
 use App\Models\UserCourse;
-use App\Models\UserLesson;
 use App\Services\Member\CourseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,6 +55,7 @@ class LessonController extends Controller
             } else {
                 $lessons = $courseData['lessons_member'];
             }
+
             return view('member.lesson.index', [
                 'lessons' => $lessons,
                 'lesson_detail' => $courseData['lesson_detail'],
@@ -64,7 +63,7 @@ class LessonController extends Controller
                 'nextChapter' => $nextChapterExists ? $nextChapter : null,
                 'lastChapter' => $isLastChapter,
                 'comments' => $courseData['comments'],
-                'id_lesson' => Lesson::where('course_id', $id)->where('chapter', $chapter)->first()
+                'id_lesson' => Lesson::where('course_id', $id)->where('chapter', $chapter)->first(),
             ]);
         } else {
             return redirect()->back()->with('message', 'unpaid');
@@ -104,7 +103,7 @@ class LessonController extends Controller
                 ->exists();
 
             $user->lessons()->syncWithoutDetaching([
-                $request->id_lesson => ['status' => true]
+                $request->id_lesson => ['status' => true],
             ]);
             // if ($user->hasRole('admin') || $user->hasRole('author')) {
             //     $lessons = $courseData['lessons_all'];
@@ -156,7 +155,6 @@ class LessonController extends Controller
 
         return redirect()->route('course.show', $request->course_id)->with('success', 'Lesson created successfully!');
     }
-
 
     public function edit(Request $request)
     {

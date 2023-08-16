@@ -8,7 +8,7 @@ class DashboardSidebar extends Component
 {
     public $menu;
 
-   /**
+    /**
      * Create a new component instance.
      *
      * @return void
@@ -26,6 +26,7 @@ class DashboardSidebar extends Component
     public function render()
     {
         $menu = $this->menu;
+
         return view('components.dashboard-sidebar', compact('menu'));
     }
 }

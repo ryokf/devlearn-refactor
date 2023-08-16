@@ -17,9 +17,9 @@ class LessonCommentFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => mt_rand(1,12),
-            'lesson_id' => mt_rand(1,100),
-            'comment' => fake()->sentence()
+            'user_id' => mt_rand(1, 12),
+            'lesson_id' => mt_rand(1, 100),
+            'comment' => fake()->sentence(),
         ];
     }
 }

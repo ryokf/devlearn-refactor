@@ -8,20 +8,25 @@ use Illuminate\View\Component;
 class ReplyCommentSection extends Component
 {
     public $id;
+
     public $name;
+
     public $photo;
+
     public $replyTo;
+
     public $reply;
+
     public $user;
 
     /**
      * Create a new component instance.
      *
-     * @param int    $id
-     * @param string $name
-     * @param string $photo
-     * @param string $replyTo
-     * @param string $reply
+     * @param  int  $id
+     * @param  string  $name
+     * @param  string  $photo
+     * @param  string  $replyTo
+     * @param  string  $reply
      */
     public function __construct($id, $name, $photo, $replyTo, $reply)
     {

@@ -7,14 +7,12 @@ use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\Lesson;
-use App\Models\Voucher;
-use App\Services\Admin\CourseService as AdminCourseService;
 use App\Models\User;
 use App\Models\UserCourse;
+use App\Models\Voucher;
 use App\Services\Author\CourseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -57,7 +55,7 @@ class CourseController extends Controller
                 'menu' => parent::$memberMenuSidebar,
                 'courses' => $courses,
                 'sorts' => $sortOption,
-                'categories' => $categories
+                'categories' => $categories,
             ]);
         } else {
             return true;
@@ -77,7 +75,7 @@ class CourseController extends Controller
                 'menu' => parent::$menuSidebarauthor,
                 'course' => $course,
                 'lessons' => $lessons,
-                'members' => $member
+                'members' => $member,
             ]);
         }
 
@@ -87,7 +85,7 @@ class CourseController extends Controller
     public function search(Request $request, Course $course)
     {
         return view('general.course.search', [
-            'courses' => $course->where('title', 'like', '%' . $request->search . '%')->get()
+            'courses' => $course->where('title', 'like', '%'.$request->search.'%')->get(),
         ]);
     }
 
@@ -105,9 +103,11 @@ class CourseController extends Controller
     {
         if ($this->courseService->createCourse($request)) {
             $message = 'Kursus berhasil ditambahkan';
+
             return redirect(route('course.index'))->with('success', $message);
         } else {
             $message = 'Kursus gagal ditambahkan';
+
             return redirect(route('course.index'))->with('erorr', $message);
         }
     }
@@ -140,13 +140,13 @@ class CourseController extends Controller
         return back()->with('success', 'kursus berhasil dihapus');
     }
 
-
     public function indexAdmin()
     {
         $courses = Course::paginate(6);
         $vouchers = Voucher::all();
         $menuSidebarAdmin = parent::$menuSidebarAdmin;
         view()->share('menu', $menuSidebarAdmin);
+
         return view(
             'admin.course.index',
             compact('courses', 'vouchers')
@@ -158,6 +158,7 @@ class CourseController extends Controller
     {
         $categories = Category::all();
         $course = $course->where('id', $request->id)->first();
+
         return view('general.course.show', compact('course', 'categories'));
     }
 }

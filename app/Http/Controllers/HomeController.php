@@ -32,7 +32,7 @@ class HomeController extends Controller
         return view('home', [
             'categories' => $category,
             'popularCourse' => $popularCourse,
-            'latestCourse' => $latestCourse
+            'latestCourse' => $latestCourse,
         ]);
     }
 

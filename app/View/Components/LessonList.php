@@ -7,10 +7,12 @@ use Illuminate\View\Component;
 class LessonList extends Component
 {
     public $id;
-    public $chapter;
-    public $title;
-    public $description;
 
+    public $chapter;
+
+    public $title;
+
+    public $description;
 
     /**
      * Create a new component instance.

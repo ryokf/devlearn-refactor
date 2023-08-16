@@ -108,10 +108,11 @@ class MemberService
         return collect($courses)->flatten();
     }
 
-    public function lastStudy(){
+    public function lastStudy()
+    {
         $userLesson = UserLesson::where('user_id', auth()->user()->id)->where('status', true)->first();
 
-        if($userLesson == null){
+        if ($userLesson == null) {
             return null;
         } else {
             $userLesson = $userLesson->pluck('lesson_id');
@@ -149,4 +150,5 @@ class MemberService
             'recentFinish' => $recentFinish,
             'lastStudy' => $lastStudy,
         ];
-}}
+    }
+}

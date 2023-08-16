@@ -78,7 +78,6 @@ class SpatieSeeder extends Seeder
             'guard_name' => 'web',
         ]);
 
-
         Permission::create([
             'name' => 'validate transaction',
             'guard_name' => 'web',

@@ -11,6 +11,7 @@ class UserLesson extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
     protected $fillable = ['status'];
     /**
      * Get all of the user for the UserCourse

@@ -16,6 +16,7 @@ class PermissionController extends Controller
         $menuSidebarAdmin = parent::$menuSidebarAdmin;
         view()->share('menu', $menuSidebarAdmin);
     }
+
     public function create()
     {
         return view('admin.permissions.create');

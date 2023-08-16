@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Spatie\RoleController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\AssignmentScoreController;
 use App\Http\Controllers\CategoryController;
@@ -11,6 +10,7 @@ use App\Http\Controllers\LessonCommentController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Spatie\PermissionController;
+use App\Http\Controllers\Spatie\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserCourseController;
 use App\Http\Controllers\VoucherController;
@@ -58,8 +58,6 @@ Route::middleware('role:admin')->group(function () {
             Route::put('/voucher/{id}', 'update')->name('course.voucher.update');
         });
     });
-
-
 
     Route::middleware('can:manage roles_permission')->group(function () {
         //resource roles spatie
@@ -111,7 +109,6 @@ Route::middleware('role:admin')->group(function () {
     //index course
 
 });
-
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('homepage');
@@ -192,8 +189,6 @@ Route::controller(UserCourseController::class)->group(function () {
     });
 });
 
-
-
 Route::controller(ProfileController::class)->middleware('auth')->group(function () {
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::get('/profile', 'edit')->name('profile.edit');
@@ -202,7 +197,6 @@ Route::controller(ProfileController::class)->middleware('auth')->group(function 
 
     Route::get('profile-detail/{id}', 'profile-detail')->name('profile.detail');
 });
-
 
 //ini ketika beli course maka pakai ini
 Route::get('/attach-data/{id}', function ($id) {
@@ -215,7 +209,7 @@ Route::get('/attach-data/{id}', function ($id) {
     UserCourse::create([
         'user_id' => $id_user,
         'course_id' => $id,
-        'payment_status' => "pending",
+        'payment_status' => 'pending',
     ]);
     //cari semua id lesson
     $LessonInCourse = Lesson::where('course_id', $id)->pluck('id');
@@ -243,10 +237,10 @@ Route::get('/next/{id}', function ($id) {
     //var_dump($LessonInCourse);
     //$user->lessons()->sync([3, 4, 5, 6]);
     $user->lessons()->syncWithoutDetaching([
-        $id => ['status' => true]
+        $id => ['status' => true],
     ]);
     $user->lessons()->syncWithoutDetaching([
-        1 => ['status' => true]
+        1 => ['status' => true],
     ]);
 });
 
@@ -275,10 +269,8 @@ Route::get('/see/{id_course}', function ($id_course) {
 
     foreach ($lessons as $lesson) {
         $status = $lesson->pivot->status;
-        echo "Lesson ID: {$lesson->id}, {$lesson->title} Status: {$status}" .  "<br>";
+        echo "Lesson ID: {$lesson->id}, {$lesson->title} Status: {$status}".'<br>';
     }
 });
 
-
-
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

@@ -7,11 +7,14 @@ use Illuminate\View\Component;
 class MemberList extends Component
 {
     public $id;
-    public $chapter;
-    public $title;
-    public $description;
-    public $photo;
 
+    public $chapter;
+
+    public $title;
+
+    public $description;
+
+    public $photo;
 
     /**
      * Create a new component instance.

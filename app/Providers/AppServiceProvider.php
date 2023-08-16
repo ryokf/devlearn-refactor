@@ -36,7 +36,6 @@ class AppServiceProvider extends ServiceProvider
             $view->with('categories', $categories);
         });
 
-
         View::composer('member.lesson.index', function ($view) {
             $categories = Category::leftJoin('courses', 'categories.id', '=', 'courses.id_category')
                 ->limit(5)

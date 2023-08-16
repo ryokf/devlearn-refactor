@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Storage;
 class UserCourseController extends Controller
 {
     private $courseService;
+
     private $transactionService;
 
     public function __construct(CourseService $courseService, TransactionService $transactionService)
@@ -24,8 +25,9 @@ class UserCourseController extends Controller
         $this->transactionService = $transactionService;
     }
 
-    public function index(Request $request){
-        return view('member.transaction.index',[
+    public function index(Request $request)
+    {
+        return view('member.transaction.index', [
             'sorts' => $this->courseService->sortOption(),
             'menu' => parent::$memberMenuSidebar,
             // 'transactions' => UserCourse::where('user_id', auth()->user()->id)->paginate(20)
@@ -61,6 +63,7 @@ class UserCourseController extends Controller
     {
         $user = User::findOrFail($user_id);
         $course = Course::findOrFail($id);
+
         return view('member.transaction.payment', compact('course'));
     }
 

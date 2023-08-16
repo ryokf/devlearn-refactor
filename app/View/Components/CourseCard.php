@@ -7,10 +7,15 @@ use Illuminate\View\Component;
 class CourseCard extends Component
 {
     public $id;
+
     public $title;
+
     public $category;
+
     public $price;
+
     public $count;
+
     public $photo;
 
     /**

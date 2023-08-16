@@ -8,18 +8,24 @@ use Illuminate\View\Component;
 class CommentSection extends Component
 {
     public $id;
+
     public $userId;
+
     public $name;
+
     public $photo;
+
     public $comment;
+
     public $replyCount;
+
     public $user;
 
     /**
      * Create a new component instance.
      *
-     * @param  int     $id
-     * @param  int     $userId
+     * @param  int  $id
+     * @param  int  $userId
      * @param  string  $name
      * @param  string  $photo
      * @param  string  $comment

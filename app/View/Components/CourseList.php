@@ -7,13 +7,18 @@ use Illuminate\View\Component;
 class CourseList extends Component
 {
     public $id;
-    public $number;
-    public $title;
-    public $price;
-    public $category;
-    public $member;
-    public $status;
 
+    public $number;
+
+    public $title;
+
+    public $price;
+
+    public $category;
+
+    public $member;
+
+    public $status;
 
     /**
      * Create a new component instance.

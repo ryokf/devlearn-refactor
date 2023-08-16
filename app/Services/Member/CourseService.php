@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\DB;
 
 class CourseService
 {
-    function getComment($id){
+    public function getComment($id)
+    {
         $lessonComment = LessonComment::where('lesson_id', $id)->paginate(10);
 
         return $lessonComment;
@@ -31,14 +32,12 @@ class CourseService
             ->orderBy('chapter', 'asc')
             ->get();
 
-
         $id_lesson = DB::table('lessons')
             ->where('course_id', $id)
             ->where('chapter', $chapter)
             ->value('id');
 
         $comments = $this->getComment($id_lesson);
-
 
         $course = Course::findOrFail($id);
 
@@ -48,7 +47,7 @@ class CourseService
             'lesson_detail' => $lesson_detail,
             'course' => $course,
             'id_lesson' => $id_lesson,
-            'comments' => $comments
+            'comments' => $comments,
         ];
     }
 }

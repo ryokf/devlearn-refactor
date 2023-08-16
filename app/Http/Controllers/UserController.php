@@ -15,6 +15,7 @@ class UserController extends Controller
         $menuSidebarAdmin = parent::$menuSidebarAdmin;
         view()->share('menu', $menuSidebarAdmin);
     }
+
     public function index()
     {
         $users = User::paginate(7);

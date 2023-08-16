@@ -7,7 +7,9 @@ use Illuminate\View\Component;
 class DropdownButton extends Component
 {
     public $sorts;
+
     public $buttonColor;
+
     public $textColor;
 
     /**

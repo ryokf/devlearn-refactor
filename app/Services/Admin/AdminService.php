@@ -297,7 +297,7 @@ class AdminService
             // Ada data yang ditemukan, ambil course yang sesuai.
             return Course::whereIn('id', $courseIdsTopBought)
                 ->whereIn('id', $courseIds)
-                ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopBought->implode(',') . ')'))
+                ->orderBy(DB::raw('FIELD(id, '.$courseIdsTopBought->implode(',').')'))
                 ->get();
         }
     }
@@ -329,7 +329,7 @@ class AdminService
             // Ada data yang ditemukan, ambil course yang sesuai.
             return Course::whereIn('id', $courseIdsTopPass)
                 ->whereIn('id', $courseIds)
-                ->orderBy(DB::raw('FIELD(id, ' . $courseIdsTopPass->implode(',') . ')'))
+                ->orderBy(DB::raw('FIELD(id, '.$courseIdsTopPass->implode(',').')'))
                 ->get();
         }
     }

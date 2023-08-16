@@ -14,6 +14,7 @@ class CategoryController extends Controller
     public function __construct()
     {
     }
+
     public function index(Category $category)
     {
         return $category->orderBy('name')->get();
@@ -24,6 +25,7 @@ class CategoryController extends Controller
         $menuSidebarAdmin = parent::$menuSidebarAdmin;
         view()->share('menu', $menuSidebarAdmin);
         $categories = $category->orderBy('name')->get();
+
         return view('admin.category.index', compact('categories'));
     }
 
@@ -48,6 +50,7 @@ class CategoryController extends Controller
             ->where('id_category', $id)
             ->take(4)
             ->get();
+
         return view('general.category.show', compact('courses', 'coursesPopuler', 'categories'));
     }
     // public function store(Request $request)
@@ -71,12 +74,12 @@ class CategoryController extends Controller
         $menuSidebarAdmin = parent::$menuSidebarAdmin;
         view()->share('menu', $menuSidebarAdmin);
         $file = $request->file('photo');
-        $path = 'public/' . time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
+        $path = 'public/'.time().'_'.$request->name.'.'.$file->getClientOriginalExtension();
         Storage::put($path, file_get_contents($file));
         Category::create([
             'name' => $request->name,
             'photo' => $path,
-            'description' => $request->description
+            'description' => $request->description,
         ]);
 
         return redirect()->back()->with('message', 'Category successfully added!');
@@ -90,11 +93,11 @@ class CategoryController extends Controller
         // $category->name = $request->input('name');
         $category->update([
             'name' => $request->name,
-            'description' => $request->description
+            'description' => $request->description,
         ]);
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
-            $path = 'public/' . time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
+            $path = 'public/'.time().'_'.$request->name.'.'.$file->getClientOriginalExtension();
             Storage::put($path, file_get_contents($file));
             $category->photo = $path;
         }
@@ -107,6 +110,7 @@ class CategoryController extends Controller
     public function delete($id)
     {
         Category::findOrFail($id)->delete();
+
         return back()->with('message', 'Category Deleted');
     }
 
@@ -115,6 +119,7 @@ class CategoryController extends Controller
         $menuSidebarAdmin = parent::$menuSidebarAdmin;
         view()->share('menu', $menuSidebarAdmin);
         $category = Category::findOrFail($id);
+
         return view('admin.category.edit', compact('category'));
     }
 }

@@ -7,10 +7,15 @@ use Illuminate\View\Component;
 class StastiticCard extends Component
 {
     public $title;
+
     public $value;
+
     public $icon;
+
     public $iconBgColor;
+
     public $percentage;
+
     public $arrow;
 
     /**

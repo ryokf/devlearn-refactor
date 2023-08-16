@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
-use App\Services\Author\AuthorService;
 use App\Services\Admin\AdminService;
+use App\Services\Author\AuthorService;
 use App\Services\Member\MemberService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,10 +16,12 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
     private $authorService;
+
     private $memberService;
+
     private $adminService;
 
-    function __construct(AdminService $adminService, AuthorService $authorService, MemberService $memberService)
+    public function __construct(AdminService $adminService, AuthorService $authorService, MemberService $memberService)
     {
         $this->authorService = $authorService;
         $this->memberService = $memberService;
@@ -34,7 +36,7 @@ class ProfileController extends Controller
         if ($user->hasRole('admin')) {
             return view('admin.dashboard', [
                 'menu' => parent::$menuSidebarAdmin,
-                'data' => $this->adminService->dashboard()
+                'data' => $this->adminService->dashboard(),
             ]);
         } elseif ($user->hasRole('author')) {
             return view('author.dashboard', [
@@ -64,6 +66,7 @@ class ProfileController extends Controller
         } else {
             $menu = parent::$memberMenuSidebar;
         }
+
         return view('profile.edit', [
             'menu' => $menu,
             'user' => $request->user(),

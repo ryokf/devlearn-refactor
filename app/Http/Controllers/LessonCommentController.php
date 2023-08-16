@@ -10,7 +10,7 @@ class LessonCommentController extends Controller
 {
     public function store(Request $request)
     {
-        if($request->lesson_comment_id){
+        if ($request->lesson_comment_id) {
             $validatedData = $request->validate([
                 'lesson_comment_id' => 'required|exists:lesson_comments,id',
                 'reply' => 'required|string',

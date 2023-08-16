@@ -6,7 +6,6 @@ use App\Http\Requests\CreateCourseRequest;
 use App\Models\Category;
 use App\Models\Certificate;
 use App\Models\Course;
-use App\Models\User;
 use App\Models\UserCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -37,7 +36,7 @@ class CourseService
         $courses = Course::where('author_id', $author_id)->where('is_public', 1);
 
         if ($request->search != null) {
-            $courses = $courses->where('title', 'like', '%' . $request->search . '%');
+            $courses = $courses->where('title', 'like', '%'.$request->search.'%');
         }
 
         $courses = $courses->when($request->sort == 'terlama', function ($query) {
@@ -74,39 +73,39 @@ class CourseService
             return $userCourses->get();
         }
 
-        if($request->sort == 'terlama'){
+        if ($request->sort == 'terlama') {
             $userCourses = $userCourses->orderBy('created_at')->pluck('course_id');
 
             $userCourses = Course::whereIn('id', $userCourses)->orderByDesc('title');
-        } elseif($request->sort == 'abjad A-Z'){
+        } elseif ($request->sort == 'abjad A-Z') {
             $userCourses = $userCourses->pluck('course_id');
 
             $userCourses = Course::whereIn('id', $userCourses)->orderBy('title');
-        } elseif($request->sort == 'abjad Z-A'){
+        } elseif ($request->sort == 'abjad Z-A') {
             $userCourses = $userCourses->pluck('course_id');
 
             $userCourses = Course::whereIn('id', $userCourses)->orderByDesc('title');
-        } elseif($request->sort == 'termahal'){
+        } elseif ($request->sort == 'termahal') {
             $userCourses = $userCourses->pluck('course_id');
 
             $userCourses = Course::whereIn('id', $userCourses)->orderByDesc('price');
-        }elseif($request->sort == 'termurah'){
+        } elseif ($request->sort == 'termurah') {
             $userCourses = $userCourses->pluck('course_id');
 
             $userCourses = Course::whereIn('id', $userCourses)->orderBy('price');
-        }elseif($request->get('status') == 'pass'){
+        } elseif ($request->get('status') == 'pass') {
             $userCourses = $userCourses->pluck('course_id');
 
             $userCourses = Certificate::where('user_id', $user_id)->whereIn('course_id', $userCourses)->pluck('course_id');
 
             $userCourses = Course::whereIn('id', $userCourses);
-        } elseif($request->get('status') == 'ongoing'){
+        } elseif ($request->get('status') == 'ongoing') {
             $pass = Certificate::where('user_id', $user_id)->pluck('course_id');
 
             $userCourses = UserCourse::where('user_id', $user_id)->whereNotIn('course_id', $pass)->pluck('course_id');
 
             $userCourses = Course::whereIn('id', $userCourses);
-        }else{
+        } else {
             $userCourses = $userCourses->orderByDesc('created_at')->pluck('course_id');
 
             $userCourses = Course::whereIn('id', $userCourses)->orderByDesc('title');
