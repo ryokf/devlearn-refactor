@@ -36,9 +36,9 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('landingpage/images/logo_dl.png') }}">
 </head>
 
-<body class="font-poppins text-gray-800 overflow-x-hidden dark:bg-slate-800" id="top">
+<body class="font-poppins text-gray-800 overflow-x-hidden dark:bg-zinc-800" id="top">
     <!-- Start Navbar -->
-    <nav class="bg-white shadow p-4 sticky top-0 z-50 dark:bg-slate-800 dark:shadow-blue-500/50">
+    <nav class="bg-white shadow p-4 sticky top-0 z-50 dark:bg-zinc-800">
         <div class="container mx-auto">
             <div class="flex justify-between">
                 <!-- nav -->
@@ -52,16 +52,15 @@
                     <!-- kategori -->
                     <div class="hidden md:block ml-10 group relative dark:text-white">
                         <a href="#categories">Kategori</a>
-                        <div class="hidden border-gray-100 absolute group-hover:block min-w-[200px] pt-8 drop-shadow-md ">
-                            <ul class="list-none">
-                                <li>
-                                    @foreach ($categories as $category)
-                                    <a href="{{ route('category.show', [$category->id]) }}" class="block bg-white hover:bg-slate-50 py-4 px-8 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700">
+                        <div class="hidden absolute group-hover:block min-w-[200px] pt-8 drop-shadow-md ">
+                            <ul class="list-none rounded-lg overflow-hidden">
+                                @foreach ($categories as $category)
+                                <li class="">
+                                    <a href="{{ route('category.show', [$category->id]) }}" class="block text-sm bg-white hover:bg-slate-50 py-4 px-8 hover:text-blue-600 dark:bg-zinc-800 dark:hover:bg-slate-700">
                                         {{ $category->name }}
                                     </a>
-                                    @endforeach
                                 </li>
-
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -80,7 +79,7 @@
                         </svg>
                     </span>
                     <form action="{{ route('course.search') }}">
-                        <input type="search" name="search" class="transition w-full text-xs rounded-full border border-slate-800 p-4 pl-12 bg-slate-100 outline-none" placeholder="Cari Materi.." />
+                        <input type="search" name="search" class="transition w-full text-xs rounded-full border border-gray-500 p-4 pl-12 bg-slate-100 outline-none" placeholder="Cari Materi.." />
                     </form>
                 </div>
 
@@ -91,7 +90,7 @@
                         <div class="flex">
                             <input type="checkbox" class="hidden" id="dark-toggle" />
                             <label for="dark-toggle">
-                                <div class="flex h-7 w-14 cursor-pointer items-center rounded-full bg-slate-800 p-l dark:bg-white">
+                                <div class="flex h-7 w-14 cursor-pointer items-center rounded-full bg-blue-600 p-l dark:bg-white">
                                     <div class="toggle-icon fa fa-sun h-4 w-4 text-white transition duration-300 ease-in-out pl-1 dark:text-slate-800"></div>
                                 </div>
                             </label>
@@ -116,11 +115,11 @@
                                     </div>
                                 </div>
                                 <!-- open -->
-                                <div x-show="open" class="absolute w-50 py-2 bg-white  shadow-md border dark:border-transparent  dark:bg-slate-800 mt-3 hidden md:block" x-transition:enter="transition ease-out origin-top-left duration-200" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition origin-top-left ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
+                                <div x-show="open" class="absolute w-50 py-2 bg-white  shadow-md border dark:border-transparent  dark:bg-zinc-800 mt-3 hidden md:block" x-transition:enter="transition ease-out origin-top-left duration-200" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition origin-top-left ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
                                     <!-- dropdown -->
                                     <ul class="list-none">
                                         <li>
-                                            <a href="{{ route('dashboard') }}" class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700">
+                                            <a href="{{ route('dashboard') }}" class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 dark:bg-zinc-800 dark:text-white dark:hover:bg-slate-700">
                                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
                                                     </path>
@@ -129,7 +128,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700">
+                                            <a href="#" class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 dark:bg-zinc-800 dark:text-white dark:hover:bg-slate-700">
                                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
                                                     </path>
@@ -143,7 +142,7 @@
                                             <hr class="border-slate-200 mx-4">
 
                                             @csrf
-                                            <button data-modal-target="popup-modal-logout" data-modal-toggle="popup-modal-logout" class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 hover:border-red-600 text-red-600 w-full dark:bg-slate-800 dark:hover:bg-slate-700" type="button">
+                                            <button data-modal-target="popup-modal-logout" data-modal-toggle="popup-modal-logout" class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 hover:border-red-600 text-red-600 w-full dark:bg-zinc-800 dark:hover:bg-slate-700" type="button">
                                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
                                                     </path>
@@ -201,16 +200,16 @@
 
                         <!-- button masuk -->
                         @else
-                        <div class="hidden md:block relative">
-                            <a href="{{ route('login') }}" class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800 dark:border-white">
+                        <div class="hidden md:block relative mt-2.5">
+                            <a href="{{ route('login') }}" class="inline-flex items-center w-full px-6 py-1 rounded-lg ml-2 font-medium text-sm text-black align-middle bg-gray-200 border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800 dark:border-white">
                                 Masuk
                             </a>
                         </div>
 
 
                         <!-- button daftar -->
-                        <div class="hidden md:block relative">
-                            <a href="{{ route('register') }}" class="inline-flex items-center w-full px-6 py-2 rounded-full ml-2 text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-95">
+                        <div class="hidden md:block relative mt-2.5">
+                            <a href="{{ route('register') }}" class="inline-flex items-center w-full px-6 py-1 rounded-lg ml-2 font-medium text-sm text-white align-middle bg-blue-600 border select-none sm:mb-0 sm:w-auto hover:opacity-95">
                                 Daftar
                             </a>
                         </div>
@@ -233,7 +232,7 @@
                 </div>
             </div>
             <!-- mobile nav -->
-            <div class="mobile-navbar hidden h-[102vh] bg-white absolute top-0 left-0 text-left shadow overflow-y dark:bg-slate-800">
+            <div class="mobile-navbar hidden h-[102vh] bg-white absolute top-0 left-0 text-left shadow overflow-y dark:bg-zinc-800">
                 <div class="p-3">
                     <!-- search bar -->
                     <div class="relative mt-3">
@@ -262,32 +261,32 @@
                             <div class="text-left text-sm font-normal text-slate-800 mt-1 w-4/5 mx-auto dark:text-white" id="submenu">
                                 <ul class="list-none">
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-zinc-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
                                             Web Development
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-zinc-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
                                             Mobile Development
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-zinc-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
                                             Game Development
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-zinc-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
                                             Data Analyst
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-zinc-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
                                             Jaringan
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
+                                        <a href="#" class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-zinc-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
                                             Multimedia
                                         </a>
                                     </li>
@@ -335,7 +334,7 @@
     @yield('body')
 
     <!-- Start Footer Section -->
-    <footer class="bg-gray-100 dark:bg-slate-700">
+    <footer class="bg-gray-100 dark:bg-zinc-800">
         <div class="mx-auto container space-y-8 py-16 lg:space-y-16">
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 ">
                 <div>

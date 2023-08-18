@@ -6,12 +6,12 @@
  background-attachment: fixed;
  background-position: center;
 ">
-    <div class="w-full bg-slate-100 py-20 md:py-36 bg-opacity-90 dark:bg-slate-800 dark:bg-opacity-80">
-        <h2 class="text-6xl font-black mb-1 pb-1 md:pb-0 from-sky-600 to-slate-800 bg-gradient-to-r bg-clip-text text-transparent dark:text-blue-700">
+    <div class="w-full bg-slate-100 py-20 md:py-36 bg-opacity-90 dark:bg-gray-800 dark:bg-opacity-80">
+        <h2 class="text-6xl font-black mb-1 pb-1 md:pb-0 text-slate-600 dark:text-white">
             DNCC
         </h2>
         <h2 class="font-semibold text-4xl pb-3 md:pb-0 dark:text-white dark:font-bold">Learning Platfrom</h2>
-        <p class="text-gray-500 my-3 px-0 md:px-40 md:mt-4 mt-1 dark:text-white">
+        <p class="text-gray-400 my-3 px-0 md:px-40 md:mt-4 mt-1">
             "Unlock Your Potential: Join the Learning Revolution!"
         </p>
         <!-- button mulai belajar -->
@@ -36,7 +36,7 @@
         <div class="sm:flex gap-10 items-center md:justify-center">
             <!-- item start -->
             <div class="flex gap-4 items-center md:basis-1/5 md:my-0 my-5">
-                <div class="icon bg-slate-200 p-3 rounded-xl dark:bg-slate-200">
+                <div class="icon bg-slate-200 p-3 rounded-xl dark:bg-gray-200">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
                     </svg>
@@ -46,25 +46,9 @@
                 </div>
             </div>
             <!-- item end -->
-            {{-- <!-- item start -->
-         <div class="flex gap-3 items-center md:basis-1/5 md:my-0 my-5">
-             <div class="icon icon bg-slate-200 p-3 rounded-xl dark:bg-slate-200">
-                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
-                     <path stroke-linecap="round" stroke-linejoin="round"
-                         d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                 </svg>
-             </div>
-             <div class="text">
-                 <h2 class="font-semibold text-xl pb-3 md:pb-0">
-                     Mudah
-                 </h2>
-             </div>
-         </div>
-         <!-- item end --> --}}
             <!-- item start -->
             <div class="flex gap-3 items-center md:basis-1/5 md:my-0 my-5">
-                <div class="icon icon bg-slate-200 p-3 rounded-xl dark:bg-slate-200">
+                <div class="icon icon bg-slate-200 p-3 rounded-xl dark:bg-gray-200">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12" />
                     </svg>
@@ -78,7 +62,7 @@
             <!-- item end -->
             <!-- item start -->
             <div class="flex gap-3 items-center md:basis-1/5 md:my-0 my-5">
-                <div class="icon icon bg-slate-200 p-3 rounded-xl dark:bg-slate-200">
+                <div class="icon icon bg-slate-200 p-3 rounded-xl dark:bg-gray-200">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
                     </svg>
@@ -103,7 +87,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 items-center text-center mx-auto">
             @foreach ($categories as $category)
             <!-- Start Single Category Item -->
-            <a href="{{ route('category.show', $category->id) }}" class="transition basis-[45%] md:basis-[10.93%] bg-slate-800 cursor-pointer rounded-lg mr-3 p-5 hover:opacity-75 group hover:-translate-y-2 h-full dark:bg-slate-200">
+            <a href="{{ route('category.show', $category->id) }}" class="transition basis-[45%] md:basis-[10.93%] bg-slate-800 cursor-pointer rounded-lg mr-3 p-5 hover:opacity-75 group hover:-translate-y-2 h-full dark:bg-gray-200">
                 <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-100">
                     <img src="{{ $category->photo }}" alt="" class="w-16 h-16" />
                 </div>
@@ -117,105 +101,12 @@
 </section>
 <!-- End Categories By Divisi Section -->
 
-{{-- <!-- Start Categories Section -->
-<section id="categories">
- <div class="container mx-auto">
-     <h2 class="font-bold text-3xl my-12 text-center">
-         Kategori Bahasa Pemrograman
-     </h2>
-
-     <div
-         class="flex flex-row gap-2 items-center text-center flex-wrap pl-4 md:pl-0 justify-center items-center">
-         <div
-             class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-             <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                 <img src="landingpage/images/icons/bootstrap.png" alt="" class="w-16 h-16" />
-             </div>
-             <h4 class="mt-4 mb-2 font-medium">Bootstrap</h4>
-             <p class="text-gray-500 text-xs">32 Courses</p>
-         </div>
-         <!-- End Single Category Item -->
-
-         <div
-             class="transition basis-[45%] md:basis-[10.93%] bg-[#FEF9EC] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-             <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                 <img src="landingpage/images/icons/html.png" alt="" class="w-16 h-16" />
-             </div>
-             <h4 class="mt-4 mb-2 font-medium">HTML</h4>
-             <p class="text-gray-500 text-xs">30 Courses</p>
-         </div>
-         <!-- End Single Category Item -->
-
-         <div
-             class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-             <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                 <img src="landingpage/images/icons/php.png" alt="" class="w-16 h-16" />
-             </div>
-             <h4 class="mt-4 mb-2 font-medium">PHP</h4>
-             <p class="text-gray-500 text-xs">32 Courses</p>
-         </div>
-         <!-- End Single Category Item -->
-
-         <div
-             class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-             <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                 <img src="landingpage/images/icons/javascript.webp" alt="" class="w-16 h-16" />
-             </div>
-             <h4 class="mt-4 mb-2 font-medium">JavaScript</h4>
-             <p class="text-gray-500 text-xs">32 Courses</p>
-         </div>
-         <!-- End Single Category Item -->
-
-         <div
-             class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-             <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                 <img src="landingpage/images/icons/flutter.webp" alt="" class="w-16 h-16" />
-             </div>
-             <h4 class="mt-4 mb-2 font-medium">Flutter</h4>
-             <p class="text-gray-500 text-xs">32 Courses</p>
-         </div>
-         <!-- End Single Category Item -->
-
-         <div
-             class="transition basis-[45%] md:basis-[10.93%] bg-[#FEF9EC] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-             <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                 <img src="landingpage/images/icons/cplus.png" alt="" class="w-16 h-16" />
-             </div>
-             <h4 class="mt-4 mb-2 font-medium">C++</h4>
-             <p class="text-gray-500 text-xs">32 Courses</p>
-         </div>
-         <!-- End Single Category Item -->
-
-         <div
-             class="transition basis-[45%] md:basis-[10.93%] bg-[#E4F4FB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-             <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                 <img src="landingpage/images/icons/python.png" alt="" class="w-16 h-16" />
-             </div>
-             <h4 class="mt-4 mb-2 font-medium">Python</h4>
-             <p class="text-gray-500 text-xs">32 Courses</p>
-         </div>
-         <!-- End Single Category Item -->
-
-         <div
-             class="transition basis-[45%] md:basis-[10.93%] bg-[#FCF1EB] cursor-pointer rounded mr-3 p-5 hover:opacity-75 group hover:-translate-y-2">
-             <div class="bg-white rounded-full m-0 mx-auto w-20 h-20 p-2.5 scale-90 group-hover:scale-125">
-                 <img src="landingpage/images/icons/sql.png" alt="" class="w-16 h-16" />
-             </div>
-             <h4 class="mt-4 mb-2 font-medium">SQL</h4>
-             <p class="text-gray-500 text-xs">32 Courses</p>
-         </div>
-         <!-- End Single Category Item -->
-     </div>
- </div>
-</section>
-<!-- End Categories Section --> --}}
-
 <!-- Start New Courses Section -->
 <section id="courses">
     <div class="container mx-auto">
         <h2 class="font-bold text-3xl text-center my-12 dark:text-white">Course Terbaru</h2>
-        <div class="swiper swiper-container-2 slide-container py-3 px-10 dark:bg-slate-800">
-            <div class="swiper-wrapper dark:bg-slate-800">
+        <div class="swiper swiper-container-2 slide-container py-3 px-10 dark:bg-gray-800">
+            <div class="swiper-wrapper dark:bg-gray-800">
                 @foreach ($latestCourse as $course)
                 <div class="swiper-slide">
                     <x-course-card :id="$course->id" :title="$course->title" :category="$course->category->name" :price="$course->price" :count="count($course->lessons)" :photo="$course->photo" />
@@ -237,9 +128,9 @@
     <div class="container mx-auto">
         <h2 class="font-bold text-3xl text-center my-12 dark:text-white">Course Terpopuler</h2>
         <div class="swiper swiper-container-2 slide-container py-3 px-10">
-            <div class="swiper-wrapper dark:bg-slate-800">
+            <div class="swiper-wrapper dark:bg-gray-800">
                 @foreach ($popularCourse as $course)
-                <div class="swiper-slide dark:bg-slate-800">
+                <div class="swiper-slide dark:bg-gray-800">
                     <x-course-card :id="$course->id" :title="$course->title" :category="$course->category_name" :price="$course->price" :count="count($course->lessons)" :photo="$course->photo" />
                 </div>
                 @endforeach
@@ -260,7 +151,7 @@
                     Frequently Asked Question
                 </h2>
                 <ul class="flex flex-col">
-                    <li class="bg-white my-2 shadow-md dark:shadow-blue-500/50 dark:bg-slate-800" x-data="accordion(1)">
+                    <li class="bg-white my-2 shadow-md dark:shadow-blue-500/50 dark:bg-gray-800" x-data="accordion(1)">
                         <h2 @click="handleClick()" class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer dark:text-white">
                             <span> Apakah ada biaya untuk mengakses kursus di platform ini?</span>
                             <svg :class="handleRotate()" class="fill-current text-blue-700 h-6 w-6 transform transition-transform duration-500" viewBox="0 0 20 20">
@@ -276,7 +167,7 @@
                             </p>
                         </div>
                     </li>
-                    <li class="bg-white my-2 shadow-md dark:shadow-blue-500/50 dark:bg-slate-800" x-data="accordion(2)">
+                    <li class="bg-white my-2 shadow-md dark:shadow-blue-500/50 dark:bg-gray-800" x-data="accordion(2)">
                         <h2 @click="handleClick()" class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer dark:text-white">
                             <span>Bagaimana cara mendaftar di DNCC Learn?</span>
                             <svg :class="handleRotate()" class="fill-current text-blue-700 h-6 w-6 transform transition-transform duration-500" viewBox="0 0 20 20">
@@ -293,7 +184,7 @@
                             </p>
                         </div>
                     </li>
-                    <li class="bg-white my-2 shadow-md dark:shadow-blue-500/50 dark:bg-slate-800" x-data="accordion(3)">
+                    <li class="bg-white my-2 shadow-md dark:shadow-blue-500/50 dark:bg-gray-800" x-data="accordion(3)">
                         <h2 @click="handleClick()" class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer dark:text-white">
                             <span>
                                 Apakah saya akan mendapatkan sertifikat setelah menyelesaikan kursus?
