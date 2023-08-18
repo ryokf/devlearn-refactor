@@ -7,7 +7,7 @@
  background-position: center;
 ">
     <div class="w-full bg-slate-100 py-20 md:py-36 bg-opacity-90 dark:bg-gray-800 dark:bg-opacity-80">
-        <h2 class="text-6xl font-black mb-1 pb-1 md:pb-0 text-slate-600 dark:text-white">
+        <h2 class="text-6xl font-black mb-1 pb-1 md:pb-0 dark:text-white">
             DNCC
         </h2>
         <h2 class="font-semibold text-4xl pb-3 md:pb-0 dark:text-white dark:font-bold">Learning Platfrom</h2>
@@ -15,14 +15,14 @@
             "Unlock Your Potential: Join the Learning Revolution!"
         </p>
         <!-- button mulai belajar -->
-        <a href="#categories" class="relative inline-flex items-center justify-center p-4 px-7 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-slate-800 rounded-full group md:mt-5 mt-1 dark:border-slate-100">
-            <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-slate-800 group-hover:translate-x-0 ease">
+        <a href="#categories" class="relative inline-flex items-center justify-center p-4 px-7 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-gray-400 rounded-full group md:mt-5 mt-1 dark:border-slate-100">
+            <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-gray-800 group-hover:translate-x-0 ease">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
                     </path>
                 </svg>
             </span>
-            <span class="absolute flex items-center justify-center w-full h-full text-slate-800 transition-all duration-300 transform group-hover:translate-x-full ease dark:text-white">Mulai
+            <span class="absolute flex items-center justify-center w-full h-full text-gray-600 transition-all duration-300 transform group-hover:translate-x-full ease dark:text-white">Mulai
                 Belajar</span>
             <span class="relative invisible dark:text-white">Mulai Belajar</span>
         </a>
