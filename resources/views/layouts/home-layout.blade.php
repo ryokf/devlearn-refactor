@@ -37,7 +37,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('landingpage/images/logo_dl.png') }}">
 </head>
 
-<body class="font-poppins text-gray-800 overflow-x-hidden dark:bg-zinc-800" id="top">
+<body class="font-poppins text-zinc-800 overflow-x-hidden dark:bg-zinc-800" id="top">
     <!-- Start Navbar -->
     <nav class="bg-white shadow p-4 sticky top-0 z-50 dark:bg-zinc-800">
         <div class="container mx-auto">
@@ -55,12 +55,12 @@
                     <!-- kategori -->
                     <div class="hidden md:block ml-10 group relative dark:text-white">
                         <a href="#categories">Kategori</a>
-                        <div class="hidden absolute group-hover:block min-w-[200px] pt-8 drop-shadow-md ">
-                            <ul class="list-none rounded-lg overflow-hidden">
+                        <div class="hidden absolute group-hover:block min-w-[200px] pt-8">
+                            <ul class="list-none rounded-lg overflow-hidden ">
                                 @foreach ($categories as $category)
                                     <li class="">
                                         <a href="{{ route('category.show', [$category->id]) }}"
-                                            class="block text-sm bg-white hover:bg-slate-50 py-4 px-8 hover:text-blue-600 dark:bg-zinc-800 dark:hover:bg-zinc-700">
+                                            class=" block text-sm bg-white hover:bg-slate-50 py-4 px-8 hover:text-blue-600 dark:bg-zinc-800 dark:hover:bg-zinc-700">
                                             {{ $category->name }}
                                         </a>
                                     </li>
@@ -77,7 +77,7 @@
 
                 <!-- searchbar -->
                 <div class="hidden md:block w-[25%] lg:block lg:w-[45%] relative">
-                    <span class="absolute left-5 top-3.5 text-slate-600">
+                    <span class="absolute left-5 top-3.5 text-slate-600 dark:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -86,7 +86,7 @@
                     </span>
                     <form action="{{ route('course.search') }}">
                         <input type="search" name="search"
-                            class="transition w-full text-xs rounded-full border border-gray-500 p-4 pl-12 bg-slate-100 outline-none"
+                            class="transition w-full text-xs rounded-full border border-zinc-500 p-4 pl-12 bg-slate-100 outline-none dark:bg-zinc-700 dark:text-white"
                             placeholder="Cari Materi.." />
                     </form>
                 </div>
@@ -129,7 +129,7 @@
                                     </div>
                                     <!-- open -->
                                     <div x-show="open"
-                                        class="absolute w-50 bg-white shadow-md border dark:border-transparent  dark:bg-zinc-800 mt-3 hidden md:block rounded-lg overflow-hidden"
+                                        class="absolute w-50 shadow-md dark:bg-zinc-800 mt-3 hidden md:block rounded-lg overflow-hidden"
                                         x-transition:enter="transition ease-out origin-top-left duration-200"
                                         x-transition:enter-start="opacity-0 transform scale-90"
                                         x-transition:enter-end="opacity-100 transform scale-100"
@@ -138,9 +138,9 @@
                                         x-transition:leave-end="opacity-0 transform scale-90">
                                         <!-- dropdown -->
                                         <ul class="list-none">
-                                            <li>
+                                            <li class="bg-white/70 backdrop-blur-lg">
                                                 <a href="{{ route('dashboard') }}"
-                                                    class="block text-sm bg-white hover:bg-slate-50 hover:text-blue-500 py-3 pr-6 pl-5 flex gap-2 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 dark:hover:text-blue-500">
+                                                    class="block text-sm hover:bg-slate-50 hover:text-blue-500 py-3 pr-6 pl-5 flex gap-2 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 dark:hover:text-blue-500">
                                                     <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -152,11 +152,11 @@
                                                 </a>
                                             </li>
 
-                                            <li>
+                                            <li class="bg-white/70 backdrop-blur-lg">
                                                 @csrf
                                                 <button data-modal-target="popup-modal-logout"
                                                     data-modal-toggle="popup-modal-logout"
-                                                    class="block text-sm bg-white hover:bg-slate-50 py-3 pr-6 pl-5 flex gap-2 hover:border-red-600 hover:text-red-600 w-full dark:text-white dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:hover:text-red-500"
+                                                    class="block text-sm  hover:bg-slate-50 py-3 pr-6 pl-5 flex gap-2 hover:border-red-600 hover:text-red-600 w-full dark:text-white dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:hover:text-red-500"
                                                     type="button">
                                                     <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -167,10 +167,9 @@
                                                     </svg>
                                                     Keluar
                                                 </button>
-
                                             </li>
-
                                         </ul>
+
                                     </div>
                                 </div>
                                 <!-- open mobile -->
@@ -242,7 +241,7 @@
                         @else
                             <div class="hidden md:block relative mt-2.5">
                                 <a href="{{ route('login') }}"
-                                    class="inline-flex items-center w-full px-6 py-1 rounded-lg ml-2 font-medium text-sm text-black align-middle bg-gray-200 dark:bg-gray-100 border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-gray-300 dark:hover:bg-gray-200 focus-within:bg-slate-800 focus-within:border-slate-800">
+                                    class="inline-flex items-center w-full px-6 py-1 rounded-lg ml-2 font-medium text-sm text-black align-middle bg-zinc-200 dark:bg-zinc-100 border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-zinc-300 dark:hover:bg-zinc-200 focus-within:bg-slate-800 focus-within:border-slate-800">
                                     Masuk
                                 </a>
                             </div>
@@ -404,7 +403,7 @@
     @yield('body')
 
     <!-- Start Footer Section -->
-    <footer class="bg-gray-100 dark:bg-zinc-800">
+    <footer class="bg-zinc-100 dark:bg-zinc-800">
         <div class="mx-auto container space-y-8 py-16 lg:space-y-16">
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 ">
                 <div>
@@ -426,7 +425,7 @@
 
                         <li>
                             <a href="https://www.instagram.com/dnccsemarang/?hl=id" rel="noreferrer" target="_blank"
-                                class="text-gray-700 transition hover:opacity-75 dark:text-white">
+                                class="text-zinc-700 transition hover:opacity-75 dark:text-white">
                                 <span class="sr-only">Instagram</span>
 
                                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -439,7 +438,7 @@
 
                         <li>
                             <a href="https://www.youtube.com/channel/UCbGj3OU4Qq8KOgaY9zuyZsA" rel="noreferrer"
-                                target="_blank" class="text-gray-700 transition hover:opacity-75 dark:text-white">
+                                target="_blank" class="text-zinc-700 transition hover:opacity-75 dark:text-white">
                                 <span class="sr-only">YouTube</span>
 
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6"
@@ -452,7 +451,7 @@
 
                         <li>
                             <a href="https://github.com/dnccsemarang" rel="noreferrer" target="_blank"
-                                class="text-gray-700 transition hover:opacity-75 dark:text-white">
+                                class="text-zinc-700 transition hover:opacity-75 dark:text-white">
                                 <span class="sr-only">GitHub</span>
 
                                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -468,37 +467,37 @@
                 <div class="grid grid-cols-2 gap-8 lg:col-span-2 md:grid-cols-3">
                     <!-- tentang kami -->
                     <div>
-                        <p class="font-medium text-gray-900 dark:text-white dark:font-bold">Tentang Kami</p>
+                        <p class="font-medium text-zinc-900 dark:text-white dark:font-bold">Tentang Kami</p>
 
                         <ul class="mt-6 space-y-4 text-sm">
                             <li>
-                                <a href="#" class="text-gray-700 transition hover:opacity-75 dark:text-white">
+                                <a href="#" class="text-zinc-700 transition hover:opacity-75 dark:text-white">
                                     Mulai Belajar
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="text-gray-700 transition hover:opacity-75 dark:text-white">
+                                <a href="#" class="text-zinc-700 transition hover:opacity-75 dark:text-white">
                                     Lihat Semua Kursus
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="text-gray-700 transition hover:opacity-75 dark:text-white">
+                                <a href="#" class="text-zinc-700 transition hover:opacity-75 dark:text-white">
                                     Kontak Kami
                                 </a>
                             </li>
 
                             <li>
                                 <a href="https://dnccudinus.org/"
-                                    class="text-gray-700 transition hover:opacity-75 dark:text-white">
+                                    class="text-zinc-700 transition hover:opacity-75 dark:text-white">
                                     Website Resmi DNCC
                                 </a>
                             </li>
 
                             <li>
                                 <a href="https://dinus.ac.id/"
-                                    class="text-gray-700 transition hover:opacity-75 dark:text-white">
+                                    class="text-zinc-700 transition hover:opacity-75 dark:text-white">
                                     Website Resmi Universitas
                                 </a>
                             </li>
@@ -507,13 +506,13 @@
 
                     <!-- kategori -->
                     <div>
-                        <p class="font-medium text-gray-900 dark:text-white dark:font-bold">Kategori</p>
+                        <p class="font-medium text-zinc-900 dark:text-white dark:font-bold">Kategori</p>
 
                         <ul class="mt-6 space-y-4 text-sm">
                             @foreach ($categories as $category)
                                 <li>
                                     <a href="{{ route('category.show', [$category->id]) }}"
-                                        class="text-gray-700 transition hover:opacity-75 dark:text-white">
+                                        class="text-zinc-700 transition hover:opacity-75 dark:text-white">
                                         {{ $category->name }}
                                     </a>
                                 </li>
@@ -526,12 +525,12 @@
 
                     <!-- developer -->
                     <div>
-                        <p class="font-medium text-gray-900 dark:text-white dark:font-bold">Tentang Developer</p>
+                        <p class="font-medium text-zinc-900 dark:text-white dark:font-bold">Tentang Developer</p>
 
                         <ul class="mt-6 space-y-4 text-sm">
                             <li>
                                 <a href="https://github.com/ryokf"
-                                    class="text-gray-700 transition hover:opacity-75 flex items-center text-sm dark:text-white">
+                                    class="text-zinc-700 transition hover:opacity-75 flex items-center text-sm dark:text-white">
                                     <svg class="h-5 w-5 mr-3" fill="currentColor" viewBox="0 0 24 24"
                                         aria-hidden="true">
                                         <path fill-rule="evenodd"
@@ -543,7 +542,7 @@
                             </li>
                             <li>
                                 <a href="https://github.com/rmarioapn3"
-                                    class="text-gray-700 transition hover:opacity-75 flex items-center text-sm dark:text-white">
+                                    class="text-zinc-700 transition hover:opacity-75 flex items-center text-sm dark:text-white">
                                     <svg class="h-5 w-5 mr-3" fill="currentColor" viewBox="0 0 24 24"
                                         aria-hidden="true">
                                         <path fill-rule="evenodd"
@@ -555,7 +554,7 @@
                             </li>
                             <li>
                                 <a href="https://github.com/taliyameyswara"
-                                    class="text-gray-700 transition hover:opacity-75 flex items-center text-sm dark:text-white">
+                                    class="text-zinc-700 transition hover:opacity-75 flex items-center text-sm dark:text-white">
                                     <svg class="h-5 w-5 mr-3" fill="currentColor" viewBox="0 0 24 24"
                                         aria-hidden="true">
                                         <path fill-rule="evenodd"
@@ -567,7 +566,7 @@
                             </li>
                             <li>
                                 <a href="https://github.com/isnanramalia"
-                                    class="text-gray-700 transition hover:opacity-75 flex items-center text-sm dark:text-white">
+                                    class="text-zinc-700 transition hover:opacity-75 flex items-center text-sm dark:text-white">
                                     <svg class="h-5 w-5 mr-3" fill="currentColor" viewBox="0 0 24 24"
                                         aria-hidden="true">
                                         <path fill-rule="evenodd"
@@ -582,7 +581,7 @@
                 </div>
             </div>
 
-            <p class="text-xs text-gray-500 text-center dark:text-white-500">
+            <p class="text-xs text-zinc-500 text-center dark:text-white-500">
                 &copy; 2023. DNCC. All rights reserved.
             </p>
         </div>
@@ -593,10 +592,10 @@
     <div id="popup-modal-logout" tabindex="-1"
         class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-sm max-h-full">
-            <div class="relative bg-white rounded-xl shadow dark:bg-gray-800">
+            <div class="relative bg-white rounded-xl shadow dark:bg-zinc-800">
                 <div class="px-0 pt-6 pb-0 text-center dark:text-white">
                     <h1 class="text-center my-2 text-xl font-medium">Logout</h1>
-                    <h3 class="mb-5 mt-2 text-sm font-normal text-gray-500 dark:text-gray-400">anda yakin ingin melakukan
+                    <h3 class="mb-5 mt-2 text-sm font-normal text-zinc-500 dark:text-zinc-400">anda yakin ingin melakukan
                         logout?</h3>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
@@ -606,13 +605,13 @@
                         </button> --}}
                         <div class="w-full p-2 flex gap-2">
                             <button data-modal-hide="popup-modal-logout" type="button"
-                            class="w-full overflow-hidden rounded-lg text-gray-500  bg-gray-200 hover:bg-gray-100 focus:ring-4 text-sm hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                            <div class=" bg-gray-200 px-5 py-2 rounded-lg dark:bg-gray-700">
+                            class="w-full overflow-hidden rounded-lg text-zinc-500  bg-zinc-200 hover:bg-zinc-100 focus:ring-4 text-sm hover:text-zinc-900 focus:z-10 dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-500 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-zinc-600">
+                            <div class=" bg-zinc-200 px-5 py-2 rounded-lg dark:bg-zinc-700">
                                 batal
                             </div>
                         </button>
                         <button type="submit"
-                            class="w-full overflow-hidden z-50 text-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg text-sm  hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                            class="w-full overflow-hidden z-50 text-zinc-500 focus:ring-4 focus:outline-none focus:ring-zinc-200 rounded-lg text-sm  hover:text-zinc-900 focus:z-10 dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-500 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-zinc-600">
                             <div class="bg-red-600 px-5 py-2 text-white ">
                                 keluar
                             </div>
