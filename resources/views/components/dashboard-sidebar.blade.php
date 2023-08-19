@@ -1,7 +1,7 @@
 <nav
-    class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-72 z-10 px-6">
+    class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden bg-transparent flex flex-wrap items-center justify-between relative md:w-72 z-10 px-3 py-3 text-white">
     <div
-        class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
+        class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto rounded-xl overflow-hidden bg-gradient-to-b from-indigo-500 via-20% to-purple-700 px-6 shadow-xl">
         <button
             class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
             type="button" onclick="toggleNavbar('example-collapse-sidebar')">
@@ -48,7 +48,7 @@
                         <a href="{{ $route }}"
                             class="w-11/12 text-xs uppercase py-3 font-bold block  duration-100
                             @if (request()->getPathInfo() == $route )
-                            {{  'bg-slate-800 text-white px-2 rounded-xl ml-1' }}
+                            {{  'bg-white bg-opacity-70 text-purple-700 px-2 rounded-xl ml-1' }}
                             @else
                             {{ 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }}
                             @endif

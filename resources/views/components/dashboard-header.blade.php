@@ -1,16 +1,16 @@
 <nav
     class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
     <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
-        <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold" href="">Dashboard {{ request()->user()->roles[0]['name'] }}</a>
+        <a class="text-purple-700 text-sm uppercase hidden lg:inline-block font-bold" href="">Dashboard {{ request()->user()->roles[0]['name'] }}</a>
         <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
-            <div class="relative flex w-full flex-wrap items-stretch text-white font-bold">
+            <div class="relative flex w-full flex-wrap items-stretch text-purple-700 font-bold">
                 selamat datang, {{ auth()->user()->name }}</div>
         </form>
         <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
             <a class="cursor-pointer text-blueGray-500 block" onclick="openDropdown(event,'user-dropdown')">
                 <div class="items-center flex">
                     <span
-                        class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img
+                        class="w-12 h-12 text-sm text-purple-700 bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img
                             alt="..." class="w-12 h-12 rounded-full align-middle shadow-lg border border-white"
                             src="{{ asset('storage/' . auth()->user()->photo) }}"></span>
                 </div>

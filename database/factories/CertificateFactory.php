@@ -16,7 +16,7 @@ class CertificateFactory extends Factory
      */
     public function definition()
     {
-        $user_id = mt_rand(1, 10);
+        $user_id = mt_rand(1, 12);
         $course_id = mt_rand(1, 15);
 
         return [

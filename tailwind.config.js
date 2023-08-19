@@ -22,5 +22,7 @@ module.exports = {
 
     darkMode: "class",
 
-    plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
+    plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")({
+        charts: true,
+    })],
 };
