@@ -1,37 +1,48 @@
 <nav
-    class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
-    <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
-        <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold" href="">Dashboard {{ request()->user()->roles[0]['name'] }}</a>
-        <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
-            <div class="relative flex w-full flex-wrap items-stretch text-white font-bold">
-                selamat datang, {{ auth()->user()->name }}</div>
-        </form>
-        <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
-            <a class="cursor-pointer text-blueGray-500 block" onclick="openDropdown(event,'user-dropdown')">
-                <div class="items-center flex">
-                    <span
-                        class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img
-                            alt="..." class="w-12 h-12 rounded-full align-middle shadow-lg border border-white"
-                            src="{{ asset('storage/' . auth()->user()->photo) }}"></span>
-                </div>
+    class="absolute top-0 left-0 w-full z-[99999] bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4 pt-9">
+    <div class="w-full mx-auto items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
+        <div class="">
+
+            <a class=" text-lg uppercase hidden lg:inline-block font-medium" href="">
+                Dashboard {{ request()->user()->roles[0]['name'] }}
             </a>
-            <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-                id="user-dropdown">
-                <span
-                    class="font-bold text-sm py-2 px-4 block w-full whitespace-nowrap bg-transparent text-blueGray-700">{{ auth()->user()->name }}
-                </span>
-                <span
-                    class="text-sm pb-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-400">{{ auth()->user()->email }}
-                </span>
-                <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
-                <a href="/profile"
-                    class="text-sm text-center px-4 py-2 font-normal block w-full whitespace-nowrap bg-transparent hover:bg-gray-100">profile
-                </a>
-                <span data-modal-target="popup-modal-logout" data-modal-toggle="popup-modal-logout"
-                    class="cursor-pointer text-center text-red-500 text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:bg-red-100">logout
-                </span>
+            <div class="text-zinc-500 hidden lg:block">
+                selamat datang, {{ auth()->user()->name }}
             </div>
-        </ul>
+        </div>
+        <div class="flex gap-2">
+            <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
+                <a class="cursor-pointer text-blueGray-500 block" onclick="openDropdown(event,'user-dropdown')">
+                    <div class="items-center flex">
+                        <span
+                            class="w-12 h-12 text-sm 0 bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img
+                                alt="..." class="w-12 h-12 rounded-full align-middle shadow-lg border border-white"
+                                src="{{ asset('storage/' . auth()->user()->photo) }}">
+                        </span>
+                    </div>
+                </a>
+                <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
+                    id="user-dropdown">
+                    <span
+                        class="font-bold text-sm py-2 px-4 block w-full whitespace-nowrap bg-transparent text-blueGray-700">{{ auth()->user()->name }}
+                    </span>
+                    <span
+                        class="text-sm pb-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-400">{{ auth()->user()->email }}
+                    </span>
+                    <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
+                    <a href="/profile"
+                        class="text-sm text-center px-4 py-2 font-normal block w-full whitespace-nowrap bg-transparent hover:bg-gray-100">profile
+                    </a>
+                    <span data-modal-target="popup-modal-logout" data-modal-toggle="popup-modal-logout"
+                        class="cursor-pointer text-center text-red-500 text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:bg-red-100">logout
+                    </span>
+                </div>
+            </ul>
+            <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
+                <div class="relative flex w-full flex-wrap items-stretch text-lg font-medium">
+                    {{ auth()->user()->name }}</div>
+            </form>
+        </div>
     </div>
 </nav>
 
@@ -52,7 +63,8 @@
             </button>
             <div class="p-6 text-center">
 
-                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">anda yakin ingin melakukan logout?</h3>
+                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">anda yakin ingin melakukan logout?
+                </h3>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" data-modal-hide="popup-modal-logout" type="button"
