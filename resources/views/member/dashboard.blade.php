@@ -5,14 +5,15 @@
     <x-dashboard-sidebar :menu=$menu></x-dashboard-sidebar>
     <div class="relative md:ml-72 bg-blueGray-50 z-50">
         <x-dashboard-header></x-dashboard-header>
-        <div class="relative md:pt-24 pb-32 pt-12 w-full ">
+        <div class="relative md:pt-32 pb-32 pt-12 w-full ">
             <div class="px-4 md:px-10 mx-auto w-full">
                 <div>
                     <!-- Card stats -->
                     <div class="flex flex-wrap justify-end">
                         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-                            <div
-                                class="relative flex flex-col min-w-0 break-words icon text-white bg-gradient-to-b from-orange-300 via-10% to-yellow-400 rounded-xl overflow-hidden mb-6 xl:mb-0 shadow-lg">
+                            <div class="shadow rounded-xl">
+                                <div
+                                class="relative flex flex-col min-w-0 break-words icon text-white bg-gradient-to-bl from-orange-300 via-10% to-yellow-400 rounded-xl overflow-hidden mb-6 xl:mb-0 shadow-inner shadow-xs shadow-white">
                                 <div class="flex-auto ">
                                     <div class="flex flex-wrap p-4">
                                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
@@ -22,7 +23,7 @@
                                             <span class="font-thin mt-1 block text-blueGray-700">
                                                 @if ($data['lastStudy'] == null)
                                                     <span class="font-medium">anda belum memiliki kursus</span>
-                                                @else
+                                                    @else
                                                     <span class="font-semibold">{{ $data['lastStudy'][0]->title }}</span> |
                                                     {{ $data['lastStudy'][1]->chapter }}. {{ $data['lastStudy'][1]->title }}
                                                 @endif
@@ -30,34 +31,35 @@
                                         </div>
                                         <div class="relative w-auto pl-4 flex-initial">
                                             <div
-                                                class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-white bg-opacity-40 backdrop-blur-lg">
-                                                <i class="fa-solid fa-hourglass-half"></i>
+                                            class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-white bg-opacity-40 backdrop-blur-lg ">
+                                            <i class="fa-solid fa-hourglass-half"></i>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="py-2 px-4 bg-white bg-opacity-50 backdrop-blur-lg">
+                                    <div class="py-2 px-4 bg-white rounded-b-xl bg-opacity-50 backdrop-blur-lg text-sm">
                                         @if ($data['lastStudy'] == null)
                                             <a href="{{ route('homepage') . '#categories' }}"
-                                                class="block ">beli kelas <i
-                                                    class="fa-solid fa-arrow-right"></i></a>
-                                        @else
+                                            class="block ">beli kelas <i
+                                            class="fa-solid fa-arrow-right"></i></a>
+                                            @else
                                             <a href="{{ route('lesson.show', ['chapter' => $data['lastStudy'][1]->chapter, 'id' => $data['lastStudy'][0]->id]) }}"
                                                 class="block ">lanjutkan <i
-                                                    class="fa-solid fa-arrow-right"></i></a>
-                                        @endif
+                                                class="fa-solid fa-arrow-right"></i></a>
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         <x-stastitic-card title="jumlah kursus yang dibeli" value="{{ count($data['courseBought']) }}"
                             icon='fa-solid fa-book'
-                            iconBgColor="icon bg-gradient-to-b from-purple-400 via-10% to-indigo-500"
+                            iconBgColor="icon bg-gradient-to-bl from-violet-300 via-10% to-purple-400 shadow-inner shadow-xs shadow-white"
                             percentage="{{ 12.2 }}" arrow="{{ null }}" />
                         <x-stastitic-card title="jumlah kursus yang diselesaikan" value="{{ count($data['coursePass']) }}"
-                            icon='fa-solid fa-scroll' iconBgColor="icon bg-gradient-to-b from-cyan-400 via-10% to-blue-500"
+                            icon='fa-solid fa-scroll' iconBgColor="icon bg-gradient-to-bl from-cyan-300 via-10% to-blue-400 shadow-inner shadow-xs shadow-white"
                             percentage="{{ 12.2 }}" arrow="{{ null }}" />
                         <x-stastitic-card title="jumlah kursus yang diselesaikan" value="{{ count($data['coursePass']) }}"
-                            icon='fa-solid fa-scroll' iconBgColor="icon bg-gradient-to-b from-emerald-400 via-10% to-green-500"
+                            icon='fa-solid fa-scroll' iconBgColor="icon bg-gradient-to-bl from-emerald-300 via-10% to-green-400 shadow-inner shadow-xs shadow-white"
                             percentage="{{ 12.2 }}" arrow="{{ null }}" />
                     </div>
                 </div>
@@ -66,11 +68,11 @@
         <div class="px-4 md:px-10 mx-auto w-full -m-24">
             <div class="flex flex-wrap">
                 <div class="w-full xl:w-3/5 mb-12 xl:mb-0 px-4">
-                    <div class="w-full min-h-fit bg-violet-50 rounded-xl shadow-lg dark:bg-gray-800 p-4 md:p-6 md:py-4 relative">
+                    <div class="w-full min-h-fit bg-white rounded-xl shadow-lg dark:bg-gray-800 p-4 md:p-6 md:py-4 relative">
                         <div class="flex justify-between">
                             <div class="mb-1">
                                 <p class="text-base font-normal text-gray-500 dark:text-gray-400 mb-2">Ringkasan</p>
-                                <h5 class="leading-none text-xl font-bold text-purple-700 dark:text-white pb-2">Peforma
+                                <h5 class="leading-none text-xl font-bold dark:text-white pb-2">Peforma
                                     belajar anda</h5>
                             </div>
                             <div
@@ -117,17 +119,17 @@
                     </div>
                 </div>
                 <div class="w-full xl:w-7/12 mb-12 xl:mb-0 px-4 xl:mt-10">
-                    <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow rounded-xl">
                         <div class="rounded-t mb-0 px-4 py-3 border-0">
                             <div class="flex flex-wrap items-center">
                                 <div class="relative w-full px-4  flex-grow flex-1">
-                                    <h3 class="font-semibold text-base text-blueGray-700">
+                                    <h3 class="font-medium">
                                         Kursus yang anda beli bulan ini
                                     </h3>
                                 </div>
                                 <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
                                     <a href="author/course"
-                                        class="bg-slate-800 text-white active:bg-neutral-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        class="bg-blue-500 text-white active:bg-blue-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button">
                                         lihat semua
                                     </a>
@@ -140,19 +142,19 @@
                                 <thead>
                                     <tr>
                                         <th
-                                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                            class="px-6 text-zinc-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-medium text-left">
                                             Kursus
                                         </th>
                                         <th
-                                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                            class="px-6 text-zinc-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-medium text-left">
                                             kategori
                                         </th>
                                         <th
-                                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                            class="px-6 text-zinc-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-medium text-left">
                                             status
                                         </th>
                                         <th
-                                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                            class="px-6 text-zinc-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-medium text-left">
                                             tanggal pembelian
                                         </th>
                                     </tr>
@@ -161,19 +163,19 @@
                                     @foreach ($data['recentBought'] as $course)
                                         <tr>
                                             <th
-                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-left font-semibold">
                                                 {{ $course['title'] }}
                                             </th>
                                             <td
-                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm text-zinc-500 whitespace-nowrap p-4">
                                                 {{ $course->category->name }}
                                             </td>
                                             <td
-                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm text-zinc-500 whitespace-nowrap p-4">
                                                 {{ $course['status'] }}
                                             </td>
                                             <td
-                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm text-zinc-500 whitespace-nowrap p-4">
                                                 {{ $course['created_at'] }}
                                             </td>
                                         </tr>
@@ -188,13 +190,13 @@
                         <div class="rounded-t mb-0 px-4 py-3 border-0">
                             <div class="flex flex-wrap items-center">
                                 <div class="relative w-full px-4 flex-grow flex-1">
-                                    <h3 class="font-semibold text-base text-blueGray-700">
-                                        Kursus yang anda selesaikan bulan ini
+                                    <h3 class="font-medium">
+                                        Kursus diselesaikan bulan ini
                                     </h3>
                                 </div>
                                 <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
                                     <a href="author/course"
-                                        class="bg-slate-800 text-white active:bg-neutral-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        class="bg-blue-500 text-white active:bg-blue-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button">
                                         lihat semua
                                     </a>
@@ -207,15 +209,15 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th
-                                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                            class="px-6  text-zinc-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                             kursus
                                         </th>
                                         <th
-                                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                            class="px-6  text-zinc-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                             kategori
                                         </th>
                                         <th
-                                            class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">
+                                            class="text-center px-6  text-zinc-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">
                                             tanggal kursus diselesaikan
                                         </th>
                                     </tr>
@@ -224,15 +226,15 @@
                                     @foreach ($data['recentFinish'] as $course)
                                         <tr>
                                             <th
-                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm font-medium whitespace-nowrap p-4 text-left">
                                                 {{ $course['title'] }}
                                             </th>
                                             <td
-                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm text-zinc-500 whitespace-nowrap p-4">
                                                 {{ $course->category->name }}
                                             </td>
                                             <td
-                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm text-zinc-500 whitespace-nowrap p-4">
                                                 {{ $course['created_at'] }}
                                             </td>
 
@@ -304,7 +306,7 @@
                             {{ $count . ',' }}
                         @endforeach
                     ],
-                    color: "#9333ea",
+                    color: "#38bdf8",
                 }, {
                     name: "kelulusan",
                     data: [
@@ -312,7 +314,7 @@
                             {{ $count . ',' }}
                         @endforeach
                     ],
-                    color: "#db2774",
+                    color: "#fb923c",
                 }],
                 xaxis: {
                     categories: [
@@ -376,12 +378,12 @@
                         @endforeach
                     ],
                     colors: [
-                        "#9333ea",
-                        "#1C64F2",
-                        "#16BDCA",
-                        "#E74694",
-                        "#FDBA8C",
-                        "#22c55e",
+                        "#fb7185",
+                        "#e879f9",
+                        "#818cf8",
+                        "#67e8f9",
+                        "#34d399",
+                        "#fdba74",
                     ],
                     chart: {
                         height: 320,

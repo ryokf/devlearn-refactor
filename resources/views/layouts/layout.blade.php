@@ -21,7 +21,7 @@
     </title>
 </head>
 
-<body class="text-blueGray-700 bg-blue-100 antialiased dark:bg-indigo-900">
+<body class="text-zinc-800 bg-zinc-100 antialiased dark:bg-indigo-900">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     @yield('body')
 
