@@ -41,7 +41,7 @@
     <!-- Start Navbar -->
     <nav class="bg-white shadow p-4 sticky top-0 z-50 dark:bg-zinc-800">
         <div class="container mx-auto">
-            <div class="flex justify-between">
+            <div class="flex justify-center gap-10">
                 <!-- nav -->
                 <div class="flex justify-center items-center text-slate-800">
                     <div class="min-w-max inline-flex relative">
@@ -73,6 +73,7 @@
                     <div class="hidden md:block ml-10 group relative dark:text-white">
                         <a href="#mentor">Mentor</a>
                     </div>
+
                 </div>
 
                 <!-- searchbar -->
@@ -86,32 +87,17 @@
                     </span>
                     <form action="{{ route('course.search') }}">
                         <input type="search" name="search"
-                            class="transition w-full text-xs rounded-full border border-zinc-500 p-4 pl-12 bg-slate-100 outline-none dark:bg-zinc-700 dark:text-white"
+                            class="transition w-full text-xs rounded-full border-1 border-zinc-500 p-4 pl-12 bg-slate-100 outline-none dark:bg-zinc-700 dark:text-white"
                             placeholder="Cari Materi.." />
                     </form>
                 </div>
 
                 <!--  masuk, daftar -->
-                <div class="flex my-auto pr-0 md:pr-5">
-                    <!-- tombol switch theme -->
-                    <div class="flex hidden md:block relative pr-5 pt-2.5">
-                        <div class="flex">
-                            <input type="checkbox" class="hidden" id="dark-toggle" />
-                            <label for="dark-toggle">
-                                <div
-                                    class="flex h-7 w-14 cursor-pointer items-center rounded-full bg-blue-600 p-l dark:bg-white">
-                                    <div
-                                        class="toggle-icon fa fa-sun h-4 w-4 text-white transition duration-300 ease-in-out pl-1 dark:text-slate-800">
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                    <!-- end tombol switch theme -->
+                <div class="flex my-auto">
 
                     @if (Auth::user())
                         <!-- dropdown avatar -->
-                        <div class=" relative">
+                        <div class="relative mr-6">
                             <div x-data="{ open: false }" class="w-full inline-flex flex  items-center">
                                 <!-- close -->
                                 <div @click="open = !open" class="relative border-b-4 border-transparent ">
@@ -236,26 +222,43 @@
 
 
                             </div>
+                        </div>
 
-                            <!-- button masuk -->
-                        @else
-                            <div class="hidden md:block relative mt-2.5">
-                                <a href="{{ route('login') }}"
-                                    class="inline-flex items-center w-full px-6 py-1 rounded-lg ml-2 font-medium text-sm text-black align-middle bg-zinc-200 dark:bg-zinc-100 border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-zinc-300 dark:hover:bg-zinc-200 focus-within:bg-slate-800 focus-within:border-slate-800">
-                                    Masuk
-                                </a>
-                            </div>
+                        <!-- button masuk -->
+                    @else
+                        <div class="hidden md:block relative ">
+                            <a href="{{ route('login') }}"
+                                class="inline-flex items-center w-full px-6 py-3 rounded-full ml-2 font-medium text-sm text-black align-middle bg-zinc-200 dark:bg-zinc-100 border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-zinc-300 dark:hover:bg-zinc-200 focus-within:bg-slate-800 focus-within:border-slate-800">
+                                Masuk
+                            </a>
+                        </div>
 
 
-                            <!-- button daftar -->
-                            <div class="hidden md:block relative mt-2.5">
-                                <a href="{{ route('register') }}"
-                                    class="inline-flex items-center w-full px-6 py-1 rounded-lg ml-2 font-medium text-sm text-white align-middle bg-blue-600 select-none sm:mb-0 sm:w-auto hover:opacity-95">
-                                    Daftar
-                                </a>
-                            </div>
+                        <!-- button daftar -->
+                        <div class="hidden md:block relative mr-2">
+                            <a href="{{ route('register') }}"
+                                class="inline-flex items-center w-full px-6 py-3 rounded-full ml-2 font-medium text-sm text-white align-middle bg-blue-600 select-none sm:mb-0 sm:w-auto hover:opacity-95">
+                                Daftar
+                            </a>
+                        </div>
                     @endif
+
+                    <!-- tombol switch theme -->
+                    <div class="hidden md:block my-auto">
+                        <input type="checkbox" class="hidden" id="dark-toggle" />
+                        <label for="dark-toggle">
+                            <div class="cursor-pointer rounded-full border border-zinc-500 p-2 !px-3 dark:!px-4">
+                                <div class="toggle-icon far fa-sun text-xl text-slate-800 dark:text-white ">
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <!-- end tombol switch theme -->
+
                 </div>
+
+
+
 
                 <!-- nav toggle mobile -->
                 <div class="flex md:hidden cursor-pointer my-auto ml-2">
@@ -595,7 +598,8 @@
             <div class="relative bg-white rounded-xl shadow dark:bg-zinc-800">
                 <div class="px-0 pt-6 pb-0 text-center dark:text-white">
                     <h1 class="text-center my-2 text-xl font-medium">Logout</h1>
-                    <h3 class="mb-5 mt-2 text-sm font-normal text-zinc-500 dark:text-zinc-400">anda yakin ingin melakukan
+                    <h3 class="mb-5 mt-2 text-sm font-normal text-zinc-500 dark:text-zinc-400">anda yakin ingin
+                        melakukan
                         logout?</h3>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
@@ -605,18 +609,18 @@
                         </button> --}}
                         <div class="w-full p-2 flex gap-2">
                             <button data-modal-hide="popup-modal-logout" type="button"
-                            class="w-full overflow-hidden rounded-lg text-zinc-500  bg-zinc-200 hover:bg-zinc-100 focus:ring-4 text-sm hover:text-zinc-900 focus:z-10 dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-500 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-zinc-600">
-                            <div class=" bg-zinc-200 px-5 py-2 rounded-lg dark:bg-zinc-700">
-                                batal
-                            </div>
-                        </button>
-                        <button type="submit"
-                            class="w-full overflow-hidden z-50 text-zinc-500 focus:ring-4 focus:outline-none focus:ring-zinc-200 rounded-lg text-sm  hover:text-zinc-900 focus:z-10 dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-500 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-zinc-600">
-                            <div class="bg-red-600 px-5 py-2 text-white ">
-                                keluar
-                            </div>
-                        </button>
-                    </div>
+                                class="w-full overflow-hidden rounded-lg text-zinc-500  bg-zinc-200 hover:bg-zinc-100 focus:ring-4 text-sm hover:text-zinc-900 focus:z-10 dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-500 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-zinc-600">
+                                <div class=" bg-zinc-200 px-5 py-2 rounded-lg dark:bg-zinc-700">
+                                    batal
+                                </div>
+                            </button>
+                            <button type="submit"
+                                class="w-full overflow-hidden z-50 text-zinc-500 focus:ring-4 focus:outline-none focus:ring-zinc-200 rounded-lg text-sm  hover:text-zinc-900 focus:z-10 dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-500 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-zinc-600">
+                                <div class="bg-red-600 px-5 py-2 text-white ">
+                                    keluar
+                                </div>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
