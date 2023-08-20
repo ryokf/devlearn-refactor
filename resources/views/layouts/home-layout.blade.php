@@ -41,7 +41,7 @@
     <!-- Start Navbar -->
     <nav class="bg-white shadow p-4 sticky top-0 z-50 dark:bg-zinc-800">
         <div class="container mx-auto">
-            <div class="flex justify-center gap-10">
+            <div class="flex justify-between md:justify-center md:gap-10">
                 <!-- nav -->
                 <div class="flex justify-center items-center text-slate-800">
                     <div class="min-w-max inline-flex relative">
@@ -77,7 +77,7 @@
                 </div>
 
                 <!-- searchbar -->
-                <div class="hidden md:block w-[25%] lg:block lg:w-[45%] relative">
+                <div class="hidden md:block w-[100%] lg:block lg:w-[45%] relative">
                     <span class="absolute left-5 top-3.5 text-slate-600 dark:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5">
@@ -93,17 +93,16 @@
                 </div>
 
                 <!--  masuk, daftar -->
-                <div class="flex my-auto">
-
+                <div class="flex my-auto pr-0 md:pr-5">
                     @if (Auth::user())
                         <!-- dropdown avatar -->
-                        <div class="relative mr-6">
-                            <div x-data="{ open: false }" class="w-full inline-flex flex  items-center">
+                        <div class=" mr-0 md:mr-5">
+                            <div x-data="{ open: false }" class="w-full flex inline-flex  items-center">
                                 <!-- close -->
                                 <div @click="open = !open" class="relative border-b-4 border-transparent ">
                                     <div class="flex justify-center items-center space-x-3 cursor-pointer">
                                         <div
-                                            class="w-10 h-10 rounded-full overflow-hidden border-2  border-slate-800 hover:opacity-90 dark:border-white">
+                                            class="w-10 h-10 rounded-full overflow-hidden border-2  border-slate-800 hover:opacity-90 dark:border-white ">
                                             <img src="{{ asset('landingpage/images/course1.png') }}" alt=""
                                                 class="w-full h-full object-cover">
                                         </div>
@@ -167,11 +166,12 @@
                                     x-transition:leave="transition origin-top-left ease-in duration-100"
                                     x-transition:leave-start="opacity-100 transform scale-100"
                                     x-transition:leave-end="opacity-0 transform scale-90">
+                                    <!-- dropdown -->
                                     <ul class="list-none">
-                                        <li>
+                                        <li class="bg-white/70 backdrop-blur-lg">
                                             <a href="{{ route('dashboard') }}"
-                                                class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
-                                                <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                class="block text-sm hover:bg-slate-50 hover:text-blue-500 py-3 pr-6 pl-5 flex gap-2 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 dark:hover:text-blue-500">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         stroke-width="2"
@@ -181,30 +181,14 @@
                                                 Dashboard
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href=""
-                                                class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4">
-                                                <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
-                                                    </path>
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                                </svg>
-                                                Pengaturan
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <hr class="border-slate-200 mx-4">
 
+                                        <li class="bg-white/70 backdrop-blur-lg">
                                             @csrf
                                             <button data-modal-target="popup-modal-logout"
                                                 data-modal-toggle="popup-modal-logout"
-                                                class="block bg-white hover:bg-slate-50 py-4 px-8 flex gap-4 hover:border-red-600 text-red-600 w-full"
+                                                class="block text-sm  hover:bg-slate-50 py-3 pr-6 pl-5 flex gap-2 hover:border-red-600 hover:text-red-600 w-full dark:text-white dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:hover:text-red-500"
                                                 type="button">
-                                                <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         stroke-width="2"
@@ -213,19 +197,14 @@
                                                 </svg>
                                                 Keluar
                                             </button>
-
                                         </li>
-
                                     </ul>
 
                                 </div>
-
-
                             </div>
                         </div>
-
-                        <!-- button masuk -->
                     @else
+                        <!-- button masuk -->
                         <div class="hidden md:block relative ">
                             <a href="{{ route('login') }}"
                                 class="inline-flex items-center w-full px-6 py-3 rounded-full ml-2 font-medium text-sm text-black align-middle bg-zinc-200 dark:bg-zinc-100 border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-zinc-300 dark:hover:bg-zinc-200 focus-within:bg-slate-800 focus-within:border-slate-800">
@@ -255,29 +234,29 @@
                     </div>
                     <!-- end tombol switch theme -->
 
+                    <!-- nav toggle mobile -->
+                    <div class="flex md:hidden cursor-pointer my-auto ml-2">
+                        <span class="navbar-toggle text-slate-900 flex-end dark:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                        </span>
+                        <span class="navbar-toggle text-white flex-end dark:flex hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                        </span>
+                    </div>
+
                 </div>
 
 
-
-
-                <!-- nav toggle mobile -->
-                <div class="flex md:hidden cursor-pointer my-auto ml-2">
-                    <span class="navbar-toggle text-slate-900 flex-end dark:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
-                    </span>
-                    <span class="navbar-toggle text-white flex-end dark:flex hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
-                    </span>
-                </div>
             </div>
+        </div>
         </div>
         <!-- mobile nav -->
         <div
@@ -296,10 +275,11 @@
                         class="transition w-full text-xs rounded-full border border-slate-800 p-2 pl-10 bg-slate-100 outline-none dark:text-white"
                         placeholder="Cari Materi.." />
                 </div>
-                <ul class="mt-3 list-none">
+                <ul class=" mt-3 list-none">
                     <li class="py-3">
                         <div class="flex justify-between w-full items-center" onclick="dropDown()">
-                            <span class="text-[15px] ml-2 text-slate-800 font-semibold dark:text-white">Kategori</span>
+                            <span
+                                class="text-[15px] ml-2 text-slate-800 font-semibold dark:text-white ">Kategori</span>
                             <span class="text-sm rotate-180" id="arrow">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:hidden">
@@ -315,46 +295,19 @@
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
                             </span>
+
                         </div>
                         <div class="text-left text-sm font-normal text-slate-800 mt-1 w-4/5 mx-auto dark:text-white"
                             id="submenu">
                             <ul class="list-none">
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-zinc-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
-                                        Web Development
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-zinc-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
-                                        Mobile Development
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-zinc-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
-                                        Game Development
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-zinc-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
-                                        Data Analyst
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-zinc-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
-                                        Jaringan
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block bg-white hover:bg-slate-50 py-2 hover:text-sky-600 dark:bg-zinc-800 dark:hover:bg-slate-700 dark:hover:text-blue-500">
-                                        Multimedia
-                                    </a>
-                                </li>
+                                @foreach ($categories as $category)
+                                    <li class="">
+                                        <a href="{{ route('category.show', [$category->id]) }}"
+                                            class=" block text-sm bg-white hover:bg-slate-50 py-2 hover:text-blue-600 dark:bg-zinc-800 dark:hover:bg-zinc-700">
+                                            {{ $category->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </li>
@@ -380,18 +333,20 @@
                     </li>
                 </ul>
                 @if (!Auth::user())
-                    <div class="flex gap-3 mt-5">
-                        <!-- masuk -->
-                        <div class="relative">
+                    <div class="flex mt-5">
+                        <!-- button masuk -->
+                        <div class="relative ">
                             <a href="{{ route('login') }}"
-                                class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-slate-800 align-middle bg-white border border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-slate-800 hover:text-white focus-within:bg-slate-800 focus-within:border-slate-800 dark:text-slate-800 dark:border-white">
+                                class="inline-flex items-center w-full px-6 py-3 rounded-full ml-2 font-medium text-sm text-black align-middle bg-zinc-200 dark:bg-zinc-100 border-slate-800 select-none sm:mb-0 sm:w-auto hover:bg-zinc-300 dark:hover:bg-zinc-200 focus-within:bg-slate-800 focus-within:border-slate-800">
                                 Masuk
                             </a>
                         </div>
-                        <!-- daftar -->
+
+
+                        <!-- button daftar -->
                         <div class="relative">
                             <a href="{{ route('register') }}"
-                                class="inline-flex items-center w-full px-6 py-2 rounded-full text-base font-semibold text-white align-middle bg-slate-800 border select-none sm:mb-0 sm:w-auto hover:opacity-80 text-center dark:border-white">
+                                class="inline-flex items-center w-full px-6 py-3 rounded-full ml-2 font-medium text-sm text-white align-middle bg-blue-600 select-none sm:mb-0 sm:w-auto hover:opacity-95">
                                 Daftar
                             </a>
                         </div>
