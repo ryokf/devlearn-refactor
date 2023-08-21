@@ -37,9 +37,9 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('landingpage/images/logo_dl.png') }}">
 </head>
 
-<body class="font-poppins text-zinc-800 overflow-x-hidden dark:bg-zinc-800" id="top">
+<body class="font-poppins text-zinc-800 overflow-x-hidden dark:bg-[#1b1b36]" id="top">
     <!-- Start Navbar -->
-    <nav class="bg-white shadow p-4 sticky top-0 z-50 dark:bg-zinc-800">
+    <nav class="bg-white shadow p-4 sticky top-0 z-50 dark:bg-[#1b1b36]">
         <div class="container mx-auto">
             <div class="flex justify-between md:justify-center md:gap-10">
                 <!-- nav -->
@@ -87,7 +87,7 @@
                     </span>
                     <form action="{{ route('course.search') }}">
                         <input type="search" name="search"
-                            class="transition w-full text-xs rounded-full border-1 border-zinc-500 p-4 pl-12 bg-slate-100 outline-none dark:bg-zinc-700 dark:text-white"
+                            class="transition w-full text-xs rounded-full border-1 border-zinc-500 p-4 pl-12 bg-slate-100 outline-none dark:bg-[#303150] dark:text-white"
                             placeholder="Cari Materi.." />
                     </form>
                 </div>
@@ -361,7 +361,7 @@
     @yield('body')
 
     <!-- Start Footer Section -->
-    <footer class="bg-zinc-100 dark:bg-zinc-800">
+    <footer class="bg-zinc-100 dark:bg-[#1b1b36]">
         <div class="mx-auto container space-y-8 py-16 lg:space-y-16">
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 ">
                 <div>

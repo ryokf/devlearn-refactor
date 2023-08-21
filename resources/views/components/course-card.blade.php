@@ -1,6 +1,6 @@
 <div>
     <a href="{{ route('course.detail', $id) }}">
-    <div class="rounded-lg overflow-hidden shadow-lg bg-white h-96 dark:bg-zinc-700 dark:text-white dark:shadow-none">
+    <div class="rounded-lg overflow-hidden shadow-lg bg-white h-96 dark:bg-[#303150] dark:text-white dark:shadow-none">
     <img src="{{ asset('storage/' . $photo) }}" class="w-full h-48 object-cover" />
     <div class="px-4 py-4">
         <span class="text-green-600 dark:text-emerald-500 font-semibold"> {{ $price == 0 ? 'Gratis' : 'Rp.' . $price }} </span>

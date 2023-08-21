@@ -72,6 +72,9 @@
             <x-dashboard-footer />
         </div>
     </div>
+
+    <x-bottom-nav-bar :menu="$menu"></x-bottom-nav-bar>
+
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
     <script type="text/javascript">
         /* Make dynamic date appear */

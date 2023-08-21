@@ -1,7 +1,7 @@
 <div class="w-full lg:w-6/12 xl:w-3/12 px-4 text-white ">
     <div class="shadow rounded-xl ">
 
-        <div class="relative flex flex-col min-w-0 break-words {{ $iconBgColor }} rounded-xl overflow-hidden mb-6 xl:mb-0 shadow-lg">
+        <div class="relative flex flex-col min-w-0 break-words {{ $iconBgColor }} rounded-xl overflow-hidden mb-6 xl:mb-0">
             <div class="flex-auto pt-4">
                 <div class="flex flex-wrap px-4">
                 <div class="relative w-full pr-4 max-w-full flex-grow flex-1">

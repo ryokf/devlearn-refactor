@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8" />
@@ -21,7 +21,7 @@
     </title>
 </head>
 
-<body class="text-zinc-800 bg-zinc-100 antialiased dark:bg-indigo-900">
+<body class="text-zinc-800 bg-zinc-100 antialiased dark:text-white dark:bg-[#1b1b36]">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     @yield('body')
 
