@@ -51,7 +51,7 @@
                     <li class="items-center">
                         <a href="{{ $route }}"
                             class="w-11/12 uppercase py-3 font-medium block text-sm duration-100
-                            @if (request()->getPathInfo() == $route) {{ 'bg-blue-50 text-blue-500 px-2 rounded-xl ml-1' }}
+                            @if (request()->getPathInfo() == $route) {{ 'bg-blue-50 dark:bg-opacity-30 dark:text-blue-200 text-blue-500 px-2 rounded-xl ml-1' }}
                             @else
                             {{ 'hover:text-blueGray-500 hover:ml-2 text-zinc-500 dark:text-zinc-300' }} @endif
                         ">
