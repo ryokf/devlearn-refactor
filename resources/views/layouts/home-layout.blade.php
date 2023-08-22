@@ -37,7 +37,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('landingpage/images/logo_dl.png') }}">
 </head>
 
-<body class="font-poppins text-zinc-800 overflow-x-hidden dark:bg-[#1b1b36]" id="top">
+<body class="font-poppins text-zinc-800 overflow-x-hidden dark:bg-[#1b1b36] bg-zinc-50" id="top">
     <!-- Start Navbar -->
     <nav class="bg-white shadow p-4 sticky top-0 z-50 dark:bg-[#1b1b36]">
         <div class="container mx-auto">
