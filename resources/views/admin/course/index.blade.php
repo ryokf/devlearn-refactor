@@ -4,19 +4,19 @@
     <div class="relative md:ml-72 bg-blueGray-50">
 
         <!-- Header -->
-        <div class="relative bg-slate-800 md:pt-32 pb-32 pt-12">
+        <div class="relative pt-12 pb-32 bg-slate-800 md:pt-32">
 
         </div>
-        <div class="px-4 md:px-10 mx-auto w-full -m-36 min-h-screen">
-            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
-                <div class="rounded-t mb-0 px-4 py-3 border-0">
+        <div class="w-full min-h-screen px-4 mx-auto md:px-10 -m-36">
+            <div class="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white rounded shadow-lg">
+                <div class="px-4 py-3 mb-0 border-0 rounded-t">
                     <div class="flex flex-wrap items-center">
-                        <div class="relative w-full px-6 max-w-full flex flex-row justify-between">
-                            <h3 class="font-semibold text-lg text-blueGray-700">
+                        <div class="relative flex flex-row justify-between w-full max-w-full px-6">
+                            <h3 class="text-lg font-semibold text-blueGray-700">
                                 Courses Table
                             </h3>
                             <button data-modal-target="medium-modal" data-modal-toggle="medium-modal" type="button"
-                                class="bg-orange-500 p-1 rounded-md text-sm px-3 text-white font-semibold hover:bg-orange-600">List
+                                class="p-1 px-3 text-sm font-semibold text-white bg-orange-500 rounded-md hover:bg-orange-600">List
                                 Voucher</button>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                                     List Voucher
                                 </h3>
                                 <button type="button"
-                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                    class="inline-flex items-center justify-center w-8 h-8 ml-auto text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                                     data-modal-hide="medium-modal">
                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 14 14">
@@ -45,19 +45,19 @@
                             </div>
                             <!-- Modal body -->
                             <div class="p-5 space-y-6 ">
-                                <table class=" items-center w-full bg-transparent border-collapse">
+                                <table class="items-center w-full bg-transparent border-collapse ">
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th scope="col"
-                                                class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                                class="px-3 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid whitespace-nowrap bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                                 ID Voucher
                                             </th>
                                             <th scope="col"
-                                                class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                                class="px-3 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid whitespace-nowrap bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                                 Token
                                             </th>
                                             <th scope="col"
-                                                class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                                class="px-3 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid whitespace-nowrap bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                                 Action
                                             </th>
 
@@ -67,12 +67,12 @@
                                         @foreach ($vouchers as $voucher)
                                             <tr class="">
                                                 <td scope="row"
-                                                    class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                    class="p-4 px-3 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
                                                     {{ $voucher->id }}
                                                 </td>
 
                                                 <td scope="row"
-                                                    class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                    class="p-4 px-3 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
                                                     {{ $voucher->token }}
                                                 </td>
                                                 <td>
@@ -81,7 +81,7 @@
                                                         @csrf
                                                         @method('delete')
                                                         <button
-                                                            class="bg-red-500 text-white active:bg-red-600 hover:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                            class="px-3 py-1 mb-1 mr-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-red-500 rounded outline-none active:bg-red-600 hover:bg-red-600 focus:outline-none"
                                                             type="submit">Delete</button>
 
                                                     </form>
@@ -114,31 +114,31 @@
                 </div>
                 {{-- end modal --}}
                 <div class="block w-full overflow-x-auto">
-                    <table class=" items-center w-full bg-transparent border-collapse">
+                    <table class="items-center w-full bg-transparent border-collapse ">
                         <thead class="bg-gray-100">
                             <tr>
                                 <th scope="col"
-                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-3 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid whitespace-nowrap bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                     ID Course
                                 </th>
                                 <th scope="col"
-                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-3 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid whitespace-nowrap bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                     Creator
                                 </th>
                                 <th scope="col"
-                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-3 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid whitespace-nowrap bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                     Course Title
                                 </th>
                                 <th scope="col"
-                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100 ">
+                                    class="px-3 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid whitespace-nowrap bg-blueGray-50 text-blueGray-500 border-blueGray-100 ">
                                     Description
                                 </th>
                                 <th scope="col"
-                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-3 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid whitespace-nowrap bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                     Photo
                                 </th>
                                 <th scope="col"
-                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-3 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid whitespace-nowrap bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                     Action
                                 </th>
 
@@ -147,41 +147,42 @@
                         <tbody>
                             @foreach ($courses->items() as $course)
                                 <tr class="">
-                                    <td scope="row"
-                                        class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    <td
+                                        class="p-4 px-3 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
                                         {{ $course->id }}
                                     </td>
-                                    <td scope="row"
-                                        class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    <td
+                                        class="p-4 px-3 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
                                         {{ $course->author->username }}
                                     </td>
-                                    <td scope="row"
-                                        class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    <td
+                                        class="p-4 px-3 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
                                         {{ $course->title }}
                                     </td>
-                                    <td scope="row"
-                                        class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 w-500">
+                                    <td
+                                        class="p-4 px-3 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap w-500">
                                         {!! Str::limit($course->description, 50) !!}
                                         <span class="text-gray-600">...</span>
                                     </td>
-                                    <td scope="row"
-                                        class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        <img src="{{ asset('storage/' . $course->photo) }}" width="50px" height="50px">
+                                    <td
+                                        class="p-4 px-3 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
+                                        <img alt="{{ $course->title }}" src="{{ asset('storage/' . $course->photo) }}"
+                                            width="50px" height="50px">
                                     </td>
-                                    <td scope="row"
-                                        class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    <td
+                                        class="p-4 px-3 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
 
                                         {{-- Buka Detail Course --}}
                                         <a href="{{ route('lesson.show', ['id' => $course->id, 'chapter' => 1]) }}"
-                                            class="bg-teal-500 text-white active:bg-teal-600 hover:bg-teal-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                                            class="px-3 py-1 mb-1 mr-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-teal-500 rounded outline-none active:bg-teal-600 hover:bg-teal-600 focus:outline-none">
                                             <i class="fas fa-info-circle"></i></a>
 
                                         {{-- <a href="{{ route('course.detail', $course) }}"
-                                            class="bg-blue-500 text-white active:bg-teal-600 hover:bg-teal-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                                            class="px-3 py-1 mb-1 mr-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-blue-500 rounded outline-none active:bg-teal-600 hover:bg-teal-600 focus:outline-none">
                                             <i class="fas fa-book "></i></a> --}}
                                         {{-- Edit Voucher --}}
                                         <a type="button" href="{{ route('course.voucher.edit', $course->id) }}"
-                                            class="bg-green-500 text-white active:bg-green-600 hover:bg-green-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                                            class="px-3 py-1 mb-1 mr-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-green-500 rounded outline-none active:bg-green-600 hover:bg-green-600 focus:outline-none">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                     </td>
@@ -189,7 +190,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="flex justify-between items-center py-3 px-6">
+                    <div class="flex items-center justify-between px-6 py-3">
                         <div class="text-sm text-gray-700">
                             Showing {{ $courses->firstItem() }} to {{ $courses->lastItem() }} of
                             {{ $courses->total() }}
