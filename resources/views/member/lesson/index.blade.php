@@ -231,7 +231,7 @@
                     <div class="block pb-4 mb-4 border-b border-solid md:min-w-full md:hidden border-blueGray-200">
                         <div class="flex flex-wrap">
                             <div class="w-6/12">
-                                <p class="font-semibold ">{{ $course->title }}</p>
+                                <p class="font-semibold ">{{ $course->title }} </p>
 
                             </div>
                             <div class="flex justify-end w-6/12">
@@ -247,22 +247,27 @@
                     <!-- Navigation -->
                     <ul class="flex flex-col list-none md:flex-col md:min-w-full">
                         @foreach ($lessons as $lesson)
-                            <li class="items-center">
-                                <a href="{{ route('lesson.show', ['id' => $course->id, 'chapter' => $lesson->chapter]) }}"
-                                    class="w-11/12 text-xs uppercase py-3 font-bold block duration-100
-                                       {{ request()->routeIs('lesson.show') && request('id') == $course->id && request('chapter') == $lesson->chapter ? 'bg-slate-800 text-slate-100 px-2 rounded-xl ml-1' : 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }}">
-                                    Chapter {{ $lesson->chapter }} - {{ $lesson->title }}
+                            <div class="flex flex-row">
+                                <li class="items-center">
+                                    <a href="{{ route('lesson.show', ['id' => $course->id, 'chapter' => $lesson->chapter]) }}"
+                                        class="w-10/12 text-md   py-3  block duration-100
+                                           {{ request()->routeIs('lesson.show') && request('id') == $course->id && request('chapter') == $lesson->chapter ? 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2 font-bold' : 'text-blueGray-700 hover:text-blueGray-500 hover:ml-2' }}">
+                                        Chapter {{ $lesson->chapter }} - {{ $lesson->title }}
 
-                                </a>
+                                    </a>
+
+                                </li>
                                 @role('member')
                                     @if ($lesson->pivot->status == true)
-                                        <p class="text-green-500 uppercase">Sudah Selesai</p>
-                                    @else
-                                        <p class="text-red-500 uppercase">Belum Selesai</p>
+                                        <div class="flex items-center w-2/12 text-green-500"><i
+                                                class="far fa-check-circle"></i>
+                                        </div>
+                                        {{-- @else
+                                        <p class="w-1/4 text-red-500 uppercase">Belum Selesai</p> --}}
                                     @endif
                                     <hr class="mb-1">
                                 @endrole
-                            </li>
+                            </div>
                         @endforeach
                     </ul>
                     <ul>
