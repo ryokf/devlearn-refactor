@@ -595,7 +595,8 @@
             <div class="relative bg-white rounded-xl shadow dark:bg-zinc-800">
                 <div class="px-0 pt-6 pb-0 text-center dark:text-white">
                     <h1 class="text-center my-2 text-xl font-medium">Logout</h1>
-                    <h3 class="mb-5 mt-2 text-sm font-normal text-zinc-500 dark:text-zinc-400">anda yakin ingin melakukan
+                    <h3 class="mb-5 mt-2 text-sm font-normal text-zinc-500 dark:text-zinc-400">anda yakin ingin
+                        melakukan
                         logout?</h3>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
@@ -605,18 +606,18 @@
                         </button> --}}
                         <div class="w-full p-2 flex gap-2">
                             <button data-modal-hide="popup-modal-logout" type="button"
-                            class="w-full overflow-hidden rounded-lg text-zinc-500  bg-zinc-200 hover:bg-zinc-100 focus:ring-4 text-sm hover:text-zinc-900 focus:z-10 dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-500 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-zinc-600">
-                            <div class=" bg-zinc-200 px-5 py-2 rounded-lg dark:bg-zinc-700">
-                                batal
-                            </div>
-                        </button>
-                        <button type="submit"
-                            class="w-full overflow-hidden z-50 text-zinc-500 focus:ring-4 focus:outline-none focus:ring-zinc-200 rounded-lg text-sm  hover:text-zinc-900 focus:z-10 dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-500 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-zinc-600">
-                            <div class="bg-red-600 px-5 py-2 text-white ">
-                                keluar
-                            </div>
-                        </button>
-                    </div>
+                                class="w-full overflow-hidden rounded-lg text-zinc-500  bg-zinc-200 hover:bg-zinc-100 focus:ring-4 text-sm hover:text-zinc-900 focus:z-10 dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-500 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-zinc-600">
+                                <div class=" bg-zinc-200 px-5 py-2 rounded-lg dark:bg-zinc-700">
+                                    batal
+                                </div>
+                            </button>
+                            <button type="submit"
+                                class="w-full overflow-hidden z-50 text-zinc-500 focus:ring-4 focus:outline-none focus:ring-zinc-200 rounded-lg text-sm  hover:text-zinc-900 focus:z-10 dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-500 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-zinc-600">
+                                <div class="bg-red-600 px-5 py-2 text-white ">
+                                    keluar
+                                </div>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>

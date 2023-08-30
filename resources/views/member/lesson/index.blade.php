@@ -355,15 +355,14 @@
                                 </div>
                                 <input type="text" id="simple-search" name="reply"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-2 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="tuliskan balasan anda..."
-                                    required>
+                                    placeholder="tuliskan balasan anda..." required>
                             </div>
 
                             <button type="submit"
-                            class="p-2.5 ml-2 -mb-3 text-sm font-medium text-white bg-slate-700 rounded-lg border border-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">
-                            <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>
-                            <span class="sr-only">Search</span>
-                        </button>
+                                class="p-2.5 ml-2 -mb-3 text-sm font-medium text-white bg-slate-700 rounded-lg border border-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">
+                                <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>
+                                <span class="sr-only">Search</span>
+                            </button>
                         @else
                             <input type="hidden" name="lesson_id" value="{{ $id_lesson->id }}">
 
@@ -378,10 +377,10 @@
                             </div>
 
                             <button type="submit"
-                            class="p-2.5 ml-2 text-sm font-medium text-white bg-slate-700 rounded-lg border border-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">
-                            <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>
-                            <span class="sr-only">Search</span>
-                        </button>
+                                class="p-2.5 ml-2 text-sm font-medium text-white bg-slate-700 rounded-lg border border-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">
+                                <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>
+                                <span class="sr-only">Search</span>
+                            </button>
                         @endif
 
                     </form>
