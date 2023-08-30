@@ -1,3 +1,7 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
 Route::middleware('role:admin')->group(function () {
     Route::middleware('can:manage category')->group(function () {
         Route::controller(CategoryController::class)->group(function () {
@@ -25,8 +29,6 @@ Route::middleware('role:admin')->group(function () {
             Route::put('/voucher/{id}', 'update')->name('course.voucher.update');
         });
     });
-
-
 
     Route::middleware('can:manage roles_permission')->group(function () {
         //resource roles spatie

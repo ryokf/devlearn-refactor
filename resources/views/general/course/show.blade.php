@@ -3,43 +3,43 @@
 @section('body')
     <section>
 
-        <div class="md:flex items-start justify-center pb-12 pt-8 2xl:px-20 md:px-6 px-4">
-            <div class="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
-                <img class="w-full rounded-xl shadow-inner shadow-white" alt="image of a girl posing"
-                    src="https://images.unsplash.com/photo-1536782376847-5c9d14d97cc0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJlZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" />
+        <div class="items-start justify-center px-4 pt-8 pb-12 md:flex 2xl:px-20 md:px-6">
+            <div class="hidden xl:w-2/6 lg:w-2/5 w-80 md:block">
+                <img class="w-full shadow-inner rounded-xl shadow-white" alt="{{ $course->title }}"
+                    src="{{ asset('storage/' . $course->photo) }}" />
 
             </div>
             <div class="md:hidden ">
-                <img class="w-full rounded-xl shadow-inner shadow-white" alt=""
-                    src="https://images.unsplash.com/photo-1536782376847-5c9d14d97cc0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJlZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" />
+                <img class="w-full shadow-inner rounded-xl shadow-white" alt="{{ $course->title }}"
+                    src="{{ asset('storage/' . $course->photo) }}" />
 
             </div>
-            <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
-                <div class="border-b border-gray-200 pb-6">
+            <div class="mt-6 xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0">
+                <div class="pb-6 border-b border-gray-200">
 
                     <h1
-                        class="lg:text-4xl text-3xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white my-2">
+                        class="my-2 text-3xl font-semibold leading-7 text-gray-800 lg:text-4xl lg:leading-6 dark:text-white">
                         {{ $course->title }}</h1>
-                    <div class="flex  mt-4 ">
-                        <div class="flex   ">
+                    <div class="flex mt-4 ">
+                        <div class="flex ">
                             <span class="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
                                 <p>{{ $course->category->name }}</p>
                             </span>
                         </div>
                         <div class="ml-4 text-gray-500">
-                            <p class="text-gray-400 mt-1">{{ count($course->lessons) }} Lesson</p>
+                            <p class="mt-1 text-gray-400">{{ count($course->lessons) }} Lesson</p>
                         </div>
 
                     </div>
                 </div>
-                <div class="py-4 border-b border-gray-200 flex items-start flex-col ">
+                <div class="flex flex-col items-start py-4 border-b border-gray-200 ">
                     <p class="text-lg leading-4 text-gray-800 dark:text-gray-300">Description</p>
                     <div class="flex items-center justify-center">
                         <p class="text-sm leading-none text-gray-600 dark:text-gray-300">{{ $course->description }}
                         </p>
                     </div>
                 </div>
-                <div class="py-4 border-b border-gray-200 flex items-center justify-between">
+                <div class="flex items-center justify-between py-4 border-b border-gray-200">
                     @if ($course->price == 0)
                         <a href="{{ route('freeCourse', ['id_course' => $course->id]) }}"
                             class=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gradient-to-bl from-cyan-400 dark:from-purple-600 via-10% to-blue-500 dark:to-purple-700 shadow-inner shadow-zinc-100 dark:shadow-zinc-300 transition-all w-full py-4 hover:bg-gray-700 focus:outline-none rounded-lg">
@@ -47,7 +47,7 @@
                         </a>
                     @else
                         <p>{{ $course->price }}</p>
-                        <button class=" bg-indigo-500 text-white py-2 px-6 rounded-md hover:bg-indigo-600">
+                        <button class="px-6 py-2 text-white bg-indigo-500 rounded-md hover:bg-indigo-600">
                             Enroll Now
                         </button>
                     @endif
@@ -56,7 +56,7 @@
                     $menit = count($course->lessons) * 10;
                     $no = 1;
                 @endphp
-                <div class="py-4 border-b border-gray-200 flex items-start flex-col ">
+                <div class="flex flex-col items-start py-4 border-b border-gray-200 ">
                     <p class="text-lg leading-4 text-gray-800 dark:text-gray-300">Course Content</p>
                     <p class="text-base leading-4 text-gray-800 dark:text-gray-300">{{ count($course->lessons) }}
                         sections • {{ $menit }} minutes total length</p>
@@ -101,29 +101,33 @@
     </section>
     <section>
         <div class="bg-white dark:bg-[#303150]  py-6 sm:py-14">
-            <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                <div class="mx-auto max-w-2xl sm:text-center">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">Opsi Pembayaran</h2>
-                    <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-zinc-400">"Tidak ada kesalahan dalam berinvestasi pada
+            <div class="px-6 mx-auto max-w-7xl lg:px-8">
+                <div class="max-w-2xl mx-auto sm:text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">Opsi Pembayaran
+                    </h2>
+                    <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-zinc-400">"Tidak ada kesalahan dalam
+                        berinvestasi pada
                         pendidikan, Langkah ini adalah langkah bijak untuk
                         masa depan yang cerah."</p>
                 </div>
                 <div
-                    class="mx-auto mt-16 max-w-2xl rounded-3xl border dark:border-none shadow-inner shadow-white dark:shadow-zinc-200 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none items-center bg-white/5">
+                    class="items-center max-w-2xl mx-auto mt-16 border shadow-inner rounded-3xl dark:border-none shadow-white dark:shadow-zinc-200 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none bg-white/5">
                     <div class="p-8 sm:p-10 lg:flex-auto">
                         <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Akses Selamanya</h3>
-                        <p class="mt-6 text-base leading-7 text-gray-600 dark:text-zinc-400">Nikmati akses tak terbatas ke komprehensif
+                        <p class="mt-6 text-base leading-7 text-gray-600 dark:text-zinc-400">Nikmati akses tak terbatas ke
+                            komprehensif
                             kami
                             Konten kursus dan tingkatkan keterampilan Anda dengan sumber daya eksklusif kami.</p>
-                        <div class="mt-10 flex items-center gap-x-4">
-                            <h4 class="flex-none text-sm font-semibold leading-6 text-slate-800 dark:text-white">What’s Included</h4>
-                            <div class="h-px flex-auto bg-gray-100"></div>
+                        <div class="flex items-center mt-10 gap-x-4">
+                            <h4 class="flex-none text-sm font-semibold leading-6 text-slate-800 dark:text-white">What’s
+                                Included</h4>
+                            <div class="flex-auto h-px bg-gray-100"></div>
                         </div>
                         <ul role="list"
-                            class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6">
+                            class="grid grid-cols-1 gap-4 mt-8 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6">
                             <li class="flex gap-x-3 dark:text-zinc-400">
-                                <svg class="h-6 w-5 flex-none text-slate-800 dark:text-white" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
+                                <svg class="flex-none w-5 h-6 text-slate-800 dark:text-white" viewBox="0 0 20 20"
+                                    fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
                                         clip-rule="evenodd" />
@@ -131,8 +135,8 @@
                                 Akses Materi Kelas Premium
                             </li>
                             <li class="flex gap-x-3 dark:text-zinc-400">
-                                <svg class="h-6 w-5 flex-none text-slate-800 dark:text-white" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
+                                <svg class="flex-none w-5 h-6 text-slate-800 dark:text-white" viewBox="0 0 20 20"
+                                    fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
                                         clip-rule="evenodd" />
@@ -140,8 +144,8 @@
                                 Konsultaisi dengan para mentor
                             </li>
                             <li class="flex gap-x-3 dark:text-zinc-400">
-                                <svg class="h-6 w-5 flex-none text-slate-800 dark:text-white" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
+                                <svg class="flex-none w-5 h-6 text-slate-800 dark:text-white" viewBox="0 0 20 20"
+                                    fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
                                         clip-rule="evenodd" />
@@ -149,8 +153,8 @@
                                 Akses kelas dimana saja
                             </li>
                             <li class="flex gap-x-3 dark:text-zinc-400">
-                                <svg class="h-6 w-5 flex-none text-slate-800 dark:text-white" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
+                                <svg class="flex-none w-5 h-6 text-slate-800 dark:text-white" viewBox="0 0 20 20"
+                                    fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
                                         clip-rule="evenodd" />
@@ -159,20 +163,22 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
+                    <div class="p-2 -mt-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
                         <div
-                            class="rounded-2xl  py-10 text-center ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
-                            <div class="mx-auto max-w-xs px-8">
+                            class="py-10 text-center rounded-2xl ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
+                            <div class="max-w-xs px-8 mx-auto">
                                 <p class="text-base font-semibold text-gray-600 dark:text-white">Investasikan Sekarang</p>
-                                <p class="mt-6 flex items-baseline justify-center gap-x-2">
-                                    <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600 dark:text-white">Rp</span>
+                                <p class="flex items-baseline justify-center mt-6 gap-x-2">
+                                    <span
+                                        class="text-sm font-semibold leading-6 tracking-wide text-gray-600 dark:text-white">Rp</span>
                                     <span
                                         class="text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $course->price }}</span>
                                 </p>
                                 <a href="#"
                                     class="mt-10 block w-full rounded-md bg-gradient-to-bl from-cyan-400 dark:from-purple-600 via-10% to-blue-500 dark:to-purple-700 shadow-inner shadow-zinc-100 dark:shadow-zinc-300 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enroll
                                     Now</a>
-                                <p class="mt-6 text-xs leading-5 text-gray-600 dark:text-zinc-400">Receipts and Invoices for Reimbursement
+                                <p class="mt-6 text-xs leading-5 text-gray-600 dark:text-zinc-400">Receipts and Invoices for
+                                    Reimbursement
                                 </p>
                             </div>
                         </div>
