@@ -3,25 +3,24 @@
 @section('body')
     <x-dashboard-sidebar :menu=$menu></x-dashboard-sidebar>
     <div class="relative md:ml-72 bg-blueGray-50">
-        <div class="relative bg-slate-800 mb-10 py-10">
-         <x-dashboard-header></x-dashboard-header>
-
-            <div class="text-white mt-10 px-auto md:pl-5">
+        <div class="relative bg-gradient-to-bl from-sky-500 dark:from-indigo-600 via-20% to-blue-700 dark:to-indigo-950 rounded-b-xl shadow-lg  mb-10 py-10">
+         {{-- <x-dashboard-header></x-dashboard-header> --}}
+            <div class="text-white mt-6 px-auto md:pl-5">
                 <h1 class="container text-4xl font-bold">Kursus Anda</h1>
                 <p class="container mt-2 font-thin">
                     Upgrade terus ilmu dan pengalaman terbaru kamu di bidang teknologi
                 </p>
             </div>
-            <div class="lg:flex md:pl-5 pt-5 items-center">
-                <form class="container flex items-center" action="" method="GET">
+            <div class=" md:pl-5 pt-5 items-center">
+                <form class="container max-w-2xl flex items-center" action="" method="GET">
                     <label for="simple-search" class="sr-only">Search</label>
                     <div class="relative w-full">
                         <input type="text" id="simple-search"
-                            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-2 pr-20 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="bg-white placeholder-white bg-opacity-40 border-none text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-2 pr-20 p-2.5  "
                             placeholder="cari kursus..." name="search" required>
                     </div>
                     <button type="submit"
-                        class="p-3 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        class="p-3 ml-2 text-sm font-medium text-white bg-white bg-opacity-40 rounded-lg hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -30,17 +29,17 @@
                         <span class="sr-only">Search</span>
                     </button>
                 </form>
-                <div class="container flex md:overflow-hidden overflow-x-auto items-center gap-3 my-3 lg:my-0">
-                    <x-dropdown-button :sorts="$sorts" buttonColor="bg-white"
-                        textColor="text-black">urutkan</x-dropdown-button>
+                <div class="container flex md:overflow-hidden overflow-x-auto items-center gap-3 mt-3">
+                    <x-dropdown-button :sorts="$sorts" buttonColor="bg-white bg-opacity-40"
+                        textColor="text-white">urutkan</x-dropdown-button>
                     {{-- <x-dropdown-button :sorts="$categories" buttonColor="bg-white"
                         textColor="text-black">kategori</x-dropdown-button> --}}
                     <a href="?status=pass"
-                        class="{{ request()->status == 'pass' ? 'bg-blue-600 text-white' : 'bg-white text-black' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        class="{{ request()->status == 'pass' ? 'bg-blue-400 text-white' : 'bg-white bg-opacity-40 text-white' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
                         type="button"> diselesaikan
                     </a>
                     <a href="?status=ongoing"
-                        class="{{ request()->status == 'ongoing' ? 'bg-blue-600 text-white' : 'bg-white text-black' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        class="{{ request()->status == 'ongoing' ? 'bg-blue-400 text-white' : 'bg-white bg-opacity-40 text-white' }} focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
                         type="button"> berjalan
                     </a>
                 </div>
@@ -57,7 +56,7 @@
                 <a class="block text-center mt-2 text-blue-600 text-lg" href="{{ route('homepage') }}#categories">beli
                     kursus</a>
             @endif
-            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                 @foreach ($courses as $course)
                     <x-course-card :id="$course->id" :title="$course->title" :category="$course->category->name" :price="$course->price" :count="count($course->lessons)"
                         :photo="$course->photo" />
@@ -72,6 +71,9 @@
             <x-dashboard-footer />
         </div>
     </div>
+
+    <x-bottom-nav-bar :menu="$menu"></x-bottom-nav-bar>
+
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
     <script type="text/javascript">
         /* Make dynamic date appear */

@@ -3,14 +3,14 @@
 @section('body')
     <section>
 
-        <div class="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
+        <div class="md:flex items-start justify-center pb-12 pt-8 2xl:px-20 md:px-6 px-4">
             <div class="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
-                <img class="w-full" alt="image of a girl posing"
+                <img class="w-full rounded-xl shadow-inner shadow-white" alt="image of a girl posing"
                     src="https://images.unsplash.com/photo-1536782376847-5c9d14d97cc0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJlZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" />
 
             </div>
-            <div class="md:hidden">
-                <img class="w-full" alt="image of a girl posing"
+            <div class="md:hidden ">
+                <img class="w-full rounded-xl shadow-inner shadow-white" alt=""
                     src="https://images.unsplash.com/photo-1536782376847-5c9d14d97cc0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJlZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" />
 
             </div>
@@ -42,7 +42,7 @@
                 <div class="py-4 border-b border-gray-200 flex items-center justify-between">
                     @if ($course->price == 0)
                         <a href="{{ route('freeCourse', ['id_course' => $course->id]) }}"
-                            class="dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700 focus:outline-none rounded-md">
+                            class=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gradient-to-bl from-cyan-400 dark:from-purple-600 via-10% to-blue-500 dark:to-purple-700 shadow-inner shadow-zinc-100 dark:shadow-zinc-300 transition-all w-full py-4 hover:bg-gray-700 focus:outline-none rounded-lg">
                             Start Free Course
                         </a>
                     @else
@@ -65,20 +65,20 @@
                         <!--First item-->
                         @foreach ($course->lessons as $lesson)
                             <li data-te-stepper-step-ref
-                                class="relative h-fit after:absolute after:left-[2.45rem] after:top-[3.6rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#e0e0e0] after:content-[''] dark:after:bg-slate-800">
+                                class="relative transition-all hover:text-[17px] hover:shadow-inner hover:shadow-white dark:hover:shadow-zinc-200 hover:bg-white dark:hover:bg-opacity-10 rounded-xl h-fit after:absolute after:left-[2.45rem] after:top-[3.6rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#e0e0e0] after:content-[''] dark:after:bg-slate-800">
                                 <div data-te-stepper-head-ref
-                                    class="flex cursor-pointer items-center p-6 leading-[1.3rem] no-underline after:bg-[#e0e0e0] after:content-[''] hover:bg-[#f9f9f9] focus:outline-none dark:after:bg-slate-800 dark:hover:bg-[#3b3b3b]">
+                                    class="flex cursor-pointer items-center p-6 leading-[1.3rem] no-underline after:bg-[#e0e0e0] after:content-['']  focus:outline-none dark:after:bg-slate-800 ">
                                     <span data-te-stepper-head-icon-ref
-                                        class="mr-3 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-[#ebedef] text-sm font-medium text-[#40464f]">
+                                        class="mr-3 flex aspect-square z-10 h-8 w-8 items-center justify-center rounded-full text-white bg-gradient-to-bl from-cyan-400 dark:from-purple-600 via-10% to-blue-500 dark:to-purple-700 shadow-inner shadow-zinc-100 dark:shadow-zinc-300 text-sm font-medium">
                                         {{ $no }}
                                     </span>
                                     <span data-te-stepper-head-text-ref
-                                        class="text-slate-800 after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-slate-300">
+                                        class="text-zinc-800 font-medium dark:text-white after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-slate-300">
                                         {{ $lesson->title }}
                                     </span>
                                 </div>
                                 <div data-te-stepper-content-ref
-                                    class="transition-[height, margin-bottom, padding-top, padding-bottom] left-0 overflow-hidden pb-6 pl-[3.75rem] pr-6 duration-300 ease-in-out">
+                                    class="dark:text-zinc-400 transition-[height, margin-bottom, padding-top, padding-bottom] left-0 overflow-hidden pb-6 pl-[3.75rem] pr-6">
                                     {{ $lesson->description }}
                                 </div>
                             </li>
@@ -100,29 +100,29 @@
 
     </section>
     <section>
-        <div class="bg-white py-6 sm:py-14">
+        <div class="bg-white dark:bg-[#303150]  py-6 sm:py-14">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-2xl sm:text-center">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Opsi Pembayaran</h2>
-                    <p class="mt-6 text-lg leading-8 text-gray-600">"Tidak ada kesalahan dalam berinvestasi pada
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">Opsi Pembayaran</h2>
+                    <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-zinc-400">"Tidak ada kesalahan dalam berinvestasi pada
                         pendidikan, Langkah ini adalah langkah bijak untuk
                         masa depan yang cerah."</p>
                 </div>
                 <div
-                    class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
+                    class="mx-auto mt-16 max-w-2xl rounded-3xl border dark:border-none shadow-inner shadow-white dark:shadow-zinc-200 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none items-center bg-white/5">
                     <div class="p-8 sm:p-10 lg:flex-auto">
-                        <h3 class="text-2xl font-bold tracking-tight text-gray-900">Akses Selamanya</h3>
-                        <p class="mt-6 text-base leading-7 text-gray-600">Nikmati akses tak terbatas ke komprehensif
+                        <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Akses Selamanya</h3>
+                        <p class="mt-6 text-base leading-7 text-gray-600 dark:text-zinc-400">Nikmati akses tak terbatas ke komprehensif
                             kami
                             Konten kursus dan tingkatkan keterampilan Anda dengan sumber daya eksklusif kami.</p>
                         <div class="mt-10 flex items-center gap-x-4">
-                            <h4 class="flex-none text-sm font-semibold leading-6 text-slate-800">What’s Included</h4>
+                            <h4 class="flex-none text-sm font-semibold leading-6 text-slate-800 dark:text-white">What’s Included</h4>
                             <div class="h-px flex-auto bg-gray-100"></div>
                         </div>
                         <ul role="list"
                             class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6">
-                            <li class="flex gap-x-3">
-                                <svg class="h-6 w-5 flex-none text-slate-800" viewBox="0 0 20 20" fill="currentColor"
+                            <li class="flex gap-x-3 dark:text-zinc-400">
+                                <svg class="h-6 w-5 flex-none text-slate-800 dark:text-white" viewBox="0 0 20 20" fill="currentColor"
                                     aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
@@ -130,8 +130,8 @@
                                 </svg>
                                 Akses Materi Kelas Premium
                             </li>
-                            <li class="flex gap-x-3">
-                                <svg class="h-6 w-5 flex-none text-slate-800" viewBox="0 0 20 20" fill="currentColor"
+                            <li class="flex gap-x-3 dark:text-zinc-400">
+                                <svg class="h-6 w-5 flex-none text-slate-800 dark:text-white" viewBox="0 0 20 20" fill="currentColor"
                                     aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
@@ -139,8 +139,8 @@
                                 </svg>
                                 Konsultaisi dengan para mentor
                             </li>
-                            <li class="flex gap-x-3">
-                                <svg class="h-6 w-5 flex-none text-slate-800" viewBox="0 0 20 20" fill="currentColor"
+                            <li class="flex gap-x-3 dark:text-zinc-400">
+                                <svg class="h-6 w-5 flex-none text-slate-800 dark:text-white" viewBox="0 0 20 20" fill="currentColor"
                                     aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
@@ -148,8 +148,8 @@
                                 </svg>
                                 Akses kelas dimana saja
                             </li>
-                            <li class="flex gap-x-3">
-                                <svg class="h-6 w-5 flex-none text-slate-800" viewBox="0 0 20 20" fill="currentColor"
+                            <li class="flex gap-x-3 dark:text-zinc-400">
+                                <svg class="h-6 w-5 flex-none text-slate-800 dark:text-white" viewBox="0 0 20 20" fill="currentColor"
                                     aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
@@ -161,18 +161,18 @@
                     </div>
                     <div class="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
                         <div
-                            class="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
+                            class="rounded-2xl  py-10 text-center ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
                             <div class="mx-auto max-w-xs px-8">
-                                <p class="text-base font-semibold text-gray-600">Investasikan Sekarang</p>
+                                <p class="text-base font-semibold text-gray-600 dark:text-white">Investasikan Sekarang</p>
                                 <p class="mt-6 flex items-baseline justify-center gap-x-2">
-                                    <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">Rp</span>
+                                    <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600 dark:text-white">Rp</span>
                                     <span
-                                        class="text-5xl font-bold tracking-tight text-gray-900">{{ $course->price }}</span>
+                                        class="text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $course->price }}</span>
                                 </p>
                                 <a href="#"
-                                    class="mt-10 block w-full rounded-md bg-slate-800 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enroll
+                                    class="mt-10 block w-full rounded-md bg-gradient-to-bl from-cyan-400 dark:from-purple-600 via-10% to-blue-500 dark:to-purple-700 shadow-inner shadow-zinc-100 dark:shadow-zinc-300 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enroll
                                     Now</a>
-                                <p class="mt-6 text-xs leading-5 text-gray-600">Receipts and Invoices for Reimbursement
+                                <p class="mt-6 text-xs leading-5 text-gray-600 dark:text-zinc-400">Receipts and Invoices for Reimbursement
                                 </p>
                             </div>
                         </div>

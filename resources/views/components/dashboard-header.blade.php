@@ -6,7 +6,7 @@
             <a class=" text-lg uppercase hidden lg:inline-block font-medium" href="">
                 Dashboard {{ request()->user()->roles[0]['name'] }}
             </a>
-            <div class="text-zinc-500 hidden lg:block">
+            <div class="text-zinc-500 hidden lg:block dark:text-zinc-400">
                 selamat datang, {{ auth()->user()->name }}
             </div>
         </div>

@@ -174,7 +174,7 @@
                         Frequently Asked Question
                     </h2>
                     <ul class="flex flex-col">
-                        <li class="bg-white my-2 shadow-md dark:bg-zinc-700 rounded-lg"
+                        <li class="bg-white my-2 shadow-md dark:bg-[#303150] rounded-lg"
                             x-data="accordion(1)">
                             <h2 @click="handleClick()"
                                 class="flex flex-row justify-between items-center font-medium p-3 cursor-pointer dark:text-white">
@@ -196,7 +196,7 @@
                                 </p>
                             </div>
                         </li>
-                        <li class="bg-white my-2 shadow-md dark:bg-zinc-700 rounded-lg"
+                        <li class="bg-white my-2 shadow-md dark:bg-[#303150] rounded-lg"
                             x-data="accordion(2)">
                             <h2 @click="handleClick()"
                                 class="flex flex-row justify-between items-center font-medium p-3 cursor-pointer dark:text-white">
@@ -219,7 +219,7 @@
                                 </p>
                             </div>
                         </li>
-                        <li class="bg-white my-2 shadow-md dark:bg-zinc-700 rounded-lg"
+                        <li class="bg-white my-2 shadow-md dark:bg-[#303150] rounded-lg"
                             x-data="accordion(3)">
                             <h2 @click="handleClick()"
                                 class="flex flex-row justify-between items-center font-medium p-3 cursor-pointer dark:text-white">
@@ -251,7 +251,7 @@
     <!-- End FAQ Section -->
 
     <!-- Start Testimoni Section -->
-    <section class="bg-slate-100 mt-20 dark:bg-zinc-700 rounded-t-xl">
+    <section class="bg-slate-100 mt-20 dark:bg-[#303150] rounded-t-xl">
         <div class="mx-auto max-w-[1340px] px-4 py-16 sm:px-6 sm:py-24 lg:me-0 lg:pe-0 lg:ps-8 ">
             <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:items-center lg:gap-x-16 ">
                 <div class="max-w-xl text-center mx-auto">
@@ -291,7 +291,7 @@
                     <div class="swiper-container !overflow-hidden">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <blockquote class="flex flex-col justify-between bg-white dark:bg-zinc-800 p-12 h-96">
+                                <blockquote class="flex flex-col justify-between bg-white dark:bg-[#1b1b36] p-12 h-96">
                                     <div>
                                         @for($i = 0; $i < 5; $i++)
                                         <div class="inline-flex gap-0.5 text-green-500">
@@ -321,7 +321,7 @@
                             </div>
 
                             <div class="swiper-slide">
-                                <blockquote class="flex flex-col justify-between bg-white p-12 h-96 dark:bg-zinc-800">
+                                <blockquote class="flex flex-col justify-between bg-white p-12 h-96 dark:bg-[#1b1b36]">
                                     <div>
                                         @for($i = 0; $i < 4; $i++)
                                         <div class="inline-flex gap-0.5 text-green-500">

@@ -12,4 +12,5 @@
             @include('profile.partials.update-password-form')
         </div>
     </div>
+    <x-bottom-nav-bar :menu="$menu"></x-bottom-nav-bar>
 @endsection
