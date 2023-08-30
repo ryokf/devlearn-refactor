@@ -3,16 +3,17 @@
 @section('body')
     <x-dashboard-sidebar :menu=$menu></x-dashboard-sidebar>
     <div class="relative md:ml-72 bg-blueGray-50">
-        <div class="relative bg-gradient-to-bl from-sky-500 dark:from-indigo-600 via-20% to-blue-700 dark:to-indigo-950 rounded-b-xl shadow-lg  mb-10 py-10">
-         {{-- <x-dashboard-header></x-dashboard-header> --}}
-            <div class="text-white mt-6 px-auto md:pl-5">
+        <div
+            class="relative bg-gradient-to-bl from-sky-500 dark:from-indigo-600 via-20% to-blue-700 dark:to-indigo-950 rounded-b-xl shadow-lg  mb-10 py-10">
+            {{-- <x-dashboard-header></x-dashboard-header> --}}
+            <div class="mt-6 text-white px-auto md:pl-5">
                 <h1 class="container text-4xl font-bold">Kursus Anda</h1>
                 <p class="container mt-2 font-thin">
                     Upgrade terus ilmu dan pengalaman terbaru kamu di bidang teknologi
                 </p>
             </div>
-            <div class=" md:pl-5 pt-5 items-center">
-                <form class="container max-w-2xl flex items-center" action="" method="GET">
+            <div class="items-center pt-5  md:pl-5">
+                <form class="container flex items-center max-w-2xl" action="" method="GET">
                     <label for="simple-search" class="sr-only">Search</label>
                     <div class="relative w-full">
                         <input type="text" id="simple-search"
@@ -20,7 +21,7 @@
                             placeholder="cari kursus..." name="search" required>
                     </div>
                     <button type="submit"
-                        class="p-3 ml-2 text-sm font-medium text-white bg-white bg-opacity-40 rounded-lg hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+                        class="p-3 ml-2 text-sm font-medium text-white bg-white rounded-lg bg-opacity-40 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -29,7 +30,7 @@
                         <span class="sr-only">Search</span>
                     </button>
                 </form>
-                <div class="container flex md:overflow-hidden overflow-x-auto items-center gap-3 mt-3">
+                <div class="container flex items-center gap-3 mt-3 overflow-x-auto md:overflow-hidden">
                     <x-dropdown-button :sorts="$sorts" buttonColor="bg-white bg-opacity-40"
                         textColor="text-white">urutkan</x-dropdown-button>
                     {{-- <x-dropdown-button :sorts="$categories" buttonColor="bg-white"
@@ -47,16 +48,16 @@
         </div>
         <div class="px-10 mx-auto">
             @if (request()->search != null && count($courses) == 0)
-                <h1 class="text-center mx-auto font-semibold text-xl">kursus yang anda cari tidak tersedia</h1>
-                <a title="kembali ke daftar kursus" class="block text-center mt-4" href="{{ route('course.index') }}"><i
+                <h1 class="mx-auto text-xl font-semibold text-center">kursus yang anda cari tidak tersedia</h1>
+                <a title="kembali ke daftar kursus" class="block mt-4 text-center" href="{{ route('course.index') }}"><i
                         class="fa-solid fa-arrow-left fa-xl"></i></a>
             @endif
             @if (request()->search == null && count($courses) == 0)
-                <h1 class="text-center mx-auto font-semibold text-xl">anda belum memiliki kursus</h1>
-                <a class="block text-center mt-2 text-blue-600 text-lg" href="{{ route('homepage') }}#categories">beli
+                <h1 class="mx-auto text-xl font-semibold text-center">anda belum memiliki kursus</h1>
+                <a class="block mt-2 text-lg text-center text-blue-600" href="{{ route('homepage') }}#categories">beli
                     kursus</a>
             @endif
-            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 @foreach ($courses as $course)
                     <x-course-card :id="$course->id" :title="$course->title" :category="$course->category->name" :price="$course->price" :count="count($course->lessons)"
                         :photo="$course->photo" />

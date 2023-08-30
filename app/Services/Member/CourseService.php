@@ -41,6 +41,33 @@ class CourseService
 
         $course = Course::findOrFail($id);
 
+
+        $lessonIds = $user->lessons()->where('course_id', $id)->pluck('id')->toArray();
+
+        $lessons = $user->lessons()
+            ->whereIn('lesson_id', $lessonIds)
+            ->get();
+
+        $statusCounts = $lessons->groupBy('pivot.status')
+            ->map(function ($group) {
+                return $group->count();
+            });
+
+        $trueCount = $statusCounts->get(true, 0);
+        $falseCount = $statusCounts->get(false, 0);
+
+        // echo "True Count: {$trueCount}<br>";
+        // echo "False Count: {$falseCount}<br>";
+
+        $totalLessons = count($lessonIds);
+        // echo "Total Lessons = {$totalLessons}<br>";
+
+        //presentase progress complete
+        $success = intval(($trueCount / $totalLessons) * 100);
+        // echo $success . "%";
+
+
+
         return [
             'lessons_member' => $lessons_member,
             'lessons_all' => $lessons_all,
@@ -48,6 +75,10 @@ class CourseService
             'course' => $course,
             'id_lesson' => $id_lesson,
             'comments' => $comments,
+            'progressPercentage' => $success,
+            'completed' => $trueCount,
+
+            'totalLessons' => $totalLessons,
         ];
     }
 }

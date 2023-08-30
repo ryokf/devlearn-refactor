@@ -28,7 +28,10 @@ class LessonController extends Controller
         //mencari user di table users menggunakan id_user
         $user = User::findOrFail($id_user);
         //pengecekan apakah user memiliki course di tabel userCourse
-        $userCourse = UserCourse::where('user_id', $id_user)->where('course_id', $id)->where('payment_status', 'sukses')->first();
+        $userCourse = UserCourse::where('user_id', $id_user)
+            ->where('course_id', $id)
+            ->where('payment_status', 'sukses')
+            ->first();
         //jika role nya author / admin / $userCourse = datanya ada ga di table userCourse
         if ($user->hasRole('author') || $user->hasRole('admin') || $userCourse) {
             //untuk button next chapter
@@ -55,6 +58,10 @@ class LessonController extends Controller
             } else {
                 $lessons = $courseData['lessons_member'];
             }
+            // 'progress_percentage' => $success,
+            // 'lesson_finish' => $trueCount,
+            // 'lesson_not' => $falseCount,
+            // 'total_lessons' => $totalLessons,
 
             return view('member.lesson.index', [
                 'lessons' => $lessons,
@@ -64,6 +71,10 @@ class LessonController extends Controller
                 'lastChapter' => $isLastChapter,
                 'comments' => $courseData['comments'],
                 'id_lesson' => Lesson::where('course_id', $id)->where('chapter', $chapter)->first(),
+                'progressPercentage' => $courseData['progressPercentage'],
+                'completed' => $courseData['completed'],
+
+                'totalLessons' => $courseData['totalLessons']
             ]);
         } else {
             return redirect()->back()->with('message', 'unpaid');
@@ -82,26 +93,17 @@ class LessonController extends Controller
         $userCourse = UserCourse::where('user_id', $id_user)->where('course_id', $id)->where('payment_status', 'sukses')->first();
         //jika role nya author / admin / $userCourse = datanya ada ga di table userCourse
         if ($user->hasRole('author') || $user->hasRole('admin') || $userCourse) {
+
             //untuk button next chapter
             $nextChapter = $chapter;
 
-            // // Query untuk mendapatkan chapter terakhir
-            // $lastChapter = DB::table('lessons')
-            //     ->where('course_id', $id)
-            //     ->orderBy('chapter', 'desc')
-            //     ->first();
-
-            // // Menandai apakah ini chapter terakhir atau bukan
-            // $isLastChapter = false;
-            // if ($lastChapter && $chapter == $lastChapter->chapter) {
-            //     $isLastChapter = true;
-            // }
 
             $nextChapterExists = DB::table('lessons')
                 ->where('course_id', $id)
                 ->where('chapter', $nextChapter)
                 ->exists();
 
+            //Ini buat update menjadi true
             $user->lessons()->syncWithoutDetaching([
                 $request->id_lesson => ['status' => true],
             ]);
